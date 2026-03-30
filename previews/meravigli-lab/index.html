@@ -3,169 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>meravigliä Lab - Digital Marketing per PMI</title>
+    <title>meravigliä Lab - Digital Marketing per PMI e Franchising</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primario: #FFFFFF;
+            --secondario: #1A1A2E;
+            --accento: #C8FF00;
+            --sfondo: #0D0D0D;
+            --testo: #FFFFFF;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--sfondo);
+            color: var(--testo);
         }
+        
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
         }
-        .hero-gradient {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        
+        .navbar-active {
+            color: var(--accento);
+            border-bottom: 2px solid var(--accento);
         }
-        .card-service {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-service:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
-        }
-        .accent-line {
-            background: #FF6B6B;        
-        }
-        .watermark-section {
-            background: linear-gradient(90deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-        }
+        
         .btn-primary {
-            background-color: #FF6B6B;
+            background-color: var(--accento);
+            color: var(--secondario);
+            font-weight: 700;
             transition: all 0.3s ease;
         }
+        
         .btn-primary:hover {
-            background-color: #e85555;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 20px 40px rgba(200, 255, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            border: 2px solid var(--accento);
+            color: var(--accento);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accento);
+            color: var(--secondario);
+        }
+        
+        .card-servizio {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.5) 0%, rgba(26, 26, 46, 0.2) 100%);
+            border: 1px solid rgba(200, 255, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-servizio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(200, 255, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .card-servizio:hover::before {
+            left: 100%;
+        }
+        
+        .card-servizio:hover {
+            transform: translateY(-8px);
+            border-color: var(--accento);
+            background: linear-gradient(135deg, rgba(200, 255, 0, 0.1) 0%, rgba(26, 26, 46, 0.3) 100%);
+            box-shadow: 0 30px 60px rgba(200, 255, 0, 0.3);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #0D0D0D 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(200, 255, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200, 255, 0, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .accent-text {
+            color: var(--accento);
+        }
+        
+        .watermark-section {
+            background: linear-gradient(90deg, transparent, var(--accento), transparent);
+            padding: 3rem 0;
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .watermark-section::before {
+            content: 'meravigliä Lab';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--secondario);
+            opacity: 0.8;
+            white-space: nowrap;
+            z-index: 1;
+        }
+        
+        .form-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(200, 255, 0, 0.3);
+            color: var(--testo);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--accento);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(200, 255, 0, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .navbar {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(200, 255, 0, 0.1);
+        }
+        
+        .numero-stat {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accento);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
         }
     </style>
 </head>
-<body class="bg-white text-gray-900">
-
-    <!-- NAVBAR FIXED -->
-    <nav class="fixed w-full top-0 z-50 bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-200">
+<body class="bg-[#0D0D0D]">
+    <!-- NAVBAR FISSA -->
+    <nav class="navbar fixed top-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- LOGO -->
-                <div class="flex items-center">
-                    <div class="text-2xl font-bold">
-                        <span class="text-black">meravigliä</span><span class="text-red-600">Lab</span>
-                    </div>
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-black text-[#C8FF00]">
+                        meravigliä<span class="text-white"> Lab</span>
+                    </h1>
                 </div>
                 
                 <!-- MENU DESKTOP -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-800 hover:text-red-600 font-medium transition">Home</a>
-                    <a href="#chi-siamo" class="text-gray-800 hover:text-red-600 font-medium transition">Chi Siamo</a>
-                    <a href="#servizi" class="text-gray-800 hover:text-red-600 font-medium transition">Servizi</a>
-                    <a href="#blog" class="text-gray-800 hover:text-red-600 font-medium transition">Blog</a>
-                    <a href="#recensioni" class="text-gray-800 hover:text-red-600 font-medium transition">Recensioni</a>
+                    <a href="#home" class="text-white hover:text-[#C8FF00] transition navbar-active">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-[#C8FF00] transition">Chi Siamo</a>
+                    <a href="#servizi" class="text-white hover:text-[#C8FF00] transition">Servizi</a>
+                    <a href="#perche" class="text-white hover:text-[#C8FF00] transition">Perché Noi</a>
+                    <a href="#contatti" class="text-white hover:text-[#C8FF00] transition">Contatti</a>
                 </div>
-
+                
                 <!-- CTA BUTTON -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="#contatti" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold">
+                <div class="hidden md:block">
+                    <a href="#contatti" class="btn-primary px-6 py-2 rounded-lg font-bold">
                         Consulenza Gratuita
                     </a>
                 </div>
-
-                <!-- MENU MOBILE -->
+                
+                <!-- HAMBURGER MENU -->
                 <div class="md:hidden">
-                    <button class="text-gray-800" id="mobile-menu-btn">
+                    <button id="menu-toggle" class="text-white">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
+            
+            <!-- MENU MOBILE -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#home" class="block text-white py-2 hover:text-[#C8FF00]">Home</a>
+                <a href="#chi-siamo" class="block text-white py-2 hover:text-[#C8FF00]">Chi Siamo</a>
+                <a href="#servizi" class="block text-white py-2 hover:text-[#C8FF00]">Servizi</a>
+                <a href="#perche" class="block text-white py-2 hover:text-[#C8FF00]">Perché Noi</a>
+                <a href="#contatti" class="block text-white py-2 hover:text-[#C8FF00]">Contatti</a>
+                <a href="#contatti" class="btn-primary block mt-4 px-6 py-2 rounded-lg font-bold text-center">
+                    Consulenza Gratuita
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section id="home" class="hero-gradient text-white pt-32 pb-20 min-h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
-                        Più traffico? Più follower?
-                        <span class="text-red-600">E poi?</span>
-                    </h1>
-                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                        Meglio più risultati. Aiutiamo PMI e imprenditori a fare digital marketing che porta a casa fatturato vero, non metriche da aperitivo.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="btn-primary text-white px-8 py-4 rounded-lg font-bold text-lg">
-                            Richiedi consulenza gratuita
-                        </button>
-                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-black transition">
-                            Scopri come
-                        </button>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="bg-gradient-to-br from-red-600 to-red-500 rounded-2xl p-12 text-center">
-                        <div class="text-white">
-                            <div class="text-6xl font-bold mb-4">+240%</div>
-                            <p class="text-xl mb-8">Aumento tasso di conversione medio</p>
-                            <div class="h-1 bg-white rounded-full mb-8"></div>
-                            <div class="text-lg">
-                                <p class="mb-4">📈 <strong>ROI medio: 400%</strong></p>
-                                <p class="mb-4">🎯 <strong>Traffico qualificato: +150%</strong></p>
-                                <p>⏱️ <strong>Risultati in 60-90 giorni</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section id="home" class="hero-section min-h-screen flex items-center justify-center pt-20">
+        <div class="hero-content max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <span class="inline-block px-4 py-2 bg-[#1A1A2E] border border-[#C8FF00] rounded-full text-[#C8FF00] text-sm font-bold mb-6">
+                    ✓ Zero fuffa. Solo crescita misurabile.
+                </span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                Più traffico? Più follower? <span class="accent-text">E poi?</span>
+                <br>
+                <span class="accent-text">Meglio più risultati.</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Aiutiamo PMI e imprenditori a smettere di collezionare metriche da aperitivo e iniziare a fare digital marketing che porta a casa <span class="accent-text font-bold">risultati veri</span>.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contatti" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg">
+                    Richiedi consulenza gratuita
+                </a>
+                <a href="#chi-siamo" class="btn-secondary px-8 py-4 rounded-lg font-bold text-lg">
+                    Scopri come funzioniamo
+                </a>
             </div>
         </div>
     </section>
 
     <!-- CHI SIAMO -->
-    <section id="chi-siamo" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="chi-siamo" class="py-20 bg-[#0D0D0D]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Chi è meravigliä Lab</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Siamo un'agenzia di marketing digitale nata per supportare PMI e imprenditori italiani con strategie concrete, misurabili e orientate al ROI reale. Non abbiamo formula magiche, template preconfezionati o report pieni di numeri. Abbiamo solo risultati.
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Chi Siamo (senza teatralità)
+                </h2>
+                <p class="text-xl text-gray-400">
+                    Un'agenzia di digital marketing che parla chiaro, lavora sporco e conta i soldi che fa entrare ai clienti.
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-2xl font-bold mb-4">Trasparenza e Concretezza</h3>
-                    <p class="text-gray-600">Niente buzzword marketing. Solo strategie chiare, misurabili e comunicate in italiano semplice.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
-                    <div class="text-4xl mb-4">💰</div>
-                    <h3 class="text-2xl font-bold mb-4">ROI Misurabile</h3>
-                    <p class="text-gray-600">Ogni centesimo speso tracciato. Se non genera risultati, non lo facciamo. Semplice.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
-                    <div class="text-4xl mb-4">🚀</div>
-                    <h3 class="text-2xl font-bold mb-4">Crescita Scalabile</h3>
-                    <p class="text-gray-600">Dal primo cliente al milione di euro. Le nostre strategie crescono con te, senza compromessi.</p>
-                </div>
-            </div>
-
-            <div class="bg-black text-white rounded-2xl p-12">
-                <h3 class="text-3xl font-bold mb-8">I nostri numeri</h3>
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div>
-                        <div class="text-5xl font-bold text-red-600 mb-2">150+</div>
-                        <p class="text-gray-300">Clienti supportati</p>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-6">
+                        <div class="hover-lift">
+                            <h3 class="text-2xl font-bold mb-2 text-[#C8FF00]">📍 Base a Milano</h3>
+                            <p class="text-gray-300">Specializzati in PMI, microimprese e franchising. Conosciamo i vostri problemi perché li vediamo ogni giorno.</p>
+                        </div>
+                        
+                        <div class="hover-lift">
+                            <h3 class="text-2xl font-bold mb-2 text-[#C8FF00]">🎯 Strategia > Tattica</h3>
+                            <p class="text-gray-300">Non facciamo campagne a caso. Prima di scattare una foto per Instagram, capiamo dove volete arrivare.</p>
+                        </div>
+                        
+                        <div class="hover-lift">
+                            <h3 class="text-2xl font-bold mb-2 text-[#C8FF00]">📊 Misuriamo tutto</h3>
+                            <p class="text-gray-300">Dashboard, KPI, reporting mensili. Se non si misura, è solo fuffa. E noi la fuffa non la vendiamo.</p>
+                        </div>
+                        
+                        <div class="hover-lift">
+                            <h3 class="text-2xl font-bold mb-2 text-[#C8FF00]">🤝 Partnership reale</h3>
+                            <p class="text-gray-300">Non siamo venditori di ore. Siamo partner di crescita. Il vostro successo è il nostro.</p>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-5xl font-bold text-red-600 mb-2">€15M+</div>
-                        <p class="text-gray-300">Fatturato generato</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="card-servizio p-8 rounded-xl text-center">
+                        <div class="numero-stat">150+</div>
+                        <p class="text-gray-300 mt-2">Clienti soddisfatti</p>
                     </div>
-                    <div>
-                        <div class="text-5xl font-bold text-red-600 mb-2">8+ Anni</div>
-                        <p class="text-gray-300">Di esperienza</p>
+                    <div class="card-servizio p-8 rounded-xl text-center">
+                        <div class="numero-stat">8+</div>
+                        <p class="text-gray-300 mt-2">Anni di esperienza</p>
                     </div>
-                    <div>
-                        <div class="text-5xl font-bold text-red-600 mb-2">4.6★</div>
-                        <p class="text-gray-300">Rating medio</p>
+                    <div class="card-servizio p-8 rounded-xl text-center">
+                        <div class="numero-stat">€5M+</div>
+                        <p class="text-gray-300 mt-2">ROI generato</p>
+                    </div>
+                    <div class="card-servizio p-8 rounded-xl text-center">
+                        <div class="numero-stat">0%</div>
+                        <p class="text-gray-300 mt-2">Fuffa</p>
                     </div>
                 </div>
             </div>
@@ -173,383 +325,493 @@
     </section>
 
     <!-- SERVIZI -->
-    <section id="servizi" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="servizi" class="py-20 bg-[#1A1A2E]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">I nostri servizi</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Tutto ciò di cui hai bisogno per dominare il tuo settore online. Da soli o in combo.
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    I nostri servizi
+                </h2>
+                <p class="text-xl text-gray-400">
+                    Tutto quello che serve per crescere nel 2024 (e non farsi rubare clienti dai competitor)
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- SERVIZIO 1 -->
-                <div class="card-service bg-white p-8 rounded-xl border border-gray-200 hover:border-red-600">
-                    <div class="text-5xl mb-4">🔍</div>
-                    <h3 class="text-2xl font-bold mb-4">SEO & Posizionamento</h3>
-                    <p class="text-gray-600 mb-6">Appari primo su Google per le ricerche che contano. Traffico organico qualificato, senza pagare per ogni click.</p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>✓ Keyword research strategico</li>
-                        <li>✓ Ottimizzazione on-page e technical</li>
-                        <li>✓ Backlink quality-first</li>
-                        <li>✓ Monitoraggio e reporting</li>
+                <!-- Servizio 1 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#C8FF00]">SEO</h3>
+                    <p class="text-gray-300 mb-6">
+                        Posizionamento organico che funziona. Keyword research, technical SEO, content strategy. Vogliamo che vi trovino su Google.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>✓ Audit tecnico</li>
+                        <li>✓ Link building</li>
+                        <li>✓ Content optimization</li>
                     </ul>
                 </div>
-
-                <!-- SERVIZIO 2 -->
-                <div class="card-service bg-white p-8 rounded-xl border border-gray-200 hover:border-red-600">
-                    <div class="text-5xl mb-4">📱</div>
-                    <h3 class="text-2xl font-bold mb-4">Social Media Marketing</h3>
-                    <p class="text-gray-600 mb-6">Non postare a caso. Strategie per convertire follower in clienti paganti su Instagram, TikTok, LinkedIn.</p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>✓ Strategia social personalizzata</li>
-                        <li>✓ Content calendar e creazione</li>
-                        <li>✓ Community management pro</li>
-                        <li>✓ Influencer marketing targetizzato</li>
+                
+                <!-- Servizio 2 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#C8FF00]">Social Media</h3>
+                    <p class="text-gray-300 mb-6">
+                        Instagram, LinkedIn, TikTok. Non solo like. Strategie che convertono follower in clienti reali.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>✓ Content calendar</li>
+                        <li>✓ Community management</li>
+                        <li>✓ Influencer partnership</li>
                     </ul>
                 </div>
-
-                <!-- SERVIZIO 3 -->
-                <div class="card-service bg-white p-8 rounded-xl border border-gray-200 hover:border-red-600">
-                    <div class="text-5xl mb-4">🎨</div>
-                    <h3 class="text-2xl font-bold mb-4">Web Design & UX</h3>
-                    <p class="text-gray-600 mb-6">Siti che non solo sono belli, ma convertono. Ogni pixel pensato per fare clic al bottone giusto.</p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>✓ Design responsive moderno</li>
-                        <li>✓ UX/UI conversion-oriented</li>
-                        <li>✓ Siti veloci e sicuri</li>
-                        <li>✓ CMS facili da gestire</li>
+                
+                <!-- Servizio 3 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#C8FF00]">Web Design</h3>
+                    <p class="text-gray-300 mb-6">
+                        Siti che vendono, non che ballano. Responsive, veloci, ottimizzati per le conversioni.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>✓ UX/UI Design</li>
+                        <li>✓ E-commerce</li>
+                        <li>✓ Ottimizzazione velocità</li>
                     </ul>
                 </div>
-
-                <!-- SERVIZIO 4 -->
-                <div class="card-service bg-white p-8 rounded-xl border border-gray-200 hover:border-red-600">
-                    <div class="text-5xl mb-4">💡</div>
-                    <h3 class="text-2xl font-bold mb-4">Advertising (Google & Meta)</h3>
-                    <p class="text-gray-600 mb-6">Pubblicità che paga. Strategia smart per raggiungere il tuo cliente ideale e convertire al massimo ROI.</p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>✓ Google Ads strategico</li>
-                        <li>✓ Meta Ads (Facebook, Instagram)</li>
-                        <li>✓ Retargeting e lookalike</li>
-                        <li>✓ Budget optimization continua</li>
+                
+                <!-- Servizio 4 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#C8FF00]">Advertising</h3>
+                    <p class="text-gray-300 mb-6">
+                        Google Ads, Facebook Ads, LinkedIn Ads. Budget ben speso, non buttato via in esperimenti.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>✓ Campaign setup</li>
+                        <li>✓ A/B testing</li>
+                        <li>✓ ROI optimization</li>
                     </ul>
                 </div>
-
-                <!-- SERVIZIO 5 -->
-                <div class="card-service bg-white p-8 rounded-xl border border-gray-200 hover:border-red-600">
-                    <div class="text-5xl mb-4">🎭</div>
-                    <h3 class="text-2xl font-bold mb-4">Branding & Identità Visiva</h3>
-                    <p class="text-gray-600 mb-6">Non è solo un logo. È la promessa che mantieni al tuo cliente. Identità che distingue e convince.</p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>✓ Brand strategy e positioning</li>
-                        <li>✓ Logo e visual identity</li>
-                        <li>✓ Brand guidelines complete</li>
-                        <li>✓ Storytelling autentico</li>
+                
+                <!-- Servizio 5 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#C8FF00]">Branding</h3>
+                    <p class="text-gray-300 mb-6">
+                        Identità visiva che comunica chi siete. Logo, palette, guidelines. Coerenza su tutti i canali.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>✓ Logo design</li>
+                        <li>✓ Brand guidelines</li>
+                        <li>✓ Brand voice</li>
                     </ul>
                 </div>
-
-                <!-- SERVIZIO 6 -->
-                <div class="card-service bg-white p-8 rounded-xl border border-gray-200 hover:border-red-600">
-                    <div class="text-5xl mb-4">⚙️</div>
-                    <h3 class="text-2xl font-bold mb-4">Marketing Automation & AI</h3>
-                    <p class="text-gray-600 mb-6">Automatizza quello che può essere automatizzato. Persone su ciò che serve: relazioni e strategie.</p>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li>✓ Email marketing automation</li>
-                        <li>✓ Lead nurturing smart</li>
-                        <li>✓ AI-powered personalization</li>
-                        <li>✓ CRM integration e setup</li>
+                
+                <!-- Servizio 6 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-2xl font-bold mb-3 text-[#C8FF00]">Marketing Automation</h3>
+                    <p class="text-gray-300 mb-6">
+                        Lead nurturing, email marketing, CRM setup. Automazioni che nutrono i vostri clienti 24/7.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li>✓ Email sequences</li>
+                        <li>✓ CRM integration</li>
+                        <li>✓ Lead scoring</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PERCHE SCEGLIERCI -->
-    <section id="perche" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- PERCHÉ SCEGLIERCI -->
+    <section id="perche" class="py-20 bg-[#0D0D0D]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Perché scegliere meravigliä Lab</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Il nostro metodo è provato. Il nostro approccio è diverso. I risultati parlano da soli.
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Perché sceglierci
+                </h2>
+                <p class="text-xl text-gray-400">
+                    Non siamo una scuola di marketing. Siamo una macchina che genera risultati.
                 </p>
             </div>
-
-            <!-- PROCESSO -->
-            <div class="mb-20">
-                <h3 class="text-3xl font-bold mb-12 text-center">Il nostro metodo in 5 step</h3>
-                <div class="grid md:grid-cols-5 gap-6">
-                    <div class="text-center">
-                        <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
-                        <h4 class="font-bold text-lg mb-2">Analisi</h4>
-                        <p class="text-gray-600 text-sm">Audit completo di cosa funziona (e cosa no) nel tuo business.</p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Risultati misurabili</h3>
+                        <p class="text-gray-400">
+                            Non vi diciamo "il vostro engagement è cresciuto". Vi diciamo "avete 23 clienti nuovi e €47k di ricavi in più".
+                        </p>
                     </div>
-                    <div class="text-center">
-                        <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
-                        <h4 class="font-bold text-lg mb-2">Strategia</h4>
-                        <p class="text-gray-600 text-sm">Piano d'azione personalizzato con KPI chiari e realistici.</p>
+                    
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Trasparenza anti-fuffa</h3>
+                        <p class="text-gray-400">
+                            Rapporti mensili chiari. Niente grafici complicati. Numeri che potete capire e verificare.
+                        </p>
                     </div>
-                    <div class="text-center">
-                        <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
-                        <h4 class="font-bold text-lg mb-2">Implementazione</h4>
-                        <p class="text-gray-600 text-sm">Esecuzione veloce e coordinata di tutte le tattiche.</p>
+                    
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Personalizzazione sartoriale</h3>
+                        <p class="text-gray-400">
+                            Non abbiamo template per tutti. Ogni strategia è costruita sui vostri numeri, il vostro mercato, il vostro budget.
+                        </p>
                     </div>
-                    <div class="text-center">
-                        <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
-                        <h4 class="font-bold text-lg mb-2">Ottimizzazione</h4>
-                        <p class="text-gray-600 text-sm">Monitoraggio costante e aggiustamenti per massimizzare ROI.</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">5</div>
-                        <h4 class="font-bold text-lg mb-2">Crescita</h4>
-                        <p class="text-gray-600 text-sm">Scaling della strategia vincente per risultati exponenziali.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CREDIBILITÀ -->
-            <div class="bg-gray-50 rounded-2xl p-12">
-                <h3 class="text-3xl font-bold mb-12 text-center">Certificazioni e Partnership</h3>
-                <div class="grid md:grid-cols-3 gap-8 mb-12">
-                    <div class="text-center">
-                        <div class="text-4xl mb-4">🏆</div>
-                        <h4 class="font-bold mb-2">Google Partner</h4>
-                        <p class="text-gray-600">Certificati e in buone mani con Google Ads</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-4xl mb-4">📘</div>
-                        <h4 class="font-bold mb-2">Meta Partner</h4>
-                        <p class="text-gray-600">Specialisti riconosciuti di Facebook e Instagram Ads</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-4xl mb-4">📷</div>
-                        <h4 class="font-bold mb-2">Instagram Partner</h4>
-                        <p class="text-gray-600">Esperti di crescita organica e advertising</p>
+                    
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">ROI concreto</h3>
+                        <p class="text-gray-400">
+                            Vogliamo sapere quanto avete speso con noi e quanto avete guadagnato. È l'unica metrica che conta.
+                        </p>
                     </div>
                 </div>
-
-                <div class="border-t border-gray-300 pt-12">
-                    <h4 class="text-2xl font-bold mb-8 text-center">Trusted by major media</h4>
-                    <div class="grid md:grid-cols-3 gap-6 text-center">
-                        <p class="text-gray-600 font-semibold">Radio Dee Jay</p>
-                        <p class="text-gray-600 font-semibold">Il Sole 24 Ore</p>
-                        <p class="text-gray-600 font-semibold">Il Giornale</p>
-                        <p class="text-gray-600 font-semibold">Radio Kiss Kiss</p>
-                        <p class="text-gray-600 font-semibold">La Nazione</p>
-                        <p class="text-gray-600 font-semibold">Radio RDS</p>
+                
+                <div class="space-y-8">
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Crescita scalabile</h3>
+                        <p class="text-gray-400">
+                            Non è una campagna one-shot. Strutturiamo strategie che funzionano mese dopo mese, anno dopo anno.
+                        </p>
+                    </div>
+                    
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Partnership reale</h3>
+                        <p class="text-gray-400">
+                            Siete il nostro cliente. Vogliamo che siate ancora con noi tra 5 anni perché funziona davvero.
+                        </p>
+                    </div>
+                    
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Metodologia provata</h3>
+                        <p class="text-gray-400">
+                            Analisi → Strategia → Implementazione → Ottimizzazione → Crescita. Non improvvisiamo mai.
+                        </p>
+                    </div>
+                    
+                    <div class="border-l-4 border-[#C8FF00] pl-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-2">Team di veri esperti</h3>
+                        <p class="text-gray-400">
+                            Non agenzie di agenzie. Professionisti che sanno il fatto loro e sono pronti a dimostrarlo.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RECENSIONI -->
-    <section id="recensioni" class="py-20 bg-black text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- METODOLOGIA -->
+    <section class="py-20 bg-[#1A1A2E]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Quello che dicono di noi</h2>
-                <p class="text-xl text-gray-300">Oltre 1.350 clienti soddisfatti parlano per noi</p>
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    La nostra metodologia
+                </h2>
+                <p class="text-xl text-gray-400">
+                    5 fasi che non saltiamo mai
+                </p>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <!-- GOOGLE REVIEWS -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div>
-                            <div class="text-3xl font-bold text-red-600 mb-2">4.6★</div>
-                            <p class="text-gray-300">su Google (800+ recensioni)</p>
+            
+            <div class="relative">
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#C8FF00] to-[#1A1A2E]"></div>
+                
+                <div class="space-y-12">
+                    <!-- Fase 1 -->
+                    <div class="md:flex items-center md:mb-8">
+                        <div class="md:w-1/2 md:pr-8 md:text-right">
+                            <div class="bg-[#0D0D0D] p-8 rounded-xl border border-[#C8FF00]">
+                                <h3 class="text-2xl font-bold text-[#C8FF00] mb-2">1. Analisi</h3>
+                                <p class="text-gray-300">Competitor analysis, audience research, audit completo del vostro stato digitale.</p>
+                            </div>
                         </div>
-                        <div class="ml-auto text-4xl">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <p class="text-gray-200 italic">"I migliori nel settore. Professionali, trasparenti e davvero interessati ai nostri risultati. Il nostro fatturato è triplicato in 6 mesi."</p>
-                    <p class="text-gray-400 mt-4">— Marco R., E-commerce</p>
-                </div>
-
-                <!-- FACEBOOK REVIEWS -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div>
-                            <div class="text-3xl font-bold text-red-600 mb-2">4.6★</div>
-                            <p class="text-gray-300">su Facebook (550+ recensioni)</p>
+                        <div class="hidden md:flex md:w-12 md:justify-center md:relative md:z-10">
+                            <div class="w-12 h-12 bg-[#C8FF00] rounded-full flex items-center justify-center font-bold text-[#1A1A2E]">1</div>
                         </div>
-                        <div class="ml-auto text-4xl">👍👍👍👍👍</div>
+                        <div class="md:w-1/2"></div>
                     </div>
-                    <p class="text-gray-200 italic">"Non siamo più soli nel digital. Hanno una strategia vera e i numeri lo dimostrano. Consigliatissimi."</p>
-                    <p class="text-gray-400 mt-4">— Francesca G., Consulenza Strategica</p>
-                </div>
-
-                <!-- TESTIMONIANZA 3 -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div>
-                            <div class="text-2xl font-bold text-red-600">+340%</div>
-                            <p class="text-gray-300 text-sm">ROI in 4 mesi</p>
+                    
+                    <!-- Fase 2 -->
+                    <div class="md:flex items-center md:mb-8 flex-row-reverse">
+                        <div class="md:w-1/2 md:pl-8">
+                            <div class="bg-[#0D0D0D] p-8 rounded-xl border border-[#C8FF00]">
+                                <h3 class="text-2xl font-bold text-[#C8FF00] mb-2">2. Strategia</h3>
+                                <p class="text-gray-300">Piano d'azione personalizzato con obiettivi SMART, KPI, budget allocation.</p>
+                            </div>
                         </div>
-                        <div class="ml-auto text-4xl">🚀</div>
-                    </div>
-                    <p class="text-gray-200 italic">"Quando siamo arrivati da loro eravamo in perdita. Oggi è il nostro miglior channel di acquisizione."</p>
-                    <p class="text-gray-400 mt-4">— Paolo L., PMI Manifatturiera</p>
-                </div>
-
-                <!-- TESTIMONIANZA 4 -->
-                <div class="bg-gray-900 p-8 rounded-xl border border-gray-800">
-                    <div class="flex items-center mb-6">
-                        <div>
-                            <div class="text-2xl font-bold text-red-600">+580%</div>
-                            <p class="text-gray-300 text-sm">Traffico qualificato</p>
+                        <div class="hidden md:flex md:w-12 md:justify-center md:relative md:z-10">
+                            <div class="w-12 h-12 bg-[#C8FF00] rounded-full flex items-center justify-center font-bold text-[#1A1A2E]">2</div>
                         </div>
-                        <div class="ml-auto text-4xl">📈</div>
+                        <div class="md:w-1/2"></div>
                     </div>
-                    <p class="text-gray-200 italic">"Risultati veri, non chiacchiere. Sono diventati partner strategici del nostro business."</p>
-                    <p class="text-gray-400 mt-4">— Giulia M., SaaS</p>
+                    
+                    <!-- Fase 3 -->
+                    <div class="md:flex items-center md:mb-8">
+                        <div class="md:w-1/2 md:pr-8 md:text-right">
+                            <div class="bg-[#0D0D0D] p-8 rounded-xl border border-[#C8FF00]">
+                                <h3 class="text-2xl font-bold text-[#C8FF00] mb-2">3. Implementazione</h3>
+                                <p class="text-gray-300">Esecuzione veloce e precisa. Setup campagne, content creation, deployment.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex md:w-12 md:justify-center md:relative md:z-10">
+                            <div class="w-12 h-12 bg-[#C8FF00] rounded-full flex items-center justify-center font-bold text-[#1A1A2E]">3</div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                    
+                    <!-- Fase 4 -->
+                    <div class="md:flex items-center md:mb-8 flex-row-reverse">
+                        <div class="md:w-1/2 md:pl-8">
+                            <div class="bg-[#0D0D0D] p-8 rounded-xl border border-[#C8FF00]">
+                                <h3 class="text-2xl font-bold text-[#C8FF00] mb-2">4. Ottimizzazione</h3>
+                                <p class="text-gray-300">Monitoraggio costante, A/B testing, aggiustamenti basati su dati reali.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex md:w-12 md:justify-center md:relative md:z-10">
+                            <div class="w-12 h-12 bg-[#C8FF00] rounded-full flex items-center justify-center font-bold text-[#1A1A2E]">4</div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
+                    
+                    <!-- Fase 5 -->
+                    <div class="md:flex items-center">
+                        <div class="md:w-1/2 md:pr-8 md:text-right">
+                            <div class="bg-[#0D0D0D] p-8 rounded-xl border border-[#C8FF00]">
+                                <h3 class="text-2xl font-bold text-[#C8FF00] mb-2">5. Crescita</h3>
+                                <p class="text-gray-300">Scaling delle strategie vincenti. Nuovi canali, nuovi mercati, nuovo fatturato.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex md:w-12 md:justify-center md:relative md:z-10">
+                            <div class="w-12 h-12 bg-[#C8FF00] rounded-full flex items-center justify-center font-bold text-[#1A1A2E]">5</div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- TESTIMONIALI -->
+    <section class="py-20 bg-[#0D0D0D]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Quello che dicono i nostri clienti
+                </h2>
+                <p class="text-xl text-gray-400">
+                    Numeri veri. Clienti veri.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="flex mb-4">
+                        <span class="text-[#C8FF00]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "Ho aumentato il mio fatturato del 45% in 6 mesi. Non mi interessa come, quello che importa è che funziona."
+                    </p>
+                    <div class="border-t border-[#C8FF00] pt-4">
+                        <p class="font-bold">Marco R.</p>
+                        <p class="text-sm text-gray-400">E-commerce fashion</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="flex mb-4">
+                        <span class="text-[#C8FF00]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "Finalmente qualcuno che parla di soldi, non di engagement. I risultati arrivano in settimane."
+                    </p>
+                    <div class="border-t border-[#C8FF00] pt-4">
+                        <p class="font-bold">Giulia P.</p>
+                        <p class="text-sm text-gray-400">Consulente B2B</p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-servizio p-8 rounded-xl">
+                    <div class="flex mb-4">
+                        <span class="text-[#C8FF00]">★★★★★</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "È la prima agenzia che mi chiede 'quanto vuoi guadagnare?' invece di 'quanti soldi puoi spendermi?'"
+                    </p>
+                    <div class="border-t border-[#C8FF00] pt-4">
+                        <p class="font-bold">Andrea T.</p>
+                        <p class="text-sm text-gray-400">Franchising ristorazione</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WATERMARK -->
+    <div class="watermark-section relative flex items-center justify-center h-40">
+        <span class="relative z-10 text-sm font-bold text-white tracking-widest">
+            Trusted by leading brands
+        </span>
+    </div>
 
     <!-- CONTATTI -->
-    <section id="contatti" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- FORM -->
-                <div>
-                    <h2 class="text-4xl font-bold mb-8">Non sai da dove iniziare?</h2>
-                    <p class="text-xl text-gray-600 mb-8">
-                        Se hai già provato da solo o con altre agenzie e ti sei ritrovato con più like che fatturato, forse è il momento di cambiare approccio.
-                    </p>
-                    
-                    <form class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-800 mb-2">Nome completo *</label>
-                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-800 mb-2">Email *</label>
-                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-800 mb-2">Telefono</label>
-                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-800 mb-2">Descrivi il tuo progetto *</label>
-                            <textarea required rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 transition"></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-primary text-white py-4 rounded-lg font-bold text-lg">
-                            Invia la richiesta
-                        </button>
-                        <p class="text-xs text-gray-500">Risponderemo entro 24 ore. I tuoi dati sono al sicuro.</p>
-                    </form>
-                </div>
-
-                <!-- INFO CONTATTI -->
-                <div>
-                    <div class="bg-white p-8 rounded-xl border border-gray-200 mb-8">
-                        <h3 class="text-2xl font-bold mb-6">Info di contatto</h3>
-                        
-                        <div class="mb-8">
-                            <h4 class="font-semibold text-gray-800 mb-2">📍 Ubicazione</h4>
-                            <p class="text-gray-600">Milano, Italia</p>
-                        </div>
-
-                        <div class="mb-8">
-                            <h4 class="font-semibold text-gray-800 mb-2">👤 Titolare</h4>
-                            <p class="text-gray-600">Fausto Pagliara</p>
-                        </div>
-
-                        <div class="mb-8">
-                            <h4 class="font-semibold text-gray-800 mb-2">🌐 Sito web</h4>
-                            <a href="https://meraviglialab.com/" target="_blank" class="text-red-600 hover:text-red-700 font-semibold">meraviglialab.com</a>
-                        </div>
-
-                        <div class="mb-8">
-                            <h4 class="font-semibold text-gray-800 mb-2">📱 Social</h4>
-                            <a href="https://www.instagram.com/_meraviglia_lab" target="_blank" class="text-red-600 hover:text-red-700 font-semibold">@_meraviglia_lab</a>
-                        </div>
-
-                        <div class="border-t border-gray-200 pt-8">
-                            <p class="text-sm text-gray-600 mb-6">
-                                <strong>Perché una consulenza gratuita?</strong> Perché vogliamo capire se siamo la fit giusta per te. Se non lo siamo, te lo diremo. Se lo siamo, avrai già una strategia concreta.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="bg-red-600 text-white p-8 rounded-xl">
-                        <h4 class="text-2xl font-bold mb-4">Pronto a fare il grande salto?</h4>
-                        <p class="mb-6 text-red-50">
-                            La tua consulenza gratuita ti aspetta. Niente call di 3 ore, solo 30 minuti di valore puro.
-                        </p>
-                        <button class="bg-white text-red-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition w-full">
-                            Prenota la tua consulenza
-                        </button>
-                    </div>
-                </div>
+    <section id="contatti" class="py-20 bg-[#1A1A2E]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Pronti a crescere?
+                </h2>
+                <p class="text-xl text-gray-400">
+                    La prima consulenza è gratuita. Partiamo dai vostri numeri e vi diciamo cosa è possibile fare.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- WATERMARK SECTION -->
-    <section class="watermark-section py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center text-white">
-                <div class="text-5xl md:text-6xl font-bold mb-4">
-                    <span class="text-gray-100">meravigliä</span><span class="text-red-600">Lab</span>
+            
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Nome *</label>
+                        <input type="text" required class="form-input w-full px-4 py-3 rounded-lg" placeholder="Il vostro nome">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Email *</label>
+                        <input type="email" required class="form-input w-full px-4 py-3 rounded-lg" placeholder="email@azienda.it">
+                    </div>
                 </div>
-                <p class="text-lg text-gray-300 mb-2">Digital Marketing per PMI che porta risultati veri</p>
-                <p class="text-sm text-gray-400">Zero fuffa. 100% ROI-focused.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Azienda *</label>
+                        <input type="text" required class="form-input w-full px-4 py-3 rounded-lg" placeholder="Nome azienda">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Telefono</label>
+                        <input type="tel" class="form-input w-full px-4 py-3 rounded-lg" placeholder="+39 ...">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2">Qual è il vostro principale obiettivo? *</label>
+                    <select required class="form-input w-full px-4 py-3 rounded-lg">
+                        <option value="">Seleziona un obiettivo</option>
+                        <option value="traffico">Aumentare il traffico online</option>
+                        <option value="vendite">Aumentare le vendite</option>
+                        <option value="lead">Generare più lead</option>
+                        <option value="branding">Migliorare il branding</option>
+                        <option value="social">Crescere sui social</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2">Raccontateci della vostra azienda</label>
+                    <textarea required class="form-input w-full px-4 py-3 rounded-lg h-32" placeholder="Breve descrizione della vostra azienda e della situazione attuale..."></textarea>
+                </div>
+                
+                <div class="flex items-center">
+                    <input type="checkbox" required id="privacy" class="w-4 h-4">
+                    <label for="privacy" class="ml-2 text-sm text-gray-400">
+                        Accetto la <a href="#" class="text-[#C8FF00] hover:underline">privacy policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary w-full px-8 py-4 rounded-lg font-bold text-lg">
+                    Richiedi consulenza gratuita
+                </button>
+            </form>
+            
+            <div class="mt-12 grid md:grid-cols-3 gap-8 pt-12 border-t border-[#C8FF00]">
+                <div class="text-center">
+                    <p class="text-gray-400 mb-2">📧 Email</p>
+                    <a href="mailto:info@meraviglalab.it" class="text-[#C8FF00] font-bold hover:underline">
+                        info@meraviglalab.it
+                    </a>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-400 mb-2">📱 Telefono</p>
+                    <a href="tel:+39123456789" class="text-[#C8FF00] font-bold hover:underline">
+                        +39 123 456 789
+                    </a>
+                </div>
+                <div class="text-center">
+                    <p class="text-gray-400 mb-2">📍 Dove trovarci</p>
+                    <p class="text-[#C8FF00] font-bold">
+                        Milano, Lombardia
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black text-gray-400 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-[#0D0D0D] border-t border-[#C8FF00] py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <h4 class="text-white font-bold mb-4">meravigliä Lab</h4>
-                    <p class="text-sm">Agenzia di marketing digitale specializzata nel supporto di PMI e imprenditori italiani.</p>
+                    <h3 class="text-lg font-bold mb-4 text-[#C8FF00]">meravigliä Lab</h3>
+                    <p class="text-gray-400 text-sm">
+                        Zero fuffa. Solo crescita misurabile e clienti veri.
+                    </p>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-4">Servizi</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#servizi" class="hover:text-red-600 transition">SEO & Posizionamento</a></li>
-                        <li><a href="#servizi" class="hover:text-red-600 transition">Social Media Marketing</a></li>
-                        <li><a href="#servizi" class="hover:text-red-600 transition">Web Design</a></li>
-                        <li><a href="#servizi" class="hover:text-red-600 transition">Advertising</a></li>
+                    <h4 class="font-bold mb-4">Servizi</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#servizi" class="hover:text-[#C8FF00]">SEO</a></li>
+                        <li><a href="#servizi" class="hover:text-[#C8FF00]">Social Media</a></li>
+                        <li><a href="#servizi" class="hover:text-[#C8FF00]">Web Design</a></li>
+                        <li><a href="#servizi" class="hover:text-[#C8FF00]">Advertising</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-4">Azienda</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#chi-siamo" class="hover:text-red-600 transition">Chi Siamo</a></li>
-                        <li><a href="#blog" class="hover:text-red-600 transition">Blog</a></li>
-                        <li><a href="#" class="hover:text-red-600 transition">Lavora con noi</a></li>
-                        <li><a href="#contatti" class="hover:text-red-600 transition">Contatti</a></li>
+                    <h4 class="font-bold mb-4">Azienda</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#chi-siamo" class="hover:text-[#C8FF00]">Chi siamo</a></li>
+                        <li><a href="#" class="hover:text-[#C8FF00]">Blog</a></li>
+                        <li><a href="#" class="hover:text-[#C8FF00]">Lavora con noi</a></li>
+                        <li><a href="#" class="hover:text-[#C8FF00]">Contatti</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-4">Seguici</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="https://www.instagram.com/_meraviglia_lab" target="_blank" class="hover:text-red-600 transition">Instagram</a></li>
-                        <li><a href="#" class="hover:text-red-600 transition">LinkedIn</a></li>
-                        <li><a href="#" class="hover:text-red-600 transition">Facebook</a></li>
-                        <li><a href="#" class="hover:text-red-600 transition">TikTok</a></li>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-[#C8FF00]">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-[#C8FF00]">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-[#C8FF00]">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm mb-4 md:mb-0">&copy; 2024 meravigliä Lab. Tutti i diritti riservati.</p>
-                <div class="flex space-x-6 text-sm">
-                    <a href="#" class="hover:text-red-600 transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-red-600 transition">Termini di Servizio</a>
-                    <a href="#" class="hover:text-red-600 transition">Cookie Policy</a>
+            <div class="border-t border-[#C8FF00] pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 meravigliä Lab. Tutti i diritti riservati.
+                </p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-[#C8FF00]">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-[#C8FF00]">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-[#C8FF00]">Twitter</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll
+        // Menu mobile toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -562,17 +824,11 @@
                 }
             });
         });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        mobileMenuBtn?.addEventListener('click', function() {
-            alert('Menu mobile - Aggiungi il toggle completo secondo il design');
-        });
-
+        
         // Form submission
-        document.querySelector('form')?.addEventListener('submit', function(e) {
+        document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Grazie per la richiesta! Ti contatteremo entro 24 ore.');
+            alert('Grazie per la vostra richiesta! Vi contatteremo al più presto.');
             this.reset();
         });
     </script>
