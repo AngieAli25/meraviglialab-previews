@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Smorfia di Pulcinella - Pizza Forno a Legna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Lato', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #FFFDF5 0%, #FFF8E7 100%);
+        }
+        .text-primary {
+            color: #C8A84B;
+        }
+        .bg-primary {
+            background-color: #C8A84B;
+        }
+        .text-secondary {
+            color: #1A1A1A;
+        }
+        .bg-secondary {
+            background-color: #1A1A1A;
+        }
+        .text-accent {
+            color: #D4000F;
+        }
+        .bg-accent {
+            background-color: #D4000F;
+        }
+        .bg-custom {
+            background-color: #FFFDF5;
+        }
+        .text-body {
+            color: #2C2C2C;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #C8A84B;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .card-service {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .card-service:hover {
+            transform: translateY(-8px);
+            border-color: #C8A84B;
+            box-shadow: 0 12px 24px rgba(200, 168, 75, 0.15);
+        }
+        .btn-primary {
+            background-color: #C8A84B;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #D4000F;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background-color: #1A1A1A;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #D4000F;
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        .decorative-line {
+            width: 60px;
+            height: 3px;
+            background-color: #D4000F;
+            margin: 1rem auto;
+        }
+        .navbar-active {
+            color: #C8A84B;
+        }
+        input, textarea {
+            border: 2px solid #C8A84B !important;
+        }
+        input:focus, textarea:focus {
+            border-color: #D4000F !important;
+            box-shadow: 0 0 0 3px rgba(212, 0, 15, 0.1) !important;
+        }
+    </style>
+</head>
+<body class="bg-custom">
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 z-50 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-secondary">🍕 La Smorfia</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-body font-medium">Home</a>
+                    <a href="#chi-siamo" class="nav-link text-body font-medium">Chi siamo</a>
+                    <a href="#menu" class="nav-link text-body font-medium">Menu</a>
+                    <a href="#giropizza" class="nav-link text-body font-medium">Giropizza</a>
+                    <a href="#gallery" class="nav-link text-body font-medium">Gallery</a>
+                    <a href="#contatti" class="nav-link text-body font-medium">Contatti</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-secondary text-2xl" onclick="toggleMobileMenu()">☰</button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#home" class="block text-body hover:text-primary py-2">Home</a>
+                <a href="#chi-siamo" class="block text-body hover:text-primary py-2">Chi siamo</a>
+                <a href="#menu" class="block text-body hover:text-primary py-2">Menu</a>
+                <a href="#giropizza" class="block text-body hover:text-primary py-2">Giropizza</a>
+                <a href="#gallery" class="block text-body hover:text-primary py-2">Gallery</a>
+                <a href="#contatti" class="block text-body hover:text-primary py-2">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient pt-32 pb-20 min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute top-10 right-10 opacity-10 text-6xl">🍕</div>
+        <div class="absolute bottom-10 left-10 opacity-10 text-6xl">🔥</div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <h1 class="section-title mb-6 animate-fade-in">La Smorfia di Pulcinella</h1>
+            <div class="decorative-line"></div>
+            <p class="text-xl md:text-2xl text-body mb-8 leading-relaxed max-w-3xl mx-auto">
+                La vera pizza cotta nel forno a legna a Lombardore — impasto morbido, ingredienti freschi e tutta la tradizione italiana nel piatto.
+            </p>
+            <p class="text-lg text-primary font-semibold mb-12">Autenticità napoletana, tradizione artigianale, convivialità italiana</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="btn-primary px-8 py-4 rounded-lg font-bold text-lg" onclick="scrollToSection('menu')">Scopri il Menu</button>
+                <button class="btn-secondary px-8 py-4 rounded-lg font-bold text-lg" onclick="scrollToSection('contatti')">Prenota un Tavolo</button>
+            </div>
+            <p class="text-sm text-primary mt-8 font-semibold">📍 Lombardore | 🕐 Aperto Martedì - Domenica</p>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-center mb-4">La nostra storia</h2>
+            <div class="decorative-line"></div>
+            <div class="grid md:grid-cols-2 gap-12 items-center mt-12">
+                <div>
+                    <p class="text-lg text-body leading-relaxed mb-6">
+                        La Smorfia di Pulcinella nasce dalla passione per la vera pizza tradizionale. A Lombardore portiamo in tavola il sapore autentico della cucina italiana, con un impasto morbido, un cornicione classico e solo ingredienti buoni, freschi e genuini.
+                    </p>
+                    <p class="text-lg text-body leading-relaxed mb-6">
+                        Ogni pizza è preparata con amore e dedizione, seguendo le ricette che abbiamo imparato a tramandare. Il nostro forno a legna è il cuore della nostra cucina: qui nascono le emozioni, qui si crea la magia.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-accent text-2xl mr-4">✓</span>
+                            <span class="text-body">Ingredienti freschi e genuini</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent text-2xl mr-4">✓</span>
+                            <span class="text-body">Ricette tradizionali autentiche</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent text-2xl mr-4">✓</span>
+                            <span class="text-body">Forno a legna autentico</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent text-2xl mr-4">✓</span>
+                            <span class="text-body">Atmosfera familiare e accogliente</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-primary to-accent rounded-lg p-12 text-white text-center">
+                    <div class="text-7xl mb-4">🔥</div>
+                    <h3 class="text-3xl font-bold mb-4">Forno a Legna</h3>
+                    <p class="text-lg leading-relaxed">
+                        Il nostro forno a legna tradizionale cuoce ogni pizza a perfezione, garantendo quel sapore unico e inconfondibile che solo la vera pizza napoletana sa dare.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu & Specialità -->
+    <section id="menu" class="py-20 bg-custom">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-center mb-4">Le nostre specialità</h2>
+            <div class="decorative-line"></div>
+            <p class="text-center text-body text-lg mb-12 max-w-2xl mx-auto">
+                Dalla classica Margherita alla Farinata originale, passando per il nostro celebre Giropizza: tutta la pizza che riesci a mangiare in un'unica serata speciale.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <!-- Card 1 -->
+                <div class="card-service bg-white rounded-lg p-8 text-center">
+                    <div class="text-6xl mb-4">🍕</div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Margherita Classica</h3>
+                    <p class="text-body leading-relaxed mb-4">
+                        La regina indiscussa: impasto morbido, pomodoro fresco, mozzarella di qualità e basilico. Semplicità e perfezione in ogni morso.
+                    </p>
+                    <p class="text-primary font-bold text-lg">€ 8,50</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-service bg-white rounded-lg p-8 text-center">
+                    <div class="text-6xl mb-4">🌾</div>
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Farinata Originale</h3>
+                    <p class="text-body leading-relaxed mb-4">
+                        La ricetta tradizionale: impasto a base di farina di ceci, croccante fuori e morbido dentro. Un'esperienza unica e autentica.
+                    </p>
+                    <p class="text-primary font-bold text-lg">€ 6,00</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-service bg-white rounded-lg p-8 text-center border-2 border-accent">
+                    <div class="text-6xl mb-4">⭐</div>
+                    <h3 class="text-2xl font-bold text-accent mb-4">Giropizza</h3>
+                    <p class="text-body leading-relaxed mb-4">
+                        Tutta la pizza che riesci a mangiare, una bibita media e coperto incluso. L'esperienza perfetta per una serata in compagnia.
+                    </p>
+                    <p class="text-accent font-bold text-lg">Da € 15,00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perché Sceglierci -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-center mb-4">Perché scegliere La Smorfia</h2>
+            <div class="decorative-line"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12 mt-12">
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="text-4xl text-primary">🍃</div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Ingredienti Freschi</h3>
+                        <p class="text-body leading-relaxed">
+                            Solo prodotti di qualità, selezionati con cura e utilizzati freschi ogni giorno.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="text-4xl text-primary">👨‍🍳</div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Tradizione Artigianale</h3>
+                        <p class="text-body leading-relaxed">
+                            Ricette autentiche e tecniche tradizionali, tramandate nel tempo e perfezionate.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="text-4xl text-primary">🔥</div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Forno a Legna Autentico</h3>
+                        <p class="text-body leading-relaxed">
+                            Il nostro forno a legna è il segreto del sapore inconfondibile della nostra pizza.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="text-4xl text-primary">❤️</div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Atmosfera Familiare</h3>
+                        <p class="text-body leading-relaxed">
+                            Un locale caldo, accogliente e conviviale dove sentirsi a casa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-custom">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-center mb-4">Gallery</h2>
+            <div class="decorative-line"></div>
+            <p class="text-center text-body text-lg mb-12 max-w-2xl mx-auto">
+                Scorri le foto delle nostre pizze, del locale e delle serate speciali per assaporare l'atmosfera de La Smorfia di Pulcinella.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="aspect-square bg-gradient-to-br from-primary to-accent rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center">
+                    <div class="text-7xl">🍕</div>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-accent to-secondary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center">
+                    <div class="text-7xl">🔥</div>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-primary to-secondary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center">
+                    <div class="text-7xl">👥</div>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-secondary to-accent rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center">
+                    <div class="text-7xl">🍽️</div>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-accent to-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center">
+                    <div class="text-7xl">🌾</div>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-primary to-accent rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex items-center justify-center">
+                    <div class="text-7xl">✨</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orari e Informazioni -->
+    <section id="orari" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-center mb-4">Orari di Apertura</h2>
+            <div class="decorative-line"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12 mt-12">
+                <div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-4 border-b-2 border-primary">
+                            <span class="font-bold text-secondary text-lg">Martedì - Venerdì</span>
+                            <span class="text-body">12:00–14:30 / 19:00–23:30</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-4 border-b-2 border-primary">
+                            <span class="font-bold text-secondary text-lg">Sabato</span>
+                            <span class="text-body">19:00–23:30</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-4 border-b-2 border-primary">
+                            <span class="font-bold text-secondary text-lg">Domenica</span>
+                            <span class="text-body">12:00–14:30 / 19:00–23:30</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-4">
+                            <span class="font-bold text-accent text-lg">Lunedì</span>
+                            <span class="text-accent font-bold">CHIUSO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-primary text-white p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold mb-6">Come Trovarci</h3>
+                    <p class="mb-4 leading-relaxed">
+                        📍 <strong>Indirizzo</strong><br>
+                        La Smorfia di Pulcinella<br>
+                        Lombardore
+                    </p>
+                    <p class="mb-4 leading-relaxed">
+                        📞 <strong>Telefono</strong><br>
+                        +39 000 000 0000
+                    </p>
+                    <p class="mb-4 leading-relaxed">
+                        ✉️ <strong>Email</strong><br>
+                        info@lasmorfia.it
+                    </p>
+                    <div class="mt-6 pt-6 border-t border-white border-opacity-30">
+                        <p class="text-sm">
+                            ℹ️ Servizio da asporto disponibile.<br>
+                            ❌ Non si effettuano consegne a domicilio.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-custom">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title text-center mb-4">Contattaci</h2>
+            <div class="decorative-line"></div>
+            <p class="text-center text-body text-lg mb-12">
+                Hai domande o vuoi prenotare un tavolo? Compila il modulo sottostante e ti contatteremo al più presto.
+            </p>
+
+            <form class="bg-white rounded-lg p-8 shadow-lg space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-secondary font-bold mb-2">Nome *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="Il tuo nome">
+                    </div>
+                    <div>
+                        <label class="block text-secondary font-bold mb-2">Cognome *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="Il tuo cognome">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-secondary font-bold mb-2">Email *</label>
+                        <input type="email" required class="w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="tua.email@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-secondary font-bold mb-2">Telefono *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="+39 000 000 0000">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-secondary font-bold mb-2">Numero persone *</label>
+                        <input type="number" required min="1" class="w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="2">
+                    </div>
+                    <div>
+                        <label class="block text-secondary font-bold mb-2">Data prenotazione *</label>
+                        <input type="date" required class="w-full px-4 py-3 rounded-lg focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-secondary font-bold mb-2">Messaggio</label>
+                    <textarea rows="5" class="w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="Scrivi il tuo messaggio o richieste speciali..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary w-full py-4 rounded-lg font-bold text-lg">
+                    Invia la Prenotazione
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Watermark Meraviglialab -->
+    <div class="bg-secondary text-white text-center py-4">
+        <p class="text-sm">
+            Sito realizzato con ❤️ da <span class="font-bold">Meraviglialab</span>
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">La Smorfia</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        La vera pizza cotta nel forno a legna a Lombardore. Tradizione, autenticità e convivialità italiana in ogni piatto.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Menu Veloce</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#home" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#chi-siamo" class="hover:text-primary transition">Chi siamo</a></li>
+                        <li><a href="#menu" class="hover:text-primary transition">Menu</a></li>
+                        <li><a href="#giropizza" class="hover:text-primary transition">Giropizza</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>📞 +39 000 000 0000</li>
+                        <li>✉️ info@lasmorfia.it</li>
+                        <li>📍 Lombardore</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Seguici</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-2xl hover:text-primary transition">f</a>
+                        <a href="#" class="text-2xl hover:text-primary transition">📷</a>
+                        <a href="#" class="text-2xl hover:text-primary transition">𝕏</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-center text-sm text-gray-400">
+                    &copy; 2024 La Smorfia di Pulcinella. Tutti i diritti riservati. | Realizzato con ❤️ da Meraviglialab
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (document.getElementById('mobile-menu').classList.contains('hidden') === false) {
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
