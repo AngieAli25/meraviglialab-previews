@@ -5,21 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maggioni Party Service - L'ingrediente segreto per il tuo evento</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #C8102E;
-            --secondary: #FFFFFF;
-            --accent: #9B0D22;
-            --background: #FFFFFF;
-            --text: #1A1A1A;
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C8102E',
+                        secondary: '#FFFFFF',
+                        accent: '#9B0D22',
+                        background: '#FFFFFF',
+                        text: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Lato', 'sans-serif']
+                    }
+                }
+            }
         }
+    </script>
+    <style>
         body {
             font-family: 'Lato', sans-serif;
-            color: var(--text);
+            color: #1A1A1A;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
@@ -29,25 +41,19 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
         .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
         }
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(155, 13, 34, 0.25);
-        }
-        .hero-overlay {
-            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(200, 16, 46, 0.5) 100%);
+            box-shadow: 0 20px 40px rgba(155, 13, 34, 0.2);
         }
         @keyframes floatUp {
             0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 0.5;
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -57,7 +63,7 @@
             pointer-events: none;
             animation: floatUp linear infinite;
         }
-        .cursor-blink {
+        .typewriter-cursor {
             animation: blink 1s infinite;
         }
         @keyframes blink {
@@ -66,7 +72,7 @@
         }
         #mobile-menu {
             transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease;
         }
         #mobile-menu.active {
             transform: translateX(0);
@@ -75,7 +81,7 @@
             position: fixed;
             bottom: 10px;
             right: 10px;
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(0,0,0,0.3);
             z-index: 9999;
             background: rgba(255,255,255,0.8);
@@ -83,33 +89,30 @@
             border-radius: 4px;
         }
         .watermark a {
-            color: var(--primary);
+            color: rgba(0,0,0,0.5);
             text-decoration: none;
         }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-background">
+    <div class="watermark">Bozza realizzata da meravigliä Lab · <a href="https://meraviglialab.com" target="_blank">meraviglialab.com</a></div>
 
-    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="#home">
-                        <img src="https://maggionipartyservice.com/wp-content/uploads/2017/11/logo-wedding-chicks.jpg" alt="Maggioni Party Service" style="max-height:60px; object-fit:contain;">
-                    </a>
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2017/11/logo-wedding-chicks.jpg" alt="Maggioni Party Service" style="max-height:60px; object-fit:contain;">
                 </div>
-                
-                <div class="hidden lg:flex space-x-8">
-                    <a href="#home" class="text-white hover:text-gray-200 transition font-medium">Home</a>
-                    <a href="#chi-siamo" class="text-white hover:text-gray-200 transition font-medium">Chi siamo</a>
-                    <a href="#business" class="text-white hover:text-gray-200 transition font-medium">Business</a>
-                    <a href="#matrimoni" class="text-white hover:text-gray-200 transition font-medium">Matrimoni</a>
-                    <a href="#feste" class="text-white hover:text-gray-200 transition font-medium">Feste e Ricorrenze</a>
-                    <a href="#noleggio" class="text-white hover:text-gray-200 transition font-medium">Noleggio</a>
-                    <a href="#contatti" class="text-white hover:text-gray-200 transition font-medium">Contatti</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-primary transition-colors font-body font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-primary transition-colors font-body font-medium">Chi siamo</a>
+                    <a href="#business" class="text-white hover:text-primary transition-colors font-body font-medium">Business</a>
+                    <a href="#matrimoni" class="text-white hover:text-primary transition-colors font-body font-medium">Matrimoni</a>
+                    <a href="#feste" class="text-white hover:text-primary transition-colors font-body font-medium">Feste e Ricorrenze</a>
+                    <a href="#noleggio" class="text-white hover:text-primary transition-colors font-body font-medium">Noleggio</a>
+                    <a href="#contatti" class="text-white hover:text-primary transition-colors font-body font-medium">Contatti</a>
                 </div>
-
-                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -118,144 +121,94 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 lg:hidden">
-        <div class="flex justify-end p-4">
-            <button id="close-menu-btn" class="text-gray-700 focus:outline-none">
+    <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-white shadow-2xl z-50 md:hidden">
+        <div class="p-6">
+            <button id="close-menu" class="absolute top-4 right-4 text-text focus:outline-none">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
-        </div>
-        <div class="flex flex-col space-y-4 px-8">
-            <a href="#home" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Home</a>
-            <a href="#chi-siamo" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Chi siamo</a>
-            <a href="#business" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Business</a>
-            <a href="#matrimoni" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Matrimoni</a>
-            <a href="#feste" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Feste e Ricorrenze</a>
-            <a href="#noleggio" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Noleggio</a>
-            <a href="#contatti" class="text-gray-800 hover:text-red-700 transition font-medium menu-link">Contatti</a>
+            <div class="mt-12 flex flex-col space-y-6">
+                <a href="#home" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Home</a>
+                <a href="#chi-siamo" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Chi siamo</a>
+                <a href="#business" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Business</a>
+                <a href="#matrimoni" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Matrimoni</a>
+                <a href="#feste" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Feste e Ricorrenze</a>
+                <a href="#noleggio" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Noleggio</a>
+                <a href="#contatti" class="text-text hover:text-primary transition-colors font-body font-medium mobile-link">Contatti</a>
+            </div>
         </div>
     </div>
 
-    <section id="home" class="relative h-screen overflow-hidden" style="background: url('https://maggionipartyservice.com/wp-content/themes/maggionipartyservice/images/maggioni-party-service.png') center/cover no-repeat;">
-        <div class="hero-overlay absolute inset-0"></div>
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://maggionipartyservice.com/wp-content/uploads/2022/01/gastronomia_botteguccia.jpg');"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);"></div>
         
-        <div class="particle" style="width: 6px; height: 6px; background: #C8102E; left: 10%; bottom: 0; animation-duration: 12s; animation-delay: 0s; opacity: 0.4;"></div>
-        <div class="particle" style="width: 8px; height: 8px; background: #9B0D22; left: 20%; bottom: 0; animation-duration: 15s; animation-delay: 2s; opacity: 0.3;"></div>
-        <div class="particle" style="width: 5px; height: 5px; background: #C8102E; left: 30%; bottom: 0; animation-duration: 13s; animation-delay: 4s; opacity: 0.5;"></div>
-        <div class="particle" style="width: 7px; height: 7px; background: #9B0D22; left: 40%; bottom: 0; animation-duration: 16s; animation-delay: 1s; opacity: 0.4;"></div>
-        <div class="particle" style="width: 6px; height: 6px; background: #C8102E; left: 50%; bottom: 0; animation-duration: 14s; animation-delay: 3s; opacity: 0.3;"></div>
-        <div class="particle" style="width: 9px; height: 9px; background: #9B0D22; left: 60%; bottom: 0; animation-duration: 17s; animation-delay: 5s; opacity: 0.5;"></div>
-        <div class="particle" style="width: 4px; height: 4px; background: #C8102E; left: 70%; bottom: 0; animation-duration: 11s; animation-delay: 2s; opacity: 0.4;"></div>
-        <div class="particle" style="width: 8px; height: 8px; background: #9B0D22; left: 80%; bottom: 0; animation-duration: 15s; animation-delay: 4s; opacity: 0.3;"></div>
-        <div class="particle" style="width: 10px; height: 10px; background: #C8102E; left: 15%; bottom: 0; animation-duration: 18s; animation-delay: 1s; opacity: 0.5;"></div>
-        <div class="particle" style="width: 5px; height: 5px; background: #9B0D22; left: 85%; bottom: 0; animation-duration: 12s; animation-delay: 3s; opacity: 0.4;"></div>
-        <div class="particle" style="width: 7px; height: 7px; background: #C8102E; left: 25%; bottom: 0; animation-duration: 16s; animation-delay: 5s; opacity: 0.3;"></div>
-        <div class="particle" style="width: 6px; height: 6px; background: #9B0D22; left: 90%; bottom: 0; animation-duration: 14s; animation-delay: 0s; opacity: 0.5;"></div>
-
-        <div class="relative h-full flex items-center justify-center text-center px-4">
-            <div class="max-w-4xl">
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                    L'ingrediente segreto per il tuo evento
-                </h1>
-                <div class="text-2xl sm:text-3xl lg:text-4xl text-white mb-4 font-light">
-                    Il tuo evento sarà <span id="tw" class="font-semibold"></span><span class="cursor-blink" style="color: #9B0D22;">|</span>
-                </div>
-                <p class="text-lg sm:text-xl text-gray-100 mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Catering e banqueting per eventi aziendali e privati a Milano. Cibo delizioso, servizio attento e discreto: questa è la nostra ricetta del successo.
-                </p>
-                <a href="#contatti" class="inline-block bg-white text-red-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-2xl">
-                    Richiedi informazioni
-                </a>
-            </div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-tight" data-aos="fade-up">
+                L'ingrediente segreto per il tuo evento
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-4 font-body font-light max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Catering e banqueting per eventi aziendali e privati a Milano. Cibo delizioso, servizio attento e discreto: questa è la nostra ricetta del successo.
+            </p>
+            <p class="text-2xl md:text-3xl text-white mb-10 font-display italic" data-aos="fade-up" data-aos-delay="200">
+                Un evento <span id="tw" class="text-primary font-bold"></span><span class="typewriter-cursor text-accent">|</span>
+            </p>
+            <a href="#contatti" class="inline-block bg-primary hover:bg-accent text-white font-body font-bold px-10 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                Richiedi informazioni
+            </a>
         </div>
     </section>
 
     <section id="chi-siamo" class="py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
-                    <h2 class="text-4xl sm:text-5xl font-bold mb-6" style="color: var(--primary);">Chi siamo</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-text mb-6">Chi siamo</h2>
+                    <p class="text-lg text-gray-700 mb-6 font-body leading-relaxed">
                         Maggioni Party Service è un'azienda di catering e banqueting con sede a Milano. Guidata da Paolo Maggioni, offre servizi su misura per eventi aziendali, matrimoni, feste private e ricorrenze.
                     </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
+                    <p class="text-lg text-gray-700 font-body leading-relaxed">
                         La nostra filosofia unisce la qualità della cucina a un servizio elegante e discreto, per rendere ogni evento indimenticabile.
                     </p>
                 </div>
                 <div data-aos="fade-left">
-                    <img src="https://maggionipartyservice.com/wp-content/uploads/2020/04/MAGGIONI-CUCINA-45-330x205.jpg" alt="Maggioni Party Service" class="rounded-lg shadow-2xl w-full h-auto">
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2020/04/MAGGIONI-CUCINA-45-330x205.jpg" alt="Maggioni Party Service" class="rounded-lg shadow-2xl w-full h-96 object-cover">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="servizi" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl font-bold mb-4" style="color: var(--primary);">I nostri servizi</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Soluzioni complete per ogni tipo di evento, con la stessa cura e passione
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div id="business" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+    <section class="py-20" style="background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-center text-text mb-16" data-aos="fade-up">I nostri servizi</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="0">
                     <img src="https://maggionipartyservice.com/wp-content/uploads/2024/05/GC_20190706_XPB2544-512x400.jpg" alt="Business Catering" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent);">Business</h3>
-                        <p class="text-gray-700 leading-relaxed">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display font-bold text-text mb-3" id="business">Business</h3>
+                        <p class="text-gray-700 font-body leading-relaxed">
                             Servizi catering pensati per le aziende: coffee break, aperitivi, business lunch, lunch box, cene placée e servizi fieristici. Ogni momento della giornata lavorativa diventa un'occasione per stupire clienti e collaboratori con proposte gastronomiche di qualità.
                         </p>
                     </div>
                 </div>
 
-                <div id="matrimoni" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://maggionipartyservice.com/wp-content/uploads/2017/07/S-M-582-512x400.jpg" alt="Catering matrimoni" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent);">Matrimoni</h3>
-                        <p class="text-gray-700 leading-relaxed">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2017/07/S-M-582-512x400.jpg" alt="Matrimoni" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display font-bold text-text mb-3" id="matrimoni">Matrimoni</h3>
+                        <p class="text-gray-700 font-body leading-relaxed">
                             Rendiamo reale ogni dettaglio del matrimonio dei vostri sogni. Dalla scelta del menù personalizzato agli allestimenti e alla mise en place, fino al supporto della Wedding Assistant il giorno delle nozze. Un servizio completo per un giorno perfetto.
                         </p>
                     </div>
                 </div>
 
-                <div id="feste" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://maggionipartyservice.com/wp-content/uploads/2024/06/Immagine-WhatsApp-2024-06-05-ore-12.40.23_1d14f9c1-512x400.jpg" alt="Feste e Ricorrenze" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent);">Feste e Ricorrenze</h3>
-                        <p class="text-gray-700 leading-relaxed">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2020/04/eric-rothermel-FoKO4DpXamQ-unsplash-330x205.jpg" alt="Feste e Ricorrenze" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display font-bold text-text mb-3" id="feste">Feste e Ricorrenze</h3>
+                        <p class="text-gray-700 font-body leading-relaxed">
                             Compleanni, anniversari, feste private: con Maggioni al vostro fianco non dovete pensare a nulla. Offriamo diverse proposte per ogni tipo di evento e possiamo sviluppare insieme le vostre idee per un successo garantito.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://maggionipartyservice.com/wp-content/uploads/2022/01/gastronomia_botteguccia.jpg" alt="La Botteguccia" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent);">La Botteguccia</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Il nostro negozio di gastronomia a Novate Milanese: ogni settimana un menù diverso con i migliori piatti preparati ogni giorno. Per i veri buongustai che vogliono gustare qualcosa di buono o festeggiare qualcosa di bello.
-                        </p>
-                    </div>
-                </div>
-
-                <div id="noleggio" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://maggionipartyservice.com/wp-content/uploads/2020/04/eric-rothermel-FoKO4DpXamQ-unsplash-330x205.jpg" alt="Noleggio" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent);">Noleggio</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Forniamo in noleggio attrezzature complete per catering e banqueting: tutto ciò che serve per allestire al meglio il vostro evento, con materiali di qualità e un ampio catalogo di soluzioni.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://maggionipartyservice.com/wp-content/uploads/2020/02/maggioni-e-lambiente-abstract-512x400.png" alt="Sostenibilità" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--accent);">Sostenibilità</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Maggioni Party Service si impegna nella realizzazione di eventi sempre più sostenibili. Il nostro manifesto in divenire guida ogni scelta operativa verso un futuro più responsabile, rispettoso dell'ambiente e delle persone.
                         </p>
                     </div>
                 </div>
@@ -263,98 +216,104 @@
         </div>
     </section>
 
-    <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #1A1A1A 0%, #9B0D22 100%);">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div data-aos="zoom-in">
-                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-6">
-                    La tua eccellenza nel catering a Milano
-                </h2>
-                <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
-                    Dalla colazione al gala dinner, dal matrimonio alla festa privata: cibo delizioso, servizio attento e discreto.
-                </p>
-                <a href="#contatti" class="inline-block bg-white px-10 py-4 rounded-full font-bold text-lg transition transform hover:scale-105 shadow-2xl" style="color: var(--primary);">
-                    Inizia ora
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-gray-50 rounded-lg p-8 shadow-lg card-hover" data-aos="fade-right">
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2022/01/gastronomia_botteguccia.jpg" alt="La Botteguccia" class="w-full h-64 object-cover rounded-lg mb-6">
+                    <h3 class="text-3xl font-display font-bold text-text mb-4">La Botteguccia</h3>
+                    <p class="text-gray-700 font-body leading-relaxed">
+                        Il nostro negozio di gastronomia a Novate Milanese: ogni settimana un menù diverso con i migliori piatti preparati ogni giorno. Per i veri buongustai che vogliono gustare qualcosa di buono o festeggiare qualcosa di bello.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-8 shadow-lg card-hover" data-aos="fade-left">
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2024/06/Immagine-WhatsApp-2024-06-05-ore-12.40.23_1d14f9c1-512x400.jpg" alt="Noleggio" class="w-full h-64 object-cover rounded-lg mb-6">
+                    <h3 class="text-3xl font-display font-bold text-text mb-4" id="noleggio">Noleggio</h3>
+                    <p class="text-gray-700 font-body leading-relaxed">
+                        Forniamo in noleggio attrezzature complete per catering e banqueting: tutto ciò che serve per allestire al meglio il vostro evento, con materiali di qualità e un ampio catalogo di soluzioni.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20" style="background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://maggionipartyservice.com/wp-content/uploads/2020/02/maggioni-e-lambiente-abstract-512x400.png" alt="Sostenibilità" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-text mb-6">Sostenibilità</h2>
+                    <p class="text-lg text-gray-700 font-body leading-relaxed">
+                        Maggioni Party Service si impegna nella realizzazione di eventi sempre più sostenibili. Il nostro manifesto in divenire guida ogni scelta operativa verso un futuro più responsabile, rispettoso dell'ambiente e delle persone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 bg-gradient-to-br from-primary to-accent text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6" data-aos="fade-up">Contatti</h2>
+            <p class="text-xl mb-10 font-body leading-relaxed max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Siamo a tua disposizione per qualsiasi informazione. Contattaci per un preventivo personalizzato o per scoprire come possiamo rendere il tuo evento indimenticabile. Operiamo a Milano e in tutta la provincia.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="tel:+39023542844" class="inline-block bg-white text-primary hover:bg-gray-100 font-body font-bold px-12 py-5 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl text-xl">
+                    📞 Chiamaci: +39 02 3542844
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="contatti" class="py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl sm:text-5xl font-bold mb-6" style="color: var(--primary);" data-aos="fade-up">Contatti</h2>
-                <p class="text-xl text-gray-700 mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                    Siamo a tua disposizione per qualsiasi informazione. Contattaci per un preventivo personalizzato o per scoprire come possiamo rendere il tuo evento indimenticabile. Operiamo a Milano e in tutta la provincia.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="200">
-                    <a href="tel:+39023542844" class="inline-block px-12 py-5 rounded-full font-bold text-xl text-white transition transform hover:scale-105 shadow-2xl" style="background: var(--primary);">
-                        📞 Chiamaci: 02 3542844
-                    </a>
-                    <a href="#contatti" class="inline-block bg-gray-800 text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-gray-700 transition transform hover:scale-105 shadow-2xl">
-                        ✉️ Scrivici
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
+    <footer class="bg-text text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--primary);">Maggioni Party Service</h3>
-                    <p class="text-gray-400">
-                        Catering e banqueting per eventi aziendali e privati a Milano e dintorni.
-                    </p>
+                    <h4 class="text-xl font-display font-bold mb-4">Maggioni Party Service</h4>
+                    <p class="text-gray-300 font-body">L'ingrediente segreto per il tuo evento</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--primary);">Contatti</h3>
-                    <p class="text-gray-400 mb-2">
-                        Tel: <a href="tel:+39023542844" class="hover:text-white transition">02 3542844</a>
-                    </p>
-                    <p class="text-gray-400">
-                        Milano e provincia
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4" style="color: var(--primary);">Servizi</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><a href="#business" class="hover:text-white transition">Business</a></li>
-                        <li><a href="#matrimoni" class="hover:text-white transition">Matrimoni</a></li>
-                        <li><a href="#feste" class="hover:text-white transition">Feste e Ricorrenze</a></li>
-                        <li><a href="#noleggio" class="hover:text-white transition">Noleggio</a></li>
+                    <h4 class="text-xl font-display font-bold mb-4">Servizi</h4>
+                    <ul class="space-y-2 text-gray-300 font-body">
+                        <li>Catering Business</li>
+                        <li>Matrimoni</li>
+                        <li>Feste e Ricorrenze</li>
+                        <li>Noleggio</li>
                     </ul>
                 </div>
+                <div>
+                    <h4 class="text-xl font-display font-bold mb-4">Contatti</h4>
+                    <p class="text-gray-300 font-body">Milano e provincia</p>
+                    <p class="text-gray-300 font-body">Tel: +39 02 3542844</p>
+                </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 font-body text-sm">
                 <p>&copy; 2024 Maggioni Party Service. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
 
-    <div class="watermark">
-        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
-    </div>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        AOS.init({ duration: 800, once: true });
 
         const navbar = document.getElementById('navbar');
+        const navLinks = navbar.querySelectorAll('a');
+        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 navbar.classList.add('nav-scrolled');
-                navbar.querySelectorAll('a').forEach(link => {
+                navLinks.forEach(link => {
                     link.classList.remove('text-white');
-                    link.classList.add('text-gray-800');
+                    link.classList.add('text-text');
                 });
             } else {
                 navbar.classList.remove('nav-scrolled');
-                navbar.querySelectorAll('a').forEach(link => {
-                    link.classList.remove('text-gray-800');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-text');
                     link.classList.add('text-white');
                 });
             }
@@ -362,18 +321,18 @@
 
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const menuLinks = document.querySelectorAll('.menu-link');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
         });
 
-        closeMenuBtn.addEventListener('click', () => {
+        closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
 
-        menuLinks.forEach(link => {
+        mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
@@ -384,7 +343,7 @@
         let charIndex = 0;
         let isDeleting = false;
         const typewriterElement = document.getElementById('tw');
-
+        
         function typeWriter() {
             const currentWord = words[wordIndex];
             
@@ -395,22 +354,35 @@
                 typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
             }
-
-            let speed = isDeleting ? 50 : 100;
-
+            
             if (!isDeleting && charIndex === currentWord.length) {
-                speed = 2000;
-                isDeleting = true;
+                setTimeout(() => { isDeleting = true; }, 2000);
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                speed = 500;
             }
-
+            
+            const speed = isDeleting ? 50 : 100;
             setTimeout(typeWriter, speed);
         }
-
+        
         typeWriter();
+
+        const heroSection = document.querySelector('#home');
+        const colors = ['#C8102E', '#9B0D22'];
+        
+        for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('span');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 6 + 4) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.opacity = (Math.random() * 0.2 + 0.3).toString();
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            heroSection.appendChild(particle);
+        }
     </script>
 </body>
 </html>
