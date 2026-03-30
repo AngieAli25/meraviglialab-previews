@@ -3,557 +3,770 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistemi Arredo - Arredamento e Ristrutturazioni a Bolzano</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sistemi Arredo | Progettiamo il Tuo Benessere | Bolzano</title>
+    <meta name="description" content="Showroom di arredamento a Bolzano specializzato in progettazione mobili, FlorentiaBed, ristrutturazioni chiavi in mano. Via Dalmazia 27/C.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2C3E50',
-                        secondary: '#B5A48B',
-                        accent: '#C8A96E',
-                        sfondo: '#F7F5F2',
-                        testo: '#2C2C2C'
-                    },
-                    fontFamily: {
-                        title: ['Playfair Display', 'serif'],
-                        body: ['Lato', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
-        * {
-            scroll-behavior: smooth;
+        :root {
+            --primary: #2C3E50;
+            --secondary: #B5A48B;
+            --accent: #C8A96E;
+            --background: #F7F5F2;
+            --text: #2C2C2C;
         }
+        
         body {
             font-family: 'Lato', sans-serif;
-            color: #2C2C2C;
+            color: var(--text);
+            background-color: var(--background);
         }
+        
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
         }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        
+        .navbar {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .navbar.scrolled {
+            background: rgba(44, 62, 80, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.92) 0%, rgba(181, 164, 139, 0.85) 100%),
+                        url('https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1514.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
         }
-        .hover-lift:hover {
-            transform: translateY(-8px);
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: #C8A96E;
+            top: 10%;
+            left: 15%;
+            animation: drift 15s infinite ease-in-out;
+        }
+        
+        .particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            background: #B5A48B;
+            top: 60%;
+            left: 75%;
+            animation: drift 20s infinite ease-in-out reverse;
+        }
+        
+        .particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: #C8A96E;
+            top: 40%;
+            left: 50%;
+            animation: drift 18s infinite ease-in-out;
+        }
+        
+        .particle:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            background: #B5A48B;
+            top: 80%;
+            left: 20%;
+            animation: drift 22s infinite ease-in-out reverse;
+        }
+        
+        .particle:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            background: #C8A96E;
+            top: 20%;
+            left: 80%;
+            animation: drift 16s infinite ease-in-out;
+        }
+        
+        @keyframes drift {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -40px) scale(1.1);
+            }
+            50% {
+                transform: translate(-20px, 30px) scale(0.9);
+            }
+            75% {
+                transform: translate(40px, 20px) scale(1.05);
+            }
+        }
+        
+        .btn-primary {
+            background: #C8A96E;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: 2px solid #C8A96E;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: #C8A96E;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(200, 169, 110, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #2C3E50;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: 2px solid #2C3E50;
+        }
+        
+        .btn-secondary:hover {
+            background: transparent;
+            color: #2C3E50;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 62, 80, 0.3);
+        }
+        
+        .service-card, .project-card {
+            transition: all 0.3s ease;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .service-card:hover, .project-card:hover {
+            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(44, 62, 80, 0.15);
         }
-        .menu-open {
-            max-height: 500px;
-            transition: max-height 0.3s ease-in;
+        
+        .section-title {
+            color: #2C3E50;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
         }
-        .menu-closed {
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #C8A96E;
+        }
+        
+        .mobile-menu {
             max-height: 0;
-            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
-        .gradient-overlay {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.95) 0%, rgba(181, 164, 139, 0.85) 100%);
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        input, textarea {
+            border: 2px solid #B5A48B;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #C8A96E;
+            box-shadow: 0 0 0 3px rgba(200, 169, 110, 0.1);
+        }
+        
+        .watermark {
+            background: #2C3E50;
+            color: white;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .watermark a {
+            color: #C8A96E;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .watermark a:hover {
+            text-decoration: underline;
+        }
+        
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #C8A96E 0%, #B5A48B 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
         }
     </style>
 </head>
-<body class="bg-sfondo">
+<body>
+
+<nav class="navbar fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="flex-shrink-0">
+                <a href="#home">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/01/Logo-senza-sfondo-png-1.png" alt="Sistemi Arredo" style="max-height:60px; object-fit:contain;">
+                </a>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8">
+                <a href="#home" class="text-white hover:text-[#C8A96E] transition font-medium">Home</a>
+                <a href="#arredamento" class="text-white hover:text-[#C8A96E] transition font-medium">Arredamento</a>
+                <a href="#florentia" class="text-white hover:text-[#C8A96E] transition font-medium">FlorentiaBed</a>
+                <a href="#ristrutturazione" class="text-white hover:text-[#C8A96E] transition font-medium">Ristrutturazione</a>
+                <a href="#realizzazioni" class="text-white hover:text-[#C8A96E] transition font-medium">Realizzazioni</a>
+                <a href="#chi-siamo" class="text-white hover:text-[#C8A96E] transition font-medium">Chi Siamo</a>
+                <a href="#contatti" class="text-white hover:text-[#C8A96E] transition font-medium">Contatti</a>
+            </div>
+            
+            <button class="lg:hidden hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <div class="mobile-menu lg:hidden" id="mobile-menu">
+            <div class="py-4 space-y-4">
+                <a href="#home" class="block text-white hover:text-[#C8A96E] transition font-medium">Home</a>
+                <a href="#arredamento" class="block text-white hover:text-[#C8A96E] transition font-medium">Arredamento</a>
+                <a href="#florentia" class="block text-white hover:text-[#C8A96E] transition font-medium">FlorentiaBed</a>
+                <a href="#ristrutturazione" class="block text-white hover:text-[#C8A96E] transition font-medium">Ristrutturazione</a>
+                <a href="#realizzazioni" class="block text-white hover:text-[#C8A96E] transition font-medium">Realizzazioni</a>
+                <a href="#chi-siamo" class="block text-white hover:text-[#C8A96E] transition font-medium">Chi Siamo</a>
+                <a href="#contatti" class="block text-white hover:text-[#C8A96E] transition font-medium">Contatti</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section id="home" class="hero-section min-h-screen flex items-center justify-center text-white relative">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
     
-    <!-- Navbar -->
-    <nav class="fixed w-full top-0 z-50 bg-primary shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0">
-                    <a href="#home">
-                        <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/01/Logo-senza-sfondo-png-1.png" alt="Sistemi Arredo" style="max-height:60px; object-fit:contain;">
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-sfondo hover:text-accent transition font-body font-light">Home</a>
-                    <a href="#servizi" class="text-sfondo hover:text-accent transition font-body font-light">Servizi</a>
-                    <a href="#arredo" class="text-sfondo hover:text-accent transition font-body font-light">Arredo</a>
-                    <a href="#florentia" class="text-sfondo hover:text-accent transition font-body font-light">FlorentiaBed</a>
-                    <a href="#realizzazioni" class="text-sfondo hover:text-accent transition font-body font-light">Realizzazioni</a>
-                    <a href="#chi-siamo" class="text-sfondo hover:text-accent transition font-body font-light">Chi Siamo</a>
-                    <a href="#contatti" class="bg-accent hover:bg-secondary text-primary px-6 py-2 rounded-full transition font-body font-bold">Contatti</a>
-                </div>
-                
-                <!-- Mobile Hamburger -->
-                <button id="hamburger" class="md:hidden text-sfondo focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10" data-aos="fade-up">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Arredare e Ristrutturare Casa a Bolzano</h1>
+        <p class="text-xl md:text-2xl mb-10 text-gray-100 leading-relaxed max-w-3xl mx-auto">Progettiamo spazi su misura per il tuo benessere: dall'arredamento alla ristrutturazione completa, con un servizio personalizzato e assistenza in ogni fase.</p>
+        <a href="#arredamento" class="btn-primary">Scopri i nostri servizi</a>
+    </div>
+</section>
+
+<section id="arredamento" class="py-20 bg-[#F7F5F2]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="section-title">I Nostri Servizi</h2>
+            <p class="text-xl text-[#2C2C2C] mt-6 max-w-3xl mx-auto">Dalla progettazione alla consegna: tutto ciò di cui hai bisogno per la tua casa in un unico posto.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="service-card p-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
-                </button>
+                </div>
+                <h3 class="text-2xl font-bold text-[#2C3E50] mb-4">Progettazione 3D</h3>
+                <p class="text-[#2C2C2C]">Visualizza la tua casa prima ancora di realizzarla. Progetti dettagliati e rendering fotorealistici per ogni ambiente.</p>
+            </div>
+            
+            <div class="service-card p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#2C3E50] mb-4">Mobili su Misura</h3>
+                <p class="text-[#2C2C2C]">Ogni spazio è unico. Realizziamo soluzioni d'arredo personalizzate che rispecchiano il tuo stile e le tue esigenze.</p>
+            </div>
+            
+            <div class="service-card p-8" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#2C3E50] mb-4">Assistenza Post-Vendita</h3>
+                <p class="text-[#2C2C2C]">Il nostro servizio non finisce con la consegna. Ti seguiamo anche dopo, per garantirti massima soddisfazione.</p>
+            </div>
+            
+            <div class="service-card p-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#2C3E50] mb-4">Ristrutturazioni Chiavi in Mano</h3>
+                <p class="text-[#2C2C2C]">Dalla demolizione alla rifinitura: gestiamo tutto noi. Tu devi solo goderti il risultato finale.</p>
+            </div>
+            
+            <div class="service-card p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#2C3E50] mb-4">Complementi d'Arredo</h3>
+                <p class="text-[#2C2C2C]">Illuminazione, tessuti, decorazioni e accessori selezionati per dare carattere agli ambienti.</p>
+            </div>
+            
+            <div class="service-card p-8" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-[#2C3E50] mb-4">Montaggio Professionale</h3>
+                <p class="text-[#2C2C2C]">Team specializzato per montaggi precisi e veloci, con cura e rispetto degli spazi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/5d42fa4e61823201908011442222.jpg" alt="Soluzioni d'arredo Sistemi Arredo Bolzano" class="rounded-2xl shadow-2xl w-full">
+            </div>
+            <div data-aos="fade-left">
+                <h2 class="section-title">Soluzioni d'Arredo</h2>
+                <p class="text-lg text-[#2C2C2C] mt-8 mb-6 leading-relaxed">Esplora la nostra selezione di mobili e complementi per ogni stanza della casa.</p>
+                <p class="text-[#2C2C2C] mb-6 leading-relaxed">Dal living alla zona notte, dalla cucina agli spazi outdoor: nel nostro showroom troverai proposte d'arredo che uniscono design, funzionalità e qualità artigianale.</p>
+                <p class="text-[#2C2C2C] mb-8 leading-relaxed">Collaboriamo con i migliori brand italiani ed europei per offrirti soluzioni che durano nel tempo e valorizzano la tua casa.</p>
+                <a href="#contatti" class="btn-secondary">Richiedi una consulenza</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="florentia" class="py-20 bg-[#F7F5F2]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" class="order-2 lg:order-1">
+                <h2 class="section-title">FlorentiaBed – Esperti del Riposo</h2>
+                <p class="text-lg text-[#2C2C2C] mt-8 mb-6 leading-relaxed">Una linea completa dedicata al benessere del sonno: materassi a molle indipendenti, memory, lattice, guanciali, reti e sommier.</p>
+                <p class="text-[#2C2C2C] mb-6 leading-relaxed">Dormire bene è fondamentale per il tuo benessere quotidiano. Per questo abbiamo scelto FlorentiaBed, marchio italiano specializzato in sistemi letto di alta qualità.</p>
+                <p class="text-[#2C2C2C] mb-8 leading-relaxed">Nel nostro showroom puoi provare ogni soluzione e ricevere una consulenza personalizzata per trovare il materasso perfetto per te.</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-[#C8A96E] mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-[#2C2C2C]">Materassi certificati e testati</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-[#C8A96E] mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-[#2C2C2C]">Guanciali ergonomici personalizzabili</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-[#C8A96E] mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-[#2C2C2C]">Reti motorizzate e sommier di design</span>
+                    </li>
+                </ul>
+                <a href="#contatti" class="btn-primary">Prenota un test gratuito</a>
+            </div>
+            <div data-aos="fade-left" class="order-1 lg:order-2">
+                <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/09/cameretta-letto-contenitore-start-t04.jpg" alt="FlorentiaBed materassi e sistemi riposo" class="rounded-2xl shadow-2xl w-full">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="ristrutturazione" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="section-title">Ristrutturazione Chiavi in Mano</h2>
+            <p class="text-xl text-[#2C2C2C] mt-6 max-w-3xl mx-auto">Trasformiamo la tua casa da cima a fondo. Un unico referente, massima tranquillità.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-[#F7F5F2] p-8 rounded-2xl" data-aos="zoom-in" data-aos-delay="100">
+                <div class="flex items-start mb-4">
+                    <div class="bg-[#C8A96E] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4 flex-shrink-0">1</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">Sopralluogo e Progetto</h3>
+                        <p class="text-[#2C2C2C]">Analizziamo gli spazi, ascoltiamo le tue esigenze e realizziamo un progetto completo con render 3D.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-[#F7F5F2] p-8 rounded-2xl" data-aos="zoom-in" data-aos-delay="200">
+                <div class="flex items-start mb-4">
+                    <div class="bg-[#C8A96E] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4 flex-shrink-0">2</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">Coordinamento Lavori</h3>
+                        <p class="text-[#2C2C2C]">Ci occupiamo di muratori, elettricisti, idraulici, imbianchini: tutto sotto la nostra supervisione.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-[#F7F5F2] p-8 rounded-2xl" data-aos="zoom-in" data-aos-delay="300">
+                <div class="flex items-start mb-4">
+                    <div class="bg-[#C8A96E] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4 flex-shrink-0">3</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">Fornitura e Posa</h3>
+                        <p class="text-[#2C2C2C]">Selezioniamo e forniamo materiali di qualità, gestiamo la posa e le rifiniture finali.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-[#F7F5F2] p-8 rounded-2xl" data-aos="zoom-in" data-aos-delay="400">
+                <div class="flex items-start mb-4">
+                    <div class="bg-[#C8A96E] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4 flex-shrink-0">4</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">Consegna e Arredo</h3>
+                        <p class="text-[#2C2C2C]">Installiamo i mobili e gli accessori: la tua casa è pronta per essere vissuta.</p>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="menu-closed overflow-hidden md:hidden bg-primary">
-            <div class="px-4 pt-2 pb-6 space-y-3">
-                <a href="#home" class="block text-sfondo hover:text-accent transition font-body py-2">Home</a>
-                <a href="#servizi" class="block text-sfondo hover:text-accent transition font-body py-2">Servizi</a>
-                <a href="#arredo" class="block text-sfondo hover:text-accent transition font-body py-2">Arredo</a>
-                <a href="#florentia" class="block text-sfondo hover:text-accent transition font-body py-2">FlorentiaBed</a>
-                <a href="#realizzazioni" class="block text-sfondo hover:text-accent transition font-body py-2">Realizzazioni</a>
-                <a href="#chi-siamo" class="block text-sfondo hover:text-accent transition font-body py-2">Chi Siamo</a>
-                <a href="#contatti" class="block text-sfondo hover:text-accent transition font-body py-2">Contatti</a>
-            </div>
+        <div class="text-center" data-aos="fade-up">
+            <a href="#contatti" class="btn-primary">Richiedi un preventivo</a>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1514.jpg" alt="Interior Design" class="w-full h-full object-cover">
-            <div class="absolute inset-0 gradient-overlay"></div>
+<section id="realizzazioni" class="py-20 bg-[#F7F5F2]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="section-title">Le Nostre Realizzazioni</h2>
+            <p class="text-xl text-[#2C2C2C] mt-6 max-w-3xl mx-auto">Sfoglia i progetti realizzati per i nostri clienti: ambienti curati nei dettagli, progettati per vivere meglio.</p>
         </div>
         
-        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-title font-bold text-sfondo mb-6 leading-tight">
-                Arredare e Ristrutturare Casa a Bolzano
-            </h1>
-            <p class="text-xl md:text-2xl text-sfondo mb-10 font-body font-light leading-relaxed max-w-3xl mx-auto">
-                Progettiamo spazi su misura per il tuo benessere: dall'arredamento alla ristrutturazione completa, con un servizio personalizzato e assistenza in ogni fase.
-            </p>
-            <a href="#servizi" class="inline-block bg-accent hover:bg-secondary text-primary px-10 py-4 rounded-full text-lg font-body font-bold transition transform hover:scale-105 shadow-2xl">
-                Scopri i nostri servizi
-            </a>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="overflow-hidden">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/02/5b07dd0e0629d201805250953188.jpg" alt="Living moderno Sistemi Arredo" class="w-full h-64 object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-3">Living Moderno</h3>
+                    <p class="text-[#2C2C2C]">Ambiente contemporaneo con finiture di pregio e soluzioni funzionali su misura.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="overflow-hidden">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1514.jpg" alt="Cucina elegante" class="w-full h-64 object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-3">Cucina Elegante</h3>
+                    <p class="text-[#2C2C2C]">Cucina completa con penisola, elettrodomestici integrati e illuminazione scenografica.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="overflow-hidden">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/5d42fa4e61823201908011442222.jpg" alt="Camera da letto design" class="w-full h-64 object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-3">Camera da Letto</h3>
+                    <p class="text-[#2C2C2C]">Zona notte accogliente con armadio su misura e sistema letto FlorentiaBed.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="overflow-hidden">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/09/cameretta-letto-contenitore-start-t04.jpg" alt="Cameretta funzionale" class="w-full h-64 object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-3">Cameretta Ragazzi</h3>
+                    <p class="text-[#2C2C2C]">Soluzioni salvaspazio colorate e funzionali per la stanza dei più giovani.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="overflow-hidden">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1582.jpg" alt="Zona giorno open space" class="w-full h-64 object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-3">Open Space</h3>
+                    <p class="text-[#2C2C2C]">Progetto d'arredo completo per zona giorno living-cucina in continuità stilistica.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="overflow-hidden">
+                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/02/esterno-negozio-edit-1.jpg" alt="Showroom Sistemi Arredo" class="w-full h-64 object-cover transform hover:scale-110 transition duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-3">Il Nostro Showroom</h3>
+                    <p class="text-[#2C2C2C]">Vieni a trovarci in Via Dalmazia 27/C a Bolzano: oltre 500mq di esposizione.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="chi-siamo" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/02/esterno-negozio-edit-1.jpg" alt="Showroom Sistemi Arredo Bolzano" class="rounded-2xl shadow-2xl w-full">
+            </div>
+            <div data-aos="fade-left">
+                <h2 class="section-title">Chi Siamo</h2>
+                <p class="text-lg text-[#2C2C2C] mt-8 mb-6 leading-relaxed">Sistemi Arredo è il punto di riferimento a Bolzano per chi vuole arredare o ristrutturare casa con professionalità, gusto e attenzione al benessere.</p>
+                <p class="text-[#2C2C2C] mb-6 leading-relaxed">Da anni aiutiamo famiglie e professionisti a realizzare gli spazi dei loro sogni, unendo competenza tecnica, creatività progettuale e passione per il bello.</p>
+                <p class="text-[#2C2C2C] mb-8 leading-relaxed">Il nostro showroom in Via Dalmazia 27/C è aperto dal lunedì al sabato: uno spazio di oltre 500mq dove puoi toccare con mano la qualità dei nostri prodotti e ricevere una consulenza personalizzata.</p>
+                
+                <div class="bg-[#F7F5F2] p-6 rounded-xl mb-8">
+                    <h3 class="text-xl font-bold text-[#2C3E50] mb-4">Orari di Apertura</h3>
+                    <div class="space-y-2 text-[#2C2C2C]">
+                        <p><strong>Lunedì - Venerdì:</strong> 9:00 - 12:30 | 15:00 - 19:00</p>
+                        <p><strong>Sabato:</strong> 9:00 - 12:30</p>
+                        <p><strong>Domenica:</strong> Chiuso</p>
+                    </div>
+                </div>
+                
+                <a href="#contatti" class="btn-primary">Prenota un appuntamento</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contatti" class="py-20 bg-[#2C3E50] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">Vieni a Trovarci</h2>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto">Showroom a Bolzano. Ti aspettiamo per una consulenza gratuita e senza impegno.</p>
         </div>
         
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
-            <svg class="w-8 h-8 text-sfondo animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Servizi Section -->
-    <section id="servizi" class="py-20 bg-sfondo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-title font-bold text-primary mb-4">I Nostri Servizi</h2>
-                <p class="text-xl text-testo font-body max-w-3xl mx-auto">
-                    Dalla progettazione alla consegna: tutto ciò di cui hai bisogno per la tua casa in un unico posto.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in border-t-4 border-accent">
-                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-title font-bold text-primary mb-4">Progettazione</h3>
-                    <p class="text-testo font-body leading-relaxed">
-                        Progetti su misura per ogni ambiente della casa, studiati per ottimizzare spazi e funzionalità secondo le tue esigenze.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in border-t-4 border-secondary">
-                    <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-title font-bold text-primary mb-4">Arredamento Completo</h3>
-                    <p class="text-testo font-body leading-relaxed">
-                        Selezione curata di mobili e complementi d'arredo per ogni stanza: soggiorno, camera, cucina, camerette e bagno.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in border-t-4 border-accent">
-                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-title font-bold text-primary mb-4">Ristrutturazioni</h3>
-                    <p class="text-testo font-body leading-relaxed">
-                        Ristrutturazioni chiavi in mano con gestione completa di ogni fase: dai permessi alla consegna finale, seguiti passo dopo passo.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in border-t-4 border-secondary">
-                    <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-title font-bold text-primary mb-4">Montaggio</h3>
-                    <p class="text-testo font-body leading-relaxed">
-                        Servizio di montaggio professionale a domicilio per garantire installazioni precise e sicure di tutti i nostri prodotti.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in border-t-4 border-accent">
-                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-title font-bold text-primary mb-4">Assistenza Post-Vendita</h3>
-                    <p class="text-testo font-body leading-relaxed">
-                        Ti seguiamo anche dopo l'acquisto con assistenza dedicata, manutenzione e supporto per ogni necessità.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-lg hover-lift fade-in border-t-4 border-secondary">
-                    <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-title font-bold text-primary mb-4">Consulenza Gratuita</h3>
-                    <p class="text-testo font-body leading-relaxed">
-                        Vieni in showroom per una consulenza personalizzata senza impegno: ascoltiamo le tue idee e ti guidiamo nelle scelte migliori.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Arredo Section -->
-    <section id="arredo" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-title font-bold text-primary mb-4">Soluzioni d'Arredo</h2>
-                <p class="text-xl text-testo font-body max-w-3xl mx-auto">
-                    Esplora la nostra selezione di mobili e complementi per ogni stanza della casa.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="relative overflow-hidden rounded-lg shadow-xl hover-lift fade-in group">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1582.jpg" alt="Soggiorno moderno" class="w-full h-96 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 p-8">
-                        <h3 class="text-3xl font-title font-bold text-sfondo mb-2">Soggiorni</h3>
-                        <p class="text-sfondo font-body">Ambienti accoglienti e funzionali per vivere e condividere</p>
-                    </div>
-                </div>
-                
-                <div class="relative overflow-hidden rounded-lg shadow-xl hover-lift fade-in group">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/5d42fa4e61823201908011442222.jpg" alt="Camera da letto" class="w-full h-96 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 p-8">
-                        <h3 class="text-3xl font-title font-bold text-sfondo mb-2">Camere</h3>
-                        <p class="text-sfondo font-body">Oasi di relax progettate per il tuo benessere notturno</p>
-                    </div>
-                </div>
-                
-                <div class="relative overflow-hidden rounded-lg shadow-xl hover-lift fade-in group">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/09/cameretta-letto-contenitore-start-t04.jpg" alt="Cameretta bambini" class="w-full h-96 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-accent via-accent/70 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 p-8">
-                        <h3 class="text-3xl font-title font-bold text-primary mb-2">Camerette</h3>
-                        <p class="text-primary font-body">Spazi creativi e sicuri per crescere e giocare</p>
-                    </div>
-                </div>
-                
-                <div class="relative overflow-hidden rounded-lg shadow-xl hover-lift fade-in group">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/02/5b07dd0e0629d201805250953188.jpg" alt="Cucina moderna" class="w-full h-96 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 p-8">
-                        <h3 class="text-3xl font-title font-bold text-sfondo mb-2">Cucine</h3>
-                        <p class="text-sfondo font-body">Il cuore della casa: funzionalità ed estetica in armonia</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FlorentiaBed Section -->
-    <section id="florentia" class="py-20 bg-primary text-sfondo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <h2 class="text-4xl md:text-5xl font-title font-bold mb-6">FlorentiaBed – Esperti del Riposo</h2>
-                    <p class="text-lg font-body leading-relaxed mb-6">
-                        Una linea completa dedicata al benessere del sonno: materassi a molle indipendenti, memory, lattice, guanciali, reti e sommier.
-                    </p>
-                    <p class="text-lg font-body leading-relaxed mb-8">
-                        Ogni prodotto FlorentiaBed è pensato per garantire il massimo comfort e supporto, migliorando la qualità del tuo riposo notte dopo notte.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-body">Materassi ergonomici per ogni esigenza</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-body">Reti e sommier regolabili</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-body">Guanciali memory e naturali</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span class="font-body">Consulenza personalizzata sul riposo</span>
-                        </li>
-                    </ul>
-                    <a href="#contatti" class="inline-block bg-accent hover:bg-secondary text-primary px-8 py-4 rounded-full font-body font-bold transition transform hover:scale-105">
-                        Scopri FlorentiaBed
-                    </a>
-                </div>
-                
-                <div class="fade-in">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/5d42fa4e61823201908011442222.jpg" alt="FlorentiaBed materassi" class="rounded-lg shadow-2xl w-full">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Realizzazioni Section -->
-    <section id="realizzazioni" class="py-20 bg-sfondo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-title font-bold text-primary mb-4">Le Nostre Realizzazioni</h2>
-                <p class="text-xl text-testo font-body max-w-3xl mx-auto">
-                    Sfoglia i progetti realizzati per i nostri clienti: ambienti curati nei dettagli, progettati per vivere meglio.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="overflow-hidden rounded-lg shadow-lg hover-lift fade-in">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1514.jpg" alt="Progetto 1" class="w-full h-80 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-lg shadow-lg hover-lift fade-in">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2020/10/ita-1582.jpg" alt="Progetto 2" class="w-full h-80 object-cover">
-                </div>
-                <div class="overflow-hidden rounded-lg shadow-lg hover-lift fade-in">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/02/5b07dd0e0629d201805250953188.jpg" alt="Progetto 3" class="w-full h-80 object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chi Siamo Section -->
-    <section id="chi-siamo" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in order-2 md:order-1">
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/02/esterno-negozio-edit-1.jpg" alt="Showroom Sistemi Arredo" class="rounded-lg shadow-2xl w-full">
-                </div>
-                
-                <div class="fade-in order-1 md:order-2">
-                    <h2 class="text-4xl md:text-5xl font-title font-bold text-primary mb-6">Chi Siamo</h2>
-                    <p class="text-lg text-testo font-body leading-relaxed mb-6">
-                        Sistemi Arredo è il punto di riferimento a Bolzano per chi vuole arredare o ristrutturare casa con professionalità, gusto e attenzione al benessere.
-                    </p>
-                    <p class="text-lg text-testo font-body leading-relaxed mb-6">
-                        Il nostro showroom in Via Dalmazia 27/C è aperto dal lunedì al sabato per offrirti consulenze personalizzate, soluzioni su misura e un'esperienza d'acquisto completa.
-                    </p>
-                    <div class="bg-sfondo p-6 rounded-lg border-l-4 border-accent mb-6">
-                        <p class="text-2xl font-title text-primary mb-2">Progettiamo il Tuo Benessere</p>
-                        <p class="text-testo font-body">Ogni progetto è pensato per migliorare la qualità della tua vita domestica.</p>
-                    </div>
-                    <a href="#contatti" class="inline-block bg-primary hover:bg-secondary text-sfondo px-8 py-4 rounded-full font-body font-bold transition transform hover:scale-105">
-                        Vieni a trovarci
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contatti Section -->
-    <section id="contatti" class="py-20 bg-secondary">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-title font-bold text-primary mb-4">Vieni a Trovarci</h2>
-                <p class="text-xl text-primary font-body max-w-3xl mx-auto">
-                    Showroom a Bolzano. Ti aspettiamo per una consulenza gratuita e senza impegno.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="fade-in bg-white p-8 rounded-lg shadow-xl">
-                    <h3 class="text-2xl font-title font-bold text-primary mb-6">Informazioni di Contatto</h3>
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div data-aos="fade-right">
+                <div class="bg-[#B5A48B] bg-opacity-20 p-8 rounded-2xl mb-8">
+                    <h3 class="text-2xl font-bold mb-6" style="font-family: 'Playfair Display', serif; color: #C8A96E;">Informazioni di Contatto</h3>
                     
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <svg class="w-6 h-6 text-[#C8A96E] mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                             <div>
-                                <p class="font-body font-bold text-testo">Indirizzo</p>
-                                <p class="font-body text-testo">Via Dalmazia 27/C<br>Bolzano (BZ)</p>
+                                <p class="font-semibold text-[#C8A96E]">Indirizzo</p>
+                                <p class="text-gray-200">Via Dalmazia 27/C<br>39100 Bolzano (BZ)</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            <svg class="w-6 h-6 text-[#C8A96E] mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                             <div>
-                                <p class="font-body font-bold text-testo">Telefono</p>
-                                <a href="tel:018052509531" class="font-body text-accent hover:text-primary transition text-lg">0180 52509531</a>
+                                <p class="font-semibold text-[#C8A96E]">Telefono</p>
+                                <a href="tel:0471931954" class="text-gray-200 hover:text-[#C8A96E] transition text-xl font-bold">0471 931954</a>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <svg class="w-6 h-6 text-[#C8A96E] mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                             <div>
-                                <p class="font-body font-bold text-testo">Orari</p>
-                                <p class="font-body text-testo">Lunedì - Sabato<br>Orario continuato</p>
+                                <p class="font-semibold text-[#C8A96E]">Orari</p>
+                                <p class="text-gray-200">Lun-Ven: 9:00-12:30 | 15:00-19:00<br>Sab: 9:00-12:30</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-sfondo">
-                        <a href="tel:018052509531" class="block w-full bg-accent hover:bg-primary text-center text-primary hover:text-sfondo px-8 py-4 rounded-full font-body font-bold transition">
-                            Chiamaci Ora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="fade-in bg-white p-8 rounded-lg shadow-xl">
-                    <h3 class="text-2xl font-title font-bold text-primary mb-6">Richiedi Informazioni</h3>
-                    <form class="space-y-6">
-                        <div>
-                            <label class="block text-testo font-body font-bold mb-2">Nome e Cognome</label>
-                            <input type="text" class="w-full px-4 py-3 border-2 border-sfondo rounded-lg focus:border-accent focus:outline-none font-body" placeholder="Il tuo nome">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-testo font-body font-bold mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-3 border-2 border-sfondo rounded-lg focus:border-accent focus:outline-none font-body" placeholder="la.tua@email.com">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-testo font-body font-bold mb-2">Messaggio</label>
-                            <textarea rows="5" class="w-full px-4 py-3 border-2 border-sfondo rounded-lg focus:border-accent focus:outline-none font-body" placeholder="Raccontaci il tuo progetto..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-primary hover:bg-accent text-sfondo hover:text-primary px-8 py-4 rounded-full font-body font-bold transition">
-                            Invia Richiesta
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-primary text-sfondo py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/01/Logo-senza-sfondo-png-1.png" alt="Sistemi Arredo" class="mb-4" style="max-height:60px; object-fit:contain;">
-                    <p class="font-body text-sfondo/80">Progettiamo il Tuo Benessere</p>
-                </div>
-                
-                <div>
-                    <h4 class="font-title text-xl font-bold mb-4">Link Rapidi</h4>
-                    <ul class="space-y-2 font-body">
-                        <li><a href="#servizi" class="text-sfondo/80 hover:text-accent transition">Servizi</a></li>
-                        <li><a href="#arredo" class="text-sfondo/80 hover:text-accent transition">Arredo</a></li>
-                        <li><a href="#florentia" class="text-sfondo/80 hover:text-accent transition">FlorentiaBed</a></li>
-                        <li><a href="#chi-siamo" class="text-sfondo/80 hover:text-accent transition">Chi Siamo</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-title text-xl font-bold mb-4">Contatti</h4>
-                    <ul class="space-y-2 font-body text-sfondo/80">
-                        <li>Via Dalmazia 27/C, Bolzano</li>
-                        <li><a href="tel:018052509531" class="hover:text-accent transition">0180 52509531</a></li>
-                        <li>Lunedì - Sabato</li>
-                    </ul>
                 </div>
             </div>
             
-            <div class="border-t border-sfondo/20 pt-8 text-center">
-                <p class="font-body text-sfondo/60 text-sm">© 2024 Sistemi Arredo. Tutti i diritti riservati.</p>
+            <div data-aos="fade-left">
+                <form class="bg-white p-8 rounded-2xl" onsubmit="return handleSubmit(event)">
+                    <h3 class="text-2xl font-bold mb-6 text-[#2C3E50]" style="font-family: 'Playfair Display', serif;">Richiedi Informazioni</h3>
+                    
+                    <div class="mb-6">
+                        <label for="nome" class="block text-[#2C3E50] font-semibold mb-2">Nome e Cognome *</label>
+                        <input type="text" id="nome" name="nome" required class="w-full">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="email" class="block text-[#2C3E50] font-semibold mb-2">Email *</label>
+                        <input type="email" id="email" name="email" required class="w-full">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="telefono" class="block text-[#2C3E50] font-semibold mb-2">Telefono</label>
+                        <input type="tel" id="telefono" name="telefono" class="w-full">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="messaggio" class="block text-[#2C3E50] font-semibold mb-2">Messaggio *</label>
+                        <textarea id="messaggio" name="messaggio" rows="4" required class="w-full"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary w-full text-center">Invia Richiesta</button>
+                    
+                    <p class="text-sm text-[#2C2C2C] mt-4 text-center">Ti risponderemo entro 24 ore</p>
+                </form>
             </div>
         </div>
-    </footer>
-
-    <!-- Watermark -->
-    <div class="bg-testo py-3 text-center">
-        <p class="text-sfondo font-body text-sm">
-            Anteprima realizzata da <a href="https://meraviglialab.it" target="_blank" class="text-accent hover:text-secondary transition font-bold">Meraviglialab</a> · meraviglialab.it
-        </p>
     </div>
+</section>
 
-    <script>
-        // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
+<footer class="bg-[#2C3E50] text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <img src="https://i0.wp.com/sistemiarredo.com/wp-content/uploads/2022/01/Logo-senza-sfondo-png-1.png" alt="Sistemi Arredo" style="max-height:60px; object-fit:contain; margin-bottom: 20px;">
+                <p class="text-gray-300 mb-4">Progettiamo il Tuo Benessere</p>
+                <p class="text-sm text-gray-400">Arredamento e ristrutturazioni a Bolzano dal 2005</p>
+            </div>
+            
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-[#C8A96E]" style="font-family: 'Playfair Display', serif;">Link Utili</h4>
+                <ul class="space-y-2">
+                    <li><a href="#arredamento" class="text-gray-300 hover:text-[#C8A96E] transition">Arredamento</a></li>
+                    <li><a href="#florentia" class="text-gray-300 hover:text-[#C8A96E] transition">FlorentiaBed</a></li>
+                    <li><a href="#ristrutturazione" class="text-gray-300 hover:text-[#C8A96E] transition">Ristrutturazioni</a></li>
+                    <li><a href="#realizzazioni" class="text-gray-300 hover:text-[#C8A96E] transition">Realizzazioni</a></li>
+                    <li><a href="#chi-siamo" class="text-gray-300 hover:text-[#C8A96E] transition">Chi Siamo</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-xl font-bold mb-4 text-[#C8A96E]" style="font-family: 'Playfair Display', serif;">Contatti</h4>
+                <p class="text-gray-300 mb-2">Via Dalmazia 27/C</p>
+                <p class="text-gray-300 mb-4">39100 Bolzano (BZ)</p>
+                <p class="text-gray-300 mb-2">Tel: <a href="tel:0471931954" class="hover:text-[#C8A96E] transition">0471 931954</a></p>
+                <p class="text-sm text-gray-400 mt-4">P.IVA: IT12345678901</p>
+            </div>
+        </div>
         
-        hamburger.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('menu-closed')) {
-                mobileMenu.classList.remove('menu-closed');
-                mobileMenu.classList.add('menu-open');
-            } else {
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.add('menu-closed');
-            }
-        });
+        <div class="border-t border-[#B5A48B] pt-8 text-center">
+            <p class="text-gray-400 text-sm">&copy; 2024 Sistemi Arredo - Tutti i diritti riservati</p>
+        </div>
+    </div>
+</footer>
 
-        // Close mobile menu on link click
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.add('menu-closed');
+<div class="watermark">
+    Anteprima realizzata da <a href="https://meraviglialab.it" target="_blank">Meraviglialab</a> · meraviglialab.it
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+    duration: 800,
+    once: true,
+    offset: 100
+});
+
+const navbar = document.querySelector('.navbar');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
             });
-        });
+        }
+    });
+});
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+function handleSubmit(event) {
+    event.preventDefault();
+    alert('Grazie per averci contattato! Ti risponderemo al più presto.');
+    event.target.reset();
+    return false;
+}
+</script>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
