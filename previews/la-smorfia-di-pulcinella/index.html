@@ -1,454 +1,476 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Smorfia di Pulcinella – La tipica pizza cotta nel forno a legna</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primario: '#C8960C',
-            secondario: '#1A1A1A',
-            accento: '#E63312',
-            sfondo: '#FDF6E3',
-            testo: '#2C2C2C',
-          },
-          fontFamily: {
-            titoli: ['"Playfair Display"', 'serif'],
-            corpo: ['Lato', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Lato', sans-serif; background-color: #FDF6E3; color: #2C2C2C; }
-    h1, h2, h3, h4, .font-titoli { font-family: 'Playfair Display', serif; }
-
-    .fade-in { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #C8960C; transition: width 0.3s ease; }
-    .nav-link:hover::after { width: 100%; }
-
-    .hero-overlay { background: linear-gradient(135deg, rgba(26,26,26,0.88) 0%, rgba(200,150,12,0.45) 60%, rgba(230,51,18,0.35) 100%); }
-
-    .ornament-line { display: flex; align-items: center; gap: 12px; }
-    .ornament-line::before, .ornament-line::after { content: ''; flex: 1; height: 1px; background: #C8960C; opacity: 0.5; }
-
-    .pizza-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .pizza-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-
-    .giropizza-bg { background: linear-gradient(135deg, #1A1A1A 0%, #2C1A00 50%, #1A1A1A 100%); }
-
-    .form-input { background: #FDF6E3; border: 2px solid #C8960C44; color: #2C2C2C; transition: border-color 0.3s; }
-    .form-input:focus { outline: none; border-color: #C8960C; box-shadow: 0 0 0 3px rgba(200,150,12,0.15); }
-
-    .mobile-menu { transition: max-height 0.4s ease, opacity 0.4s ease; max-height: 0; opacity: 0; overflow: hidden; }
-    .mobile-menu.open { max-height: 500px; opacity: 1; }
-
-    .orari-day { border-left: 3px solid #C8960C; }
-    .orari-day.chiuso { border-left-color: #E63312; }
-
-    .watermark-bar { background: #1A1A1A; }
-
-    @keyframes flame { 0%,100%{transform:scaleY(1) rotate(-2deg);} 50%{transform:scaleY(1.08) rotate(2deg);} }
-    .flame-anim { animation: flame 2s ease-in-out infinite; transform-origin: bottom center; display: inline-block; }
-
-    .section-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #C8960C, #E63312); border-radius: 2px; }
-
-    .gallery-img { transition: transform 0.4s ease, filter 0.4s ease; filter: brightness(0.92); }
-    .gallery-img:hover { transform: scale(1.04); filter: brightness(1); }
-
-    .badge { background: linear-gradient(135deg, #C8960C, #E63312); }
-
-    .sticky-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background 0.3s, box-shadow 0.3s; }
-    .sticky-nav.scrolled { background: rgba(26,26,26,0.97); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
-    .sticky-nav.top { background: transparent; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Smorfia di Pulcinella - Pizza Napoletana a Lombardore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C8960C',
+                        secondary: '#1A1A1A',
+                        accent: '#E63312',
+                        sfondo: '#FDF6E3'
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'lato': ['Lato', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-toggle {
+            transition: all 0.3s ease;
+        }
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        .crown-decoration {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
 </head>
-<body class="bg-sfondo">
+<body class="bg-sfondo text-secondary">
+    
+    <!-- Navbar -->
+    <nav class="bg-secondary fixed w-full z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="25" font-family="Playfair Display, serif" font-size="18" font-weight="700" fill="#C8960C">La Smorfia</text>
+                        <text x="10" y="42" font-family="Playfair Display, serif" font-size="14" font-weight="400" fill="#E63312">di Pulcinella</text>
+                    </svg>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sfondo hover:text-primary transition font-lato">Home</a>
+                    <a href="#chi-siamo" class="text-sfondo hover:text-primary transition font-lato">Chi siamo</a>
+                    <a href="#specialita" class="text-sfondo hover:text-primary transition font-lato">Le specialità</a>
+                    <a href="#giropizza" class="text-sfondo hover:text-primary transition font-lato">Giropizza</a>
+                    <a href="#menu" class="text-sfondo hover:text-primary transition font-lato">Menù</a>
+                    <a href="#gallery" class="text-sfondo hover:text-primary transition font-lato">Gallery</a>
+                    <a href="#contatti" class="text-sfondo hover:text-primary transition font-lato">Orari e contatti</a>
+                </div>
 
-<!-- NAV -->
-<nav id="mainNav" class="sticky-nav top">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      <!-- LOGO SVG -->
-      <a href="#home" class="flex-shrink-0">
-        <svg width="220" height="52" viewBox="0 0 220 52" xmlns="http://www.w3.org/2000/svg">
-          <text x="8" y="22" font-family="'Playfair Display', serif" font-size="13" font-weight="700" fill="#C8960C" letter-spacing="1">LA SMORFIA DI</text>
-          <text x="6" y="44" font-family="'Playfair Display', serif" font-size="22" font-weight="900" fill="#FDF6E3" letter-spacing="0.5">Pulcinella</text>
-          <line x1="6" y1="28" x2="214" y2="28" stroke="#C8960C" stroke-width="0.8" opacity="0.6"/>
-          <circle cx="4" cy="28" r="2" fill="#E63312"/>
-          <circle cx="216" cy="28" r="2" fill="#E63312"/>
-        </svg>
-      </a>
-
-      <!-- DESKTOP NAV -->
-      <div class="hidden lg:flex items-center space-x-8">
-        <a href="#home" class="nav-link text-sfondo hover:text-primario font-corpo text-sm font-700 tracking-wide uppercase transition-colors">Home</a>
-        <a href="#chi-siamo" class="nav-link text-sfondo hover:text-primario font-corpo text-sm font-700 tracking-wide uppercase transition-colors">Chi siamo</a>
-        <a href="#specialita" class="nav-link text-sfondo hover:text-primario font-corpo text-sm font-700 tracking-wide uppercase transition-colors">Specialità</a>
-        <a href="#giropizza" class="nav-link text-sfondo hover:text-primario font-corpo text-sm font-700 tracking-wide uppercase transition-colors">Giropizza</a>
-        <a href="#menu" class="nav-link text-sfondo hover:text-primario font-corpo text-sm font-700 tracking-wide uppercase transition-colors">Menù</a>
-        <a href="#gallery" class="nav-link text-sfondo hover:text-primario font-corpo text-sm font-700 tracking-wide uppercase transition-colors">Gallery</a>
-        <a href="#contatti" class="bg-primario hover:bg-accento text-secondario hover:text-sfondo font-corpo text-sm font-700 tracking-wide uppercase px-5 py-2.5 rounded-sm transition-all duration-300 transform hover:scale-105">Contatti</a>
-      </div>
-
-      <!-- HAMBURGER -->
-      <button id="hamburger" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none" aria-label="Apri menu">
-        <span id="hb1" class="block w-7 h-0.5 bg-sfondo transition-all duration-300"></span>
-        <span id="hb2" class="block w-7 h-0.5 bg-sfondo transition-all duration-300"></span>
-        <span id="hb3" class="block w-5 h-0.5 bg-sfondo transition-all duration-300"></span>
-      </button>
-    </div>
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="mobile-menu bg-secondario lg:hidden border-t border-primario/20">
-    <div class="px-6 py-4 space-y-1">
-      <a href="#home" class="mobile-nav-link block py-3 text-sfondo hover:text-primario font-corpo text-sm uppercase tracking-widest border-b border-white/10 transition-colors">Home</a>
-      <a href="#chi-siamo" class="mobile-nav-link block py-3 text-sfondo hover:text-primario font-corpo text-sm uppercase tracking-widest border-b border-white/10 transition-colors">Chi siamo</a>
-      <a href="#specialita" class="mobile-nav-link block py-3 text-sfondo hover:text-primario font-corpo text-sm uppercase tracking-widest border-b border-white/10 transition-colors">Specialità</a>
-      <a href="#giropizza" class="mobile-nav-link block py-3 text-sfondo hover:text-primario font-corpo text-sm uppercase tracking-widest border-b border-white/10 transition-colors">Giropizza</a>
-      <a href="#menu" class="mobile-nav-link block py-3 text-sfondo hover:text-primario font-corpo text-sm uppercase tracking-widest border-b border-white/10 transition-colors">Menù</a>
-      <a href="#gallery" class="mobile-nav-link block py-3 text-sfondo hover:text-primario font-corpo text-sm uppercase tracking-widest border-b border-white/10 transition-colors">Gallery</a>
-      <a href="#contatti" class="mobile-nav-link block py-3 text-primario font-corpo text-sm uppercase tracking-widest font-bold transition-colors">Orari e Contatti</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 bg-secondario">
-    <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="" class="absolute inset-0 w-full h-full object-cover opacity-10" />
-  </div>
-  <div class="hero-overlay absolute inset-0"></div>
-
-  <!-- Decorative crowns -->
-  <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-top-small.png" alt="" class="absolute top-24 left-1/2 -translate-x-1/2 w-32 opacity-30 pointer-events-none" />
-  <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-down-small.png" alt="" class="absolute bottom-16 left-1/2 -translate-x-1/2 w-32 opacity-30 pointer-events-none" />
-  <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-1.png" alt="" class="absolute top-1/3 left-8 w-20 opacity-20 hidden lg:block pointer-events-none" />
-  <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-2.png" alt="" class="absolute top-1/3 right-8 w-20 opacity-20 hidden lg:block pointer-events-none" />
-
-  <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto py-32">
-    <div class="fade-in mb-6">
-      <span class="inline-block text-primario font-corpo text-xs font-700 tracking-[4px] uppercase mb-4">Lombardore – Forno a Legna</span>
-      <div class="ornament-line max-w-xs mx-auto mb-6">
-        <span class="text-primario text-lg">✦</span>
-      </div>
-    </div>
-
-    <h1 class="fade-in font-titoli text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-sfondo font-900 leading-tight mb-6">
-      La vera pizza<br/>
-      <span class="text-primario italic">cotta nel forno</span><br/>
-      <span class="text-sfondo">a legna</span>
-    </h1>
-
-    <p class="fade-in font-corpo text-sfondo/80 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-300">
-      Tradizione, ingredienti genuini e tanto gusto nel cuore di Lombardore. Vieni a scoprire il sapore autentico della regina della cucina italiana.
-    </p>
-
-    <div class="fade-in flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a href="#specialita" class="group bg-primario hover:bg-accento text-secondario hover:text-sfondo font-corpo font-700 text-sm tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-        <span>Scopri il menu</span>
-        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-      <a href="#giropizza" class="border border-primario text-primario hover:bg-primario hover:text-secondario font-corpo font-700 text-sm tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300">
-        Il Giropizza
-      </a>
-    </div>
-
-    <div class="fade-in mt-16 flex items-center justify-center gap-8 text-sfondo/60">
-      <div class="text-center">
-        <div class="font-titoli text-2xl text-primario font-700">Dal</div>
-        <div class="font-corpo text-xs tracking-widest uppercase">Martedì</div>
-      </div>
-      <div class="w-px h-10 bg-primario/30"></div>
-      <div class="text-center">
-        <div class="font-titoli text-2xl text-primario font-700">100%</div>
-        <div class="font-corpo text-xs tracking-widest uppercase">Genuino</div>
-      </div>
-      <div class="w-px h-10 bg-primario/30"></div>
-      <div class="text-center">
-        <div class="font-titoli text-2xl text-primario font-700">
-          <span class="flame-anim">🔥</span>
-        </div>
-        <div class="font-corpo text-xs tracking-widest uppercase">Forno a legna</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-sfondo/40">
-    <span class="font-corpo text-xs tracking-widest uppercase">Scorri</span>
-    <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-  </div>
-</section>
-
-<!-- CHI SIAMO -->
-<section id="chi-siamo" class="py-24 bg-sfondo overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div class="fade-in">
-        <span class="text-accento font-corpo text-xs font-700 tracking-[4px] uppercase">La nostra storia</span>
-        <h2 class="font-titoli text-4xl sm:text-5xl text-secondario font-700 mt-3 mb-6 leading-tight">
-          Passione e tradizione<br/><span class="text-primario italic">napoletana</span>
-        </h2>
-        <div class="section-divider mb-8"></div>
-        <p class="font-corpo text-testo/80 text-lg leading-relaxed mb-6">
-          La Smorfia di Pulcinella nasce dalla passione per la pizza tradizionale napoletana. A Lombardore, portiamo in tavola l'autenticità del forno a legna, un impasto morbido con cornicione classico, pomodoro e mozzarella filante.
-        </p>
-        <p class="font-corpo text-testo/70 text-base leading-relaxed mb-8">
-          Ogni pizza è realizzata con ingredienti freschi e genuini, perché la semplicità è il nostro segreto. La nostra cucina è un viaggio verso il cuore di Napoli, dove ogni boccone racconta una storia di sapori autentici e amore per la tradizione.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <div class="flex items-center gap-2 bg-primario/10 px-4 py-2 rounded-sm">
-            <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            <span class="font-corpo text-sm font-700 text-secondario">Forno a legna</span>
-          </div>
-          <div class="flex items-center gap-2 bg-primario/10 px-4 py-2 rounded-sm">
-            <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            <span class="font-corpo text-sm font-700 text-secondario">Ingredienti freschi</span>
-          </div>
-          <div class="flex items-center gap-2 bg-primario/10 px-4 py-2 rounded-sm">
-            <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            <span class="font-corpo text-sm font-700 text-secondario">Tradizione napoletana</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="fade-in relative">
-        <div class="relative rounded-sm overflow-hidden shadow-2xl">
-          <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="La Smorfia di Pulcinella" class="w-full h-96 object-contain bg-secondario p-8" />
-          <div class="absolute inset-0 bg-gradient-to-t from-secondario/60 to-transparent flex items-end p-6">
-            <p class="font-titoli text-sfondo italic text-xl">"La pizza come deve essere"</p>
-          </div>
-        </div>
-        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primario rounded-sm flex items-center justify-center shadow-lg hidden lg:flex">
-          <div class="text-center">
-            <div class="font-titoli text-sfondo text-2xl font-700">♦</div>
-            <div class="font-corpo text-sfondo text-xs tracking-widest uppercase font-700">DOC</div>
-          </div>
-        </div>
-        <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-2.png" alt="" class="absolute -top-4 -right-4 w-16 h-16 opacity-40 hidden lg:block" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VALUES STRIP -->
-<section class="bg-secondario py-14">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      <div class="fade-in text-center">
-        <div class="flex justify-center mb-3">
-          <svg class="w-8 h-8 text-primario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-lg font-700 mb-1">Tradizione</h3>
-        <p class="font-corpo text-sfondo/50 text-sm">Ricette originali napoletane</p>
-      </div>
-      <div class="fade-in text-center">
-        <div class="flex justify-center mb-3">
-          <svg class="w-8 h-8 text-primario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-lg font-700 mb-1">Genuinità</h3>
-        <p class="font-corpo text-sfondo/50 text-sm">Ingredienti freschi e selezionati</p>
-      </div>
-      <div class="fade-in text-center">
-        <div class="flex justify-center mb-3">
-          <svg class="w-8 h-8 text-primario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-lg font-700 mb-1">Convivialità</h3>
-        <p class="font-corpo text-sfondo/50 text-sm">Un posto per stare insieme</p>
-      </div>
-      <div class="fade-in text-center">
-        <div class="flex justify-center mb-3">
-          <svg class="w-8 h-8 text-primario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-lg font-700 mb-1">Qualità</h3>
-        <p class="font-corpo text-sfondo/50 text-sm">Semplicità di altissimo livello</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SPECIALITÀ -->
-<section id="specialita" class="py-24 bg-sfondo">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 fade-in">
-      <span class="text-accento font-corpo text-xs font-700 tracking-[4px] uppercase">Dal nostro forno</span>
-      <h2 class="font-titoli text-4xl sm:text-5xl text-secondario font-700 mt-3 mb-4">Le nostre <span class="text-primario italic">specialità</span></h2>
-      <p class="font-corpo text-testo/70 text-lg max-w-2xl mx-auto">Dalla classica Margherita alle pizze speciali, passando per la Farinata originale. Ogni creazione è il frutto della nostra passione.</p>
-      <div class="flex justify-center mt-6"><div class="section-divider"></div></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="fade-in pizza-card bg-white rounded-sm shadow-lg overflow-hidden">
-        <div class="relative overflow-hidden h-56">
-          <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="Margherita" class="gallery-img w-full h-full object-contain bg-secondario p-6" />
-          <div class="absolute top-3 right-3">
-            <span class="badge text-white text-xs font-corpo font-700 tracking-widest uppercase px-3 py-1 rounded-sm">Classica</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-titoli text-xl text-secondario font-700 mb-2">Margherita</h3>
-          <p class="font-corpo text-testo/70 text-sm leading-relaxed">La regina indiscussa. Pomodoro San Marzano, fior di latte, basilico fresco e un filo d'olio extravergine d'oliva. Semplicità assoluta.</p>
-          <div class="mt-4 flex items-center gap-2">
-            <div class="flex">
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden menu-toggle" id="menuToggle">
+                    <span class="block w-6 h-0.5 bg-sfondo mb-1"></span>
+                    <span class="block w-6 h-0.5 bg-sfondo mb-1"></span>
+                    <span class="block w-6 h-0.5 bg-sfondo"></span>
+                </button>
             </div>
-            <span class="font-corpo text-xs text-testo/50">La preferita</span>
-          </div>
-        </div>
-      </div>
 
-      <!-- Card 2 -->
-      <div class="fade-in pizza-card bg-white rounded-sm shadow-lg overflow-hidden">
-        <div class="relative overflow-hidden h-56">
-          <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-1.png" alt="Pizze Speciali" class="gallery-img w-full h-full object-contain bg-secondario p-6" />
-          <div class="absolute top-3 right-3">
-            <span class="badge text-white text-xs font-corpo font-700 tracking-widest uppercase px-3 py-1 rounded-sm">Speciale</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-titoli text-xl text-secondario font-700 mb-2">Pizze Speciali</h3>
-          <p class="font-corpo text-testo/70 text-sm leading-relaxed">Un'ampia selezione di pizze realizzate con abbinamenti originali e ingredienti di prima qualità. Per chi ama sperimentare senza rinunciare alla tradizione.</p>
-          <div class="mt-4 flex items-center gap-2">
-            <div class="flex">
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden" id="mobileMenu">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-sfondo hover:text-primary transition">Home</a>
+                    <a href="#chi-siamo" class="block px-3 py-2 text-sfondo hover:text-primary transition">Chi siamo</a>
+                    <a href="#specialita" class="block px-3 py-2 text-sfondo hover:text-primary transition">Le specialità</a>
+                    <a href="#giropizza" class="block px-3 py-2 text-sfondo hover:text-primary transition">Giropizza</a>
+                    <a href="#menu" class="block px-3 py-2 text-sfondo hover:text-primary transition">Menù</a>
+                    <a href="#gallery" class="block px-3 py-2 text-sfondo hover:text-primary transition">Gallery</a>
+                    <a href="#contatti" class="block px-3 py-2 text-sfondo hover:text-primary transition">Orari e contatti</a>
+                </div>
             </div>
-            <span class="font-corpo text-xs text-testo/50">Fantasia e gusto</span>
-          </div>
         </div>
-      </div>
+    </nav>
 
-      <!-- Card 3 -->
-      <div class="fade-in pizza-card bg-white rounded-sm shadow-lg overflow-hidden">
-        <div class="relative overflow-hidden h-56">
-          <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-2.png" alt="Farinata" class="gallery-img w-full h-full object-contain bg-secondario p-6" />
-          <div class="absolute top-3 right-3">
-            <span class="bg-accento text-white text-xs font-corpo font-700 tracking-widest uppercase px-3 py-1 rounded-sm">Speciale</span>
-          </div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-titoli text-xl text-secondario font-700 mb-2">Farinata Originale</h3>
-          <p class="font-corpo text-testo/70 text-sm leading-relaxed">La nostra Farinata è una ricetta originale, croccante fuori e morbida dentro. Un antipasto irresistibile per iniziare la serata nel modo giusto.</p>
-          <div class="mt-4 flex items-center gap-2">
-            <div class="flex">
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              <svg class="w-4 h-4 text-primario" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary via-accent to-secondary pt-20">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="" class="w-20 crown-decoration">
             </div>
-            <span class="font-corpo text-xs text-testo/50">Unica nel suo genere</span>
-          </div>
+            <div class="absolute bottom-20 right-10">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-2.png" alt="" class="w-20 crown-decoration" style="animation-delay: 1s;">
+            </div>
         </div>
-      </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-1.png" alt="Corona" class="w-16 mx-auto mb-6 crown-decoration">
+            <h1 class="font-playfair text-5xl md:text-7xl font-bold text-primary mb-6">La vera pizza cotta nel forno a legna</h1>
+            <p class="font-lato text-xl md:text-2xl text-sfondo mb-8 leading-relaxed">Tradizione, ingredienti genuini e tanto gusto nel cuore di Lombardore. Vieni a scoprire il sapore autentico della regina della cucina italiana.</p>
+            <a href="#specialita" class="inline-block bg-primary hover:bg-accent text-sfondo font-bold py-4 px-8 rounded-full transition transform hover:scale-105 shadow-lg">Scopri il menu</a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 bg-sfondo">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-2.png" alt="Corona" class="w-20 mb-6">
+                    <h2 class="font-playfair text-4xl md:text-5xl font-bold text-secondary mb-6">La nostra storia</h2>
+                    <p class="font-lato text-lg text-secondary leading-relaxed mb-4">La Smorfia di Pulcinella nasce dalla passione per la pizza tradizionale napoletana. A Lombardore, portiamo in tavola l'autenticità del forno a legna, un impasto morbido con cornicione classico, pomodoro e mozzarella filante.</p>
+                    <p class="font-lato text-lg text-secondary leading-relaxed">Ogni pizza è realizzata con ingredienti freschi e genuini, perché la semplicità è il nostro segreto.</p>
+                </div>
+                <div class="fade-in">
+                    <div class="relative">
+                        <div class="absolute -top-6 -left-6 w-full h-full border-4 border-primary rounded-lg"></div>
+                        <div class="relative bg-secondary p-8 rounded-lg shadow-xl">
+                            <svg class="w-full h-64" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="200" cy="150" r="80" fill="#E63312" opacity="0.8"/>
+                                <circle cx="200" cy="150" r="60" fill="#C8960C" opacity="0.6"/>
+                                <path d="M 160 120 Q 200 80 240 120" stroke="#FDF6E3" stroke-width="3" fill="none"/>
+                                <circle cx="180" cy="140" r="8" fill="#FDF6E3"/>
+                                <circle cx="220" cy="140" r="8" fill="#FDF6E3"/>
+                                <path d="M 170 170 Q 200 190 230 170" stroke="#FDF6E3" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Specialità -->
+    <section id="specialita" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="Corona" class="w-16 mx-auto mb-6">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-secondary mb-6">Le nostre specialità</h2>
+                <p class="font-lato text-xl text-secondary max-w-3xl mx-auto">Dalla classica Margherita alle pizze speciali, passando per la Farinata originale. Il nostro fiore all'occhiello è il Giropizza: tutta la pizza che riesci a mangiare in una serata indimenticabile.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in bg-sfondo rounded-lg shadow-lg p-8 transform hover:scale-105 transition">
+                    <div class="bg-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="#FDF6E3" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-bold text-secondary text-center mb-4">Pizza Classica</h3>
+                    <p class="font-lato text-secondary text-center">Margherita, Marinara e tutte le grandi classiche della tradizione napoletana</p>
+                </div>
+
+                <div class="fade-in bg-sfondo rounded-lg shadow-lg p-8 transform hover:scale-105 transition">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="#FDF6E3" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-bold text-secondary text-center mb-4">Pizze Speciali</h3>
+                    <p class="font-lato text-secondary text-center">Creazioni uniche con ingredienti selezionati per un'esperienza gourmet</p>
+                </div>
+
+                <div class="fade-in bg-sfondo rounded-lg shadow-lg p-8 transform hover:scale-105 transition">
+                    <div class="bg-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8" fill="none" stroke="#FDF6E3" stroke-width="2" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18M9 3v18"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-bold text-secondary text-center mb-4">Farinata Originale</h3>
+                    <p class="font-lato text-secondary text-center">La vera farinata ligure cotta nel forno a legna secondo tradizione</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giropizza -->
+    <section id="giropizza" class="py-20 bg-accent relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-2.png" alt="" class="absolute top-10 left-10 w-32 crown-decoration">
+            <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="" class="absolute bottom-10 right-10 w-32 crown-decoration" style="animation-delay: 0.5s;">
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="fade-in">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-1.png" alt="Corona" class="w-20 mx-auto mb-6">
+                <h2 class="font-playfair text-4xl md:text-6xl font-bold text-sfondo mb-6">Giropizza</h2>
+                <div class="bg-sfondo bg-opacity-10 backdrop-blur-sm rounded-lg p-8 mb-8">
+                    <p class="font-lato text-xl text-sfondo leading-relaxed mb-4">Un'idea sfiziosa e divertente per una serata speciale. Tutta la pizza che riesci a mangiare, una bibita media e coperto incluso.</p>
+                    <p class="font-lato text-lg text-sfondo font-bold">Il Giropizza va ordinato da tutto il tavolo.</p>
+                </div>
+                <div class="inline-block bg-primary text-sfondo rounded-full px-8 py-4">
+                    <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <p class="font-playfair text-2xl font-bold">Esperienza unica</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-20 bg-sfondo">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-2.png" alt="Corona" class="w-16 mx-auto mb-6">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-secondary mb-6">Menù pranzo e cena</h2>
+                <p class="font-lato text-xl text-secondary max-w-3xl mx-auto">Oltre alla pizza, proponiamo un menù completo per il pranzo e la cena, pensato per soddisfare ogni palato con piatti genuini e saporiti.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="fade-in bg-white rounded-lg shadow-lg p-8 border-4 border-primary">
+                    <h3 class="font-playfair text-3xl font-bold text-secondary mb-6 flex items-center">
+                        <svg class="w-8 h-8 mr-3 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        Pranzo
+                    </h3>
+                    <p class="font-lato text-secondary text-lg">Piatti della tradizione, primi piatti genuini e proposte del giorno per una pausa pranzo ricca di gusto.</p>
+                </div>
+
+                <div class="fade-in bg-white rounded-lg shadow-lg p-8 border-4 border-accent">
+                    <h3 class="font-playfair text-3xl font-bold text-secondary mb-6 flex items-center">
+                        <svg class="w-8 h-8 mr-3 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Cena
+                    </h3>
+                    <p class="font-lato text-secondary text-lg">La nostra selezione completa di pizze, specialità e piatti della cucina tradizionale per una cena indimenticabile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-2.png" alt="Corona" class="w-16 mx-auto mb-6">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-secondary mb-6">Gallery</h2>
+                <p class="font-lato text-xl text-secondary">Lasciati tentare dalle nostre pizze: sfoglia le immagini e scopri tutto il gusto de La Smorfia di Pulcinella.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="fade-in aspect-square bg-gradient-to-br from-accent to-primary rounded-lg shadow-lg flex items-center justify-center transform hover:scale-105 transition">
+                    <svg class="w-20 h-20 text-sfondo opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <div class="fade-in aspect-square bg-gradient-to-br from-primary to-secondary rounded-lg shadow-lg flex items-center justify-center transform hover:scale-105 transition">
+                    <svg class="w-20 h-20 text-sfondo opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <div class="fade-in aspect-square bg-gradient-to-br from-secondary to-accent rounded-lg shadow-lg flex items-center justify-center transform hover:scale-105 transition">
+                    <svg class="w-20 h-20 text-sfondo opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <div class="fade-in aspect-square bg-gradient-to-br from-accent to-primary rounded-lg shadow-lg flex items-center justify-center transform hover:scale-105 transition">
+                    <svg class="w-20 h-20 text-sfondo opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orari e Contatti -->
+    <section id="contatti" class="py-20 bg-sfondo">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-1.png" alt="Corona" class="w-16 mx-auto mb-6">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-secondary mb-6">Orari di apertura</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="font-playfair text-2xl font-bold text-secondary mb-6 border-b-2 border-primary pb-3">Orari settimanali</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="font-lato font-bold text-secondary">Lunedì</span>
+                                <span class="font-lato text-accent font-bold">Chiuso</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-lato font-bold text-secondary">Martedì - Venerdì</span>
+                                <span class="font-lato text-secondary">12:00-14:30 / 19:00-23:30</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-lato font-bold text-secondary">Sabato</span>
+                                <span class="font-lato text-secondary">Solo cena 19:00-23:30</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-lato font-bold text-secondary">Domenica</span>
+                                <span class="font-lato text-secondary">12:00-14:30 / 19:00-23:30</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-primary bg-opacity-10 rounded-lg">
+                            <p class="font-lato text-secondary mb-2"><strong>✓ Servizio da asporto disponibile</strong></p>
+                            <p class="font-lato text-secondary"><strong>✗ Non si effettuano consegne a domicilio</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h3 class="font-playfair text-2xl font-bold text-secondary mb-6 border-b-2 border-accent pb-3">Vieni a trovarci</h3>
+                        <p class="font-lato text-lg text-secondary mb-6">Siamo a Lombardore, pronti ad accoglierti con tutto il calore e la tradizione della pizza napoletana.</p>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block font-lato font-bold text-secondary mb-2">Nome</label>
+                                <input type="text" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none font-lato">
+                            </div>
+                            <div>
+                                <label class="block font-lato font-bold text-secondary mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none font-lato">
+                            </div>
+                            <div>
+                                <label class="block font-lato font-bold text-secondary mb-2">Messaggio</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:outline-none font-lato"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-accent hover:bg-primary text-sfondo font-bold py-4 px-8 rounded-lg transition transform hover:scale-105">Invia messaggio</button>
+                        </form>
+
+                        <div class="mt-6 text-center">
+                            <p class="font-lato text-secondary mb-3">Seguici su Instagram per restare aggiornato sulle novità</p>
+                            <a href="#" class="inline-flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-lg hover:shadow-lg transition">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-sfondo py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <text x="0" y="25" font-family="Playfair Display, serif" font-size="18" font-weight="700" fill="#C8960C">La Smorfia</text>
+                        <text x="0" y="42" font-family="Playfair Display, serif" font-size="14" font-weight="400" fill="#E63312">di Pulcinella</text>
+                    </svg>
+                    <p class="font-lato text-sfondo opacity-80">La tipica pizza cotta nel forno a legna</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-playfair text-xl font-bold text-primary mb-4">Link rapidi</h4>
+                    <ul class="space-y-2 font-lato">
+                        <li><a href="#chi-siamo" class="text-sfondo hover:text-primary transition">Chi siamo</a></li>
+                        <li><a href="#specialita" class="text-sfondo hover:text-primary transition">Le specialità</a></li>
+                        <li><a href="#giropizza" class="text-sfondo hover:text-primary transition">Giropizza</a></li>
+                        <li><a href="#contatti" class="text-sfondo hover:text-primary transition">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-playfair text-xl font-bold text-primary mb-4">Dove siamo</h4>
+                    <p class="font-lato text-sfondo opacity-80 mb-2">Lombardore (TO)</p>
+                    <p class="font-lato text-sfondo opacity-80">Piemonte, Italia</p>
+                </div>
+            </div>
+
+            <div class="border-t border-sfondo border-opacity-20 pt-8 text-center">
+                <p class="font-lato text-sfondo opacity-60">&copy; 2024 La Smorfia di Pulcinella. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watermark -->
+    <div class="bg-secondary text-sfondo py-2 text-center border-t-2 border-primary">
+        <p class="font-lato text-sm">Anteprima by <a href="https://meraviglialab.it" target="_blank" class="text-primary hover:text-accent transition font-bold">Meraviglialab</a> · meraviglialab.it</p>
     </div>
-  </div>
-</section>
 
-<!-- GIROPIZZA -->
-<section id="giropizza" class="py-24 giropizza-bg relative overflow-hidden">
-  <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-top-small.png" alt="" class="absolute top-0 left-1/2 -translate-x-1/2 w-40 opacity-10 pointer-events-none" />
-  <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-down-small.png" alt="" class="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 opacity-10 pointer-events-none" />
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center mb-12 fade-in">
-      <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/goldcrown-2.png" alt="" class="w-24 mx-auto mb-6 opacity-80" />
-      <span class="text-primario font-corpo text-xs font-700 tracking-[4px] uppercase">L'esperienza unica</span>
-      <h2 class="font-titoli text-4xl sm:text-5xl text-sfondo font-700 mt-3 mb-4">Il <span class="text-primario italic">Giropizza</span></h2>
-      <div class="flex justify-center mt-4 mb-6">
-        <div class="section-divider"></div>
-      </div>
-      <p class="font-corpo text-sfondo/70 text-lg max-w-xl mx-auto">Un'idea sfiziosa e divertente per una serata speciale. Tutta la pizza che riesci a mangiare!</p>
-    </div>
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
 
-    <div class="grid md:grid-cols-3 gap-6 mb-12">
-      <div class="fade-in bg-white/5 border border-primario/30 rounded-sm p-8 text-center hover:bg-white/10 transition-colors">
-        <div class="w-14 h-14 bg-primario/20 rounded-sm flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-primario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-xl font-700 mb-2">Pizza illimitata</h3>
-        <p class="font-corpo text-sfondo/60 text-sm">Tutta la pizza che riesci a mangiare in una serata indimenticabile</p>
-      </div>
+        // Close menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
 
-      <div class="fade-in bg-primario/20 border border-primario rounded-sm p-8 text-center transform scale-105">
-        <div class="w-14 h-14 bg-primario rounded-sm flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-secondario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-xl font-700 mb-2">La nostra stella</h3>
-        <p class="font-corpo text-sfondo/80 text-sm">Il Giropizza è il fiore all'occhiello de La Smorfia di Pulcinella</p>
-        <div class="mt-4">
-          <span class="badge text-white text-xs font-corpo font-700 px-3 py-1 rounded-sm uppercase tracking-wide">Imperdibile</span>
-        </div>
-      </div>
+        // Fade-in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
 
-      <div class="fade-in bg-white/5 border border-primario/30 rounded-sm p-8 text-center hover:bg-white/10 transition-colors">
-        <div class="w-14 h-14 bg-primario/20 rounded-sm flex items-center justify-center mx-auto mb-4">
-          <svg class="w-7 h-7 text-primario" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-        </div>
-        <h3 class="font-titoli text-sfondo text-xl font-700 mb-2">Per tutto il tavolo</h3>
-        <p class="font-corpo text-sfondo/60 text-sm">Il Giropizza va ordinato da tutto il tavolo per un'esperienza condivisa</p>
-      </div>
-    </div>
+        fadeElements.forEach(el => {
+            fadeInObserver.observe(el);
+        });
 
-    <div class="fade-in bg-white/5 border border-primario/20 rounded-sm p-8">
-      <div class="grid md:grid-cols-3 gap-6 text-center">
-        <div class="flex flex-col items-center">
-          <svg class="w-6 h-6 text-primario mb-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          <span class="font-corpo text-sfondo/80 text-sm">Pizza illimitata inclusa</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <svg class="w-6 h-6 text-primario mb-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          <span class="font-corpo text-sfondo/80 text-sm">Bibita media inclusa</span>
-        </div>
-        <div class="flex flex-col items-center">
-          <svg class="w-6 h-6 text-primario mb-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-          <span class="font-corpo text-sfondo/80 text-sm">Coperto incluso</span>
-        </div>
-      </div>
-    </div>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 
-    <div class="text-center mt-10 fade-in">
-      <a href="#contatti" class="inline-flex items-center gap-2 bg-primario hover:bg-accento text-secondario hover:text-sfondo font-corpo font-700 text-sm tracking-widest uppercase px-10 py-4 rounded-sm transition-all duration-300 transform hover:scale-105">
-        <span>Prenota una serata</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- MENU -->
-<section id="menu" class="py-24 bg-sfondo">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div class="fade-in order-2 lg:order-1">
-        <div class="bg-secondario rounded-sm p-8 sm:p-10 relative overflow-hidden">
-          <img src="https://lasmorfiadipulcinella.it/wp-content/uploads/2019/05/crown-top-small.png" alt="" class="absolute top-0 right-0 w-24 opacity-10 pointer-events-none" />
-          <h3 class="font-titoli text-sfondo text-2xl font-700 mb-6 flex items-center gap-3">
-            <span class="w-8 h-0.5 bg-primario"></span>
-            Cosa trovi nel menù
-          </h3>
-          <div class="space-y-4">
-            <div class="flex items-start gap-4 pb-4 border-b border-white/10">
-              <div class="w-2 h-2 bg-primario
+</body>
+</html>
