@@ -3,547 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Smorfia di Pulcinella - Pizza Forno a Legna a Lombardore</title>
+    <title>La Smorfia di Pulcinella - Pizza Cotta nel Forno a Legna</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             font-family: 'Lato', sans-serif;
         }
-        
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
         }
-        
-        .text-primary {
-            color: #C8960C;
-        }
-        
         .bg-primary {
             background-color: #C8960C;
         }
-        
-        .text-secondary {
-            color: #1A1A1A;
-        }
-        
         .bg-secondary {
             background-color: #1A1A1A;
         }
-        
-        .text-accent {
-            color: #E63946;
-        }
-        
         .bg-accent {
-            background-color: #E63946;
+            background-color: #E63012;
         }
-        
         .bg-cream {
-            background-color: #FFFDF5;
+            background-color: #FAF5E4;
         }
-        
-        .text-dark {
-            color: #2C2C2C;
+        .text-primary {
+            color: #C8960C;
         }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .text-secondary {
+            color: #1A1A1A;
         }
-        
-        .hover-lift:hover {
+        .text-accent {
+            color: #E63012;
+        }
+        .border-primary {
+            border-color: #C8960C;
+        }
+        .hero-height {
+            min-height: 100vh;
+        }
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+        .content-top {
+            margin-top: 80px;
+        }
+        .card-service {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .card-service:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(198, 150, 12, 0.15);
+            border-color: #C8960C;
+            box-shadow: 0 20px 40px rgba(200, 150, 12, 0.2);
         }
-        
-        .btn-gold {
+        .btn-primary {
             background-color: #C8960C;
             color: white;
             transition: all 0.3s ease;
         }
-        
-        .btn-gold:hover {
-            background-color: #A87A0A;
+        .btn-primary:hover {
+            background-color: #E63012;
             transform: scale(1.05);
         }
-        
         .btn-secondary {
             background-color: #1A1A1A;
             color: white;
             transition: all 0.3s ease;
         }
-        
         .btn-secondary:hover {
-            background-color: #E63946;
+            background-color: #E63012;
         }
-        
-        .navbar-active {
-            border-bottom: 2px solid #C8960C;
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
-        
-        .hero-overlay {
-            background: linear-gradient(135deg, rgba(200, 150, 12, 0.85) 0%, rgba(26, 26, 26, 0.8) 100%);
-        }
-        
-        .divider-gold {
-            height: 4px;
-            background-color: #C8960C;
-            width: 60px;
-            margin: 20px auto;
-        }
-        
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1A1A1A;
-            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
         }
-        
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #C8960C;
         }
-        
-        .card-service {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            border-top: 4px solid #C8960C;
+        .watermark {
+            background-color: #FAF5E4;
+            border-top: 1px solid #E63012;
+            border-bottom: 1px solid #E63012;
         }
-        
-        .form-input {
-            border: 1px solid #E0E0E0;
-            border-radius: 4px;
-            padding: 12px 16px;
-            font-family: 'Lato', sans-serif;
+        input, textarea {
             transition: border-color 0.3s ease;
         }
-        
-        .form-input:focus {
+        input:focus, textarea:focus {
+            border-color: #C8960C !important;
             outline: none;
-            border-color: #C8960C;
-            box-shadow: 0 0 0 3px rgba(200, 150, 12, 0.1);
-        }
-        
-        .watermark-section {
-            background-color: #1A1A1A;
-            color: #C8960C;
-            padding: 20px;
-            text-align: center;
-            font-size: 0.95rem;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .scroll-smooth {
-            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="bg-cream text-dark scroll-smooth">
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full bg-secondary shadow-lg z-50">
+<body class="bg-cream text-secondary">
+
+    <!-- NAVBAR FISSA -->
+    <nav class="nav-fixed bg-secondary shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-primary" style="font-family: 'Playfair Display', serif;">La Smorfia</h1>
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">🍕 La Smorfia</h1>
                 </div>
-                
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-white hover:text-primary transition navbar-active pb-2">Home</a>
-                    <a href="#chi-siamo" class="text-white hover:text-primary transition pb-2">Chi Siamo</a>
-                    <a href="#specialita" class="text-white hover:text-primary transition pb-2">Specialità</a>
-                    <a href="#giropizza" class="text-white hover:text-primary transition pb-2">Giropizza</a>
-                    <a href="#contatti" class="text-white hover:text-primary transition pb-2">Contatti</a>
+                    <a href="#home" class="text-white hover:text-primary transition">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-primary transition">Specialità</a>
+                    <a href="#menu" class="text-white hover:text-primary transition">Menu</a>
+                    <a href="#orari" class="text-white hover:text-primary transition">Orari</a>
+                    <a href="#gallery" class="text-white hover:text-primary transition">Gallery</a>
+                    <a href="#contatti" class="text-white hover:text-primary transition">Contatti</a>
                 </div>
-                
-                <button class="md:hidden text-primary">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <button class="md:hidden text-primary text-2xl">☰</button>
             </div>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="hero-overlay relative w-full h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23FFFDF5%22 width=%221200%22 height=%22800%22/></svg>');">
-        <div class="text-center text-white px-6 fade-in max-w-3xl">
-            <h1 class="text-6xl md:text-7xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">La Smorfia di Pulcinella</h1>
-            <p class="text-xl md:text-2xl mb-8 font-light">La vera pizza cotta nel forno a legna a Lombardore, con ingredienti freschi e genuini per un'esperienza autentica.</p>
-            <button class="btn-gold px-8 py-4 rounded-lg text-lg font-semibold mb-8 inline-block">Scopri il Menu</button>
-            <div class="mt-12 text-primary text-sm">Scorri per saperne di più</div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-height bg-secondary relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 right-10 text-6xl">🍕</div>
+            <div class="absolute bottom-20 left-5 text-5xl">🔥</div>
         </div>
-    </section>
-    
-    <!-- Chi Siamo Section -->
-    <section id="chi-siamo" class="py-20 px-6 bg-cream">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center">La Nostra Filosofia</h2>
-            <div class="divider-gold"></div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <p class="text-lg text-dark leading-relaxed mb-6">
-                        La vera pizza cotta nel forno a legna è servita. Seguiamo la tradizione utilizzando ingredienti buoni, freschi e genuini: farina per un impasto morbido e un cornicione classico che racchiude pomodoro e mozzarella filante.
-                    </p>
-                    <p class="text-lg text-dark leading-relaxed">
-                        Dalla classica margherita alla farinata originale, tutto il sapore della regina della cucina italiana. Ogni pizza racconta una storia di passione e dedizione.
-                    </p>
-                </div>
-                
-                <div class="fade-in">
-                    <div class="bg-gradient-to-br from-primary to-secondary rounded-lg p-8 text-white">
-                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">I Nostri Valori</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-center"><span class="text-accent mr-3">✓</span> Tradizione autentica</li>
-                            <li class="flex items-center"><span class="text-accent mr-3">✓</span> Ingredienti genuini</li>
-                            <li class="flex items-center"><span class="text-accent mr-3">✓</span> Qualità superiore</li>
-                            <li class="flex items-center"><span class="text-accent mr-3">✓</span> Convivialità</li>
-                            <li class="flex items-center"><span class="text-accent mr-3">✓</span> Forno a legna</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Specialità Section -->
-    <section id="specialita" class="py-20 px-6 bg-secondary text-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center text-white">Le Nostre Specialità</h2>
-            <div class="divider-gold mx-auto"></div>
-            
-            <p class="text-center text-lg mb-16 max-w-2xl mx-auto text-gray-300">
-                Dal Giropizza, un'idea sfiziosa e divertente per una serata speciale, al menù pranzo classico. Tutta la tradizione della pizza napoletana in ogni morso.
+        <div class="hero-content h-full relative z-10">
+            <h1 class="text-6xl md:text-8xl font-bold text-primary mb-6">La Smorfia di Pulcinella</h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl px-4">
+                La vera pizza cotta nel forno a legna a Lombardore, con ingredienti freschi e genuini per un'esperienza autentica.
             </p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1: Margherita -->
-                <div class="card-service hover-lift bg-cream text-dark">
-                    <div class="text-4xl mb-4">🍕</div>
-                    <h3 class="text-2xl font-bold mb-4 text-primary" style="font-family: 'Playfair Display', serif;">La Classica Margherita</h3>
-                    <p class="text-dark mb-6">Pomodoro, mozzarella filante e basilico fresco. La pizza più semplice, la più vera, quella che rappresenta tutto il sapore della tradizione napoletana.</p>
-                    <button class="btn-gold px-6 py-2 rounded text-white font-semibold">Scopri</button>
-                </div>
-                
-                <!-- Card 2: Farinata -->
-                <div class="card-service hover-lift bg-cream text-dark">
-                    <div class="text-4xl mb-4">🌾</div>
-                    <h3 class="text-2xl font-bold mb-4 text-primary" style="font-family: 'Playfair Display', serif;">Farinata Originale</h3>
-                    <p class="text-dark mb-6">Un piatto ricco di storia e sapore. La nostra farinata è preparata secondo la ricetta tradizionale con ingredienti selezionati e cotta nel nostro forno a legna.</p>
-                    <button class="btn-gold px-6 py-2 rounded text-white font-semibold">Scopri</button>
-                </div>
-                
-                <!-- Card 3: Menu Pranzo -->
-                <div class="card-service hover-lift bg-cream text-dark">
-                    <div class="text-4xl mb-4">⏰</div>
-                    <h3 class="text-2xl font-bold mb-4 text-primary" style="font-family: 'Playfair Display', serif;">Menu Pranzo</h3>
-                    <p class="text-dark mb-6">Proposte speciali per il pranzo di lavoro. Pizza fresca, piatti rapidi e genuini pensati per chi ha poco tempo ma non vuole rinunciare al gusto.</p>
-                    <button class="btn-gold px-6 py-2 rounded text-white font-semibold">Scopri</button>
-                </div>
-            </div>
+            <a href="#chi-siamo" class="btn-primary px-10 py-4 text-lg rounded-lg font-bold">
+                Scopri il Menu
+            </a>
         </div>
     </section>
-    
-    <!-- Giropizza Section -->
-    <section id="giropizza" class="py-20 px-6 bg-cream">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="section-title text-center">Giropizza</h2>
-            <div class="divider-gold"></div>
-            
-            <div class="bg-gradient-to-br from-primary/10 to-accent/10 border-l-4 border-primary rounded-lg p-10 fade-in">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="text-6xl md:text-7xl">🎡</div>
-                    <div>
-                        <h3 class="text-3xl font-bold mb-4 text-secondary" style="font-family: 'Playfair Display', serif;">L'Esperienza Unica</h3>
-                        <p class="text-lg text-dark mb-4">
-                            Tutta la pizza che riesci a mangiare, una bibita media e coperto incluso. Il Giropizza va ordinato da tutto il tavolo e rappresenta l'idea perfetta per una serata speciale in compagnia.
-                        </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center text-dark">
-                                <span class="text-primary font-bold mr-3">→</span> Pizza illimitata cotta al momento
-                            </li>
-                            <li class="flex items-center text-dark">
-                                <span class="text-primary font-bold mr-3">→</span> Bibita media inclusa
-                            </li>
-                            <li class="flex items-center text-dark">
-                                <span class="text-primary font-bold mr-3">→</span> Da ordinare da tutto il tavolo
-                            </li>
-                            <li class="flex items-center text-dark">
-                                <span class="text-primary font-bold mr-3">→</span> Coperto incluso
-                            </li>
-                        </ul>
-                        <button class="btn-gold px-8 py-3 rounded-lg font-semibold">Prenota Giropizza</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Perchè Sceglierci Section -->
-    <section class="py-20 px-6 bg-secondary text-white">
+
+    <!-- CHI SIAMO / LA NOSTRA PIZZA -->
+    <section id="chi-siamo" class="content-top py-20 px-4 bg-cream">
         <div class="max-w-6xl mx-auto">
-            <h2 class="section-title text-center text-white">Perché Sceglierci</h2>
-            <div class="divider-gold mx-auto"></div>
-            
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="fade-in flex items-start gap-4">
-                    <div class="text-4xl text-primary flex-shrink-0">🔥</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Forno a Legna Autentico</h3>
-                        <p class="text-gray-300">La nostra pizza è cotta nel forno a legna tradizionale, che garantisce una cottura perfetta e quel sapore inconfondibile che non puoi trovare altrove.</p>
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-secondary mb-16">La Nostra Pizza</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-secondary leading-relaxed mb-6">
+                        La vera pizza cotta nel forno a legna è servita. Seguiamo la tradizione utilizzando ingredienti buoni, freschi e genuini: un impasto morbido con cornicione classico che racchiude pomodoro e mozzarella filante.
+                    </p>
+                    <p class="text-lg text-secondary leading-relaxed mb-6">
+                        Dalla classica Margherita alla Farinata originale, ti aspettiamo per farti scoprire tutto il sapore della regina della cucina italiana.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm">Forno a Legna</span>
+                        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm">Ingredienti Freschi</span>
+                        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm">Tradizione Napoletana</span>
                     </div>
                 </div>
-                
-                <div class="fade-in flex items-start gap-4">
-                    <div class="text-4xl text-primary flex-shrink-0">🌱</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Ingredienti Genuini</h3>
-                        <p class="text-gray-300">Selezioniamo personalmente ogni ingrediente: mozzarella fresca, pomodori di qualità e materie prime che raccontano storie di tradizione.</p>
-                    </div>
-                </div>
-                
-                <div class="fade-in flex items-start gap-4">
-                    <div class="text-4xl text-primary flex-shrink-0">👨‍🍳</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Maestria Napoletana</h3>
-                        <p class="text-gray-300">I nostri pizzaioli mantengono viva la tradizione napoletana, quella vera, quella che trasforma semplici ingredienti in esperienze indimenticabili.</p>
-                    </div>
-                </div>
-                
-                <div class="fade-in flex items-start gap-4">
-                    <div class="text-4xl text-primary flex-shrink-0">🪑</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">Ambiente Conviviale</h3>
-                        <p class="text-gray-300">Un luogo dove mangiare insieme è un rito, dove il caldo e l'accoglienza trasformano una cena in un momento speciale da condividere.</p>
+                <div class="relative">
+                    <div class="bg-primary rounded-lg p-1">
+                        <div class="bg-cream rounded-lg p-8 text-center">
+                            <div class="text-7xl mb-4">🍕</div>
+                            <p class="text-xl font-bold text-secondary">Autenticità Garantita</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Orari Section -->
-    <section class="py-20 px-6 bg-cream">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="section-title">Orari di Apertura</h2>
-            <div class="divider-gold"></div>
-            
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Dal Martedì al Venerdì</h3>
-                    <p class="text-lg text-dark">12:00 – 14:30</p>
-                    <p class="text-lg text-dark">19:00 – 23:30</p>
-                </div>
+
+    <!-- MENU / SPECIALITÀ -->
+    <section id="menu" class="py-20 px-4 bg-secondary">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-primary mb-16 text-center">Le Nostre Specialità</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Sabato</h3>
-                    <p class="text-lg text-dark">Solo Sera</p>
-                    <p class="text-lg text-dark">19:00 – 23:30</p>
+                <!-- Card 1: Giropizza -->
+                <div class="card-service bg-cream rounded-lg p-8 shadow-md">
+                    <div class="text-5xl mb-4">🎠</div>
+                    <h3 class="text-2xl font-bold text-secondary mb-3">Giropizza</h3>
+                    <p class="text-gray-600 mb-6">
+                        Tutta la pizza che riesci a mangiare con bibita e coperto inclusi. Un'esperienza senza limiti per gli amanti della pizza.
+                    </p>
+                    <a href="#contatti" class="btn-primary px-6 py-2 rounded inline-block text-sm font-bold">
+                        Scopri di più
+                    </a>
                 </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-primary mb-4" style="font-family: 'Playfair Display', serif;">Domenica</h3>
-                    <p class="text-lg text-dark">12:00 – 14:30</p>
-                    <p class="text-lg text-dark">19:00 – 23:30</p>
+
+                <!-- Card 2: Menu Pranzo -->
+                <div class="card-service bg-cream rounded-lg p-8 shadow-md">
+                    <div class="text-5xl mb-4">☀️</div>
+                    <h3 class="text-2xl font-bold text-secondary mb-3">Menu Pranzo</h3>
+                    <p class="text-gray-600 mb-6">
+                        Proposte speciali per il pranzo: pizza fresca, veloce e gustosa. Perfetto per una pausa autentica durante la giornata.
+                    </p>
+                    <a href="#contatti" class="btn-primary px-6 py-2 rounded inline-block text-sm font-bold">
+                        Scopri di più
+                    </a>
                 </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-accent mb-4" style="font-family: 'Playfair Display', serif;">Lunedì</h3>
-                    <p class="text-lg text-dark font-bold">CHIUSO</p>
+
+                <!-- Card 3: Farinata -->
+                <div class="card-service bg-cream rounded-lg p-8 shadow-md">
+                    <div class="text-5xl mb-4">🌾</div>
+                    <h3 class="text-2xl font-bold text-secondary mb-3">Farinata</h3>
+                    <p class="text-gray-600 mb-6">
+                        La specialità originale: farinata croccante fuori e morbida dentro. Un classico della tradizione da non perdere.
+                    </p>
+                    <a href="#contatti" class="btn-primary px-6 py-2 rounded inline-block text-sm font-bold">
+                        Scopri di più
+                    </a>
                 </div>
             </div>
-            
-            <div class="bg-primary/10 border border-primary rounded-lg p-6">
-                <p class="text-dark text-lg">
-                    <span class="font-bold text-primary">📦 Servizio da asporto disponibile</span><br>
-                    Non effettuiamo consegne a domicilio
+        </div>
+    </section>
+
+    <!-- PERCHÉ SCEGLIERCI -->
+    <section id="why-us" class="py-20 px-4 bg-cream">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-secondary mb-16">Perché Scegliere La Smorfia</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold text-secondary mb-2">Forno a Legna</h3>
+                    <p class="text-gray-600">Cottura autentica nel forno a legna tradizionale per il sapore perfetto.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🥕</div>
+                    <h3 class="text-xl font-bold text-secondary mb-2">Ingredienti Freschi</h3>
+                    <p class="text-gray-600">Solo materie prime genuine e fresche per ogni impasto e condimento.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-5xl mb-4">👨‍🍳</div>
+                    <h3 class="text-xl font-bold text-secondary mb-2">Tradizione Artigianale</h3>
+                    <p class="text-gray-600">Ricette e tecniche tramandate dalla vera tradizione napoletana.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🎉</div>
+                    <h3 class="text-xl font-bold text-secondary mb-2">Convivialità</h3>
+                    <p class="text-gray-600">Un'atmosfera familiare e divertente dove condividere ogni momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ORARI & GALLERY -->
+    <section id="orari" class="py-20 px-4 bg-secondary text-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-primary mb-16 text-center">Orari di Apertura</h2>
+            <div class="bg-cream rounded-lg p-8 text-secondary max-w-2xl mx-auto">
+                <div class="space-y-4 text-lg">
+                    <div class="flex justify-between border-b pb-2">
+                        <span class="font-bold">Martedì – Venerdì:</span>
+                        <span>12:00–14:30 / 19:00–23:30</span>
+                    </div>
+                    <div class="flex justify-between border-b pb-2">
+                        <span class="font-bold">Sabato:</span>
+                        <span>19:00–23:30 (solo cena)</span>
+                    </div>
+                    <div class="flex justify-between border-b pb-2">
+                        <span class="font-bold">Domenica:</span>
+                        <span>12:00–14:30 / 19:00–23:30</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-bold">Lunedì:</span>
+                        <span class="text-accent font-bold">Chiuso</span>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-gray-600">
+                    ✓ Servizio d'asporto disponibile<br>
+                    ✗ Non si effettuano consegne a domicilio
                 </p>
             </div>
         </div>
     </section>
-    
-    <!-- Contatti Section -->
-    <section id="contatti" class="py-20 px-6 bg-secondary text-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="section-title text-center text-white">Contattaci</h2>
-            <div class="divider-gold mx-auto"></div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 text-primary" style="font-family: 'Playfair Display', serif;">Dove Trovarci</h3>
-                    
-                    <div class="mb-8">
-                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
-                            <span>📍</span> Indirizzo
-                        </h4>
-                        <p class="text-gray-300">La Smorfia di Pulcinella<br>Lombardore<br>Italia</p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
-                            <span>📞</span> Telefono
-                        </h4>
-                        <p class="text-gray-300">+39 (0)XX XXX XXXX</p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
-                            <span>✉️</span> Email
-                        </h4>
-                        <p class="text-gray-300">info@lasmorfiapulcinella.it</p>
-                    </div>
-                    
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Seguici</h4>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-primary hover:text-accent transition text-2xl">f</a>
-                            <a href="#" class="text-primary hover:text-accent transition text-2xl">📷</a>
-                            <a href="#" class="text-primary hover:text-accent transition text-2xl">🐦</a>
-                        </div>
-                    </div>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-20 px-4 bg-cream">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-secondary mb-16 text-center">Gallery</h2>
+            <p class="text-center text-lg text-gray-600 mb-12">Lasciati tentare dalle nostre pizze: scorri le foto e vieni a trovarci.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-primary rounded-lg p-1">
+                    <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-5xl">🍕</div>
                 </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 text-primary" style="font-family: 'Playfair Display', serif;">Inviaci un Messaggio</h3>
-                    
-                    <form class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Nome</label>
-                            <input type="text" class="form-input w-full bg-white text-dark" placeholder="Il tuo nome">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Email</label>
-                            <input type="email" class="form-input w-full bg-white text-dark" placeholder="La tua email">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Telefono</label>
-                            <input type="tel" class="form-input w-full bg-white text-dark" placeholder="Il tuo numero">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold mb-2">Messaggio</label>
-                            <textarea class="form-input w-full bg-white text-dark" rows="5" placeholder="Il tuo messaggio..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-gold w-full py-3 rounded-lg font-semibold text-lg">Invia Messaggio</button>
-                    </form>
+                <div class="bg-primary rounded-lg p-1">
+                    <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-5xl">🔥</div>
+                </div>
+                <div class="bg-primary rounded-lg p-1">
+                    <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-5xl">🍽️</div>
+                </div>
+                <div class="bg-primary rounded-lg p-1">
+                    <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-5xl">🥗</div>
+                </div>
+                <div class="bg-primary rounded-lg p-1">
+                    <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-5xl">🧀</div>
+                </div>
+                <div class="bg-primary rounded-lg p-1">
+                    <div class="bg-gray-200 rounded-lg h-64 flex items-center justify-center text-5xl">🍷</div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Watermark Meraviglialab -->
-    <div class="watermark-section">
-        <p>Designed & Developed by <span class="font-bold">Meraviglialab</span> | Digital Solutions for Hospitality</p>
+
+    <!-- CONTATTI -->
+    <section id="contatti" class="py-20 px-4 bg-secondary">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="section-title text-4xl md:text-5xl font-bold text-primary mb-16 text-center">Contatti</h2>
+            
+            <div class="bg-cream rounded-lg p-8 mb-8">
+                <div class="space-y-6 mb-8">
+                    <div class="flex items-center">
+                        <span class="text-3xl mr-4">📍</span>
+                        <div>
+                            <p class="font-bold text-secondary">Indirizzo</p>
+                            <p class="text-gray-600">Lombardore, Italia</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-3xl mr-4">📞</span>
+                        <div>
+                            <p class="font-bold text-secondary">Telefono</p>
+                            <p class="text-gray-600">+39 XXX XXXX XXX</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-3xl mr-4">📧</span>
+                        <div>
+                            <p class="font-bold text-secondary">Email</p>
+                            <p class="text-gray-600">info@lasmorfiapulcinella.it</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="space-y-4">
+                    <input type="text" placeholder="Il tuo nome" required class="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-primary">
+                    <input type="email" placeholder="La tua email" required class="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-primary">
+                    <textarea placeholder="Il tuo messaggio" rows="5" required class="w-full px-4 py-3 rounded border-2 border-gray-300 focus:border-primary"></textarea>
+                    <button type="submit" class="btn-primary w-full py-3 rounded font-bold text-lg">
+                        Invia Messaggio
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- WATERMARK MERAVIGLIALAB -->
+    <div class="watermark py-6">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-sm text-secondary">
+                Designed & Developed by <span class="font-bold text-primary">Meraviglialab</span>
+            </p>
+        </div>
     </div>
-    
-    <!-- Footer -->
-    <footer class="bg-secondary text-gray-400 py-8 px-6 border-t border-primary/20">
+
+    <!-- FOOTER -->
+    <footer class="bg-secondary text-white py-12 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-primary font-bold mb-4" style="font-family: 'Playfair Display', serif;">La Smorfia</h3>
-                    <p class="text-sm">La vera pizza cotta nel forno a legna a Lombardore.</p>
+                    <h3 class="text-2xl font-bold text-primary mb-4">🍕 La Smorfia di Pulcinella</h3>
+                    <p class="text-gray-400 text-sm">La vera pizza cotta nel forno a legna con ingredienti freschi e genuini.</p>
                 </div>
-                
                 <div>
-                    <h4 class="text-white font-bold mb-4">Menu</h4>
-                    <ul class="space-y-2 text-sm">
+                    <h4 class="font-bold text-primary mb-4">Menu Veloce</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="#home" class="hover:text-primary transition">Home</a></li>
-                        <li><a href="#chi-siamo" class="hover:text-primary transition">Chi Siamo</a></li>
-                        <li><a href="#specialita" class="hover:text-primary transition">Specialità</a></li>
-                        <li><a href="#giropizza" class="hover:text-primary transition">Giropizza</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-bold mb-4">Info</h4>
-                    <ul class="space-y-2 text-sm">
+                        <li><a href="#chi-siamo" class="hover:text-primary transition">Specialità</a></li>
+                        <li><a href="#menu" class="hover:text-primary transition">Menu</a></li>
                         <li><a href="#contatti" class="hover:text-primary transition">Contatti</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Cookie Policy</a></li>
                     </ul>
                 </div>
-                
                 <div>
-                    <h4 class="text-white font-bold mb-4">Orari</h4>
-                    <p class="text-sm">Mar-Ven: 12:00-14:30 / 19:00-23:30</p>
-                    <p class="text-sm">Sab: 19:00-23:30</p>
-                    <p class="text-sm">Dom: 12:00-14:30 / 19:00-23:30</p>
+                    <h4 class="font-bold text-primary mb-4">Seguici</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition">Facebook</a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">Instagram</a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition">TikTok</a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 pt-8 text-center text-sm">
-                <p>&copy; 2024 La Smorfia di Pulcinella. Tutti i diritti riservati.</p>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-sm text-gray-500">
+                    &copy; 2024 La Smorfia di Pulcinella. Tutti i diritti riservati.
+                </p>
             </div>
         </div>
     </footer>
-    
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-        
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('button.md\\:hidden');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', function() {
-                alert('Menu mobile - implementa il toggle del menu');
-            });
-        }
-        
-        // Form submission
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Grazie per il messaggio! Ti contatteremo presto.');
-                form.reset();
-            });
-        }
-        
-        // Intersection Observer for fade-in animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+
 </body>
 </html>
