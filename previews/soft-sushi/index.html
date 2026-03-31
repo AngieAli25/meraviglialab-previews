@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Sushi Experience - Il gusto del Giappone, a modo tuo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a2e',
+                        secondary: '#e63946',
+                        accent: '#f4a261',
+                        bgcustom: '#f9f5f0',
+                        textcustom: '#2b2b2b'
+                    },
+                    fontFamily: {
+                        'fraunces': ['Fraunces', 'serif'],
+                        'nunito': ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #2b2b2b;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+        }
+        .navbar-scrolled {
+            background-color: rgba(26, 26, 46, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(244, 162, 97, 0.3);
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        .typewriter-cursor {
+            display: inline-block;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        #mobile-menu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-bgcustom">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo SVG -->
+                <a href="#home" class="flex items-center">
+                    <svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="35" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#f4a261">SOFT</text>
+                        <text x="85" y="35" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#e63946">SUSHI</text>
+                        <rect x="0" y="40" width="180" height="2" fill="#f4a261" opacity="0.5"/>
+                    </svg>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition duration-300 font-semibold">Home</a>
+                    <a href="#sedi" class="text-white hover:text-accent transition duration-300 font-semibold">Le nostre sedi</a>
+                    <a href="#menu" class="text-white hover:text-accent transition duration-300 font-semibold">Menu</a>
+                    <a href="#prenota" class="text-white hover:text-accent transition duration-300 font-semibold">Prenota</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition duration-300 font-semibold">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-white hover:text-accent transition duration-300 font-semibold">Home</a>
+                    <a href="#sedi" class="block px-3 py-2 text-white hover:text-accent transition duration-300 font-semibold">Le nostre sedi</a>
+                    <a href="#menu" class="block px-3 py-2 text-white hover:text-accent transition duration-300 font-semibold">Menu</a>
+                    <a href="#prenota" class="block px-3 py-2 text-white hover:text-accent transition duration-300 font-semibold">Prenota</a>
+                    <a href="#contatti" class="block px-3 py-2 text-white hover:text-accent transition duration-300 font-semibold">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://softsushi.it/wp-content/uploads/2021/03/DSCF0186.jpg') center/cover no-repeat;">
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);"></div>
+        
+        <!-- Particles -->
+        <span class="particle" style="width: 8px; height: 8px; background-color: #1a1a2e; opacity: 0.4; left: 10%; bottom: 0; animation-duration: 15s; animation-delay: 0s;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background-color: #f4a261; opacity: 0.5; left: 20%; bottom: 0; animation-duration: 18s; animation-delay: 2s;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background-color: #1a1a2e; opacity: 0.3; left: 30%; bottom: 0; animation-duration: 20s; animation-delay: 4s;"></span>
+        <span class="particle" style="width: 4px; height: 4px; background-color: #f4a261; opacity: 0.4; left: 40%; bottom: 0; animation-duration: 16s; animation-delay: 1s;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background-color: #1a1a2e; opacity: 0.5; left: 50%; bottom: 0; animation-duration: 19s; animation-delay: 3s;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background-color: #f4a261; opacity: 0.3; left: 60%; bottom: 0; animation-duration: 17s; animation-delay: 5s;"></span>
+        <span class="particle" style="width: 9px; height: 9px; background-color: #1a1a2e; opacity: 0.4; left: 70%; bottom: 0; animation-duration: 21s; animation-delay: 2s;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background-color: #f4a261; opacity: 0.5; left: 80%; bottom: 0; animation-duration: 18s; animation-delay: 4s;"></span>
+        <span class="particle" style="width: 8px; height: 8px; background-color: #1a1a2e; opacity: 0.3; left: 15%; bottom: 0; animation-duration: 22s; animation-delay: 1s;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background-color: #f4a261; opacity: 0.4; left: 85%; bottom: 0; animation-duration: 19s; animation-delay: 3s;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background-color: #1a1a2e; opacity: 0.5; left: 25%; bottom: 0; animation-duration: 20s; animation-delay: 5s;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background-color: #f4a261; opacity: 0.3; left: 90%; bottom: 0; animation-duration: 17s; animation-delay: 2s;"></span>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+                Un'esperienza sushi<br><span id="tw" class="text-accent"></span><span class="typewriter-cursor text-accent">|</span>
+            </h1>
+            <p class="text-xl sm:text-2xl md:text-3xl text-white/90 mb-10 font-light leading-relaxed">
+                All you can eat di qualità a Corsico, Meda, Melegnano e Nova Milanese.<br class="hidden sm:block">Scegli la sede più vicina a te e lasciati sorprendere.
+            </p>
+            <a href="#sedi" class="inline-block bg-secondary hover:bg-accent text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-2xl">
+                Scegli la tua sede
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chisiamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80" 
+                         alt="Sushi preparation" 
+                         class="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="inline-block mb-4">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Chi siamo</h2>
+                    <p class="text-lg text-textcustom leading-relaxed mb-6">
+                        Soft Sushi Experience nasce dalla passione per la cucina giapponese e dal desiderio di renderla accessibile a tutti. Nelle nostre quattro sedi in provincia di Milano, proponiamo un'ampia selezione di piatti freschi e autentici in formula all-you-can-eat, pensata per chi ama scoprire nuovi sapori senza rinunciare alla qualità.
+                    </p>
+                    <p class="text-lg text-textcustom leading-relaxed font-semibold text-secondary">
+                        Ogni piatto è preparato con cura, ogni visita è un viaggio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Nostre Sedi Section -->
+    <section id="sedi" class="py-20 bg-bgcustom">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-16 h-16 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Le nostre sedi</h2>
+                <p class="text-xl text-textcustom max-w-3xl mx-auto">
+                    Siamo presenti a Corsico, Meda, Melegnano e Nova Milanese. Quattro location accoglienti e moderne, pensate per offrirti la migliore esperienza sushi dell'hinterland milanese.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Corsico -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Corsico</h3>
+                        <p class="text-textcustom">La nostra prima sede, nel cuore di Corsico</p>
+                    </div>
+                </div>
+
+                <!-- Meda -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Meda</h3>
+                        <p class="text-textcustom">Esperienza autentica a Meda</p>
+                    </div>
+                </div>
+
+                <!-- Melegnano -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-accent to-primary flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Melegnano</h3>
+                        <p class="text-textcustom">Qualità e tradizione a Melegnano</p>
+                    </div>
+                </div>
+
+                <!-- Nova Milanese -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Nova Milanese</h3>
+                        <p class="text-textcustom">Sushi di qualità a Nova Milanese</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-16 h-16 text-secondary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Il nostro menu</h2>
+                <p class="text-xl text-textcustom max-w-3xl mx-auto">
+                    Dal classico nigiri al creativissimo roll speciale, passando per gyoza, tempura, tartare e molto altro.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-hover bg-bgcustom rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600&q=80" 
+                         alt="Nigiri e sashimi" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-3">Nigiri & Sashimi</h3>
+                        <p class="text-textcustom leading-relaxed">
+                            Il meglio della tradizione giapponese: pesce freschissimo tagliato a regola d'arte, per un'esperienza di gusto autentica.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-hover bg-bgcustom rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=600&q=80" 
+                         alt="Roll speciali" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-3">Roll Creativi</h3>
+                        <p class="text-textcustom leading-relaxed">
+                            Le nostre creazioni speciali: roll unici con abbinamenti sorprendenti, per chi ama sperimentare nuovi sapori.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-hover bg-bgcustom rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80" 
+                         alt="Gyoza e tempura" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-3">Gyoza & Tempura</h3>
+                        <p class="text-textcustom leading-relaxed">
+                            Antipasti croccanti e saporiti, perfetti per iniziare il tuo viaggio nella cucina giapponese o completare il pasto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <p class="text-lg text-textcustom mb-6 max-w-3xl mx-auto">
+                    Il nostro menu all-you-can-eat è pensato per soddisfare ogni palato, dagli appassionati di sushi più esperti a chi si avvicina per la prima volta alla cucina giapponese. <span class="font-bold text-secondary">Ingredienti freschi, presentazioni curate, sapori autentici.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prenota Section -->
+    <section id="prenota" class="py-20 bg-primary text-white relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-secondary rounded-full opacity-10 -mr-48 -mt-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent rounded-full opacity-10 -ml-48 -mb-48"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-16 h-16 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Prenota il tuo tavolo</h2>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+                    Vuoi trascorrere una serata speciale con amici, famiglia o colleghi? Prenota il tuo tavolo nella sede Soft Sushi Experience più vicina a te. Siamo pronti ad accoglierti con tutta la qualità e il calore della nostra ospitalità.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-16">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 card-hover">
+                        <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-2">Orari flessibili</h3>
+                        <p class="text-white/80">Pranzo e cena, tutti i giorni</p>
+                    </div>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 card-hover">
+                        <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-2">Gruppi e famiglie</h3>
+                        <p class="text-white/80">Spazi ampi e accoglienti</p>
+                    </div>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 card-hover">
+                        <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-2">All you can eat</h3>
+                        <p class="text-white/80">Formula illimitata di qualità</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-bgcustom">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div data-aos="fade-up">
+                <div class="inline-block mb-6">
+                    <svg class="w-16 h-16 text-secondary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Contattaci</h2>
+                <p class="text-xl text-textcustom mb-12">
+                    Hai domande o vuoi prenotare subito? Chiamaci, siamo a tua disposizione!
+                </p>
+                
+                <a href="tel:+390000000000" class="inline-flex items-center justify-center bg-secondary hover:bg-accent text-white font-bold py-6 px-12 rounded-full text-2xl transition duration-300 transform hover:scale-105 shadow-2xl mb-8">
+                    <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    +39 000 000 0000
+                </a>
+
+                <div class="mt-12 pt-12 border-t border-primary/10">
+                    <h3 class="text-2xl font-bold text-primary mb-4">I nostri ristoranti</h3>
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg text-primary mb-2">Corsico</h4>
+                            <p class="text-textcustom">Via Example, 1 - Corsico (MI)</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg text-primary mb-2">Meda</h4>
+                            <p class="text-textcustom">Via Example, 2 - Meda (MB)</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg text-primary mb-2">Melegnano</h4>
+                            <p class="text-textcustom">Via Example, 3 - Melegnano (MI)</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <h4 class="font-bold text-lg text-primary mb-2">Nova Milanese</h4>
+                            <p class="text-textcustom">Via Example, 4 - Nova Milanese (MB)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <text x="0" y="35" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#f4a261">SOFT</text>
+                        <text x="85" y="35" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#e63946">SUSHI</text>
+                        <rect x="0" y="40" width="180" height="2" fill="#f4a261" opacity="0.5"/>
+                    </svg>
+                    <p class="text-white/80 italic">Il gusto del Giappone, a modo tuo</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-accent">Link rapidi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-white/80 hover:text-accent transition">Home</a></li>
+                        <li><a href="#sedi" class="text-white/80 hover:text-accent transition">Le nostre sedi</a></li>
+                        <li><a href="#menu" class="text-white/80 hover:text-accent transition">Menu</a></li>
+                        <li><a href="#prenota" class="text-white/80 hover:text-accent transition">Prenota</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-accent">Contatti</h4>
+                    <p class="text-white/80 mb-2">Tel: +39 000 000 0000</p>
+                    <p class="text-white/80">Email: info@softsushi.it</p>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/60 text-sm mb-2">© 2024 Soft Sushi Experience. Tutti i diritti riservati.</p>
+                <p class="text-white/40 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-accent hover:text-white transition">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Typewriter effect
+        const words = ['indimenticabile', 'perfetto', 'autentico', 'unico', 'speciale'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('tw');
+        const typingSpeed = 150;
+        const deletingSpeed = 100;
+        const delayBetweenWords = 2000;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, delayBetweenWords);
+                return;
+            }
+
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeWriter, speed);
+        }
+
+        // Start typewriter effect
+        setTimeout(typeWriter, 500);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
