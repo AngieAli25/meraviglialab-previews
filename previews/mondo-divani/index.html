@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mondo Divani - Il tuo divano ideale, subito a casa tua</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C2C2C;
+            --secondary: #B89A6A;
+            --accent: #D4AF7A;
+            --background: #F9F6F2;
+            --text: #3A3A3A;
+        }
+        
+        * {
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+        }
+        
+        .navbar-scrolled {
+            background-color: rgba(44, 44, 44, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: url("https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/0WOSX00000M5H0L4AV_579981827_1263219289169657_2522542886254548745_n-1920w.png") center/cover no-repeat;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .geometric-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        
+        @keyframes slideLine {
+            from {
+                left: -60%;
+            }
+            to {
+                left: 110%;
+            }
+        }
+        
+        .line-1 {
+            top: 15%;
+            animation-duration: 9s;
+            animation-delay: 0s;
+        }
+        
+        .line-2 {
+            top: 35%;
+            animation-duration: 12s;
+            animation-delay: 2s;
+        }
+        
+        .line-3 {
+            top: 55%;
+            animation-duration: 7s;
+            animation-delay: 4s;
+        }
+        
+        .line-4 {
+            top: 70%;
+            animation-duration: 14s;
+            animation-delay: 1s;
+        }
+        
+        .line-5 {
+            top: 85%;
+            animation-duration: 10s;
+            animation-delay: 3s;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(212, 175, 122, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184, 154, 106, 0.4);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 400px;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://share.google/eg33m9gQh6GTpV1Us" alt="Mondo Divani" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Chi siamo</a>
+                    <a href="#collezione" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Collezione</a>
+                    <a href="#pronta-consegna" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Pronta consegna</a>
+                    <a href="#contatti" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="flex flex-col space-y-4 mt-4 pb-4">
+                    <a href="#home" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Chi siamo</a>
+                    <a href="#collezione" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Collezione</a>
+                    <a href="#pronta-consegna" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Pronta consegna</a>
+                    <a href="#contatti" class="text-white hover:text-[#D4AF7A] transition-colors font-medium">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="geometric-line line-1"></div>
+        <div class="geometric-line line-2"></div>
+        <div class="geometric-line line-3"></div>
+        <div class="geometric-line line-4"></div>
+        <div class="geometric-line line-5"></div>
+        
+        <div class="hero-content absolute inset-0 flex items-center justify-center">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Divani di Qualità in<br>Pronta Consegna a Palermo
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    Scegli il tuo divano preferito e portalo a casa subito. Da Mondo Divani trovi comfort, stile e qualità senza aspettare mesi.
+                </p>
+                <a href="#collezione" class="btn-primary">Scopri la collezione</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 md:py-32 bg-[#F9F6F2]">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/XHCC6993-1920w.jpg" 
+                         alt="Divano componibile grigio" 
+                         class="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-[#B89A6A] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <h2 class="section-title mb-0">Chi siamo</h2>
+                    </div>
+                    <p class="text-lg text-[#3A3A3A] leading-relaxed mb-6">
+                        Mondo Divani nasce dalla passione per l'arredamento e dall'amore per la casa. Siamo un'azienda palermitana specializzata nella vendita di divani di qualità, con un'ampia disponibilità in pronta consegna.
+                    </p>
+                    <p class="text-lg text-[#3A3A3A] leading-relaxed mb-6">
+                        Il nostro obiettivo è semplice: aiutarti a trovare il divano perfetto per la tua casa, senza lunghe attese e con un rapporto qualità-prezzo imbattibile.
+                    </p>
+                    <p class="text-lg text-[#3A3A3A] leading-relaxed">
+                        Da noi trovi professionalità, cortesia e la certezza di portare a casa un prodotto che durerà nel tempo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collezione Section -->
+    <section id="collezione" class="py-20 md:py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-[#B89A6A] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                    </svg>
+                    <h2 class="section-title mb-0">La nostra selezione</h2>
+                </div>
+                <p class="text-xl text-[#3A3A3A] max-w-3xl mx-auto leading-relaxed">
+                    Esplora la nostra vasta gamma di divani: angolari, a due e tre posti, chaise longue, divani letto e molto altro. Modelli moderni, classici e contemporanei per ogni tipo di gusto e di spazio.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-[#F9F6F2] rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/XHCC6940-1920w.jpg" 
+                         alt="Divano componibile bianco" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-[#2C2C2C] mb-3">Divani Moderni</h3>
+                        <p class="text-[#3A3A3A] leading-relaxed">
+                            Design contemporaneo per spazi eleganti e funzionali. Linee pulite e comfort massimo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-[#F9F6F2] rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/XHCC6929-1920w.jpg" 
+                         alt="Divano componibile con chaise longue" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-[#2C2C2C] mb-3">Divani Angolari</h3>
+                        <p class="text-[#3A3A3A] leading-relaxed">
+                            Soluzioni componibili per sfruttare al meglio ogni angolo del tuo salotto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-[#F9F6F2] rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/XHCC6952-1920w.jpg" 
+                         alt="Divano grigio chiaro con chaise longue" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-[#2C2C2C] mb-3">Divani Relax</h3>
+                        <p class="text-[#3A3A3A] leading-relaxed">
+                            Comfort assoluto con chaise longue e sedute profonde per il massimo relax.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-lg text-[#3A3A3A] mb-8">
+                    Tutti i nostri prodotti sono selezionati con cura per garantirti comfort elevato e materiali di qualità. Vieni in showroom a Palermo e lasciati ispirare.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pronta Consegna Section -->
+    <section id="pronta-consegna" class="py-20 md:py-32 bg-[#2C2C2C]">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-[#D4AF7A] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <h2 class="section-title mb-0 text-white">Pronta consegna</h2>
+                    </div>
+                    <p class="text-lg text-white/90 leading-relaxed mb-6">
+                        Il vantaggio di Mondo Divani è la pronta consegna: niente lunghe attese, niente mesi di incertezza. Il tuo nuovo divano è già disponibile nel nostro magazzino e può essere consegnato direttamente a casa tua in pochissimo tempo.
+                    </p>
+                    <p class="text-lg text-white/90 leading-relaxed mb-8">
+                        Un servizio pensato per chi non vuole aspettare e vuole godere subito della propria casa arredata al meglio.
+                    </p>
+                    <div class="flex items-center mb-6">
+                        <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/Immagine-2026-01-07-155229-1920w.png" 
+                             alt="Made in Italy" 
+                             class="h-16 mr-4"
+                             onerror="this.style.display='none'">
+                        <span class="text-[#D4AF7A] text-xl font-semibold">Qualità italiana garantita</span>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="grid grid-cols-2 gap-6">
+                        <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/XHCC6929-bfc8214a-1920w.jpg" 
+                             alt="Showroom divani" 
+                             class="rounded-2xl shadow-2xl w-full h-64 object-cover"
+                             onerror="this.src='https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=1920&q=80'; this.onerror=null;">
+                        <img src="https://lirp.cdn-website.com/69e92dd3/dms3rep/multi/opt/XHCC6936-b8dd2cac-1920w.jpg" 
+                             alt="Dettaglio divano" 
+                             class="rounded-2xl shadow-2xl w-full h-64 object-cover mt-12"
+                             onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perché Sceglierci Section -->
+    <section class="py-20 md:py-32 bg-[#F9F6F2]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">Perché sceglierci</h2>
+                <p class="text-xl text-[#3A3A3A] max-w-3xl mx-auto leading-relaxed">
+                    Scegliere Mondo Divani significa affidarsi a professionisti del settore con anni di esperienza.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-[#B89A6A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#2C2C2C] mb-3">Qualità Certificata</h3>
+                    <p class="text-[#3A3A3A]">Materiali selezionati e prodotti testati per durare nel tempo</p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-[#B89A6A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#2C2C2C] mb-3">Prezzi Competitivi</h3>
+                    <p class="text-[#3A3A3A]">Rapporto qualità-prezzo imbattibile su tutta la gamma</p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-[#B89A6A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#2C2C2C] mb-3">Consulenza Personale</h3>
+                    <p class="text-[#3A3A3A]">Ti guidiamo nella scelta del divano perfetto per te</p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-[#B89A6A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#2C2C2C] mb-3">Consegna Rapida</h3>
+                    <p class="text-[#3A3A3A]">Servizio di consegna veloce e affidabile a Palermo</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-lg text-[#3A3A3A] max-w-4xl mx-auto leading-relaxed">
+                    Offriamo consulenza personalizzata per trovare il modello più adatto alle tue esigenze, prezzi competitivi, qualità certificata e un servizio di consegna rapido e affidabile. Siamo qui per rendere l'acquisto del tuo divano un'esperienza semplice e soddisfacente.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 md:py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-[#B89A6A] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="section-title mb-0">Contatti e showroom</h2>
+                </div>
+                <p class="text-xl text-[#3A3A3A] max-w-3xl mx-auto leading-relaxed">
+                    Vieni a trovarci nel nostro showroom a Palermo: potrai toccare con mano i nostri divani, sederti, provarli e scegliere quello che fa per te.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-[#F9F6F2] p-8 rounded-2xl mb-8">
+                        <h3 class="text-2xl font-bold text-[#2C2C2C] mb-6">Informazioni di contatto</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-[#B89A6A] mr-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-[#3A3A3A] font-semibold mb-1">Telefono</p>
+                                    <a href="tel:091514210" class="text-[#B89A6A] text-xl font-bold hover:text-[#D4AF7A] transition-colors">091 514210</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-[#B89A6A] mr-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-[#3A3A3A] font-semibold mb-1">Showroom</p>
+                                    <p class="text-[#3A3A3A]">Palermo, Sicilia</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-[#B89A6A] mr-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="text-[#3A3A3A] font-semibold mb-1">Orari</p>
+                                    <p class="text-[#3A3A3A]">Lun - Sab: 9:00 - 13:00 / 16:00 - 20:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-[#3A3A3A] leading-relaxed">
+                        Il nostro team è pronto ad accoglierti e a guidarti nella scelta. Puoi anche contattarci telefonicamente o tramite i nostri canali social per avere informazioni su disponibilità, prezzi e consegne.
+                    </p>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="bg-[#F9F6F2] p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-[#2C2C2C] mb-6">Richiedi informazioni</h3>
+                        <div class="mb-6">
+                            <label class="block text-[#3A3A3A] font-semibold mb-2" for="nome">Nome e Cognome</label>
+                            <input type="text" id="nome" class="w-full px-4 py-3 rounded-lg border border-[#D4AF7A]/30 focus:border-[#B89A6A] focus:outline-none transition-colors" placeholder="Il tuo nome">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-[#3A3A3A] font-semibold mb-2" for="email">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-[#D4AF7A]/30 focus:border-[#B89A6A] focus:outline-none transition-colors" placeholder="La tua email">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-[#3A3A3A] font-semibold mb-2" for="messaggio">Messaggio</label>
+                            <textarea id="messaggio" rows="5" class="w-full px-4 py-3 rounded-lg border border-[#D4AF7A]/30 focus:border-[#B89A6A] focus:outline-none transition-colors resize-none" placeholder="Scrivi qui la tua richiesta..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full text-center">Invia richiesta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#2C2C2C] text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-[#D4AF7A]">Mondo Divani</h4>
+                    <p class="text-white/80 leading-relaxed">
+                        Il tuo divano ideale, subito a casa tua. Qualità, stile e pronta consegna a Palermo.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-[#D4AF7A]">Link Utili</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#chi-siamo" class="text-white/80 hover:text-[#D4AF7A] transition-colors">Chi siamo</a></li>
+                        <li><a href="#collezione" class="text-white/80 hover:text-[#D4AF7A] transition-colors">Collezione</a></li>
+                        <li><a href="#pronta-consegna" class="text-white/80 hover:text-[#D4AF7A] transition-colors">Pronta consegna</a></li>
+                        <li><a href="#contatti" class="text-white/80 hover:text-[#D4AF7A] transition-colors">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-[#D4AF7A]">Contatti</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li>Palermo, Sicilia</li>
+                        <li><a href="tel:091514210" class="hover:text-[#D4AF7A] transition-colors">Tel: 091 514210</a></li>
+                        <li>Lun - Sab: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/60 text-sm">
+                    © 2024 Mondo Divani. Tutti i diritti riservati.
+                </p>
+                <p class="text-white/40 text-xs mt-4">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-[#D4AF7A] hover:text-white transition-colors">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission (demo)
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Grazie per averci contattato! Ti risponderemo al più presto.');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
