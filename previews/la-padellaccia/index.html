@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Padellaccia - Il gusto autentico, ogni giorno in tavola</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A1A1A',
+                        secondary: '#B5451B',
+                        accent: '#E8A838',
+                        background: '#FAF6F1',
+                        textcolor: '#2C2C2C'
+                    },
+                    fontFamily: {
+                        title: ['Playfair Display', 'serif'],
+                        body: ['Lato', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .navbar-scroll {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(232, 168, 56, 0.2);
+        }
+        .typewriter-cursor {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        .menu-open {
+            overflow: hidden;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2022/08/Gambero-Rosso-logo-red-1.png" alt="La Padellaccia" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition-colors duration-300 font-body font-light">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition-colors duration-300 font-body font-light">Chi siamo</a>
+                    <a href="#menu" class="text-white hover:text-accent transition-colors duration-300 font-body font-light">Il menu</a>
+                    <a href="#filosofia" class="text-white hover:text-accent transition-colors duration-300 font-body font-light">La nostra filosofia</a>
+                    <a href="#prenota" class="text-white hover:text-accent transition-colors duration-300 font-body font-light">Prenota</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition-colors duration-300 font-body font-light">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl md:hidden">
+            <div class="flex justify-end p-4">
+                <button id="mobile-menu-close" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6 px-8 py-4">
+                <a href="#home" class="text-white hover:text-accent transition-colors duration-300 font-body mobile-link">Home</a>
+                <a href="#chi-siamo" class="text-white hover:text-accent transition-colors duration-300 font-body mobile-link">Chi siamo</a>
+                <a href="#menu" class="text-white hover:text-accent transition-colors duration-300 font-body mobile-link">Il menu</a>
+                <a href="#filosofia" class="text-white hover:text-accent transition-colors duration-300 font-body mobile-link">La nostra filosofia</a>
+                <a href="#prenota" class="text-white hover:text-accent transition-colors duration-300 font-body mobile-link">Prenota</a>
+                <a href="#contatti" class="text-white hover:text-accent transition-colors duration-300 font-body mobile-link">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://varronerestaurant.com/wp-content/uploads/2025/04/VARRONE-HOME-VIEWPORT.jpg'); background-attachment: fixed;" onerror="this.style.backgroundImage='url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80)'"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);"></div>
+        
+        <!-- Particles -->
+        <span class="particle" style="left: 10%; width: 6px; height: 6px; background: #B5451B; opacity: 0.4; animation-duration: 8s; animation-delay: 0s;"></span>
+        <span class="particle" style="left: 25%; width: 8px; height: 8px; background: #E8A838; opacity: 0.5; animation-duration: 10s; animation-delay: 1s;"></span>
+        <span class="particle" style="left: 40%; width: 5px; height: 5px; background: #1A1A1A; opacity: 0.3; animation-duration: 12s; animation-delay: 2s;"></span>
+        <span class="particle" style="left: 55%; width: 7px; height: 7px; background: #B5451B; opacity: 0.4; animation-duration: 9s; animation-delay: 0.5s;"></span>
+        <span class="particle" style="left: 70%; width: 10px; height: 10px; background: #E8A838; opacity: 0.5; animation-duration: 11s; animation-delay: 1.5s;"></span>
+        <span class="particle" style="left: 85%; width: 4px; height: 4px; background: #1A1A1A; opacity: 0.3; animation-duration: 13s; animation-delay: 3s;"></span>
+        <span class="particle" style="left: 15%; width: 9px; height: 9px; background: #E8A838; opacity: 0.4; animation-duration: 10.5s; animation-delay: 2.5s;"></span>
+        <span class="particle" style="left: 35%; width: 6px; height: 6px; background: #B5451B; opacity: 0.5; animation-duration: 9.5s; animation-delay: 1.8s;"></span>
+        <span class="particle" style="left: 50%; width: 5px; height: 5px; background: #1A1A1A; opacity: 0.3; animation-duration: 11.5s; animation-delay: 0.8s;"></span>
+        <span class="particle" style="left: 65%; width: 7px; height: 7px; background: #E8A838; opacity: 0.4; animation-duration: 12.5s; animation-delay: 2.2s;"></span>
+        <span class="particle" style="left: 80%; width: 8px; height: 8px; background: #B5451B; opacity: 0.5; animation-duration: 10.2s; animation-delay: 1.2s;"></span>
+        <span class="particle" style="left: 92%; width: 6px; height: 6px; background: #1A1A1A; opacity: 0.3; animation-duration: 13.5s; animation-delay: 3.5s;"></span>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-title font-bold text-white mb-6" data-aos="fade-up">La Padellaccia</h1>
+            <p class="text-xl sm:text-2xl md:text-3xl font-body font-light text-white mb-4" data-aos="fade-up" data-aos-delay="200">Carne, fuoco e passione. Una cucina <span id="tw" class="text-accent font-semibold"></span><span class="typewriter-cursor text-accent">|</span></p>
+            <p class="text-lg sm:text-xl font-body font-light text-white mb-12 opacity-90" data-aos="fade-up" data-aos-delay="300">che parla al cuore.</p>
+            <a href="#menu" class="inline-block bg-secondary hover:bg-accent text-white font-body font-bold px-10 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg" data-aos="fade-up" data-aos-delay="400">Scopri il menu</a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-title font-bold text-primary">Chi siamo</h2>
+                    </div>
+                    <p class="text-lg font-body text-textcolor leading-relaxed mb-6">La Padellaccia è molto più di un ristorante: è il progetto di vita di Alessio, nato dall'amore per la buona cucina e per le materie prime di qualità. Qui ogni piatto racconta una storia fatta di sapori genuini, ingredienti selezionati e una cura artigianale che si sente in ogni boccone.</p>
+                    <p class="text-lg font-body text-textcolor leading-relaxed">Vieni a sederti con noi e lasciati conquistare dal calore di una cucina che mette il cuore in ogni preparazione.</p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2026/01/2.jpg" alt="Chi siamo" class="rounded-lg shadow-2xl w-full h-96 object-cover hover-card" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il Menu Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2026/01/1.jpg" alt="Il nostro menu" class="rounded-lg shadow-2xl w-full h-96 object-cover hover-card" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-title font-bold text-primary">Il nostro menu</h2>
+                    </div>
+                    <p class="text-lg font-body text-textcolor leading-relaxed mb-6">Il menu de La Padellaccia è un viaggio tra i grandi classici della cucina di carne, reinterpretati con rispetto per la tradizione e attenzione alla qualità. Dalle carni selezionate alle preparazioni più rustiche e saporite, ogni portata è pensata per soddisfare anche i palati più esigenti.</p>
+                    <p class="text-lg font-body text-textcolor leading-relaxed">Scopri i nostri piatti del giorno e le proposte stagionali, sempre fresche e preparate con ingredienti di prima scelta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-title font-bold text-primary text-center mb-12" data-aos="fade-up">Le nostre creazioni</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2025/04/VARRONE-HOME-SLIDESHOW2.jpg" alt="Piatto 1" class="rounded-lg shadow-xl w-full h-72 object-cover hover-card" onerror="this.src='https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2025/04/VARRONE-HOME-SLIDESHOW3.jpg" alt="Piatto 2" class="rounded-lg shadow-xl w-full h-72 object-cover hover-card" onerror="this.src='https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2025/03/VARRONE_SLIDE.jpg" alt="Piatto 3" class="rounded-lg shadow-xl w-full h-72 object-cover hover-card" onerror="this.src='https://images.unsplash.com/photo-1615937722923-67f6deaf2cc9?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- La Nostra Filosofia Section -->
+    <section id="filosofia" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-title font-bold text-primary">La nostra filosofia</h2>
+                    </div>
+                    <p class="text-lg font-body text-textcolor leading-relaxed mb-6">Crediamo che una buona cucina parta da un'unica, semplice regola: rispettare l'ingrediente. Da La Padellaccia selezioniamo le migliori carni e lavoriamo ogni prodotto con cura e competenza, per esaltarne il sapore naturale senza compromessi.</p>
+                    <p class="text-lg font-body text-textcolor leading-relaxed">Il fuoco, la padella e la mano esperta di Alessio fanno il resto.</p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://varronerestaurant.com/wp-content/uploads/2022/10/Senza-titolo-3.jpg" alt="La nostra filosofia" class="rounded-lg shadow-2xl w-full h-96 object-cover hover-card" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prenota Section -->
+    <section id="prenota" class="py-20 bg-background">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center mb-6" data-aos="fade-up">
+                <svg class="w-12 h-12 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-title font-bold text-primary mb-6" data-aos="fade-up">Prenota il tuo tavolo</h2>
+            <p class="text-lg font-body text-textcolor leading-relaxed mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Vuoi trascorrere una serata speciale o un pranzo in compagnia? Prenota il tuo tavolo da La Padellaccia e preparati a vivere un'esperienza gastronomica autentica. Siamo a tua disposizione per accoglierti nel migliore dei modi, in un ambiente caldo e conviviale che sa già di casa.</p>
+            <a href="https://varronerestaurant.com/wp-content/uploads/2026/01/varrone-prenota-tavolo-hp-mobile.jpg" target="_blank" class="inline-block bg-secondary hover:bg-accent text-white font-body font-bold px-10 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg" data-aos="fade-up" data-aos-delay="200">Prenota un tavolo</a>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="flex justify-center mb-6" data-aos="fade-up">
+                    <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-title font-bold mb-6" data-aos="fade-up">Contatti</h2>
+                <p class="text-lg font-body leading-relaxed max-w-2xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">Hai domande, vuoi prenotare o semplicemente vuoi saperne di più su di noi? Contattaci direttamente, saremo felici di risponderti. Seguici anche sui nostri canali social per restare aggiornato sulle novità, gli eventi e le proposte speciali de La Padellaccia.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center hover-card bg-white bg-opacity-5 p-8 rounded-lg" data-aos="fade-up" data-aos-delay="0">
+                    <svg class="w-10 h-10 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-title font-bold mb-2">Indirizzo</h3>
+                    <p class="font-body opacity-90">Via Example, 123<br>00100 Roma</p>
+                </div>
+                <div class="text-center hover-card bg-white bg-opacity-5 p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="w-10 h-10 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    <h3 class="text-xl font-title font-bold mb-2">Telefono</h3>
+                    <p class="font-body opacity-90">+39 06 1234567</p>
+                </div>
+                <div class="text-center hover-card bg-white bg-opacity-5 p-8 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="w-10 h-10 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-title font-bold mb-2">Orari</h3>
+                    <p class="font-body opacity-90">Mar-Dom: 12:00-15:00<br>19:00-23:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-title font-bold mb-4 text-accent">La Padellaccia</h3>
+                    <p class="font-body opacity-80">Il gusto autentico, ogni giorno in tavola</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-title font-bold mb-4">Link rapidi</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="#home" class="opacity-80 hover:text-accent transition-colors">Home</a></li>
+                        <li><a href="#chi-siamo" class="opacity-80 hover:text-accent transition-colors">Chi siamo</a></li>
+                        <li><a href="#menu" class="opacity-80 hover:text-accent transition-colors">Il menu</a></li>
+                        <li><a href="#prenota" class="opacity-80 hover:text-accent transition-colors">Prenota</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-title font-bold mb-4">Seguici</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="opacity-80 hover:text-accent transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="opacity-80 hover:text-accent transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white border-opacity-20 pt-8 text-center">
+                <p class="font-body opacity-60 text-sm mb-2">&copy; 2025 La Padellaccia. Tutti i diritti riservati.</p>
+                <p class="font-body opacity-40 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-accent transition-colors">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ 
+            duration: 800, 
+            once: true 
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scroll');
+            } else {
+                navbar.classList.remove('navbar-scroll');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            document.body.classList.add('menu-open');
+        });
+
+        mobileMenuClose.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typewriter effect
+        const words = ['indimenticabile', 'perfetto', 'autentico', 'unico', 'speciale'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('tw');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => { isDeleting = true; }, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeWriter, speed);
+        }
+
+        typeWriter();
+    </script>
+</body>
+</html>
