@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Novara Expo - Il tuo punto di partenza per la Fiera di Milano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A3A5C',
+                        secondary: '#C9A84C',
+                        accent: '#E8F0F7',
+                        bg: '#F9F7F4',
+                        txt: '#2C2C2C'
+                    },
+                    fontFamily: {
+                        heading: ['"Libre Baskerville"', 'serif'],
+                        body: ['"Source Sans Pro"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #2C2C2C;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Libre Baskerville', serif;
+        }
+        .navbar-scrolled {
+            background: rgba(26, 58, 92, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(232, 240, 247, 0.4);
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-bg">
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo SVG -->
+                <div class="flex-shrink-0">
+                    <svg width="220" height="50" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Libre Baskerville, serif" font-size="16" font-weight="700" fill="#C9A84C">HNE</text>
+                        <text x="0" y="45" font-family="Libre Baskerville, serif" font-size="11" fill="white">Hotel Novara Expo</text>
+                    </svg>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Chi siamo</a>
+                    <a href="#camere" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Camere</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Servizi</a>
+                    <a href="#ristorante" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Ristorante</a>
+                    <a href="#fiera" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Fiera di Milano</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Home</a>
+                    <a href="#chi-siamo" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Chi siamo</a>
+                    <a href="#camere" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Camere</a>
+                    <a href="#servizi" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Servizi</a>
+                    <a href="#ristorante" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Ristorante</a>
+                    <a href="#fiera" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Fiera di Milano</a>
+                    <a href="#contatti" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://www.hotelnovaraexpo.com/rho/fiera/hotel_1.jpg') center/cover no-repeat;">
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);"></div>
+        
+        <!-- Particles -->
+        <span class="particle" style="width: 8px; height: 8px; background: #1A3A5C; left: 10%; bottom: 0; animation-duration: 15s; animation-delay: 0s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background: #E8F0F7; left: 20%; bottom: 0; animation-duration: 18s; animation-delay: 2s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background: #C9A84C; left: 30%; bottom: 0; animation-duration: 20s; animation-delay: 4s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background: #1A3A5C; left: 40%; bottom: 0; animation-duration: 16s; animation-delay: 1s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background: #E8F0F7; left: 50%; bottom: 0; animation-duration: 22s; animation-delay: 3s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 9px; height: 9px; background: #C9A84C; left: 60%; bottom: 0; animation-duration: 19s; animation-delay: 5s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 4px; height: 4px; background: #1A3A5C; left: 70%; bottom: 0; animation-duration: 17s; animation-delay: 2.5s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 8px; height: 8px; background: #E8F0F7; left: 80%; bottom: 0; animation-duration: 21s; animation-delay: 4.5s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background: #C9A84C; left: 15%; bottom: 0; animation-duration: 18s; animation-delay: 1.5s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background: #1A3A5C; left: 85%; bottom: 0; animation-duration: 20s; animation-delay: 3.5s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background: #E8F0F7; left: 25%; bottom: 0; animation-duration: 16s; animation-delay: 0.5s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 9px; height: 9px; background: #C9A84C; left: 90%; bottom: 0; animation-duration: 19s; animation-delay: 5.5s; opacity: 0.5;"></span>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-heading text-white mb-6 leading-tight">
+                Hotel vicino alla<br>Fiera di Milano
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-4 font-light">
+                Un'esperienza <span id="tw" class="text-secondary font-semibold"></span><span class="cursor text-accent">|</span>
+            </p>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-3xl mx-auto font-body">
+                A soli 7 km dal Polo Fieristico di Rho-Pero. Comfort, ristorante, parcheggio gratuito e collegamento diretto con Milano.
+            </p>
+            <a href="#contatti" class="inline-block bg-secondary text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300 shadow-2xl">
+                Prenota ora
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.hotelnovaraexpo.com/images/hotel_fiera-milano1.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1455587734955-081b22074882?w=1920&q=80'; this.onerror=null;"
+                         alt="Hotel Novara Expo" 
+                         class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-heading text-primary">Chi siamo</h2>
+                    </div>
+                    <p class="text-lg text-txt leading-relaxed font-body mb-6">
+                        Hotel Novara Expo si trova a Bareggio, in una posizione strategica a soli 7 km dal Polo Fieristico di Rho-Pero. Rinnovato e ristrutturato per offrire il massimo del comfort, il nostro hotel è la scelta ideale per chi partecipa alle grandi manifestazioni fieristiche di Milano, per viaggiatori d'affari e per chiunque voglia soggiornare in una struttura accogliente e ben collegata con la città.
+                    </p>
+                    <div class="flex items-center space-x-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-heading text-secondary mb-2">7 km</p>
+                            <p class="text-sm text-txt font-body">dalla Fiera</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-heading text-secondary mb-2">24/7</p>
+                            <p class="text-sm text-txt font-body">Reception</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-heading text-secondary mb-2">100%</p>
+                            <p class="text-sm text-txt font-body">Wi-Fi Gratuito</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camere -->
+    <section id="camere" class="py-20 bg-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading text-primary">Le nostre camere</h2>
+                </div>
+                <p class="text-lg text-txt max-w-3xl mx-auto font-body">
+                    Comfort e funzionalità per ogni esigenza di viaggio
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.hotelnovaraexpo.com/images/albergo_fieramilano.jpg" 
+                         onerror="this.src='https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80'; this.onerror=null;"
+                         alt="Camera Standard" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading text-primary mb-4">Camera Standard</h3>
+                        <ul class="space-y-2 text-txt font-body">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Wi-Fi gratuito
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Aria condizionata
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                TV LCD
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" 
+                         onerror="this.src='https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80'; this.onerror=null;"
+                         alt="Camera Superior" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading text-primary mb-4">Camera Superior</h3>
+                        <ul class="space-y-2 text-txt font-body">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Minibar incluso
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Cassaforte
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Bagno privato
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" 
+                         onerror="this.src='https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80'; this.onerror=null;"
+                         alt="Suite Business" 
+                         class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading text-primary mb-4">Suite Business</h3>
+                        <ul class="space-y-2 text-txt font-body">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Scrivania ampia
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Area living
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-secondary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Tutti i comfort
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section id="servizi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading text-primary">Servizi</h2>
+                </div>
+                <p class="text-lg text-txt max-w-3xl mx-auto font-body mb-12">
+                    Le nostre camere sono dotate di tutti i comfort: servizi privati, cassaforte, asciugacapelli, TV LCD, telefono diretto, Wi-Fi gratuito, minibar e aria condizionata. La struttura offre inoltre: reception aperta 24 ore su 24, parcheggio interno privato gratuito, postazione internet, e un accogliente ristorante con colazione abbondante, cucina italiana e pizza cotta nel forno a legna.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center hover-card p-6 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-2">Reception 24/7</h3>
+                    <p class="text-txt font-body">Sempre a vostra disposizione</p>
+                </div>
+
+                <div class="text-center hover-card p-6 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-2">Parcheggio</h3>
+                    <p class="text-txt font-body">Privato e gratuito</p>
+                </div>
+
+                <div class="text-center hover-card p-6 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-2">Wi-Fi Gratuito</h3>
+                    <p class="text-txt font-body">In tutte le camere</p>
+                </div>
+
+                <div class="text-center hover-card p-6 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="400">
+                    <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-2">Aria Condizionata</h3>
+                    <p class="text-txt font-body">In tutte le camere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fiera di Milano -->
+    <section id="fiera" class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-heading">Fiera di Milano</h2>
+                    </div>
+                    <p class="text-lg leading-relaxed font-body mb-6">
+                        In occasione delle principali manifestazioni fieristiche, mettiamo a disposizione dei nostri ospiti un servizio di navetta a pagamento (su prenotazione) con andata e ritorno per la Fiera di Pero-Rho. Inoltre, i bus ATM per il collegamento con Milano città partono a pochi metri dall'hotel, con frequenza di circa 15 minuti.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white bg-opacity-10 p-6 rounded-lg">
+                            <svg class="w-10 h-10 text-secondary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            <h4 class="font-heading text-xl mb-2">Navetta Fiera</h4>
+                            <p class="text-sm font-body">Su prenotazione</p>
+                        </div>
+                        <div class="bg-white bg-opacity-10 p-6 rounded-lg">
+                            <svg class="w-10 h-10 text-secondary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h4 class="font-heading text-xl mb-2">Bus ATM</h4>
+                            <p class="text-sm font-body">Ogni 15 minuti</p>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80" 
+                         onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80'; this.onerror=null;"
+                         alt="Fiera di Milano" 
+                         class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ristorante -->
+    <section id="ristorante" class="py-20 bg-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80" 
+                         onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80'; this.onerror=null;"
+                         alt="Ristorante" 
+                         class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-heading text-primary">Ristorante</h2>
+                    </div>
+                    <p class="text-lg text-txt leading-relaxed font-body mb-6">
+                        Il ristorante dell'Hotel Novara Expo è pronto ad accogliervi con una ricca colazione mattutina, piatti della tradizione italiana e la nostra pizza cotta nel forno a legna. Un'esperienza gastronomica genuina e curata, perfetta per concludere una giornata intensa in fiera o in città.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-heading text-lg text-primary">Colazione Abbondante</h4>
+                                <p class="text-txt font-body">Dolce e salato per iniziare la giornata</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-heading text-lg text-primary">Cucina Italiana</h4>
+                                <p class="text-txt font-body">Piatti della tradizione preparati con cura</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-heading text-lg text-primary">Pizza al Forno a Legna</h4>
+                                <p class="text-txt font-body">Fragrante e genuina, come la tradizione vuole</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading text-primary">Contatti</h2>
+                </div>
+                <p class="text-lg text-txt max-w-3xl mx-auto font-body mb-12">
+                    Siamo a vostra disposizione per informazioni e prenotazioni. Trovate Hotel Novara Expo a Bareggio (MI), a soli 7 km dalla Fiera di Milano Rho-Pero. Prenotate direttamente dal nostro sito per le migliori tariffe disponibili.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center hover-card p-8 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-3">Indirizzo</h3>
+                    <p class="text-txt font-body">Bareggio (MI)<br>7 km da Fiera Milano Rho-Pero</p>
+                </div>
+
+                <div class="text-center hover-card p-8 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-3">Telefono</h3>
+                    <p class="text-txt font-body">Chiamaci per prenotazioni<br>e informazioni</p>
+                </div>
+
+                <div class="text-center hover-card p-8 rounded-lg bg-accent" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading text-primary mb-3">Orari</h3>
+                    <p class="text-txt font-body">Reception aperta<br>24 ore su 24</p>
+                </div>
+            </div>
+
+            <div class="text-center" data-aos="fade-up">
+                <img src="https://www.hotelnovaraexpo.com/images/bookingonline.jpg" 
+                     onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;"
+                     alt="Prenota Online" 
+                     class="mx-auto rounded-lg shadow-xl mb-8 max-w-2xl w-full h-64 object-cover">
+                <a href="https://www.hotelnovaraexpo.com/images/bookingonline.jpg" 
+                   target="_blank"
+                   class="inline-block bg-secondary text-white px-12 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300 shadow-2xl font-body">
+                    Prenota ora al miglior prezzo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <svg width="220" height="50" viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <text x="0" y="30" font-family="Libre Baskerville, serif" font-size="16" font-weight="700" fill="#C9A84C">HNE</text>
+                        <text x="0" y="45" font-family="Libre Baskerville, serif" font-size="11" fill="white">Hotel Novara Expo</text>
+                    </svg>
+                    <p class="text-gray-300 font-body">Il tuo punto di partenza per la Fiera di Milano</p>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg mb-4 text-secondary">Link Utili</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="#chi-siamo" class="text-gray-300 hover:text-secondary transition-colors">Chi siamo</a></li>
+                        <li><a href="#camere" class="text-gray-300 hover:text-secondary transition-colors">Camere</a></li>
+                        <li><a href="#servizi" class="text-gray-300 hover:text-secondary transition-colors">Servizi</a></li>
+                        <li><a href="#ristorante" class="text-gray-300 hover:text-secondary transition-colors">Ristorante</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading text-lg mb-4 text-secondary">Informazioni</h4>
+                    <ul class="space-y-2 text-gray-300 font-body">
+                        <li>Bareggio (MI)</li>
+                        <li>7 km da Fiera Milano</li>
+                        <li>Reception 24/7</li>
+                        <li>Parcheggio gratuito</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm font-body mb-2">&copy; 2024 Hotel Novara Expo. Tutti i diritti riservati.</p>
+                <p class="text-gray-500 text-xs font-body">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-secondary hover:underline">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Init
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Typewriter Effect
+        const words = ["indimenticabile", "perfetto", "autentico", "unico", "speciale"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('tw');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                }, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeWriter, speed);
+        }
+
+        typeWriter();
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
