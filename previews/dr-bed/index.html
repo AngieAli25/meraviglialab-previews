@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Bed - Il tuo sonno, la nostra specialità</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A2E44',
+                        secondary: '#4A9B8E',
+                        accent: '#E8C86E',
+                        bg: '#F7F5F2',
+                        txt: '#2C2C2C'
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+        .navbar-scroll {
+            background: rgba(26, 46, 68, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(232, 200, 110, 0.3);
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-bg text-txt">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.drbedmaterassi.it/" alt="Dr. Bed" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition">Home</a>
+                    <a href="#materassi" class="text-white hover:text-accent transition">Materassi</a>
+                    <a href="#guanciali" class="text-white hover:text-accent transition">Guanciali</a>
+                    <a href="#reti" class="text-white hover:text-accent transition">Reti</a>
+                    <a href="#divani" class="text-white hover:text-accent transition">Divani</a>
+                    <a href="#poltrone" class="text-white hover:text-accent transition">Poltrone Relax</a>
+                    <a href="#blog" class="text-white hover:text-accent transition">Blog</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition">Contatti</a>
+                </div>
+                <button id="mobile-toggle" class="md:hidden text-white">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-primary z-40 md:hidden shadow-2xl">
+        <div class="flex flex-col space-y-6 p-8 mt-20">
+            <a href="#home" class="text-white hover:text-accent transition mobile-link">Home</a>
+            <a href="#materassi" class="text-white hover:text-accent transition mobile-link">Materassi</a>
+            <a href="#guanciali" class="text-white hover:text-accent transition mobile-link">Guanciali</a>
+            <a href="#reti" class="text-white hover:text-accent transition mobile-link">Reti</a>
+            <a href="#divani" class="text-white hover:text-accent transition mobile-link">Divani</a>
+            <a href="#poltrone" class="text-white hover:text-accent transition mobile-link">Poltrone Relax</a>
+            <a href="#blog" class="text-white hover:text-accent transition mobile-link">Blog</a>
+            <a href="#contatti" class="text-white hover:text-accent transition mobile-link">Contatti</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://www.drbedmaterassi.it/wp-content/uploads/2026/02/logobed.png') center/cover no-repeat;">
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);"></div>
+        
+        <span class="particle" style="width: 8px; height: 8px; background: #1A2E44; left: 10%; animation-duration: 15s; animation-delay: 0s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background: #E8C86E; left: 25%; animation-duration: 18s; animation-delay: 2s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background: #1A2E44; left: 40%; animation-duration: 20s; animation-delay: 4s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background: #E8C86E; left: 55%; animation-duration: 17s; animation-delay: 1s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background: #1A2E44; left: 70%; animation-duration: 19s; animation-delay: 3s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 9px; height: 9px; background: #E8C86E; left: 85%; animation-duration: 16s; animation-delay: 5s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background: #1A2E44; left: 15%; animation-duration: 21s; animation-delay: 2.5s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 8px; height: 8px; background: #E8C86E; left: 35%; animation-duration: 18s; animation-delay: 4.5s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 4px; height: 4px; background: #1A2E44; left: 50%; animation-duration: 22s; animation-delay: 1.5s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background: #E8C86E; left: 65%; animation-duration: 19s; animation-delay: 3.5s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background: #1A2E44; left: 80%; animation-duration: 17s; animation-delay: 0.5s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background: #E8C86E; left: 95%; animation-duration: 20s; animation-delay: 2.8s; opacity: 0.3;"></span>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6" data-aos="fade-up">
+                Dormi meglio. Vivi <span id="tw"></span><span class="cursor-blink text-accent">|</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="200">
+                Materassi, reti e guanciali scelti su misura per te, con consulenza gratuita direttamente a casa tua in tutta Italia.
+            </p>
+            <a href="#contatti" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 transition shadow-lg hover:shadow-xl" data-aos="fade-up" data-aos-delay="400">
+                Prenota la tua consulenza gratuita
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <h2 class="text-4xl font-bold text-primary">Chi siamo</h2>
+                    </div>
+                    <p class="text-lg text-txt leading-relaxed mb-4">
+                        Dr. Bed nasce dalla passione per il benessere e da un'idea semplice ma rivoluzionaria: portare la qualità di un negozio specializzato direttamente a casa tua. Con anni di esperienza nel settore dei materassi e del riposo, il nostro team di esperti ti guida nella scelta del prodotto perfetto per le tue esigenze, senza fretta e senza pressioni.
+                    </p>
+                    <p class="text-lg text-txt leading-relaxed font-semibold text-secondary">
+                        Crediamo che dormire bene sia un diritto, non un lusso.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2026/01/dormire-bene-materasso.png" alt="Dormire bene" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consulenza a Domicilio -->
+    <section class="py-20 bg-gradient-to-br from-secondary to-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex justify-center mb-6">
+                    <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Consulenza a domicilio</h2>
+                <p class="text-xl max-w-3xl mx-auto text-gray-200">
+                    Il nostro servizio di consulenza a domicilio è gratuito e senza impegno. Un esperto Dr. Bed viene direttamente da te, analizza le tue abitudini di sonno, le eventuali problematiche fisiche e le caratteristiche del tuo ambiente, per consigliarti la soluzione più adatta.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="w-12 h-12 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-3">Senza fretta</h3>
+                    <p class="text-gray-200">Niente showroom affollati, niente venditori frettolosi: solo la consulenza che meriti, comodamente a casa tua.</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="w-12 h-12 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-3">Analisi completa</h3>
+                    <p class="text-gray-200">Valutiamo le tue abitudini di sonno, le problematiche fisiche e le caratteristiche del tuo ambiente.</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="w-12 h-12 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-3">Gratuita</h3>
+                    <p class="text-gray-200">La consulenza è completamente gratuita e senza alcun impegno da parte tua.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materassi -->
+    <section id="materassi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2020/12/materassi-per-dormire-prezzi-offerte.png" alt="Materassi" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <h2 class="text-4xl font-bold text-primary">Materassi</h2>
+                    </div>
+                    <p class="text-lg text-txt leading-relaxed mb-6">
+                        Ogni persona è unica e il suo materasso dovrebbe esserlo altrettanto. In Dr. Bed trovi materassi per ogni esigenza: memory foam per chi soffre di dolori articolari, lattice naturale per chi cerca traspirazione e igienicità, molle insacchettate per chi ama un supporto dinamico e reattivo.
+                    </p>
+                    <p class="text-lg text-txt leading-relaxed font-semibold text-secondary mb-8">
+                        Ti aiutiamo a scegliere la rigidità, le dimensioni e i materiali più adatti a te.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-txt">Memory foam per dolori articolari</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-txt">Lattice naturale per traspirazione</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-txt">Molle insacchettate per supporto dinamico</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reti e Guanciali -->
+    <section id="reti" class="py-20 bg-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Reti e Guanciali</h2>
+                <p class="text-xl text-txt max-w-3xl mx-auto">
+                    Un buon materasso da solo non basta: la rete e il guanciale completano il sistema del sonno perfetto.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden shadow-xl card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2020/12/dolci-sogni-reti-letto-1024x683.png" alt="Reti" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold text-primary">Reti</h3>
+                        </div>
+                        <p class="text-txt leading-relaxed">
+                            Le nostre reti, sia fisse che articolate, sono progettate per lavorare in sinergia con il materasso e sostenere correttamente la colonna vertebrale.
+                        </p>
+                    </div>
+                </div>
+                <div id="guanciali" class="bg-white rounded-lg overflow-hidden shadow-xl card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2020/12/cuscini_dormire-1024x683.png" alt="Guanciali" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1604991227305-b0e4b6d7e53f?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold text-primary">Guanciali</h3>
+                        </div>
+                        <p class="text-txt leading-relaxed">
+                            I nostri guanciali anatomici si adattano alla posizione di sonno di ogni persona, garantendo il massimo comfort cervicale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I Nostri Prodotti -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex justify-center mb-6">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">I nostri prodotti</h2>
+                <p class="text-xl text-txt max-w-3xl mx-auto">
+                    Offriamo una gamma completa di prodotti selezionati per garantirti il massimo del comfort.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-bg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-secondary bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Memory Foam</h3>
+                    <p class="text-txt">Materassi in memory foam di alta qualità per il massimo comfort.</p>
+                </div>
+                <div class="bg-bg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-secondary bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Lattice</h3>
+                    <p class="text-txt">Lattice naturale per traspirazione e igienicità superiori.</p>
+                </div>
+                <div class="bg-bg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-secondary bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Molle</h3>
+                    <p class="text-txt">Molle insacchettate per un supporto dinamico e reattivo.</p>
+                </div>
+                <div class="bg-bg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-secondary bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Reti articolate</h3>
+                    <p class="text-txt">Reti articolate e fisse per ogni esigenza di riposo.</p>
+                </div>
+                <div class="bg-bg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-secondary bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Guanciali anatomici</h3>
+                    <p class="text-txt">Guanciali anatomici per il perfetto sostegno cervicale.</p>
+                </div>
+                <div class="bg-bg rounded-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-secondary bg-opacity-10 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Divani e poltrone</h3>
+                    <p class="text-txt">Divani classici e luxury, poltrone relax per ogni ambiente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divani e Poltrone -->
+    <section id="divani" class="py-20 bg-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <h2 class="text-4xl font-bold text-primary">Divani e Poltrone</h2>
+                    </div>
+                    <p class="text-lg text-txt leading-relaxed mb-4">
+                        Il benessere non si ferma alla camera da letto. Dr. Bed propone anche una selezione di divani e poltrone relax di alta qualità, pensati per chi vuole vivere ogni momento della giornata nel massimo del comfort.
+                    </p>
+                    <p class="text-lg text-txt leading-relaxed font-semibold text-secondary">
+                        Dalla linea classica alla collezione Luxury, trovi soluzioni per ogni stile e ogni ambiente.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2026/01/migliori_materassi_lecce.png" alt="Divani e Poltrone" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section id="blog" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex justify-center mb-6">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Dal nostro Blog</h2>
+                <p class="text-xl text-txt max-w-3xl mx-auto">
+                    Consigli, guide e curiosità sul mondo del riposo e del benessere.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-bg rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2025/12/misure_rete_matrimoniale.png" alt="Blog 1" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1615529182904-14819c35db37?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Come scegliere la rete giusta</h3>
+                        <p class="text-txt mb-4">Guida completa alle misure e alle tipologie di reti per il tuo materasso.</p>
+                        <a href="#blog" class="text-secondary font-semibold hover:text-accent transition">Leggi tutto →</a>
+                    </div>
+                </div>
+                <div class="bg-bg rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2020/12/cuscini_dormire-1024x683.png" alt="Blog 2" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1604991227305-b0e4b6d7e53f?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Il guanciale perfetto per ogni posizione</h3>
+                        <p class="text-txt mb-4">Scopri quale guanciale è più adatto al tuo modo di dormire.</p>
+                        <a href="#blog" class="text-secondary font-semibold hover:text-accent transition">Leggi tutto →</a>
+                    </div>
+                </div>
+                <div class="bg-bg rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://www.drbedmaterassi.it/wp-content/uploads/2026/01/dormire-bene-materasso.png" alt="Blog 3" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">5 consigli per dormire meglio</h3>
+                        <p class="text-txt mb-4">Le migliori abitudini per migliorare la qualità del tuo sonno.</p>
+                        <a href="#blog" class="text-secondary font-semibold hover:text-accent transition">Leggi tutto →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-gradient-to-br from-primary to-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Contattaci</h2>
+                    <p class="text-xl text-gray-200 mb-8">
+                        Siamo operativi in tutta Italia. Contattaci per prenotare la tua consulenza gratuita a domicilio. Il nostro team è a tua disposizione per rispondere a qualsiasi domanda e aiutarti a trovare la soluzione più adatta alle tue esigenze di sonno e benessere.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="font-bold mb-1">Telefono</h3>
+                                <a href="tel:+393520641010" class="text-gray-200 hover:text-accent transition">+39 352 064 1010</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="font-bold mb-1">Email</h3>
+                                <a href="mailto:info@drbedmaterassi.it" class="text-gray-200 hover:text-accent transition">info@drbedmaterassi.it</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="font-bold mb-1">Copertura</h3>
+                                <p class="text-gray-200">Servizio a domicilio in tutta Italia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <form class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-8 shadow-2xl">
+                        <div class="mb-6">
+                            <label class="block text-white font-semibold mb-2" for="name">Nome e Cognome</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Il tuo nome" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-white font-semibold mb-2" for="email">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="tua@email.it" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-white font-semibold mb-2" for="phone">Telefono</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="3935206410" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-white font-semibold mb-2" for="message">Messaggio</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Raccontaci delle tue esigenze..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 transition shadow-lg hover:shadow-xl">
+                            Prenota la tua consulenza gratuita
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-accent">Dr. Bed</h3>
+                    <p class="text-gray-300">Il tuo sonno, la nostra specialità</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Prodotti</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#materassi" class="text-gray-300 hover:text-accent transition">Materassi</a></li>
+                        <li><a href="#guanciali" class="text-gray-300 hover:text-accent transition">Guanciali</a></li>
+                        <li><a href="#reti" class="text-gray-300 hover:text-accent transition">Reti</a></li>
+                        <li><a href="#divani" class="text-gray-300 hover:text-accent transition">Divani e Poltrone</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Servizi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#contatti" class="text-gray-300 hover:text-accent transition">Consulenza gratuita</a></li>
+                        <li><a href="#blog" class="text-gray-300 hover:text-accent transition">Blog</a></li>
+                        <li><a href="#contatti" class="text-gray-300 hover:text-accent transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-2">
+                        <li><a href="tel:+393520641010" class="text-gray-300 hover:text-accent transition">+39 352 064 1010</a></li>
+                        <li><a href="mailto:info@drbedmaterassi.it" class="text-gray-300 hover:text-accent transition">info@drbedmaterassi.it</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2024 Dr. Bed. Tutti i diritti riservati.</p>
+                <p class="text-gray-500 text-sm">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-accent hover:underline">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scroll');
+            } else {
+                navbar.classList.remove('navbar-scroll');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typewriter effect
+        const words = ["benessere", "relax", "armonia", "bellezza", "serenità"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('tw');
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => { isDeleting = true; }, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeWriter, speed);
+        }
+
+        typeWriter();
+    </script>
+
+</body>
+</html>
