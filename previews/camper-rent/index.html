@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camper Rent Novara - La tua libertà su quattro ruote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D2D2D',
+                        secondary: '#F5F5F5',
+                        accent: '#E8A020',
+                        bgwhite: '#FFFFFF',
+                        textcolor: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #1A1A1A;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-scrolled {
+            background-color: rgba(45, 45, 45, 0.98) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(232, 160, 32, 0.25);
+        }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .animated-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        .line-1 { top: 15%; animation-duration: 11s; animation-delay: 0s; }
+        .line-2 { top: 35%; animation-duration: 14s; animation-delay: 2s; }
+        .line-3 { top: 55%; animation-duration: 9s; animation-delay: 4s; }
+        .line-4 { top: 75%; animation-duration: 13s; animation-delay: 1s; }
+        .line-5 { top: 90%; animation-duration: 10s; animation-delay: 3s; }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-bgwhite">
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" style="background-color: rgba(45, 45, 45, 0.5);">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="#home">
+                        <img src="https://lirp.cdn-website.com/9397cdb5/dms3rep/multi/opt/CAMPER-RENT-NOVARA-Novara-008-1920w.jpg" alt="Camper Rent Novara" style="max-height:60px; object-fit:contain;">
+                    </a>
+                </div>
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Chi siamo</a>
+                    <a href="#acquisto" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Acquisto camper</a>
+                    <a href="#vendita" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Vendita camper</a>
+                    <a href="#garanzia" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Garanzia e assistenza</a>
+                    <a href="#recensioni" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Recensioni</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Contatti</a>
+                </div>
+                <button id="mobile-toggle" class="lg:hidden text-white">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="mobile-menu lg:hidden">
+                <div class="flex flex-col space-y-4 pb-4">
+                    <a href="#home" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Chi siamo</a>
+                    <a href="#acquisto" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Acquisto camper</a>
+                    <a href="#vendita" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Vendita camper</a>
+                    <a href="#garanzia" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Garanzia e assistenza</a>
+                    <a href="#recensioni" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Recensioni</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition-colors font-nunito font-semibold">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://lirp.cdn-website.com/9397cdb5/dms3rep/multi/opt/CAMPER-RENT-NOVARA-Novara-008-1920w.jpg') center/cover no-repeat;">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        <div class="animated-line line-1"></div>
+        <div class="animated-line line-2"></div>
+        <div class="animated-line line-3"></div>
+        <div class="animated-line line-4"></div>
+        <div class="animated-line line-5"></div>
+        <div class="relative z-10 text-center px-4 hero-content">
+            <h1 class="text-white font-poppins font-bold text-5xl md:text-7xl mb-6 leading-tight">Vendi o trova il camper perfetto a Novara</h1>
+            <p class="text-white text-xl md:text-2xl mb-10 font-nunito max-w-3xl mx-auto">Camper Rent Novara è il tuo punto di riferimento per acquistare o vendere camper usati in totale trasparenza e sicurezza.</p>
+            <a href="#acquisto" class="inline-block bg-accent hover:bg-opacity-90 text-white font-poppins font-bold px-10 py-4 rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-lg">Scopri i nostri camper</a>
+        </div>
+    </section>
+
+    <section id="chi-siamo" class="py-20 bg-bgwhite">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.71878-15/531043072_1736089283779572_8638343660784287728_n.jpg" alt="Camper Rent Novara" class="rounded-lg shadow-2xl w-full">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6">Chi siamo</h2>
+                    <div class="w-20 h-1 bg-accent mb-6"></div>
+                    <p class="text-lg text-textcolor font-nunito leading-relaxed mb-6">Siamo Camper Rent Novara, un team di professionisti appassionati del mondo camper con sede a Novara. Crediamo che ogni viaggio debba iniziare con fiducia: per questo offriamo un servizio di compravendita camper trasparente, onesto e sempre orientato alle reali esigenze del cliente.</p>
+                    <p class="text-lg text-textcolor font-nunito leading-relaxed">Che tu stia vendendo il tuo vecchio camper o cercando quello giusto per la tua prossima avventura, siamo qui per accompagnarti in ogni passo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="acquisto" class="py-20 bg-secondary">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-4">Acquisto camper</h2>
+                <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-textcolor font-nunito max-w-3xl mx-auto">Stai cercando il camper giusto per te? Consulta il nostro parco veicoli e lasciati guidare dal nostro staff nella scelta più adatta alle tue esigenze di viaggio, al tuo budget e alla tua famiglia.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://scontent-iad3-2.cdninstagram.com/v/t51.71878-15/534205969_773097825465529_4298546684997608453_n.jpg" alt="Camper disponibili" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-poppins font-bold text-primary mb-3">Ampia selezione</h3>
+                        <p class="text-textcolor font-nunito">Camper per ogni esigenza e budget, selezionati con cura dal nostro team.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://scontent-iad3-2.cdninstagram.com/v/t51.71878-15/534727394_1448052246339858_1648571041065723340_n.jpg" alt="Consulenza personalizzata" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-poppins font-bold text-primary mb-3">Consulenza dedicata</h3>
+                        <p class="text-textcolor font-nunito">I nostri esperti ti guidano nella scelta del veicolo perfetto per te.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.71878-15/530570259_687053230460490_131288044718107665_n.jpg" alt="Garanzia completa" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-poppins font-bold text-primary mb-3">Garanzia fino a 36 mesi</h3>
+                        <p class="text-textcolor font-nunito">Tutti i nostri camper sono sanificati e coperti da garanzia completa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vendita" class="py-20 bg-bgwhite">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6">Vendita camper</h2>
+                    <div class="w-20 h-1 bg-accent mb-6"></div>
+                    <p class="text-lg text-textcolor font-nunito leading-relaxed mb-6">Vuoi vendere il tuo camper in modo rapido, sicuro e conveniente? Affidati a noi. Valutiamo il tuo veicolo gratuitamente e ti garantiamo un pagamento immediato e trasparente.</p>
+                    <p class="text-lg text-textcolor font-nunito leading-relaxed mb-8">I nostri clienti ci scelgono per la nostra correttezza e professionalità.</p>
+                    <a href="#contatti" class="inline-block bg-accent hover:bg-opacity-90 text-white font-poppins font-bold px-8 py-3 rounded-full text-lg transition-all duration-300 hover:scale-105">Valuta il tuo camper</a>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.71878-15/531345777_968018082083431_3653999062072982847_n.jpg" alt="Vendita camper Novara" class="rounded-lg shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="garanzia" class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-4">Garanzia e assistenza</h2>
+                <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/531563490_18170659501351181_8507666858692721545_n.jpg" alt="Garanzia camper" class="rounded-lg shadow-2xl w-full">
+                </div>
+                <div data-aos="fade-left">
+                    <p class="text-lg font-nunito leading-relaxed mb-6">Ogni camper del nostro stock viene sanificato e consegnato con 12 mesi di garanzia completa su motore, utenze e cellula, estendibile fino a 36 mesi.</p>
+                    <p class="text-lg font-nunito leading-relaxed">Il nostro staff è a tua disposizione anche dopo la vendita per consigliarti sull'uso e sulla manutenzione del veicolo.</p>
+                    <div class="mt-8 grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-5xl font-poppins font-bold text-accent mb-2">12</div>
+                            <div class="text-sm font-nunito">Mesi garanzia inclusa</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-5xl font-poppins font-bold text-accent mb-2">36</div>
+                            <div class="text-sm font-nunito">Mesi garanzia estesa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recensioni" class="py-20 bg-secondary">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-4">Recensioni</h2>
+                <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-textcolor font-nunito max-w-3xl mx-auto">Le parole dei nostri clienti sono la nostra migliore presentazione. Centinaia di persone ci hanno scelto per acquistare o vendere il proprio camper, lasciando recensioni entusiaste su Google e Facebook.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent text-2xl">★★★★★</div>
+                    </div>
+                    <p class="text-textcolor font-nunito italic mb-4">"Professionalità e trasparenza eccezionali. Ho venduto il mio camper in pochissimo tempo e con grande soddisfazione. Consiglio vivamente!"</p>
+                    <p class="text-primary font-poppins font-semibold">— Marco R.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent text-2xl">★★★★★</div>
+                    </div>
+                    <p class="text-textcolor font-nunito italic mb-4">"Abbiamo acquistato il nostro primo camper da loro e siamo stati seguiti in ogni fase. Personale competente e disponibile anche dopo la vendita."</p>
+                    <p class="text-primary font-poppins font-semibold">— Laura e Paolo</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent text-2xl">★★★★★</div>
+                    </div>
+                    <p class="text-textcolor font-nunito italic mb-4">"Serietà e onestà rari da trovare. Il camper che ho acquistato è esattamente come descritto. Grazie Camper Rent Novara!"</p>
+                    <p class="text-primary font-poppins font-semibold">— Giuseppe T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 bg-bgwhite">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-4">Contatti</h2>
+                <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-textcolor font-nunito max-w-3xl mx-auto">Siamo a Novara e pronti ad accoglierti. Chiamaci, scrivici o vieni a trovarci: ti aiuteremo a trovare la soluzione giusta per le tue avventure in camper.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <img src="https://scontent-iad3-2.cdninstagram.com/v/t51.82787-15/529842324_18170334391351181_6217542193706429591_n.jpg" alt="Contatti Camper Rent Novara" class="rounded-lg shadow-2xl w-full mb-8">
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="bg-accent text-white p-3 rounded-full mr-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 font-nunito">Telefono</p>
+                                <a href="tel:0321496467" class="text-xl font-poppins font-bold text-primary hover:text-accent transition-colors">0321 496467</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-accent text-white p-3 rounded-full mr-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 font-nunito">Mobile</p>
+                                <a href="tel:3097825465" class="text-xl font-poppins font-bold text-primary hover:text-accent transition-colors">309 782 5465</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-accent text-white p-3 rounded-full mr-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600 font-nunito">Sito web</p>
+                                <a href="https://www.camperrentnovara.com" target="_blank" class="text-xl font-poppins font-bold text-primary hover:text-accent transition-colors">www.camperrentnovara.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <form class="bg-secondary p-8 rounded-lg shadow-lg">
+                        <div class="mb-6">
+                            <label class="block text-primary font-poppins font-semibold mb-2" for="nome">Nome</label>
+                            <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent font-nunito" type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-primary font-poppins font-semibold mb-2" for="email">Email</label>
+                            <input class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent font-nunito" type="email" id="email" name="email" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-primary font-poppins font-semibold mb-2" for="messaggio">Messaggio</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent font-nunito" id="messaggio" name="messaggio" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent hover:bg-opacity-90 text-white font-poppins font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-lg">Invia messaggio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-poppins font-bold mb-4">Camper Rent Novara</h3>
+                    <p class="font-nunito text-gray-300">La tua libertà su quattro ruote</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-poppins font-semibold mb-4">Contatti</h4>
+                    <p class="font-nunito text-gray-300 mb-2">Tel: <a href="tel:0321496467" class="hover:text-accent transition-colors">0321 496467</a></p>
+                    <p class="font-nunito text-gray-300 mb-2">Mobile: <a href="tel:3097825465" class="hover:text-accent transition-colors">309 782 5465</a></p>
+                    <p class="font-nunito text-gray-300">Web: <a href="https://www.camperrentnovara.com" target="_blank" class="hover:text-accent transition-colors">www.camperrentnovara.com</a></p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-poppins font-semibold mb-4">Servizi</h4>
+                    <ul class="space-y-2 font-nunito text-gray-300">
+                        <li><a href="#acquisto" class="hover:text-accent transition-colors">Acquisto camper</a></li>
+                        <li><a href="#vendita" class="hover:text-accent transition-colors">Vendita camper</a></li>
+                        <li><a href="#garanzia" class="hover:text-accent transition-colors">Garanzia e assistenza</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="font-nunito text-gray-400 text-sm">© 2025 Camper Rent Novara - Tutti i diritti riservati</p>
+                <p class="font-nunito text-gray-500 text-xs mt-4">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-accent hover:underline">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileMenu.classList.remove('active');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
