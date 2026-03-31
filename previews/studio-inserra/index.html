@@ -14,15 +14,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#8B2222',
+                        primary: '#8B2E2E',
                         secondary: '#FFFFFF',
-                        accent: '#A63030',
-                        background: '#FFFFFF',
-                        textcolor: '#2C2C2C'
+                        accent: '#A63232',
+                        bgColor: '#FFFFFF',
+                        textColor: '#2C1A1A'
                     },
                     fontFamily: {
-                        heading: ['Libre Baskerville', 'serif'],
-                        body: ['Source Sans Pro', 'sans-serif']
+                        'heading': ['Libre Baskerville', 'serif'],
+                        'body': ['Source Sans Pro', 'sans-serif']
                     }
                 }
             }
@@ -36,93 +36,202 @@
         }
         body {
             font-family: 'Source Sans Pro', sans-serif;
-            color: #2C2C2C;
+            color: #2C1A1A;
             overflow-x: hidden;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Libre Baskerville', serif;
         }
-        .navbar-scrolled {
-            background: rgba(255, 255, 255, 0.98) !important;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
         .hero-section {
             position: relative;
-            height: 100vh;
-            min-height: 600px;
+            min-height: 100vh;
             background: url("https://www.studioinserra.it/wp-content/uploads/2017/10/Dr-Francesca-Inserra-lavoro-poltrona-5_7.jpg") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
         }
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
         }
         .hero-content {
             position: relative;
             z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 900px;
             animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
         }
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        .hero-content {
-            transform: translateY(30px);
-        }
-        .geometric-line {
+        .hero-line {
             position: absolute;
             height: 1px;
             width: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            animation: slideLine linear infinite;
+            z-index: 2;
         }
         @keyframes slideLine {
-            from { left: -60%; }
-            to { left: 110%; }
+            from {
+                left: -60%;
+            }
+            to {
+                left: 110%;
+            }
         }
-        .line-1 { top: 15%; animation-duration: 12s; animation-delay: 0s; }
-        .line-2 { top: 35%; animation-duration: 9s; animation-delay: 2s; }
-        .line-3 { top: 55%; animation-duration: 14s; animation-delay: 1s; }
-        .line-4 { top: 75%; animation-duration: 10s; animation-delay: 3s; }
-        .line-5 { top: 90%; animation-duration: 7s; animation-delay: 1.5s; }
+        .line1 {
+            top: 15%;
+            animation: slideLine 10s linear infinite;
+            animation-delay: 0s;
+        }
+        .line2 {
+            top: 35%;
+            animation: slideLine 14s linear infinite;
+            animation-delay: 2s;
+        }
+        .line3 {
+            top: 55%;
+            animation: slideLine 9s linear infinite;
+            animation-delay: 4s;
+        }
+        .line4 {
+            top: 75%;
+            animation: slideLine 12s linear infinite;
+            animation-delay: 1s;
+        }
+        .line5 {
+            top: 90%;
+            animation: slideLine 11s linear infinite;
+            animation-delay: 5s;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(139, 46, 46, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .navbar.transparent {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
         .card-hover {
             transition: all 0.3s ease;
         }
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(139, 34, 34, 0.15);
-        }
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        .mobile-menu.active {
-            max-height: 500px;
+            box-shadow: 0 20px 40px rgba(166, 50, 50, 0.2);
         }
         .btn-primary {
-            background: #8B2222;
+            background: #8B2E2E;
             color: white;
-            padding: 14px 32px;
-            border-radius: 6px;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
             text-decoration: none;
+            border: 2px solid #8B2E2E;
         }
         .btn-primary:hover {
-            background: #A63030;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(139, 34, 34, 0.3);
+            background: #A63232;
+            border-color: #A63232;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 46, 46, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #8B2E2E;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: 2px solid #8B2E2E;
+        }
+        .btn-secondary:hover {
+            background: #8B2E2E;
+            color: white;
+            transform: scale(1.05);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(139, 46, 46, 0.98);
+            z-index: 999;
+            padding: 6rem 2rem 2rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            transform: translateX(0);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .desktop-menu {
+                display: none;
+            }
         }
         .section-title {
-            font-size: 2.5rem;
-            color: #8B2222;
-            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #8B2E2E;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
@@ -133,332 +242,300 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: #A63030;
+            background: #A63232;
         }
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: rgba(44, 26, 26, 0.3);
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .watermark a {
+            color: rgba(139, 46, 46, 0.5);
+            text-decoration: none;
+            pointer-events: all;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background: transparent;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="#home" class="flex items-center">
-                        <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
-                            <text x="10" y="32" font-family="Libre Baskerville, serif" font-size="22" font-weight="700" fill="#8B2222">Studio Inserra</text>
-                        </svg>
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="text-white hover:text-accent transition font-body font-semibold">Home</a>
-                    <a href="#studio" class="text-white hover:text-accent transition font-body font-semibold">Studio</a>
-                    <a href="#ortodonzia" class="text-white hover:text-accent transition font-body font-semibold">Ortodonzia</a>
-                    <a href="#pedodonzia" class="text-white hover:text-accent transition font-body font-semibold">Pedodonzia</a>
-                    <a href="#trattamenti" class="text-white hover:text-accent transition font-body font-semibold">Trattamenti</a>
-                    <a href="#convenzioni" class="text-white hover:text-accent transition font-body font-semibold">Convenzioni</a>
-                    <a href="#contatti" class="btn-primary">Contatti</a>
-                </div>
 
-                <!-- Mobile Hamburger -->
-                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+    <div class="watermark">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+    </div>
+
+    <nav class="navbar transparent">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://www.studioinserra.it/wp-content/uploads/2025/06/rassegnaghibli-960x960-1-480x480.jpg" alt="Studio Inserra" style="max-height:60px; object-fit:contain;">
+            </div>
+            
+            <div class="desktop-menu hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link text-white font-body font-semibold">Home</a>
+                <a href="#studio" class="nav-link text-white font-body font-semibold">Studio</a>
+                <a href="#ortodonzia" class="nav-link text-white font-body font-semibold">Ortodonzia</a>
+                <a href="#pedodonzia" class="nav-link text-white font-body font-semibold">Pedodonzia</a>
+                <a href="#trattamenti" class="nav-link text-white font-body font-semibold">Trattamenti</a>
+                <a href="#convenzioni" class="nav-link text-white font-body font-semibold">Convenzioni</a>
+                <a href="#contatti" class="nav-link text-white font-body font-semibold">Contatti</a>
             </div>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="mobile-menu lg:hidden bg-white">
-                <div class="px-2 pt-2 pb-3 space-y-1">
-                    <a href="#home" class="block px-3 py-2 text-textcolor hover:text-primary font-semibold">Home</a>
-                    <a href="#studio" class="block px-3 py-2 text-textcolor hover:text-primary font-semibold">Studio</a>
-                    <a href="#ortodonzia" class="block px-3 py-2 text-textcolor hover:text-primary font-semibold">Ortodonzia</a>
-                    <a href="#pedodonzia" class="block px-3 py-2 text-textcolor hover:text-primary font-semibold">Pedodonzia</a>
-                    <a href="#trattamenti" class="block px-3 py-2 text-textcolor hover:text-primary font-semibold">Trattamenti</a>
-                    <a href="#convenzioni" class="block px-3 py-2 text-textcolor hover:text-primary font-semibold">Convenzioni</a>
-                    <a href="#contatti" class="block px-3 py-2 text-primary hover:text-accent font-bold">Contatti</a>
-                </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Home</a>
+        <a href="#studio" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Studio</a>
+        <a href="#ortodonzia" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Ortodonzia</a>
+        <a href="#pedodonzia" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Pedodonzia</a>
+        <a href="#trattamenti" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Trattamenti</a>
+        <a href="#convenzioni" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Convenzioni</a>
+        <a href="#contatti" class="text-white text-2xl font-body font-semibold mb-6" onclick="toggleMenu()">Contatti</a>
+    </div>
+
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
-        <div class="geometric-line line-1"></div>
-        <div class="geometric-line line-2"></div>
-        <div class="geometric-line line-3"></div>
-        <div class="geometric-line line-4"></div>
-        <div class="geometric-line line-5"></div>
+        <div class="hero-line line1"></div>
+        <div class="hero-line line2"></div>
+        <div class="hero-line line3"></div>
+        <div class="hero-line line4"></div>
+        <div class="hero-line line5"></div>
         
-        <div class="hero-content absolute inset-0 flex items-center justify-center text-center px-4">
-            <div class="max-w-4xl">
-                <h1 class="text-5xl md:text-7xl font-heading font-bold text-white mb-6">
-                    Il tuo sorriso inizia qui
-                </h1>
-                <p class="text-xl md:text-2xl text-white mb-8 font-body font-light leading-relaxed">
-                    Cure odontoiatriche personalizzate per tutta la famiglia, con passione e professionalità. Sedi a Lentini e Augusta.
-                </p>
-                <a href="#contatti" class="btn-primary text-lg">Prenota una visita</a>
-            </div>
+        <div class="hero-content">
+            <h1 class="text-5xl md:text-7xl font-heading font-bold mb-6">Il tuo sorriso inizia qui</h1>
+            <p class="text-xl md:text-2xl font-body mb-8 leading-relaxed">Ortodonzia, pedodonzia e odontoiatria estetica a Lentini e Augusta. Professionisti al tuo fianco per la salute e la bellezza del tuo sorriso.</p>
+            <a href="#contatti" class="btn-primary text-lg">Prenota una visita</a>
         </div>
     </section>
 
-    <!-- Chi Siamo -->
-    <section id="studio" class="py-20 bg-background">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="section-title font-heading">Chi siamo</h2>
-                    <p class="text-lg text-textcolor leading-relaxed mb-6 mt-8">
-                        Studio Inserra è uno studio odontoiatrico con sedi a Lentini e Augusta, in provincia di Siracusa. Ogni anno oltre 1000 pazienti scelgono di affidarsi a noi per migliorare il loro sorriso e prendersi cura della salute della propria bocca.
-                    </p>
-                    <p class="text-lg text-textcolor leading-relaxed">
-                        Il nostro team lavora con dedizione, competenza e un approccio attento alle esigenze di ogni singolo paziente, dai più piccoli agli adulti.
-                    </p>
-                </div>
-                <div data-aos="fade-left">
-                    <img src="https://www.studioinserra.it/wp-content/uploads/2025/06/rassegnaghibli-960x960-1-480x480.jpg" alt="Studio Inserra" class="rounded-lg shadow-xl w-full object-cover h-96">
+    <section id="studio" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="section-title font-heading">Chi siamo</h2>
+                        <p class="text-lg font-body text-textColor leading-relaxed mt-8 mb-6">
+                            Studio Inserra è uno studio odontoiatrico con sedi a Lentini e Augusta, guidato dal dottor Franco Inserra. Ogni anno più di 1000 pazienti scelgono di affidarsi a noi per migliorare il loro sorriso e prendersi cura della propria salute orale.
+                        </p>
+                        <p class="text-lg font-body text-textColor leading-relaxed mb-8">
+                            Lavoriamo con passione, competenza e attenzione alla persona, offrendo un ambiente accogliente e tecnologie all'avanguardia.
+                        </p>
+                        <a href="#contatti" class="btn-secondary">Scopri di più</a>
+                    </div>
+                    <div data-aos="fade-left">
+                        <img src="https://www.studioinserra.it/wp-content/uploads/2017/10/Dr-Francesca-Inserra-lavoro-poltrona-5_7.jpg" alt="Studio Inserra" class="rounded-lg shadow-2xl w-full h-auto">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servizi Grid -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-20" style="background: linear-gradient(135deg, #f8f4f4 0%, #ffffff 100%);">
+        <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="section-title font-heading inline-block">I nostri servizi</h2>
-                <p class="text-lg text-textcolor mt-8 max-w-2xl mx-auto">
-                    Trattiamo ogni paziente con cura e professionalità, offrendo soluzioni personalizzate per ogni esigenza
-                </p>
+                <p class="text-lg font-body text-textColor mt-8 max-w-2xl mx-auto">Offriamo una gamma completa di trattamenti odontoiatrici per tutta la famiglia, con particolare attenzione all'ortodonzia e alla pedodonzia.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Ortodonzia -->
-                <div id="ortodonzia" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="0">
-                    <img src="https://www.studioinserra.it/wp-content/uploads/2019/08/Ortodonzia_wide-480x270.png" alt="Ortodonzia" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading text-primary mb-3">Ortodonzia</h3>
-                        <p class="text-textcolor leading-relaxed">
-                            Ci dedichiamo con passione e professionalità alla creazione di sorrisi armoniosi. Correggiamo le malocclusioni nei bambini e negli adulti, sia con tecnica tradizionale che con allineatori invisibili, per un risultato estetico e funzionale duraturo.
-                        </p>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
+                    <h3 id="ortodonzia" class="text-2xl font-heading font-bold text-primary mb-4">Ortodonzia</h3>
+                    <p class="font-body text-textColor leading-relaxed">
+                        Ci dedichiamo con passione e professionalità alla creazione di sorrisi armoniosi. Correggiamo le malocclusioni nei bambini e negli adulti sia con tecnica tradizionale che con allineatori invisibili, per un risultato efficace e discreto.
+                    </p>
                 </div>
 
-                <!-- Pedodonzia -->
-                <div id="pedodonzia" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://www.studioinserra.it/wp-content/uploads/2024/08/Agenesia-tre-quarti-480x480.jpg" alt="Pedodonzia" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading text-primary mb-3">Pedodonzia</h3>
-                        <p class="text-textcolor leading-relaxed">
-                            Ci prendiamo cura dei più piccoli con un approccio ludico e orientato ai bambini. Diamo fondamentale importanza alla prevenzione e all'igiene orale fin dalla prima infanzia, monitorando la crescita e intervenendo con delicatezza e attenzione.
-                        </p>
+                <div class="bg-white rounded-lg shadow-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
                     </div>
+                    <h3 id="pedodonzia" class="text-2xl font-heading font-bold text-primary mb-4">Pedodonzia</h3>
+                    <p class="font-body text-textColor leading-relaxed">
+                        Ci prendiamo cura dei più piccoli con un approccio ludico e orientato ai bambini. Diamo fondamentale importanza alla prevenzione e all'igiene orale, curiamo i denti da latte e monitoriamo la crescita dentale fin dai primi anni di vita.
+                    </p>
                 </div>
 
-                <!-- Trattamenti -->
-                <div id="trattamenti" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://www.studioinserra.it/wp-content/uploads/2017/10/Dr-Francesca-Inserra-lavoro-poltrona-5_7.jpg" alt="Trattamenti" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading text-primary mb-3">Trattamenti</h3>
-                        <p class="text-textcolor leading-relaxed">
-                            Offriamo una gamma completa di trattamenti odontoiatrici: dall'odontoiatria estetica alle faccette in ceramica, dall'implantologia alla riabilitazione protesica. Ogni trattamento è pensato per garantire salute, funzionalità ed estetica del sorriso.
-                        </p>
+                <div class="bg-white rounded-lg shadow-lg p-8 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
                     </div>
+                    <h3 id="trattamenti" class="text-2xl font-heading font-bold text-primary mb-4">Trattamenti</h3>
+                    <p class="font-body text-textColor leading-relaxed">
+                        Oltre a ortodonzia e pedodonzia, offriamo una gamma completa di trattamenti: odontoiatria estetica, faccette in ceramica, implantologia e riabilitazione protesica. Ogni trattamento è pensato per restituirti un sorriso sano e bello.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Convenzioni -->
-    <section id="convenzioni" class="py-20 bg-background">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="convenzioni" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
                 <h2 class="section-title font-heading inline-block">Convenzioni</h2>
-                <p class="text-lg text-textcolor leading-relaxed mt-8">
-                    Studio Inserra è convenzionato con numerose compagnie di assicurazione, mutue, fondi sanitari integrativi e casse di previdenza di categoria. Le pratiche burocratiche vengono gestite direttamente dai nostri addetti di segreteria.
+                <p class="text-lg font-body text-textColor leading-relaxed mt-8 mb-6">
+                    Studio Inserra è convenzionato con numerose compagnie assicurative, mutue, fondi sanitari integrativi e casse di previdenza di categoria. Le pratiche burocratiche vengono gestite direttamente dal nostro personale di segreteria per rendere tutto più semplice per te.
                 </p>
-                <p class="text-lg text-textcolor leading-relaxed mt-4">
-                    Siamo inoltre disponibili a stipulare convenzioni aziendali territoriali per aziende, enti e associazioni del territorio di Lentini e Augusta.
+                <p class="text-lg font-body text-textColor leading-relaxed mb-8">
+                    Siamo inoltre disponibili a stipulare convenzioni aziendali territoriali per aziende, enti e associazioni della zona.
                 </p>
+                <a href="#contatti" class="btn-primary">Richiedi informazioni</a>
             </div>
         </div>
     </section>
 
-    <!-- Le Nostre Sedi -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-20" style="background: linear-gradient(135deg, #f8f4f4 0%, #ffffff 100%);">
+        <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="section-title font-heading inline-block">Le nostre sedi</h2>
+                <p class="text-lg font-body text-textColor mt-8">Siamo presenti con due studi moderni e accoglienti</p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
-                    <img src="https://www.studioinserra.it/wp-content/uploads/2024/08/Inserra-sede_Augusta-428x600px.jpg" alt="Sede Studio Inserra" class="rounded-lg shadow-xl w-full object-cover h-96">
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://www.studioinserra.it/wp-content/uploads/2024/08/Inserra-sede_Augusta-428x600px.jpg" alt="Sede Lentini" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-4">Lentini</h3>
+                        <p class="font-body text-textColor mb-2"><strong>Indirizzo:</strong> Via Vittorio Emanuele III n.98</p>
+                        <p class="font-body text-textColor mb-2"><strong>Telefono:</strong> <a href="tel:0957835360" class="text-accent hover:underline">095 7835360</a></p>
+                        <p class="font-body text-textColor mb-4"><strong>Email:</strong> <a href="mailto:lentini@studioinserra.it" class="text-accent hover:underline">lentini@studioinserra.it</a></p>
+                        <p class="font-body text-textColor text-sm">Orari flessibili per venire incontro alle tue esigenze</p>
+                    </div>
                 </div>
-                <div data-aos="fade-left">
-                    <p class="text-lg text-textcolor leading-relaxed mb-6">
-                        Siamo presenti a Lentini, in Via Vittorio Emanuele III n. 98, e ad Augusta. Entrambe le sedi sono attrezzate con tecnologie moderne e accolgono i pazienti in un ambiente confortevole e professionale.
-                    </p>
-                    <p class="text-lg text-textcolor leading-relaxed mb-8">
-                        Contattaci per informazioni e prenotazioni: saremo felici di aiutarti.
-                    </p>
-                    <a href="#contatti" class="btn-primary">Scopri le sedi</a>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.studioinserra.it/wp-content/uploads/2017/10/Dr-Francesca-Inserra-lavoro-poltrona-5_7.jpg" alt="Sede Augusta" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-4">Augusta</h3>
+                        <p class="font-body text-textColor mb-4">La nostra seconda sede ad Augusta offre gli stessi standard di qualità e professionalità dello studio di Lentini.</p>
+                        <p class="font-body text-textColor mb-4"><strong>Contattaci per informazioni e appuntamenti</strong></p>
+                        <p class="font-body text-textColor text-sm">Orari flessibili per venire incontro alle tue esigenze</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contatti -->
-    <section id="contatti" class="py-20 bg-background">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title font-heading inline-block">Contatti</h2>
-                <p class="text-lg text-textcolor mt-8">Prenota la tua visita o richiedi informazioni</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Info Contatti -->
-                <div data-aos="fade-right">
-                    <div class="bg-gray-50 p-8 rounded-lg mb-6">
-                        <h3 class="text-2xl font-heading text-primary mb-4">Sede di Lentini</h3>
-                        <p class="text-textcolor mb-2"><strong>Indirizzo:</strong> Via Vittorio Emanuele III n. 98, 96016 Lentini (SR)</p>
-                        <p class="text-textcolor mb-2">
-                            <strong>Telefono:</strong> 
-                            <a href="tel:0957835360" class="text-primary hover:text-accent font-semibold">095 7835360</a>
-                        </p>
-                        <p class="text-textcolor mb-4">
-                            <strong>Email:</strong> 
-                            <a href="mailto:lentini@studioinserra.it" class="text-primary hover:text-accent">lentini@studioinserra.it</a>
-                        </p>
-                        <p class="text-textcolor text-sm"><strong>Orari:</strong></p>
-                        <p class="text-textcolor text-sm">Lunedì, Martedì, Mercoledì e Venerdì: 08:30–13:30 / 14:00–19:00</p>
-                        <p class="text-textcolor text-sm">Giovedì: 08:30–13:30 / 14:00–17:00</p>
-                    </div>
-                    <div class="bg-gray-50 p-8 rounded-lg">
-                        <h3 class="text-2xl font-heading text-primary mb-4">Sede di Augusta</h3>
-                        <p class="text-textcolor">Visita anche la nostra sede di Augusta per ulteriori informazioni e servizi.</p>
-                    </div>
+    <section id="contatti" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">Contattaci</h2>
+                    <p class="text-xl font-body text-white">Vieni a conoscerci nelle nostre sedi di Lentini e Augusta. Siamo a tua disposizione per visite, consulenze e prenotazioni.</p>
                 </div>
 
-                <!-- Form Contatti -->
-                <div data-aos="fade-left">
-                    <form class="bg-white p-8 rounded-lg shadow-lg">
-                        <div class="mb-6">
-                            <label class="block text-textcolor font-semibold mb-2">Nome e Cognome</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition" placeholder="Il tuo nome">
+                <div class="grid md:grid-cols-2 gap-12 items-start">
+                    <div data-aos="fade-right">
+                        <div class="bg-white rounded-lg shadow-xl p-8">
+                            <h3 class="text-2xl font-heading font-bold text-primary mb-6">Prenota una visita</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block font-body font-semibold text-textColor mb-2">Nome completo</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Il tuo nome">
+                                </div>
+                                <div>
+                                    <label class="block font-body font-semibold text-textColor mb-2">Email</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="la.tua@email.it">
+                                </div>
+                                <div>
+                                    <label class="block font-body font-semibold text-textColor mb-2">Messaggio</label>
+                                    <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Come possiamo aiutarti?"></textarea>
+                                </div>
+                                <button type="submit" class="w-full btn-primary text-center">Invia richiesta</button>
+                            </form>
                         </div>
-                        <div class="mb-6">
-                            <label class="block text-textcolor font-semibold mb-2">Email</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition" placeholder="tua@email.it">
+                    </div>
+
+                    <div data-aos="fade-left">
+                        <div class="space-y-6">
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
+                                <h4 class="font-heading text-xl font-bold text-white mb-3">Telefono</h4>
+                                <a href="tel:0957835360" class="text-2xl font-body font-bold text-white hover:text-gray-200 transition">095 7835360</a>
+                            </div>
+
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
+                                <h4 class="font-heading text-xl font-bold text-white mb-3">Email Lentini</h4>
+                                <a href="mailto:lentini@studioinserra.it" class="text-lg font-body text-white hover:text-gray-200 transition">lentini@studioinserra.it</a>
+                            </div>
+
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
+                                <h4 class="font-heading text-xl font-bold text-white mb-3">Indirizzo Lentini</h4>
+                                <p class="text-lg font-body text-white">Via Vittorio Emanuele III n.98<br>Lentini</p>
+                            </div>
+
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6">
+                                <h4 class="font-heading text-xl font-bold text-white mb-3">Orari</h4>
+                                <p class="text-lg font-body text-white">Orari flessibili per venire incontro alle tue esigenze. Contattaci per fissare un appuntamento.</p>
+                            </div>
                         </div>
-                        <div class="mb-6">
-                            <label class="block text-textcolor font-semibold mb-2">Messaggio</label>
-                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary transition" placeholder="Come possiamo aiutarti?"></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full text-center">Invia Messaggio</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8">
+    <footer class="bg-textColor text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div>
-                    <h4 class="font-heading text-xl mb-4">Studio Inserra</h4>
-                    <p class="text-gray-200 leading-relaxed">Il tuo sorriso, la nostra passione. Cure odontoiatriche di qualità a Lentini e Augusta.</p>
+                    <img src="https://www.studioinserra.it/wp-content/uploads/2025/06/rassegnaghibli-960x960-1-480x480.jpg" alt="Studio Inserra" style="max-height:50px; object-fit:contain; margin-bottom: 1rem;">
+                    <p class="font-body text-gray-300">Il tuo sorriso, la nostra passione</p>
                 </div>
                 <div>
-                    <h4 class="font-heading text-xl mb-4">Contatti</h4>
-                    <p class="text-gray-200 mb-2">Tel: <a href="tel:0957835360" class="hover:text-accent">095 7835360</a></p>
-                    <p class="text-gray-200">Email: <a href="mailto:lentini@studioinserra.it" class="hover:text-accent">lentini@studioinserra.it</a></p>
+                    <h4 class="font-heading text-lg font-bold mb-4">Contatti</h4>
+                    <p class="font-body text-gray-300 mb-2">Tel: <a href="tel:0957835360" class="hover:text-white">095 7835360</a></p>
+                    <p class="font-body text-gray-300">Email: <a href="mailto:lentini@studioinserra.it" class="hover:text-white">lentini@studioinserra.it</a></p>
                 </div>
                 <div>
-                    <h4 class="font-heading text-xl mb-4">Sedi</h4>
-                    <p class="text-gray-200 mb-2">Lentini: Via Vittorio Emanuele III n. 98</p>
-                    <p class="text-gray-200">Augusta</p>
+                    <h4 class="font-heading text-lg font-bold mb-4">Sedi</h4>
+                    <p class="font-body text-gray-300 mb-2">Lentini - Via Vittorio Emanuele III n.98</p>
+                    <p class="font-body text-gray-300">Augusta</p>
                 </div>
             </div>
-            <div class="border-t border-gray-400 mt-8 pt-8 text-center">
-                <p class="text-gray-200 text-sm">&copy; 2025 Studio Inserra. Tutti i diritti riservati.</p>
-                <p class="text-gray-300 text-xs mt-2">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-accent">meravigliä Lab</a> · meraviglialab.com</p>
+            <div class="text-center mt-12 pt-8 border-t border-gray-700">
+                <p class="font-body text-gray-400 text-sm">© 2025 Studio Inserra. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS Init
         AOS.init({
             duration: 800,
             once: true
         });
 
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                // Change logo and menu colors for scrolled state
-                const links = navbar.querySelectorAll('a:not(.btn-primary)');
-                links.forEach(link => {
-                    if (!link.classList.contains('btn-primary')) {
-                        link.classList.remove('text-white');
-                        link.classList.add('text-textcolor');
-                    }
-                });
-                const svg = navbar.querySelector('svg text');
-                if (svg) svg.setAttribute('fill', '#8B2222');
-                const hamburger = navbar.querySelector('#mobile-menu-btn');
-                if (hamburger) hamburger.classList.replace('text-white', 'text-textcolor');
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.remove('transparent');
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('navbar-scrolled');
-                navbar.style.background = 'transparent';
-                const links = navbar.querySelectorAll('a:not(.btn-primary)');
-                links.forEach(link => {
-                    if (!link.classList.contains('btn-primary')) {
-                        link.classList.remove('text-textcolor');
-                        link.classList.add('text-white');
-                    }
-                });
-                const svg = navbar.querySelector('svg text');
-                if (svg) svg.setAttribute('fill', '#8B2222');
-                const hamburger = navbar.querySelector('#mobile-menu-btn');
-                if (hamburger) hamburger.classList.replace('text-textcolor', 'text-white');
+                navbar.classList.remove('scrolled');
+                navbar.classList.add('transparent');
             }
         });
 
-        // Mobile Menu Toggle
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
 
-        // Close mobile menu on link click
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-
-        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -472,5 +549,6 @@
             });
         });
     </script>
+
 </body>
 </html>
