@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hintime Point Maison 21 | La tua bellezza, la nostra expertise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C2C3A',
+                        secondary: '#C9A97A',
+                        accent: '#E8C9A0',
+                        background: '#FAF8F5',
+                        textColor: '#2C2C3A'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #2C2C3A;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background: url("https://hintimepointmaison21.it/wp-content/uploads/2023/06/26-1024x751.png") center/cover no-repeat;
+            overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content {
+            transform: translateY(30px);
+        }
+        .sliding-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .line-1 { top: 20%; animation-duration: 9s; animation-delay: 0s; }
+        .line-2 { top: 35%; animation-duration: 12s; animation-delay: 2s; }
+        .line-3 { top: 50%; animation-duration: 7s; animation-delay: 4s; }
+        .line-4 { top: 65%; animation-duration: 14s; animation-delay: 1s; }
+        .line-5 { top: 80%; animation-duration: 10s; animation-delay: 3s; }
+        .navbar-scrolled {
+            background: rgba(44, 44, 58, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(201, 169, 122, 0.25);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .section-bg {
+            background: linear-gradient(135deg, #FAF8F5 0%, #F5F0E8 100%);
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 11px;
+            color: rgba(44, 44, 58, 0.4);
+            font-family: 'Jost', sans-serif;
+            z-index: 9999;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://hintimepointmaison21.it/wp-content/uploads/2024/03/logo_ht_white-2-1.png" alt="Hintime Point Maison 21" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition font-body font-light">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition font-body font-light">Chi siamo</a>
+                    <a href="#viso" class="text-white hover:text-accent transition font-body font-light">Trattamenti Viso</a>
+                    <a href="#corpo" class="text-white hover:text-accent transition font-body font-light">Trattamenti Corpo</a>
+                    <a href="#epilazione" class="text-white hover:text-accent transition font-body font-light">Epilazione</a>
+                    <a href="#wellness" class="text-white hover:text-accent transition font-body font-light">Wellness EMS</a>
+                    <a href="#benessere" class="text-white hover:text-accent transition font-body font-light">Area Benessere</a>
+                    <a href="#contatti" class="bg-secondary hover:bg-accent text-white px-6 py-2 rounded-full transition font-body font-medium">Contatti</a>
+                </div>
+                <button id="mobile-menu-btn" class="lg:hidden text-white">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary z-50 lg:hidden shadow-2xl">
+        <div class="flex justify-end p-6">
+            <button id="close-menu-btn" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6 px-6">
+            <a href="#home" class="text-white hover:text-accent transition font-body mobile-link">Home</a>
+            <a href="#chi-siamo" class="text-white hover:text-accent transition font-body mobile-link">Chi siamo</a>
+            <a href="#viso" class="text-white hover:text-accent transition font-body mobile-link">Trattamenti Viso</a>
+            <a href="#corpo" class="text-white hover:text-accent transition font-body mobile-link">Trattamenti Corpo</a>
+            <a href="#epilazione" class="text-white hover:text-accent transition font-body mobile-link">Epilazione</a>
+            <a href="#wellness" class="text-white hover:text-accent transition font-body mobile-link">Wellness EMS</a>
+            <a href="#benessere" class="text-white hover:text-accent transition font-body mobile-link">Area Benessere</a>
+            <a href="#contatti" class="text-white hover:text-accent transition font-body mobile-link">Contatti</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="sliding-line line-1"></div>
+        <div class="sliding-line line-2"></div>
+        <div class="sliding-line line-3"></div>
+        <div class="sliding-line line-4"></div>
+        <div class="sliding-line line-5"></div>
+        <div class="hero-content h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-heading font-light text-white mb-6 leading-tight">Il tuo percorso di bellezza inizia qui</h1>
+                <p class="text-xl md:text-2xl text-white/90 font-body font-light mb-10 leading-relaxed">Trattamenti personalizzati su misura per la tua pelle, guidati da Personal Beauty Trainer certificate e tecnologie estetiche di ultima generazione.</p>
+                <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white px-10 py-4 rounded-full text-lg font-body font-medium transition transform hover:scale-105 shadow-lg">Prenota il tuo trattamento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://hintimepointmaison21.it/wp-content/uploads/2024/12/IETA-pop-up-3.jpg" alt="Hintime Point Maison 21" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        <span class="text-secondary font-heading text-xl">Hintime Point Maison 21</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">Chi siamo</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Hintime Point Maison 21 è un centro estetico polispecialistico situato a Treviglio, pensato per chi desidera un approccio alla bellezza che va oltre il tradizionale. Le nostre Personal Beauty Trainer, formate presso l'esclusiva Hintime Academy, ti accompagnano in un percorso di cura personalizzato basato sul tuo genotipo, cronotipo e fototipo.</p>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed">Non siamo un semplice centro estetico: siamo il tuo punto di riferimento per la salute e la bellezza della pelle, tutto l'anno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I Nostri Trattamenti Overview -->
+    <section class="py-24 section-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-4">I nostri trattamenti</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-primary/80 font-body max-w-3xl mx-auto leading-relaxed">Offriamo una gamma completa di trattamenti studiati per ogni esigenza: trattamenti viso personalizzati sull'analisi genetica della pelle, percorsi corpo per ridurre gli inestetismi, epilazione dalla ceretta tradizionale al laser permanente, sessioni Hintime Wellness con tecnologia EMS da soli 20 minuti, estetica di base per ciglia e sopracciglia, e un'area benessere dedicata al relax polisensoriale totale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trattamenti Viso -->
+    <section id="viso" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 lg:order-1">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-secondary font-heading text-xl">Viso</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">Trattamenti Viso</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">I nostri trattamenti viso sono pensati per ogni tipologia di pelle e personalizzati in base alle caratteristiche individuali, al grado di invecchiamento cutaneo e alla genetica della pelle.</p>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Il nostro fiore all'occhiello è l'<strong class="text-secondary">Igiene Estetica Trivalente Antietà</strong>: un trattamento innovativo ad azione trivalente su viso, collo e décolleté che combina microdermoabrasione, linfodrenaggio e onda magnetica per risultati visibili sin dalla prima seduta.</p>
+                    <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white px-8 py-3 rounded-full font-body font-medium transition transform hover:scale-105 shadow-md">Scopri di più</a>
+                </div>
+                <div data-aos="fade-left" class="order-1 lg:order-2">
+                    <img src="https://hintimepointmaison21.it/wp-content/uploads/2022/05/AnyConv.com__IGIENE-ESTETICA-min-scaled.webp" alt="Trattamenti Viso" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trattamenti Corpo -->
+    <section id="corpo" class="py-24 section-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://hintimepointmaison21.it/wp-content/uploads/2023/06/banner-boost.png" alt="Trattamenti Corpo" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <span class="text-secondary font-heading text-xl">Corpo</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">Trattamenti Corpo</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Percorsi studiati per trattare diverse tipologie e gradi di inestetismo. Un'analisi attenta delle condizioni della pelle ci permette di identificare le soluzioni più adatte per raggiungere risultati concreti e duraturi.</p>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Ogni trattamento corpo è costruito intorno alle tue esigenze specifiche, per un benessere che si vede e si sente.</p>
+                    <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white px-8 py-3 rounded-full font-body font-medium transition transform hover:scale-105 shadow-md">Richiedi consulenza</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Epilazione -->
+    <section id="epilazione" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 lg:order-1">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        <span class="text-secondary font-heading text-xl">Epilazione</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">Epilazione</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Proponiamo trattamenti di epilazione certificati per ogni esigenza: dalla ceretta tradizionale all'innovativa epilazione laser con tecnologia di ultima generazione, efficace anche sui peli più profondi e chiari.</p>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Un percorso sicuro, indolore e duraturo con un unico obiettivo: regalarti una pelle liscia e luminosa a lungo.</p>
+                    <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white px-8 py-3 rounded-full font-body font-medium transition transform hover:scale-105 shadow-md">Prenota ora</a>
+                </div>
+                <div data-aos="fade-left" class="order-1 lg:order-2">
+                    <img src="https://hintimepointmaison21.it/wp-content/uploads/2022/05/AnyConv.com__LASER-2-min-scaled.webp" alt="Epilazione Laser" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wellness EMS -->
+    <section id="wellness" class="py-24 section-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&q=80" alt="Hintime Wellness EMS" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span class="text-secondary font-heading text-xl">Wellness</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">Hintime Wellness EMS</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">La nostra tecnologia EMS (elettrostimolazione muscolare) è la soluzione innovativa per tornare in forma e recuperare il benessere psicofisico in <strong class="text-secondary">soli 20 minuti a seduta</strong>.</p>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Un allenamento completo e intenso, supervisionato dai nostri esperti, per chi vuole risultati reali rispettando i ritmi della vita moderna.</p>
+                    <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white px-8 py-3 rounded-full font-body font-medium transition transform hover:scale-105 shadow-md">Scopri Wellness EMS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area Benessere -->
+    <section id="benessere" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 lg:order-1">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                        </svg>
+                        <span class="text-secondary font-heading text-xl">Benessere</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">Area Benessere</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Un'esperienza olistica Total Body che combina la cura di sé al relax totale. I nostri trattamenti benessere sono pensati per agire su specifici inestetismi o per il ripristino fisiologico dell'organo pelle.</p>
+                    <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Immersi in un'atmosfera sapientemente studiata per offrire un momento di piacere polisensoriale unico.</p>
+                    <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white px-8 py-3 rounded-full font-body font-medium transition transform hover:scale-105 shadow-md">Prenota relax</a>
+                </div>
+                <div data-aos="fade-left" class="order-1 lg:order-2">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80" alt="Area Benessere" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prodotti -->
+    <section class="py-24 section-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-6">I nostri prodotti</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-8"></div>
+                <p class="text-lg text-primary/80 font-body leading-relaxed mb-6">Utilizziamo esclusivamente linee cosmetiche e ceutical d'avanguardia della casa <strong class="text-secondary">Time Skin Care</strong>, selezionate in base alla genetica e alla tipologia di pelle di ogni cliente.</p>
+                <p class="text-lg text-primary/80 font-body leading-relaxed">Ogni prodotto viene scelto dopo un'attenta analisi individuale, garantendo trattamenti efficaci e rispettosi della tua pelle.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="py-16 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
+            <div class="inline-block bg-secondary px-4 py-2 rounded-full text-white text-sm font-body mb-4">Offerta Nuovi Clienti</div>
+            <h3 class="text-3xl md:text-4xl font-heading font-light text-white mb-4">50% di sconto sul trattamento<br>Igiene Estetica Trivalente Antietà</h3>
+            <p class="text-white/90 font-body text-lg mb-6">La tua prima volta da noi merita un'occasione speciale</p>
+            <a href="#contatti" class="inline-block bg-accent hover:bg-secondary text-white px-10 py-4 rounded-full font-body font-medium transition transform hover:scale-105 shadow-lg">Approfitta dell'offerta</a>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-heading font-light text-primary mb-4">Prenota il tuo appuntamento</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-primary/80 font-body max-w-3xl mx-auto leading-relaxed">Sei pronta a prenderti cura di te? Contattaci per prenotare il tuo trattamento o richiedere una consulenza personalizzata. Siamo disponibili su WhatsApp, Instagram, Facebook o tramite il nostro modulo di contatto. Ti ricontatteremo subito per fissare il tuo appuntamento.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-lg shadow-xl p-8 md:p-12">
+                        <h3 class="text-2xl font-heading font-light text-primary mb-8">Inviaci un messaggio</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-primary font-body mb-2">Nome e Cognome</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="Il tuo nome">
+                            </div>
+                            <div>
+                                <label class="block text-primary font-body mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="la.tua.email@esempio.com">
+                            </div>
+                            <div>
+                                <label class="block text-primary font-body mb-2">Messaggio</label>
+                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="Come possiamo aiutarti?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-secondary hover:bg-accent text-white px-8 py-4 rounded-full font-body font-medium transition transform hover:scale-105 shadow-md">Invia richiesta</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" class="space-y-8">
+                    <div class="bg-white rounded-lg shadow-xl p-8">
+                        <div class="flex items-start mb-6">
+                            <svg class="w-8 h-8 text-secondary mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="text-xl font-heading text-primary mb-2">Indirizzo</h4>
+                                <p class="text-primary/70 font-body">Treviglio (BG)<br>Lombardia, Italia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-xl p-8">
+                        <div class="flex items-start mb-6">
+                            <svg class="w-8 h-8 text-secondary mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="text-xl font-heading text-primary mb-2">Telefono</h4>
+                                <a href="tel:+390000000000" class="text-secondary hover:text-accent font-body transition text-lg">+39 000 000 0000</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-xl p-8">
+                        <div class="flex items-start mb-6">
+                            <svg class="w-8 h-8 text-secondary mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="text-xl font-heading text-primary mb-2">Orari</h4>
+                                <p class="text-primary/70 font-body">Lun - Ven: 9:00 - 19:00<br>Sabato: 9:00 - 18:00<br>Domenica: Chiuso</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-primary rounded-lg shadow-xl p-8 text-center">
+                        <h4 class="text-xl font-heading text-white mb-4">Seguici sui Social</h4>
+                        <div class="flex justify-center space-x-6">
+                            <a href="#" class="text-white hover:text-accent transition transform hover:scale-110">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-white hover:text-accent transition transform hover:scale-110">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-white hover:text-accent transition transform hover:scale-110">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-heading mb-4">Hintime Point Maison 21</h4>
+                    <p class="text-white/70 font-body leading-relaxed">La tua bellezza, la nostra expertise. Centro estetico polispecialistico a Treviglio.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-heading mb-4">Link Rapidi</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="#chi-siamo" class="text-white/70 hover:text-accent transition">Chi siamo</a></li>
+                        <li><a href="#viso" class="text-white/70 hover:text-accent transition">Trattamenti Viso</a></li>
+                        <li><a href="#corpo" class="text-white/70 hover:text-accent transition">Trattamenti Corpo</a></li>
+                        <li><a href="#contatti" class="text-white/70 hover:text-accent transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-heading mb-4">Contatti</h4>
+                    <ul class="space-y-2 font-body text-white/70">
+                        <li>Treviglio (BG)</li>
+                        <li><a href="tel:+390000000000" class="hover:text-accent transition">+39 000 000 0000</a></li>
+                        <li>Lun - Ven: 9:00 - 19:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/50 font-body text-sm">&copy; 2024 Hintime Point Maison 21. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da <strong>meravigliä Lab</strong> · meraviglialab.com
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
