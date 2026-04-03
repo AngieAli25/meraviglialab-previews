@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klaron Dental Solutions | Pulizia professionale per il tuo apparecchio, ogni giorno</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A1628',
+                        secondary: '#FFFFFF',
+                        accent: '#2BBFFF',
+                        background: '#F4F8FB',
+                        textColor: '#1A1A2E'
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1A1A2E;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+
+        .hero-line:nth-child(1) {
+            top: 15%;
+            animation-duration: 12s;
+            animation-delay: 0s;
+        }
+
+        .hero-line:nth-child(2) {
+            top: 35%;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+
+        .hero-line:nth-child(3) {
+            top: 55%;
+            animation-duration: 14s;
+            animation-delay: 4s;
+        }
+
+        .hero-line:nth-child(4) {
+            top: 70%;
+            animation-duration: 7s;
+            animation-delay: 1s;
+        }
+
+        .hero-line:nth-child(5) {
+            top: 85%;
+            animation-duration: 11s;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .navbar-scrolled {
+            background-color: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(43, 191, 255, 0.2);
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://share.google/gLAKyH3TUZhq3qEoW" alt="Klaron Dental Solutions" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition-colors font-medium">Home</a>
+                    <a href="#come-funziona" class="text-white hover:text-accent transition-colors font-medium">Come funziona</a>
+                    <a href="#prodotti" class="text-white hover:text-accent transition-colors font-medium">Prodotti</a>
+                    <a href="#tecnologia" class="text-white hover:text-accent transition-colors font-medium">Tecnologia</a>
+                    <a href="#blog" class="text-white hover:text-accent transition-colors font-medium">Blog</a>
+                    <a href="#contatti" class="bg-accent text-primary px-6 py-2 rounded-full font-semibold hover:bg-white transition-colors">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl md:hidden">
+            <div class="flex flex-col p-6 space-y-4">
+                <button id="close-menu" class="self-end text-white mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <a href="#home" class="text-white hover:text-accent transition-colors font-medium py-2">Home</a>
+                <a href="#come-funziona" class="text-white hover:text-accent transition-colors font-medium py-2">Come funziona</a>
+                <a href="#prodotti" class="text-white hover:text-accent transition-colors font-medium py-2">Prodotti</a>
+                <a href="#tecnologia" class="text-white hover:text-accent transition-colors font-medium py-2">Tecnologia</a>
+                <a href="#blog" class="text-white hover:text-accent transition-colors font-medium py-2">Blog</a>
+                <a href="#contatti" class="text-white hover:text-accent transition-colors font-medium py-2">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://cdn.shopify.com/s/files/1/0909/4191/5517/files/FOTO_ORIZZONTALI_PER_SHOP_1.jpg');" onerror="this.style.backgroundImage='url(https://images.unsplash.com/photo-1629909615957-be38d48fbbe4?w=1920&q=80)'"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 hero-content max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                Il tuo allineatore, sempre pulito e igienizzato.
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                ON SONIC utilizza onde ultrasoniche a 42.000 Hz per eliminare batteri, odori e macchie dal tuo apparecchio dentale in soli 5 minuti. Tecnologia professionale, finalmente a casa tua.
+            </p>
+            <a href="#prodotti" class="inline-block bg-accent text-primary px-10 py-4 rounded-full text-lg font-bold hover:bg-white transition-all transform hover:scale-105 shadow-lg">
+                Scopri ON SONIC
+            </a>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Come Funziona Section -->
+    <section id="come-funziona" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-full mb-6">
+                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span class="text-accent font-semibold">Tecnologia Avanzata</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Come funziona</h2>
+                    <p class="text-lg text-textColor leading-relaxed mb-6">
+                        ON SONIC sfrutta la <strong>cavitazione ultrasonica</strong>: onde ad alta frequenza generano milioni di microbolle che collassano 4000 volte al secondo, rimuovendo placca, batteri e residui anche nelle fessure più difficili da raggiungere.
+                    </p>
+                    <p class="text-lg text-textColor leading-relaxed">
+                        Nessuna abrasione, nessun danno al tuo dispositivo. Solo una pulizia profonda e delicata in 5 minuti.
+                    </p>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <img src="https://klaron.it/cdn/shop/files/FOTO_ORIZZONTALI_PER_SHOP_3.png" alt="ON SONIC dispositivo ultrasuoni" class="rounded-2xl shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1629909615957-be38d48fbbe4?w=1920&q=80'; this.onerror=null;">
+                    <div class="absolute -bottom-6 -right-6 bg-accent text-primary px-6 py-4 rounded-xl shadow-lg">
+                        <p class="text-sm font-semibold">42.000 Hz</p>
+                        <p class="text-xs">Frequenza ultrasonica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prima / Dopo Section -->
+    <section class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Risultati visibili</h2>
+                <p class="text-xl text-textColor max-w-2xl mx-auto">La differenza è evidente dopo un solo utilizzo</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div data-aos="fade-right" class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://cdn.shopify.com/s/files/1/0909/4191/5517/files/FOTO_ORIZZONTALI_PER_SHOP_1.jpg" alt="Prima del trattamento" class="w-full h-80 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-3">Prima</div>
+                        <h3 class="text-2xl font-bold text-primary mb-2">Placca e batteri visibili</h3>
+                        <p class="text-textColor">Residui e macchie difficili da rimuovere con metodi tradizionali</p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://cdn.shopify.com/s/files/1/0909/4191/5517/files/FOTO_ORIZZONTALI_PER_SHOP.jpg" alt="Dopo il trattamento" class="w-full h-80 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-3">Dopo</div>
+                        <h3 class="text-2xl font-bold text-primary mb-2">Pulizia impeccabile</h3>
+                        <p class="text-textColor">Dispositivo igienizzato e privo di batteri in soli 5 minuti</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologia Section -->
+    <section id="tecnologia" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <img src="https://klaron.it/cdn/shop/files/problema.jpg" alt="Tecnologia ultrasuoni odontoiatria" class="rounded-2xl shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <div class="inline-flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-full mb-6">
+                        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span class="text-accent font-semibold">Clinicamente Testata</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">La tecnologia</h2>
+                    <p class="text-lg text-textColor leading-relaxed mb-6">
+                        La tecnologia a ultrasuoni è utilizzata in odontoiatria da oltre <strong>70 anni</strong>. Klaron ha integrato questa soluzione collaudata in un dispositivo compatto e moderno, specificamente progettato per allineatori, bite e protesi dentali.
+                    </p>
+                    <p class="text-lg text-textColor leading-relaxed mb-8">
+                        Risultato: una pulizia di livello clinico, direttamente a casa tua.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-background p-4 rounded-xl">
+                            <p class="text-3xl font-bold text-accent mb-1">70+</p>
+                            <p class="text-sm text-textColor">Anni di ricerca</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-xl">
+                            <p class="text-3xl font-bold text-accent mb-1">99.9%</p>
+                            <p class="text-sm text-textColor">Rimozione batteri</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prodotti Section -->
+    <section id="prodotti" class="py-20 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-accent rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">I nostri prodotti</h2>
+                <p class="text-xl text-white/80 max-w-3xl mx-auto">
+                    Scopri la linea Klaron Dental Solutions: dispositivi a ultrasuoni progettati per chi usa allineatori trasparenti, Invisalign, bite e protesi.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="0" class="card-hover bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                    <div class="bg-accent/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Compatti</h3>
+                    <p class="text-white/80 leading-relaxed">Design elegante e dimensioni ridotte per portarli sempre con te, ovunque tu vada.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="card-hover bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                    <div class="bg-accent/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Silenziosi</h3>
+                    <p class="text-white/80 leading-relaxed">Funzionamento ultra-silenzioso per una pulizia discreta in qualsiasi momento della giornata.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="card-hover bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                    <div class="bg-accent/20 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Facili da usare</h3>
+                    <p class="text-white/80 leading-relaxed">Interfaccia intuitiva con un solo pulsante: inserisci il dispositivo e premi start.</p>
+                </div>
+            </div>
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <img src="https://klaron.it/cdn/shop/files/soluzione.jpg" alt="Prodotti Klaron" class="rounded-2xl shadow-2xl mx-auto max-w-4xl w-full" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1920&q=80'; this.onerror=null;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Perché Sceglierci Section -->
+    <section class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Perché sceglierci</h2>
+                <p class="text-xl text-textColor max-w-2xl mx-auto">La scelta di chi non scende a compromessi con l'igiene orale</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div data-aos="fade-up" data-aos-delay="0" class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                    <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Clinicamente testato</h3>
+                    <p class="text-textColor text-sm">Approvato dai professionisti del settore odontoiatrico</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                    <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Spedizione gratuita</h3>
+                    <p class="text-textColor text-sm">Su tutti gli ordini, consegna rapida e sicura</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                    <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Assistenza 24/7</h3>
+                    <p class="text-textColor text-sm">Chat disponibile 24 ore su 24, 7 giorni su 7</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                    <div class="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Risultati rapidi</h3>
+                    <p class="text-textColor text-sm">Pulizia completa in soli 5 minuti</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processo Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Semplice come 1-2-3</h2>
+                <p class="text-xl text-textColor">Il processo di pulizia perfetto</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="0" class="text-center">
+                    <div class="relative mb-6">
+                        <img src="https://klaron.it/cdn/shop/files/problema.jpg" alt="Step 1" class="rounded-2xl shadow-xl w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                        <div class="absolute -top-4 -left-4 bg-accent text-primary w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">1</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-3">Inserisci</h3>
+                    <p class="text-textColor">Posiziona il tuo allineatore, bite o protesi nel dispositivo con acqua</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="text-center">
+                    <div class="relative mb-6">
+                        <img src="https://klaron.it/cdn/shop/files/soluzione.jpg" alt="Step 2" class="rounded-2xl shadow-xl w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                        <div class="absolute -top-4 -left-4 bg-accent text-primary w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">2</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-3">Attiva</h3>
+                    <p class="text-textColor">Premi il pulsante e lascia che gli ultrasuoni facciano il loro lavoro</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="text-center">
+                    <div class="relative mb-6">
+                        <img src="https://klaron.it/cdn/shop/files/risultato.jpg" alt="Step 3" class="rounded-2xl shadow-xl w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                        <div class="absolute -top-4 -left-4 bg-accent text-primary w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">3</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-3">Goditi il risultato</h3>
+                    <p class="text-textColor">Dopo 5 minuti, il tuo dispositivo è pulito, igienizzato e pronto all'uso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center space-x-2 bg-accent/10 px-4 py-2 rounded-full mb-4">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span class="text-accent font-semibold">Conoscenza</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Blog e consigli</h2>
+                <p class="text-xl text-textColor max-w-3xl mx-auto">
+                    Approfondisci le migliori pratiche per l'igiene orale con Invisalign e allineatori trasparenti, scopri la scienza dietro la cavitazione ultrasonica e impara a evitare gli errori più comuni nella pulizia degli apparecchi.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <article data-aos="fade-up" data-aos-delay="0" class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://klaron.it/cdn/shop/files/Progetto_senza_titolo_769db477-2cd6-4bad-a8d0-dd8d9f12ea01.png" alt="Blog post" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="text-accent text-sm font-semibold mb-2">GUIDA</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Igiene orale con Invisalign</h3>
+                        <p class="text-textColor mb-4">Le migliori pratiche quotidiane per mantenere i tuoi allineatori sempre puliti e trasparenti.</p>
+                        <a href="#" class="text-accent font-semibold hover:underline inline-flex items-center">
+                            Leggi di più
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article data-aos="fade-up" data-aos-delay="100" class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://klaron.it/cdn/shop/files/FOTO_QUADRATE_SHOPIFY_45.jpg" alt="Blog post" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="text-accent text-sm font-semibold mb-2">SCIENZA</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">La cavitazione ultrasonica</h3>
+                        <p class="text-textColor mb-4">Come funziona la tecnologia che sta rivoluzionando la pulizia degli apparecchi dentali.</p>
+                        <a href="#" class="text-accent font-semibold hover:underline inline-flex items-center">
+                            Leggi di più
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                <article data-aos="fade-up" data-aos-delay="200" class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://cdn.shopify.com/s/files/1/0909/4191/5517/files/FOTO_ORIZZONTALI_PER_SHOP.jpg" alt="Blog post" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="text-accent text-sm font-semibold mb-2">ERRORI COMUNI</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Cosa evitare nella pulizia</h3>
+                        <p class="text-textColor mb-4">Gli errori più comuni che possono danneggiare i tuoi allineatori e come evitarli.</p>
+                        <a href="#" class="text-accent font-semibold hover:underline inline-flex items-center">
+                            Leggi di più
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-20 bg-gradient-to-br from-primary via-primary to-accent relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Pronto per un'igiene orale di livello professionale?</h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">Unisciti a migliaia di persone che hanno scelto Klaron per la cura quotidiana del loro apparecchio</p>
+            <a href="#contatti" class="inline-block bg-white text-primary px-10 py-4 rounded-full text-lg font-bold hover:bg-accent hover:text-white transition-all transform hover:scale-105 shadow-2xl">
+                Contattaci ora
+            </a>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Contatti</h2>
+                    <p class="text-lg text-textColor mb-8 leading-relaxed">
+                        Hai domande sui nostri prodotti o hai bisogno di assistenza? Il nostro team è disponibile via chat 24/7. Scrivici e ti risponderemo nel minor tempo possibile. Siamo qui per aiutarti a scegliere la soluzione giusta per le tue esigenze.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-accent/10 p-3 rounded-lg">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary mb-1">Telefono</h3>
+                                <a href="tel:0000000000" class="text-accent hover:underline text-lg">0000000000</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-accent/10 p-3 rounded-lg">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary mb-1">Chat 24/7</h3>
+                                <p class="text-textColor">Disponibile per assistenza immediata</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-accent/10 p-3 rounded-lg">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary mb-1">Spedizione</h3>
+                                <p class="text-textColor">Gratuita su tutti gli ordini</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <form class="bg-background p-8 rounded-2xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="nome" class="block text-primary font-semibold mb-2">Nome</label>
+                            <input type="text" id="nome" name="nome" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-primary font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="messaggio" class="block text-primary font-semibold mb-2">Messaggio</label>
+                            <textarea id="messaggio" name="messaggio" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all resize-none" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent text-primary px-8 py-4 rounded-full font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105 shadow-lg">
+                            Invia messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Klaron Dental Solutions</h3>
+                    <p class="text-white/70 text-sm leading-relaxed">Pulizia professionale per il tuo apparecchio, ogni giorno.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Prodotti</h4>
+                    <ul class="space-y-2 text-white/70 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">ON SONIC</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Accessori</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Bundle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Supporto</h4>
+                    <ul class="space-y-2 text-white/70 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Spedizioni</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Resi</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Garanzia</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Azienda</h4>
+                    <ul class="space-y-2 text-white/70 text-sm">
+                        <li><a href="#" class="hover:text-accent transition-colors">Chi siamo</a></li>
+                        <li><a href="#blog" class="hover:text-accent transition-colors">Blog</a></li>
+                        <li><a href="#contatti" class="hover:text-accent transition-colors">Contatti</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/70 text-sm mb-4 md:mb-0">&copy; 2024 Klaron Dental Solutions. Tutti i diritti riservati.</p>
+                <p class="text-white/50 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-accent hover:underline">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Grazie per il tuo messaggio! Ti risponderemo al più presto.');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
