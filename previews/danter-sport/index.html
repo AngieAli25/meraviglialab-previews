@@ -3,30 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danter Sport | Il tuo noleggio sci nel cuore del Sellaronda</title>
-    <meta name="description" content="Noleggio, negozio e deposito sci a Selva di Val Gardena, alla base della cabinovia Dantercepies. La tua base di partenza sulle Dolomiti.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Danter Sport | Il tuo partner di fiducia sulle Dolomiti</title>
+    <meta name="description" content="Noleggio sci, shop e Competence Center a Selva Val Gardena. Ski rental, ski service, boot fitting e test ai piedi della Sellaronda.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root {
-            --color-primary: #1B3A6B;
-            --color-secondary: #FFFFFF;
-            --color-accent: #E8382D;
-            --color-bg: #F4F6F9;
-            --color-text: #1A1A2E;
+            --primary: #E85A00;
+            --secondary: #1A1A1A;
+            --accent: #FF7A22;
+            --background: #F7F4F0;
+            --text: #1A1A1A;
         }
         
         * {
-            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--color-text);
-            background-color: var(--color-bg);
+            color: var(--text);
+            background-color: var(--background);
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -34,36 +40,73 @@
             font-weight: 700;
         }
         
-        .navbar-scrolled {
-            background-color: rgba(27, 58, 107, 0.98) !important;
+        .navbar {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .navbar.scrolled {
+            background: rgba(26, 26, 26, 0.97) !important;
+            backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            background: url("https://www.dantersport.it/img/slide/desktop/shop01.jpg") center/cover no-repeat;
+        .mobile-menu {
+            max-height: 0;
             overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        .mobile-menu.active {
+            max-height: 500px;
         }
         
-        .hero-content {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(232, 90, 0, 0.3);
         }
         
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(232, 90, 0, 0.4);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(232, 90, 0, 0.1);
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(232, 90, 0, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .icon-wrapper svg {
+            width: 32px;
+            height: 32px;
+            color: white;
         }
         
         @keyframes slideLine {
@@ -75,67 +118,63 @@
             }
         }
         
-        .geometric-line {
+        .hero-line {
             position: absolute;
             height: 1px;
             width: 40%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
             animation: slideLine linear infinite;
         }
         
-        .line-1 { top: 20%; animation-duration: 11s; animation-delay: 0s; }
-        .line-2 { top: 35%; animation-duration: 14s; animation-delay: 2s; }
-        .line-3 { top: 50%; animation-duration: 9s; animation-delay: 4s; }
-        .line-4 { top: 65%; animation-duration: 12s; animation-delay: 1s; }
-        .line-5 { top: 80%; animation-duration: 10s; animation-delay: 3s; }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .hero-line:nth-child(1) {
+            top: 15%;
+            animation-duration: 12s;
+            animation-delay: 0s;
         }
         
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(232, 56, 45, 0.2);
+        .hero-line:nth-child(2) {
+            top: 35%;
+            animation-duration: 9s;
+            animation-delay: 2s;
         }
         
-        .btn-primary {
-            background-color: var(--color-accent);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 6px;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .hero-line:nth-child(3) {
+            top: 55%;
+            animation-duration: 14s;
+            animation-delay: 4s;
         }
         
-        .btn-primary:hover {
-            background-color: #c72e24;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(232, 56, 45, 0.4);
+        .hero-line:nth-child(4) {
+            top: 70%;
+            animation-duration: 11s;
+            animation-delay: 1s;
         }
         
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-decoration: none;
+        .hero-line:nth-child(5) {
+            top: 85%;
+            animation-duration: 8s;
+            animation-delay: 3s;
         }
         
-        .btn-secondary:hover {
-            background-color: white;
-            color: var(--color-primary);
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content {
+            animation: heroFadeIn 0.8s ease-out forwards;
         }
         
         .section-title {
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             position: relative;
             display: inline-block;
         }
@@ -147,206 +186,262 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background-color: var(--color-accent);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
         }
         
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
         }
         
-        .mobile-menu.active {
-            transform: translateX(0);
+        .image-container img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.08);
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            font-size: 11px;
+            color: rgba(26, 26, 26, 0.4);
+            font-weight: 500;
+            z-index: 9999;
+            background: rgba(247, 244, 240, 0.9);
+            padding: 6px 12px;
+            border-radius: 6px;
+            backdrop-filter: blur(8px);
+        }
+        
+        .watermark a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
         }
         
         input, textarea {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 6px;
+            padding: 14px 18px;
+            border: 2px solid rgba(232, 90, 0, 0.15);
+            border-radius: 8px;
             font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s ease;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
         }
         
         input:focus, textarea:focus {
             outline: none;
-            border-color: var(--color-accent);
-        }
-        
-        .watermark {
-            font-size: 0.75rem;
-            color: #9ca3af;
-            text-align: center;
-            padding: 1rem;
-            background-color: #f9fafb;
-        }
-        
-        .watermark a {
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: 500;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(232, 90, 0, 0.1);
         }
         
         @media (max-width: 768px) {
             .section-title {
                 font-size: 2rem;
             }
-            
-            .hero-section {
-                min-height: 500px;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+    <nav class="navbar fixed w-full top-0 z-50 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <img src="https://www.dantersport.it/img/layout/dantersport_logo.png" alt="Danter Sport" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                    <a href="#home">
+                        <img src="https://www.dantersport.it/img/layout/dantersport_logo.png" alt="Danter Sport" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                    </a>
                 </div>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden md:block">
-                    <div class="flex items-center space-x-8">
-                        <a href="#home" class="text-white hover:text-gray-200 transition font-medium">Home</a>
-                        <a href="#negozio" class="text-white hover:text-gray-200 transition font-medium">Negozio</a>
-                        <a href="#noleggio" class="text-white hover:text-gray-200 transition font-medium">Noleggio</a>
-                        <a href="#servizi" class="text-white hover:text-gray-200 transition font-medium">Servizi</a>
-                        <a href="#deposito" class="text-white hover:text-gray-200 transition font-medium">Deposito</a>
-                        <a href="#contatti" class="btn-primary text-sm">Prenota ora</a>
-                    </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-orange-400 transition font-medium">Home</a>
+                    <a href="#shop" class="text-white hover:text-orange-400 transition font-medium">Shop</a>
+                    <a href="#noleggio" class="text-white hover:text-orange-400 transition font-medium">Noleggio</a>
+                    <a href="#ski-service" class="text-white hover:text-orange-400 transition font-medium">Ski Service</a>
+                    <a href="#boot-fitting" class="text-white hover:text-orange-400 transition font-medium">Boot Fitting</a>
+                    <a href="#ski-test" class="text-white hover:text-orange-400 transition font-medium">Ski Test</a>
+                    <a href="#deposito" class="text-white hover:text-orange-400 transition font-medium">Deposito</a>
+                    <a href="#contatti" class="text-white hover:text-orange-400 transition font-medium">Contatti</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-white p-2">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
+                <button id="menuToggle" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="mobileMenu" class="mobile-menu lg:hidden">
+                <div class="px-2 pt-2 pb-6 space-y-3">
+                    <a href="#home" class="block text-white hover:text-orange-400 transition py-2 font-medium">Home</a>
+                    <a href="#shop" class="block text-white hover:text-orange-400 transition py-2 font-medium">Shop</a>
+                    <a href="#noleggio" class="block text-white hover:text-orange-400 transition py-2 font-medium">Noleggio</a>
+                    <a href="#ski-service" class="block text-white hover:text-orange-400 transition py-2 font-medium">Ski Service</a>
+                    <a href="#boot-fitting" class="block text-white hover:text-orange-400 transition py-2 font-medium">Boot Fitting</a>
+                    <a href="#ski-test" class="block text-white hover:text-orange-400 transition py-2 font-medium">Ski Test</a>
+                    <a href="#deposito" class="block text-white hover:text-orange-400 transition py-2 font-medium">Deposito</a>
+                    <a href="#contatti" class="block text-white hover:text-orange-400 transition py-2 font-medium">Contatti</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 z-50 shadow-2xl" style="background-color: var(--color-primary);">
-        <div class="p-6">
-            <button id="close-menu-btn" class="text-white mb-8">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <div class="flex flex-col space-y-4">
-                <a href="#home" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Home</a>
-                <a href="#negozio" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Negozio</a>
-                <a href="#noleggio" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Noleggio</a>
-                <a href="#servizi" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Servizi</a>
-                <a href="#deposito" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Deposito</a>
-                <a href="#contatti" class="btn-primary text-center mt-4 mobile-link">Prenota ora</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="geometric-line line-1"></div>
-        <div class="geometric-line line-2"></div>
-        <div class="geometric-line line-3"></div>
-        <div class="geometric-line line-4"></div>
-        <div class="geometric-line line-5"></div>
+    <section id="home" class="relative min-h-screen flex items-center justify-center" style="background: url('https://www.dantersport.it/img/slide/desktop/shop01.jpg') center/cover no-repeat;">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
         
-        <div class="relative z-10 h-full flex items-center justify-center">
-            <div class="container mx-auto px-4 text-center hero-content">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                    Il tuo noleggio sci nel cuore<br>del Sellaronda
-                </h1>
-                <p class="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto font-light">
-                    A due passi dalla cabinovia Dantercepies a Selva di Val Gardena.<br class="hidden md:block"> Noleggio, negozio e deposito sci tutto in un posto.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#contatti" class="btn-primary text-lg">Prenota ora con -10%</a>
-                    <a href="#chi-siamo" class="btn-secondary">Scopri di più</a>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto hero-content">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 leading-tight" style="font-family: 'Barlow Condensed', sans-serif; letter-spacing: -0.02em;">
+                La tua avventura sulle Dolomiti inizia qui
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+                Noleggio sci, shop e Competence Center a Selva Val Gardena — direttamente ai piedi delle piste della Sellaronda
+            </p>
+            <a href="#noleggio" class="btn-primary text-lg">
+                Prenota online con -10%
+            </a>
+        </div>
+    </section>
+
+    <section id="shop" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="section-title mb-6">Chi siamo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Danter Sport è il punto di riferimento per sciatori e snowboarder a Selva di Val Gardena. Situati alla stazione a valle della cabinovia Dantercepies, nel cuore del Dolomiti Superski e della Sellaronda, siamo il partner ideale per ogni tipo di sciatore: dal principiante all'agonista.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Il nostro team di esperti ti accompagna dalla scelta dell'attrezzatura fino all'ultimo discorso della giornata, con servizi su misura e una passione autentica per la montagna.
+                    </p>
+                </div>
+                <div data-aos="fade-left" class="image-container">
+                    <img src="https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=1200&q=80" alt="Danter Sport Shop" class="w-full h-auto rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80'; this.onerror=null;">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chi Siamo -->
-    <section id="chi-siamo" class="py-20 bg-white">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="section-title">La tua base di partenza sulle Dolomiti</h2>
-                <p class="text-lg text-gray-700 mt-8 leading-relaxed">
-                    Danter Sport si trova alla base della cabinovia Dantercepies a Selva di Val Gardena, nel cuore del Sellaronda e alle porte del comprensorio Dolomiti Superski. Siamo la base di partenza ideale per la tua giornata sulla neve: un punto di riferimento per sciatori di ogni livello che cercano qualità, comodità e un servizio su misura.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Servizi Cards -->
-    <section class="py-20" style="background-color: var(--color-bg);">
-        <div class="container mx-auto px-4 lg:px-8">
+    <section id="servizi" class="py-20 md:py-32" style="background-color: var(--background);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title">I nostri servizi</h2>
-                <p class="text-gray-600 mt-4 text-lg">Tutto quello che ti serve per una giornata perfetta sulla neve</p>
+                <h2 class="section-title mb-4 inline-block">I nostri servizi</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-8">
+                    Un'esperienza completa per vivere le Dolomiti al massimo
+                </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Noleggio Card -->
-                <div id="noleggio" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://www.dantersport.it/img/layout/internetservice.png" alt="Noleggio sci" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80'; this.onerror=null;">
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-4">
-                            <svg class="w-12 h-12" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">Noleggio</h3>
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Noleggio Sci</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Il nostro noleggio è fornito in collaborazione con Tecnica-Blizzard, uno dei brand più prestigiosi nel mondo dello sci.
+                        </p>
                         <p class="text-gray-600 leading-relaxed">
-                            Noleggia la tua attrezzatura da sci direttamente da noi, in collaborazione con il brand Tecnica-Blizzard. Offriamo sci, scarponi e tutto il necessario per affrontare le piste del Sellaronda con la massima performance. Prenota online e risparmia il 10%!
+                            Trovi sci, scarponi e attrezzatura completa per tutta la famiglia, con soluzioni adatte a ogni livello di esperienza. Prenota online e risparmia il 10% sul prezzo di listino.
                         </p>
                     </div>
                 </div>
-
-                <!-- Negozio Card -->
-                <div id="negozio" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80" alt="Negozio sci" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80'; this.onerror=null;">
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-4">
-                            <svg class="w-12 h-12" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">Negozio</h3>
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Ski Service</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Affida i tuoi sci al nostro servizio di manutenzione professionale. Il robot Montana, gestito dal nostro esperto, garantisce una preparazione impeccabile.
+                        </p>
                         <p class="text-gray-600 leading-relaxed">
-                            Il nostro negozio è fornito di tutto ciò che serve per andare a sciare: abbigliamento tecnico, accessori, protezioni e attrezzatura selezionata per soddisfare le esigenze di ogni sciatore. Vieni a trovarci prima di salire in quota.
+                            Dalla riparazione e ripristino della soletta alla regolazione delle lamine per una tenuta ottimale su ogni tipo di neve.
                         </p>
                     </div>
                 </div>
-
-                <!-- Deposito Card -->
-                <div id="deposito" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80" alt="Deposito sci" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=800&q=80'; this.onerror=null;">
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-4">
-                            <svg class="w-12 h-12" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">Deposito Sci</h3>
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Boot Fitting</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Ogni piede è diverso e merita attenzione. Il nostro servizio di Boot Fitting offre una consulenza personalizzata per trovare lo scarpone perfetto per te.
+                        </p>
                         <p class="text-gray-600 leading-relaxed">
-                            A fine giornata non devi portarti dietro nulla: lascia la tua attrezzatura nel nostro comodissimo deposito sci. Sicuro, pratico e situato proprio alla base degli impianti. Il giorno dopo riparti senza pensieri.
+                            Proponiamo solette su misura, termoformatura della scarpetta e deformazione dello scafo con una macchina speciale Tecnica.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Ski Test</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Grazie alla collaborazione con Blizzard e alla nostra posizione direttamente sulle piste, puoi provare una vasta gamma di sci Blizzard prima di acquistarli.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Modelli on-piste, da racing e all-conditions. Scegli il tuo sci dopo averlo vissuto davvero.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Boot Test</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Non sei ancora convinto? Prova lo scarpone direttamente in pista prima di acquistarlo. Mettiamo a disposizione una selezione di modelli da testare sul campo.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            La scelta migliore è quella che senti ai tuoi piedi. Lasciati guidare dai nostri esperti.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Ski Depot</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Lascia la tua attrezzatura comodamente nel nostro deposito sci a fine giornata. Un servizio pratico e sicuro per non portare zappe e sacche avanti e indietro dall'hotel ogni giorno.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Inizia ogni mattina direttamente dalla neve.
                         </p>
                     </div>
                 </div>
@@ -354,293 +449,226 @@
         </div>
     </section>
 
-    <!-- Servizi Extra -->
-    <section id="servizi" class="py-20 bg-white">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="max-w-4xl mx-auto" data-aos="fade-up">
-                <div class="text-center mb-12">
-                    <h2 class="section-title">Servizi aggiuntivi</h2>
+    <section class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="image-container order-2 lg:order-1">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&q=80" alt="Test sci sulle Dolomiti" class="w-full h-auto rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80'; this.onerror=null;">
                 </div>
-                <div class="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-8 md:p-12 shadow-lg">
+                <div data-aos="fade-left" class="order-1 lg:order-2">
+                    <h2 class="section-title mb-6">Prova prima di acquistare</h2>
                     <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Oltre al noleggio e al negozio, offriamo una serie di servizi pensati per rendere la tua esperienza sulla neve più semplice e piacevole.
+                        La nostra posizione strategica ai piedi della cabinovia Dantercepies ti permette di testare sci e scarponi direttamente sulle piste della Sellaronda.
                     </p>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <p class="text-gray-700">Manutenzione e preparazione degli sci</p>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <p class="text-gray-700">Assistenza personalizzata</p>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <p class="text-gray-700">Consiglio sull'attrezzatura più adatta</p>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <p class="text-gray-700">Posizione strategica alla base degli impianti</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 mt-6 leading-relaxed">
-                        Dalla manutenzione degli sci alla preparazione dell'attrezzatura, siamo qui per accompagnarti in ogni momento della giornata.
+                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                        Grazie alla collaborazione con i migliori brand, offriamo un'esperienza di test completa per trovare l'attrezzatura perfetta per il tuo stile di sciata.
                     </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 relative overflow-hidden">
-        <div class="absolute inset-0" style="background: linear-gradient(135deg, var(--color-primary) 0%, #2d5a8f 100%);"></div>
-        <div class="container mx-auto px-4 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center text-white" data-aos="zoom-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Prenota online e risparmia il 10%</h2>
-                <p class="text-xl mb-8 opacity-90">
-                    Non aspettare, assicurati la migliore attrezzatura per la tua giornata sulle piste del Sellaronda
-                </p>
-                <a href="#contatti" class="btn-primary text-lg inline-block">Prenota ora</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dove Siamo -->
-    <section id="dove-siamo" class="py-20" style="background-color: var(--color-bg);">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="section-title">Dove siamo</h2>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                <div data-aos="fade-right">
-                    <div class="bg-white rounded-lg p-8 shadow-lg">
-                        <h3 class="text-2xl font-bold mb-6" style="color: var(--color-primary);">Vieni a trovarci</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Indirizzo</p>
-                                    <p class="text-gray-600">Str. Dantercepies 42<br>I-39048 Selva di Val Gardena</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Telefono</p>
-                                    <a href="tel:+390471188979" class="text-gray-600 hover:text-red-600 transition">+39 0471 1889 799</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-gray-800">Email</p>
-                                    <a href="mailto:dantersport@gmail.com" class="text-gray-600 hover:text-red-600 transition">dantersport@gmail.com</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-gray-800">P.IVA</p>
-                                    <p class="text-gray-600">00154880215</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <p class="text-gray-700 mt-6 leading-relaxed">
-                            Ci trovi alla base della cabinovia Dantercepies. Siamo raggiungibili facilmente e pronti ad accoglierti per offrirti il miglior servizio!
-                        </p>
-                    </div>
-                </div>
-                
-                <div data-aos="fade-left">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-lg h-full min-h-[400px]">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.6!2d11.7584!3d46.5564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDMzJzIzLjAiTiAxMcKwNDUnMzAuMiJF!5e0!3m2!1sit!2sit!4v1620000000000!5m2!1sit!2sit" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0; min-height: 400px;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contatti -->
-    <section id="contatti" class="py-20 bg-white">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="max-w-2xl mx-auto">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <h2 class="section-title">Contattaci</h2>
-                    <p class="text-gray-600 mt-4 text-lg">Hai domande? Scrivici e ti risponderemo al più presto</p>
-                </div>
-                
-                <form class="space-y-6" data-aos="fade-up" data-aos-delay="200">
-                    <div>
-                        <label for="nome" class="block text-gray-700 font-semibold mb-2">Nome completo</label>
-                        <input type="text" id="nome" name="nome" required placeholder="Il tuo nome">
-                    </div>
-                    
-                    <div>
-                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="tua@email.com">
-                    </div>
-                    
-                    <div>
-                        <label for="messaggio" class="block text-gray-700 font-semibold mb-2">Messaggio</label>
-                        <textarea id="messaggio" name="messaggio" rows="5" required placeholder="Come possiamo aiutarti?"></textarea>
-                    </div>
-                    
-                    <div class="text-center">
-                        <button type="submit" class="btn-primary w-full md:w-auto">
-                            Invia messaggio
-                        </button>
-                    </div>
-                </form>
-                
-                <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
-                    <p class="text-gray-600 mb-4">Oppure chiamaci direttamente:</p>
-                    <a href="tel:+390471188979" class="text-3xl font-bold hover:text-red-600 transition" style="color: var(--color-primary);">
-                        +39 0471 1889 799
+                    <a href="#contatti" class="btn-primary">
+                        Richiedi informazioni
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12" style="background-color: var(--color-primary);">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
+    <section id="location" class="py-20 md:py-32 relative" style="background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4 inline-block text-white">Dove siamo</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mt-8">
+                    Nel cuore della Sellaronda, ai piedi della cabinovia Dantercepies
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-white mb-2" style="font-family: 'Barlow Condensed', sans-serif;">Indirizzo</h4>
+                                    <p class="text-gray-300">Str. Dantercepies 42<br>I-39048 Selva Val Gardena</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-white mb-2" style="font-family: 'Barlow Condensed', sans-serif;">Telefono</h4>
+                                    <a href="tel:+390471188979" class="text-orange-400 hover:text-orange-300 transition text-lg font-semibold">+39 0471 1889 799</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-white mb-2" style="font-family: 'Barlow Condensed', sans-serif;">Email</h4>
+                                    <a href="mailto:dantersport@gmail.com" class="text-orange-400 hover:text-orange-300 transition">dantersport@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-white mb-2" style="font-family: 'Barlow Condensed', sans-serif;">Orari</h4>
+                                    <p class="text-gray-300">Aperto durante tutta la stagione invernale</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" class="image-container">
+                    <img src="https://images.unsplash.com/photo-1551524559-8af4e6624178?w=1200&q=80" alt="Selva Val Gardena" class="w-full h-auto rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20 md:py-32" style="background-color: var(--background);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4 inline-block">Contattaci</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto mt-8">
+                    Hai domande? Siamo qui per aiutarti a vivere la migliore esperienza sulle Dolomiti
+                </p>
+            </div>
+            
+            <div data-aos="fade-up" data-aos-delay="100">
+                <form class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-orange-100">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nome</label>
+                            <input type="text" name="nome" placeholder="Il tuo nome" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                            <input type="email" name="email" placeholder="la.tua@email.com" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Messaggio</label>
+                        <textarea name="messaggio" rows="6" placeholder="Come possiamo aiutarti?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full text-center justify-center">
+                        Invia messaggio
+                    </button>
+                    <p class="text-center text-sm text-gray-500 mt-4">
+                        Oppure chiamaci al <a href="tel:00154880215" class="text-orange-600 font-semibold hover:text-orange-700">00154880215</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gradient-to-br from-gray-900 to-black text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-4">Danter Sport</h4>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        La tua base di partenza sulle Dolomiti. Noleggio, negozio e deposito sci a Selva di Val Gardena.
+                    <img src="https://www.dantersport.it/img/layout/dantersport_logo.png" alt="Danter Sport" class="mb-4" style="max-height:50px; object-fit:contain;" onerror="this.style.display='none'">
+                    <p class="text-gray-400 leading-relaxed">
+                        Il tuo partner di fiducia sulle Dolomiti per noleggio sci, ski service e competence center.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-4">Contatti</h4>
-                    <div class="space-y-2 text-sm">
-                        <p class="text-gray-300">Str. Dantercepies 42</p>
-                        <p class="text-gray-300">I-39048 Selva di Val Gardena</p>
-                        <p class="text-gray-300">Tel: <a href="tel:+390471188979" class="hover:text-white transition">+39 0471 1889 799</a></p>
-                        <p class="text-gray-300">Email: <a href="mailto:dantersport@gmail.com" class="hover:text-white transition">dantersport@gmail.com</a></p>
-                        <p class="text-gray-300">P.IVA: 00154880215</p>
-                    </div>
+                    <h4 class="text-lg font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Servizi</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#noleggio" class="hover:text-orange-400 transition">Noleggio Sci</a></li>
+                        <li><a href="#ski-service" class="hover:text-orange-400 transition">Ski Service</a></li>
+                        <li><a href="#boot-fitting" class="hover:text-orange-400 transition">Boot Fitting</a></li>
+                        <li><a href="#ski-test" class="hover:text-orange-400 transition">Ski Test</a></li>
+                        <li><a href="#deposito" class="hover:text-orange-400 transition">Ski Depot</a></li>
+                    </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-4">Link rapidi</h4>
-                    <div class="space-y-2 text-sm">
-                        <a href="#noleggio" class="block text-gray-300 hover:text-white transition">Noleggio</a>
-                        <a href="#negozio" class="block text-gray-300 hover:text-white transition">Negozio</a>
-                        <a href="#deposito" class="block text-gray-300 hover:text-white transition">Deposito</a>
-                        <a href="#servizi" class="block text-gray-300 hover:text-white transition">Servizi</a>
-                        <a href="#contatti" class="block text-gray-300 hover:text-white transition">Contatti</a>
-                    </div>
+                    <h4 class="text-lg font-bold mb-4" style="font-family: 'Barlow Condensed', sans-serif;">Contatti</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>Str. Dantercepies 42<br>I-39048 Selva Val Gardena</li>
+                        <li><a href="tel:+390471188979" class="hover:text-orange-400 transition">+39 0471 1889 799</a></li>
+                        <li><a href="mailto:dantersport@gmail.com" class="hover:text-orange-400 transition">dantersport@gmail.com</a></li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-600 pt-8 text-center">
-                <p class="text-gray-400 text-sm">
-                    &copy; 2024 Danter Sport. Tutti i diritti riservati.
-                </p>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Danter Sport. Tutti i diritti riservati.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Watermark -->
     <div class="watermark">
-        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+        Bozza realizzata da meravigliä Lab · <a href="https://meraviglialab.com" target="_blank">meraviglialab.com</a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100
+            offset: 100,
+            easing: 'ease-out-cubic'
         });
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
+        const navbar = document.querySelector('.navbar');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('navbar-scrolled');
+                navbar.classList.remove('scrolled');
             }
         });
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
         });
 
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                mobileMenu.classList.remove('active');
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offsetTop = target.offsetTop - 80;
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
                     window.scrollTo({
-                        top: offsetTop,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Form submission handling
-        const form = document.querySelector('form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Grazie per averci contattato! Ti risponderemo al più presto.');
-            form.reset();
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                if (!this.dataset.fallbackAttempted) {
+                    this.dataset.fallbackAttempted = 'true';
+                    this.src = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80';
+                }
+            });
         });
     </script>
-
 </body>
 </html>
