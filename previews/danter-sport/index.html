@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danter Sport | La tua base di partenza per il Sellaronda</title>
-    <meta name="description" content="Negozio, noleggio e deposito sci a Selva di Val Gardena. Situati alla base della cabinovia Dantercepies nel cuore del Dolomiti Superski.">
-    
+    <title>Danter Sport | Il tuo noleggio sci nel cuore del Sellaronda</title>
+    <meta name="description" content="Noleggio, negozio e deposito sci a Selva di Val Gardena, alla base della cabinovia Dantercepies. La tua base di partenza sulle Dolomiti.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <style>
         :root {
-            --primary: #111111;
-            --secondary: #5B9EC9;
-            --accent: #3A7EB5;
-            --bg: #FFFFFF;
-            --text: #222222;
+            --color-primary: #1B3A6B;
+            --color-secondary: #FFFFFF;
+            --color-accent: #E8382D;
+            --color-bg: #F4F6F9;
+            --color-text: #1A1A2E;
         }
         
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            overflow-x: hidden;
+            color: var(--color-text);
+            background-color: var(--color-bg);
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -39,21 +34,16 @@
             font-weight: 700;
         }
         
-        .navbar {
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled {
-            background: rgba(17, 17, 17, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        .navbar-scrolled {
+            background-color: rgba(27, 58, 107, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
         
         .hero-section {
             position: relative;
             height: 100vh;
             min-height: 600px;
-            background: url('https://www.dantersport.it/img/slide/desktop/shop01.jpg') center/cover no-repeat;
+            background: url("https://www.dantersport.it/img/slide/desktop/shop01.jpg") center/cover no-repeat;
             overflow: hidden;
         }
         
@@ -61,33 +51,12 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
-            z-index: 1;
         }
         
         .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero-title {
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.3s;
-        }
-        
-        .hero-subtitle {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.6s;
-        }
-        
-        .hero-cta {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.9s;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
         }
         
         @keyframes fadeInUp {
@@ -97,77 +66,76 @@
             }
         }
         
-        .line {
+        @keyframes slideLine {
+            0% {
+                left: -60%;
+            }
+            100% {
+                left: 110%;
+            }
+        }
+        
+        .geometric-line {
             position: absolute;
             height: 1px;
-            width: 100%;
+            width: 40%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
             animation: slideLine linear infinite;
         }
         
-        .line-1 { top: 15%; animation-duration: 11s; animation-delay: 0s; }
+        .line-1 { top: 20%; animation-duration: 11s; animation-delay: 0s; }
         .line-2 { top: 35%; animation-duration: 14s; animation-delay: 2s; }
-        .line-3 { top: 55%; animation-duration: 9s; animation-delay: 4s; }
-        .line-4 { top: 70%; animation-duration: 12s; animation-delay: 1s; }
-        .line-5 { top: 85%; animation-duration: 10s; animation-delay: 3s; }
+        .line-3 { top: 50%; animation-duration: 9s; animation-delay: 4s; }
+        .line-4 { top: 65%; animation-duration: 12s; animation-delay: 1s; }
+        .line-5 { top: 80%; animation-duration: 10s; animation-delay: 3s; }
         
-        @keyframes slideLine {
-            0% { left: -60%; }
-            100% { left: 110%; }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .service-card {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(91, 158, 201, 0.1);
-        }
-        
-        .service-card:hover {
+        .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(58, 126, 181, 0.2);
-            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(232, 56, 45, 0.2);
         }
         
         .btn-primary {
-            background: var(--secondary);
+            background-color: var(--color-accent);
             color: white;
-            padding: 16px 40px;
-            border-radius: 8px;
+            padding: 14px 32px;
+            border-radius: 6px;
             font-weight: 600;
-            transition: all 0.3s ease;
             display: inline-block;
+            transition: all 0.3s ease;
             text-decoration: none;
-            border: 2px solid var(--secondary);
         }
         
         .btn-primary:hover {
-            background: var(--accent);
-            border-color: var(--accent);
+            background-color: #c72e24;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(58, 126, 181, 0.3);
+            box-shadow: 0 8px 20px rgba(232, 56, 45, 0.4);
         }
         
-        .btn-outline {
-            background: transparent;
+        .btn-secondary {
+            background-color: transparent;
             color: white;
-            padding: 16px 40px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            text-decoration: none;
             border: 2px solid white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
         
-        .btn-outline:hover {
-            background: white;
-            color: var(--primary);
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--color-primary);
         }
         
         .section-title {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            color: var(--primary);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
@@ -179,12 +147,12 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: var(--secondary);
+            background-color: var(--color-accent);
         }
         
         .mobile-menu {
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease-in-out;
         }
         
         .mobile-menu.active {
@@ -192,34 +160,31 @@
         }
         
         input, textarea {
-            border: 2px solid rgba(91, 158, 201, 0.2);
-            transition: all 0.3s ease;
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
         }
         
         input:focus, textarea:focus {
             outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(91, 158, 201, 0.1);
+            border-color: var(--color-accent);
         }
         
         .watermark {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.95);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 12px;
-            color: #666;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 9999;
-            backdrop-filter: blur(10px);
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-align: center;
+            padding: 1rem;
+            background-color: #f9fafb;
         }
         
         .watermark a {
-            color: var(--accent);
+            color: var(--color-accent);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
         }
         
         @media (max-width: 768px) {
@@ -227,11 +192,8 @@
                 font-size: 2rem;
             }
             
-            .watermark {
-                font-size: 10px;
-                padding: 6px 12px;
-                bottom: 10px;
-                right: 10px;
+            .hero-section {
+                min-height: 500px;
             }
         }
     </style>
@@ -239,439 +201,288 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar fixed w-full top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <a href="#home">
-                        <img src="https://www.dantersport.it/img/layout/dantersport_logo.png" alt="Danter Sport" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
-                    </a>
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.dantersport.it/img/layout/dantersport_logo.png" alt="Danter Sport" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
                 </div>
                 
-                <div class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="text-white hover:text-[#5B9EC9] transition font-medium">Home</a>
-                    <a href="#negozio" class="text-white hover:text-[#5B9EC9] transition font-medium">Negozio</a>
-                    <a href="#noleggio" class="text-white hover:text-[#5B9EC9] transition font-medium">Noleggio</a>
-                    <a href="#servizi" class="text-white hover:text-[#5B9EC9] transition font-medium">Servizi</a>
-                    <a href="#deposito" class="text-white hover:text-[#5B9EC9] transition font-medium">Deposito</a>
-                    <a href="#contatti" class="btn-primary">Prenota ora</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-8">
+                        <a href="#home" class="text-white hover:text-gray-200 transition font-medium">Home</a>
+                        <a href="#negozio" class="text-white hover:text-gray-200 transition font-medium">Negozio</a>
+                        <a href="#noleggio" class="text-white hover:text-gray-200 transition font-medium">Noleggio</a>
+                        <a href="#servizi" class="text-white hover:text-gray-200 transition font-medium">Servizi</a>
+                        <a href="#deposito" class="text-white hover:text-gray-200 transition font-medium">Deposito</a>
+                        <a href="#contatti" class="btn-primary text-sm">Prenota ora</a>
+                    </div>
                 </div>
                 
-                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-[#111111] shadow-2xl lg:hidden z-50">
-            <div class="p-6">
-                <button id="close-menu" class="text-white mb-8 focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                <div class="flex flex-col space-y-6">
-                    <a href="#home" class="text-white hover:text-[#5B9EC9] transition font-medium text-lg">Home</a>
-                    <a href="#negozio" class="text-white hover:text-[#5B9EC9] transition font-medium text-lg">Negozio</a>
-                    <a href="#noleggio" class="text-white hover:text-[#5B9EC9] transition font-medium text-lg">Noleggio</a>
-                    <a href="#servizi" class="text-white hover:text-[#5B9EC9] transition font-medium text-lg">Servizi</a>
-                    <a href="#deposito" class="text-white hover:text-[#5B9EC9] transition font-medium text-lg">Deposito</a>
-                    <a href="#contatti" class="btn-primary mt-4 text-center">Prenota ora</a>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 z-50 shadow-2xl" style="background-color: var(--color-primary);">
+        <div class="p-6">
+            <button id="close-menu-btn" class="text-white mb-8">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Home</a>
+                <a href="#negozio" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Negozio</a>
+                <a href="#noleggio" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Noleggio</a>
+                <a href="#servizi" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Servizi</a>
+                <a href="#deposito" class="text-white hover:text-gray-200 transition font-medium py-2 mobile-link">Deposito</a>
+                <a href="#contatti" class="btn-primary text-center mt-4 mobile-link">Prenota ora</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
-        <div class="line line-1"></div>
-        <div class="line line-2"></div>
-        <div class="line line-3"></div>
-        <div class="line line-4"></div>
-        <div class="line line-5"></div>
+        <div class="geometric-line line-1"></div>
+        <div class="geometric-line line-2"></div>
+        <div class="geometric-line line-3"></div>
+        <div class="geometric-line line-4"></div>
+        <div class="geometric-line line-5"></div>
         
-        <div class="hero-content h-full flex items-center justify-center">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="hero-title text-white text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-                    Sci, noleggio e deposito<br>nel cuore del Sellaronda
+        <div class="relative z-10 h-full flex items-center justify-center">
+            <div class="container mx-auto px-4 text-center hero-content">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Il tuo noleggio sci nel cuore<br>del Sellaronda
                 </h1>
-                <p class="hero-subtitle text-white text-xl md:text-2xl mb-10 max-w-4xl mx-auto font-light leading-relaxed">
-                    Danter Sport si trova alla base della cabinovia Dantercepies a Selva di Val Gardena. Tutto quello che ti serve per una giornata perfetta sulle piste.
+                <p class="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto font-light">
+                    A due passi dalla cabinovia Dantercepies a Selva di Val Gardena.<br class="hidden md:block"> Noleggio, negozio e deposito sci tutto in un posto.
                 </p>
-                <div class="hero-cta">
-                    <a href="#contatti" class="btn-outline text-lg">Prenota ora con il -10%</a>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#contatti" class="btn-primary text-lg">Prenota ora con -10%</a>
+                    <a href="#chi-siamo" class="btn-secondary">Scopri di più</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Chi Siamo -->
-    <section id="chi-siamo" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1200&q=80" 
-                         alt="Danter Sport Selva Val Gardena" 
-                         class="rounded-2xl shadow-2xl w-full h-auto"
-                         onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80'; this.onerror=null;">
-                </div>
-                <div data-aos="fade-left">
-                    <h2 class="section-title mb-8">Chi siamo</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Danter Sport è il punto di riferimento per sciatori e snowboarder a Selva di Val Gardena. Situati ai piedi della cabinovia Dantercepies, offriamo un servizio completo per chi vuole vivere al meglio le piste del Dolomiti Superski e del celebre Sellaronda.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Dalla famiglia per la prima volta sugli sci allo sciatore esperto in cerca di attrezzatura tecnica, siamo qui per te.
-                    </p>
-                    <div class="mt-10 flex items-center space-x-4">
-                        <div class="bg-[#5B9EC9] p-4 rounded-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="section-title">La tua base di partenza sulle Dolomiti</h2>
+                <p class="text-lg text-gray-700 mt-8 leading-relaxed">
+                    Danter Sport si trova alla base della cabinovia Dantercepies a Selva di Val Gardena, nel cuore del Sellaronda e alle porte del comprensorio Dolomiti Superski. Siamo la base di partenza ideale per la tua giornata sulla neve: un punto di riferimento per sciatori di ogni livello che cercano qualità, comodità e un servizio su misura.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Cards -->
+    <section class="py-20" style="background-color: var(--color-bg);">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">I nostri servizi</h2>
+                <p class="text-gray-600 mt-4 text-lg">Tutto quello che ti serve per una giornata perfetta sulla neve</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Noleggio Card -->
+                <div id="noleggio" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://www.dantersport.it/img/layout/internetservice.png" alt="Noleggio sci" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <p class="font-bold text-xl text-[#111111]">Posizione strategica</p>
-                            <p class="text-gray-600">Base cabinovia Dantercepies</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Noleggio -->
-    <section id="noleggio" class="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title mb-6 inline-block">Noleggio</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Collaboriamo con Tecnica-Blizzard per offrirti attrezzatura di massima qualità
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <div class="service-card bg-white rounded-xl p-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-[#5B9EC9] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-[#111111]">Sci e Scarponi</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Attrezzatura Tecnica-Blizzard per ogni livello: principianti, intermedi ed esperti.
-                    </p>
-                </div>
-                
-                <div class="service-card bg-white rounded-xl p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-[#5B9EC9] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-[#111111]">Sconto -10%</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Prenota online in anticipo e risparmia il 10% sul noleggio della tua attrezzatura.
-                    </p>
-                </div>
-                
-                <div class="service-card bg-white rounded-xl p-8" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-[#5B9EC9] w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-[#111111]">Tutte le età</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Attrezzatura per bambini, ragazzi e adulti. Ogni sciatore trova ciò che gli serve.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl" data-aos="fade-up">
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h3 class="text-3xl font-bold mb-4 text-[#111111]">Tecnica-Blizzard Partner</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                            Il nostro servizio di noleggio sci è realizzato in collaborazione con il marchio Tecnica-Blizzard, garanzia di qualità e prestazioni elevate. Trovi sci, scarponi e bastoncini per ogni livello e fascia d'età.
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">Noleggio</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Noleggia la tua attrezzatura da sci direttamente da noi, in collaborazione con il brand Tecnica-Blizzard. Offriamo sci, scarponi e tutto il necessario per affrontare le piste del Sellaronda con la massima performance. Prenota online e risparmia il 10%!
                         </p>
-                        <a href="#contatti" class="btn-primary inline-block">Prenota il tuo noleggio</a>
                     </div>
-                    <div>
-                        <img src="https://www.dantersport.it/img/layout/internetservice.png" 
-                             alt="Servizio noleggio online" 
-                             class="rounded-xl w-full h-auto"
-                             onerror="this.src='https://images.unsplash.com/photo-1551524164-687a55dd1126?w=1200&q=80'; this.onerror=null;">
+                </div>
+
+                <!-- Negozio Card -->
+                <div id="negozio" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80" alt="Negozio sci" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">Negozio</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Il nostro negozio è fornito di tutto ciò che serve per andare a sciare: abbigliamento tecnico, accessori, protezioni e attrezzatura selezionata per soddisfare le esigenze di ogni sciatore. Vieni a trovarci prima di salire in quota.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Deposito Card -->
+                <div id="deposito" class="bg-white rounded-lg overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80" alt="Deposito sci" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">Deposito Sci</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            A fine giornata non devi portarti dietro nulla: lascia la tua attrezzatura nel nostro comodissimo deposito sci. Sicuro, pratico e situato proprio alla base degli impianti. Il giorno dopo riparti senza pensieri.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Negozio -->
-    <section id="negozio" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="section-title mb-8">Negozio</h2>
+    <!-- Servizi Extra -->
+    <section id="servizi" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h2 class="section-title">Servizi aggiuntivi</h2>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-gray-50 rounded-2xl p-8 md:p-12 shadow-lg">
                     <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Nel nostro negozio trovi tutto il necessario per affrontare la montagna: abbigliamento tecnico, accessori, protezioni e molto altro.
+                        Oltre al noleggio e al negozio, offriamo una serie di servizi pensati per rendere la tua esperienza sulla neve più semplice e piacevole.
                     </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
-                        Che tu debba completare il tuo kit o stia cercando un regalo sportivo, il team Danter Sport è a tua disposizione per consigliarti al meglio.
-                    </p>
-                    
-                    <div class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-6">
                         <div class="flex items-start space-x-4">
-                            <div class="bg-[#5B9EC9] p-2 rounded-lg mt-1">
-                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-lg text-[#111111]">Abbigliamento tecnico</p>
-                                <p class="text-gray-600">Le migliori marche per ogni condizione meteo</p>
-                            </div>
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-gray-700">Manutenzione e preparazione degli sci</p>
                         </div>
-                        
                         <div class="flex items-start space-x-4">
-                            <div class="bg-[#5B9EC9] p-2 rounded-lg mt-1">
-                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-lg text-[#111111]">Accessori e protezioni</p>
-                                <p class="text-gray-600">Caschi, maschere, guanti e molto altro</p>
-                            </div>
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-gray-700">Assistenza personalizzata</p>
                         </div>
-                        
                         <div class="flex items-start space-x-4">
-                            <div class="bg-[#5B9EC9] p-2 rounded-lg mt-1">
-                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-lg text-[#111111]">Consulenza specializzata</p>
-                                <p class="text-gray-600">Il nostro staff ti aiuta a scegliere al meglio</p>
-                            </div>
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-gray-700">Consiglio sull'attrezzatura più adatta</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-gray-700">Posizione strategica alla base degli impianti</p>
                         </div>
                     </div>
-                </div>
-                
-                <div data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=1200&q=80" 
-                         alt="Negozio Danter Sport" 
-                         class="rounded-2xl shadow-2xl w-full h-auto"
-                         onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80'; this.onerror=null;">
+                    <p class="text-gray-700 mt-6 leading-relaxed">
+                        Dalla manutenzione degli sci alla preparazione dell'attrezzatura, siamo qui per accompagnarti in ogni momento della giornata.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servizi -->
-    <section id="servizi" class="py-24 bg-gradient-to-br from-[#5B9EC9] to-[#3A7EB5]">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Servizi</h2>
-                <p class="text-xl text-white opacity-90 max-w-3xl mx-auto">
-                    Tutto ciò che ti serve per una giornata perfetta sulle piste
+    <!-- CTA Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, var(--color-primary) 0%, #2d5a8f 100%);"></div>
+        <div class="container mx-auto px-4 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center text-white" data-aos="zoom-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Prenota online e risparmia il 10%</h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Non aspettare, assicurati la migliore attrezzatura per la tua giornata sulle piste del Sellaronda
                 </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center border border-white/20" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-[#3A7EB5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Messa a punto</h3>
-                    <p class="text-white/80">Preparazione professionale degli sci</p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center border border-white/20" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-[#3A7EB5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Attrezzatura verificata</h3>
-                    <p class="text-white/80">Controllo completo prima dell'uso</p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center border border-white/20" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-[#3A7EB5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Assistenza tecnica</h3>
-                    <p class="text-white/80">Staff specializzato sempre disponibile</p>
-                </div>
-                
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center border border-white/20" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-[#3A7EB5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Servizio rapido</h3>
-                    <p class="text-white/80">Preparazione veloce dell'attrezzatura</p>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center" data-aos="fade-up">
-                <p class="text-white text-lg leading-relaxed max-w-4xl mx-auto">
-                    Offriamo una serie di servizi pensati per rendere la tua giornata sulle piste più comoda e piacevole. Dalla messa a punto degli sci alla preparazione dell'attrezzatura, il nostro staff tecnico specializzato si occupa di ogni dettaglio.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Deposito -->
-    <section id="deposito" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1483918793747-5adbf82956c4?w=1200&q=80" 
-                         alt="Deposito sci Danter Sport" 
-                         class="rounded-2xl shadow-2xl w-full h-auto"
-                         onerror="this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80'; this.onerror=null;">
-                </div>
-                
-                <div data-aos="fade-left">
-                    <h2 class="section-title mb-8">Deposito sci</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
-                        Lascia la tua attrezzatura da sci direttamente da noi a fine giornata. Il nostro deposito è sicuro, comodo e situato in posizione strategica proprio alla partenza degli impianti.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
-                        Niente più pesi da trasportare: trovi tutto pronto quando torni il giorno dopo.
-                    </p>
-                    
-                    <div class="bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 border border-gray-100">
-                        <h3 class="text-2xl font-bold mb-6 text-[#111111]">Vantaggi del deposito</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-start space-x-3">
-                                <svg class="w-6 h-6 text-[#5B9EC9] mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-gray-700">Posizione strategica alla base degli impianti</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <svg class="w-6 h-6 text-[#5B9EC9] mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-gray-700">Ambiente sicuro e sorvegliato</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <svg class="w-6 h-6 text-[#5B9EC9] mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-gray-700">Niente trasporti quotidiani dell'attrezzatura</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <svg class="w-6 h-6 text-[#5B9EC9] mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="text-gray-700">Attrezzatura sempre pronta all'uso</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <a href="#contatti" class="btn-primary text-lg inline-block">Prenota ora</a>
             </div>
         </div>
     </section>
 
     <!-- Dove Siamo -->
-    <section id="dove-siamo" class="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title mb-6 inline-block">Dove siamo</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Nel cuore di Selva di Val Gardena, alla base della cabinovia Dantercepies
-                </p>
+    <section id="dove-siamo" class="py-20" style="background-color: var(--color-bg);">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="section-title">Dove siamo</h2>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-12">
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
                 <div data-aos="fade-right">
-                    <div class="bg-white rounded-2xl p-8 shadow-xl mb-8">
-                        <h3 class="text-2xl font-bold mb-6 text-[#111111]">Informazioni di contatto</h3>
+                    <div class="bg-white rounded-lg p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--color-primary);">Vieni a trovarci</h3>
                         
                         <div class="space-y-6">
                             <div class="flex items-start space-x-4">
-                                <div class="bg-[#5B9EC9] p-3 rounded-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                </div>
+                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
                                 <div>
-                                    <p class="font-semibold text-lg text-[#111111]">Indirizzo</p>
-                                    <p class="text-gray-600">Str. Dantercepies 42<br>I-39048 Selva di Val Gardena (BZ)</p>
+                                    <p class="font-semibold text-gray-800">Indirizzo</p>
+                                    <p class="text-gray-600">Str. Dantercepies 42<br>I-39048 Selva di Val Gardena</p>
                                 </div>
                             </div>
                             
                             <div class="flex items-start space-x-4">
-                                <div class="bg-[#5B9EC9] p-3 rounded-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                    </svg>
-                                </div>
+                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
                                 <div>
-                                    <p class="font-semibold text-lg text-[#111111]">Telefono</p>
-                                    <a href="tel:+390471795011" class="text-[#5B9EC9] hover:text-[#3A7EB5] transition text-lg">+39 0471 1889 799</a>
+                                    <p class="font-semibold text-gray-800">Telefono</p>
+                                    <a href="tel:+390471188979" class="text-gray-600 hover:text-red-600 transition">+39 0471 1889 799</a>
                                 </div>
                             </div>
                             
                             <div class="flex items-start space-x-4">
-                                <div class="bg-[#5B9EC9] p-3 rounded-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
-                                </div>
+                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
                                 <div>
-                                    <p class="font-semibold text-lg text-[#111111]">Email</p>
-                                    <a href="mailto:dantersport@gmail.com" class="text-[#5B9EC9] hover:text-[#3A7EB5] transition">dantersport@gmail.com</a>
+                                    <p class="font-semibold text-gray-800">Email</p>
+                                    <a href="mailto:dantersport@gmail.com" class="text-gray-600 hover:text-red-600 transition">dantersport@gmail.com</a>
                                 </div>
                             </div>
                             
                             <div class="flex items-start space-x-4">
-                                <div class="bg-[#5B9EC9] p-3 rounded-lg">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                    </svg>
-                                </div>
+                                <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: var(--color-accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
                                 <div>
-                                    <p class="font-semibold text-lg text-[#111111]">P.IVA</p>
+                                    <p class="font-semibold text-gray-800">P.IVA</p>
                                     <p class="text-gray-600">00154880215</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="bg-[#5B9EC9] rounded-2xl p-8 text-white" data-aos="fade-up">
-                        <h3 class="text-2xl font-bold mb-4">Vieni a trovarci</h3>
-                        <p class="text-white/90 leading-relaxed">
-                            Ci troviamo alla base della cabinovia Dantercepies. Siamo la partenza ideale per il tuo Sellaronda e il cuore pulsante della tua esperienza sciistica in Val Gardena.
+                        
+                        <p class="text-gray-700 mt-6 leading-relaxed">
+                            Ci trovi alla base della cabinovia Dantercepies. Siamo raggiungibili facilmente e pronti ad accoglierti per offrirti il miglior servizio!
                         </p>
                     </div>
                 </div>
                 
                 <div data-aos="fade-left">
-                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden h-full min-h-[600px]">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg h-full min-h-[400px]">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.8847891234567!2d11.757!3d46.556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDMzJzIxLjYiTiAxMcKwNDUnMjUuMiJF!5e0!3m2!1sit!2sit!4v1234567890"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.6!2d11.7584!3d46.5564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDMzJzIzLjAiTiAxMcKwNDUnMzAuMiJF!5e0!3m2!1sit!2sit!4v1620000000000!5m2!1sit!2sit" 
                             width="100%" 
                             height="100%" 
-                            style="border:0; min-height:600px;" 
+                            style="border:0; min-height: 400px;" 
                             allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                            loading="lazy">
                         </iframe>
                     </div>
                 </div>
@@ -679,78 +490,42 @@
         </div>
     </section>
 
-    <!-- Contatti Form -->
-    <section id="contatti" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="section-title mb-6 inline-block">Prenota ora</h2>
-                    <p class="text-xl text-gray-600">
-                        Compila il form per richiedere informazioni o prenotare il tuo noleggio con il 10% di sconto
-                    </p>
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="section-title">Contattaci</h2>
+                    <p class="text-gray-600 mt-4 text-lg">Hai domande? Scrivici e ti risponderemo al più presto</p>
                 </div>
                 
-                <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 md:p-12 shadow-xl" data-aos="fade-up" data-aos-delay="200">
-                    <form class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Nome completo</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="Il tuo nome" 
-                                    class="w-full px-4 py-3 rounded-lg focus:outline-none"
-                                    required>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                                <input 
-                                    type="email" 
-                                    placeholder="tua@email.com" 
-                                    class="w-full px-4 py-3 rounded-lg focus:outline-none"
-                                    required>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Telefono (opzionale)</label>
-                            <input 
-                                type="tel" 
-                                placeholder="+39 123 456 7890" 
-                                class="w-full px-4 py-3 rounded-lg focus:outline-none">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Messaggio</label>
-                            <textarea 
-                                rows="5" 
-                                placeholder="Scrivi qui la tua richiesta di prenotazione o informazioni..." 
-                                class="w-full px-4 py-3 rounded-lg focus:outline-none resize-none"
-                                required></textarea>
-                        </div>
-                        
-                        <div class="flex items-start space-x-3">
-                            <input type="checkbox" id="privacy" class="mt-1" required>
-                            <label for="privacy" class="text-sm text-gray-600">
-                                Acconsento al trattamento dei dati personali secondo la normativa sulla privacy
-                            </label>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="submit" class="btn-primary text-lg px-12">
-                                Invia richiesta
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <form class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <label for="nome" class="block text-gray-700 font-semibold mb-2">Nome completo</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Il tuo nome">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="tua@email.com">
+                    </div>
+                    
+                    <div>
+                        <label for="messaggio" class="block text-gray-700 font-semibold mb-2">Messaggio</label>
+                        <textarea id="messaggio" name="messaggio" rows="5" required placeholder="Come possiamo aiutarti?"></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn-primary w-full md:w-auto">
+                            Invia messaggio
+                        </button>
+                    </div>
+                </form>
                 
                 <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
-                    <p class="text-gray-600 mb-4">Oppure chiamaci direttamente</p>
-                    <a href="tel:+390471795011" class="inline-flex items-center space-x-3 bg-[#5B9EC9] text-white px-8 py-4 rounded-xl hover:bg-[#3A7EB5] transition text-lg font-semibold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        <span>+39 0471 1889 799</span>
+                    <p class="text-gray-600 mb-4">Oppure chiamaci direttamente:</p>
+                    <a href="tel:+390471188979" class="text-3xl font-bold hover:text-red-600 transition" style="color: var(--color-primary);">
+                        +39 0471 1889 799
                     </a>
                 </div>
             </div>
@@ -758,53 +533,43 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#111111] text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-12 mb-12">
+    <footer class="py-12" style="background-color: var(--color-primary);">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <img src="https://www.dantersport.it/img/layout/dantersport_logo.png" 
-                         alt="Danter Sport" 
-                         style="max-height:50px; object-fit:contain; margin-bottom: 20px;"
-                         onerror="this.style.display='none'">
-                    <p class="text-gray-400 leading-relaxed">
-                        La tua base di partenza per il Sellaronda. Noleggio, negozio e deposito sci nel cuore del Dolomiti Superski.
+                    <h4 class="text-white font-bold text-lg mb-4">Danter Sport</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        La tua base di partenza sulle Dolomiti. Noleggio, negozio e deposito sci a Selva di Val Gardena.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-xl font-bold mb-6" style="font-family: 'Barlow Condensed', sans-serif;">Link rapidi</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#negozio" class="text-gray-400 hover:text-[#5B9EC9] transition">Negozio</a></li>
-                        <li><a href="#noleggio" class="text-gray-400 hover:text-[#5B9EC9] transition">Noleggio</a></li>
-                        <li><a href="#servizi" class="text-gray-400 hover:text-[#5B9EC9] transition">Servizi</a></li>
-                        <li><a href="#deposito" class="text-gray-400 hover:text-[#5B9EC9] transition">Deposito</a></li>
-                        <li><a href="#contatti" class="text-gray-400 hover:text-[#5B9EC9] transition">Contatti</a></li>
-                    </ul>
+                    <h4 class="text-white font-bold text-lg mb-4">Contatti</h4>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-gray-300">Str. Dantercepies 42</p>
+                        <p class="text-gray-300">I-39048 Selva di Val Gardena</p>
+                        <p class="text-gray-300">Tel: <a href="tel:+390471188979" class="hover:text-white transition">+39 0471 1889 799</a></p>
+                        <p class="text-gray-300">Email: <a href="mailto:dantersport@gmail.com" class="hover:text-white transition">dantersport@gmail.com</a></p>
+                        <p class="text-gray-300">P.IVA: 00154880215</p>
+                    </div>
                 </div>
                 
                 <div>
-                    <h4 class="text-xl font-bold mb-6" style="font-family: 'Barlow Condensed', sans-serif;">Contatti</h4>
-                    <ul class="space-y-3 text-gray-400">
-                        <li>Str. Dantercepies 42</li>
-                        <li>I-39048 Selva di Val Gardena (BZ)</li>
-                        <li><a href="tel:+390471795011" class="hover:text-[#5B9EC9] transition">+39 0471 1889 799</a></li>
-                        <li><a href="mailto:dantersport@gmail.com" class="hover:text-[#5B9EC9] transition">dantersport@gmail.com</a></li>
-                        <li class="pt-2">P.IVA: 00154880215</li>
-                    </ul>
+                    <h4 class="text-white font-bold text-lg mb-4">Link rapidi</h4>
+                    <div class="space-y-2 text-sm">
+                        <a href="#noleggio" class="block text-gray-300 hover:text-white transition">Noleggio</a>
+                        <a href="#negozio" class="block text-gray-300 hover:text-white transition">Negozio</a>
+                        <a href="#deposito" class="block text-gray-300 hover:text-white transition">Deposito</a>
+                        <a href="#servizi" class="block text-gray-300 hover:text-white transition">Servizi</a>
+                        <a href="#contatti" class="block text-gray-300 hover:text-white transition">Contatti</a>
+                    </div>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <p class="text-gray-500 text-sm">
-                        © 2024 Danter Sport. Tutti i diritti riservati.
-                    </p>
-                    <div class="flex space-x-6 text-sm text-gray-500">
-                        <a href="#" class="hover:text-[#5B9EC9] transition">Privacy Policy</a>
-                        <a href="#" class="hover:text-[#5B9EC9] transition">Cookie Policy</a>
-                        <a href="#" class="hover:text-[#5B9EC9] transition">Termini e Condizioni</a>
-                    </div>
-                </div>
+            <div class="border-t border-gray-600 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2024 Danter Sport. Tutti i diritti riservati.
+                </p>
             </div>
         </div>
     </footer>
@@ -814,31 +579,30 @@
         Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
     </div>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS Init
+        // Initialize AOS
         AOS.init({
             duration: 800,
             once: true,
             offset: 100
         });
 
-        // Navbar Scroll Effect
-        const navbar = document.querySelector('.navbar');
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+                navbar.classList.add('navbar-scrolled');
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.remove('navbar-scrolled');
             }
         });
 
-        // Mobile Menu Toggle
+        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenuBtn = document.getElementById('close-menu');
-        const mobileLinks = mobileMenu.querySelectorAll('a');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
@@ -854,7 +618,7 @@
             });
         });
 
-        // Smooth Scroll
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -869,13 +633,14 @@
             });
         });
 
-        // Form Handling
+        // Form submission handling
         const form = document.querySelector('form');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Grazie per la tua richiesta! Ti contatteremo al più presto.');
+            alert('Grazie per averci contattato! Ti risponderemo al più presto.');
             form.reset();
         });
     </script>
+
 </body>
 </html>
