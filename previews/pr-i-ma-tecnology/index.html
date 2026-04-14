@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR.I.MA. Technology - Progettazione, Realizzazione e Manutenzione Impianti Certificati</title>
+    <meta name="description" content="PR.I.MA. Technology è il partner tecnico di riferimento per privati e aziende nel settore degli impianti elettrici, termici, domotici e delle ristrutturazioni civili e industriali.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #FFFFFF;
+            --color-secondary: #1A4F8A;
+            --color-accent: #4DB8A4;
+            --color-bg: #F4F7FA;
+            --color-text: #1C2B3A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            background: url('https://www.primatechnology.it/files/img/logo.png?2') center/cover no-repeat;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideLine {
+            from {
+                left: -60%;
+            }
+            to {
+                left: 110%;
+            }
+        }
+        
+        .geometric-line {
+            position: absolute;
+            height: 1px;
+            width: 60%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        
+        .line-1 { top: 15%; animation-duration: 7s; animation-delay: 0s; }
+        .line-2 { top: 35%; animation-duration: 11s; animation-delay: 2s; }
+        .line-3 { top: 55%; animation-duration: 9s; animation-delay: 4s; }
+        .line-4 { top: 75%; animation-duration: 13s; animation-delay: 1s; }
+        .line-5 { top: 90%; animation-duration: 8s; animation-delay: 3s; }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(77, 184, 164, 0.2);
+        }
+        
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3da08e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(77, 184, 164, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #15406f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 79, 138, 0.3);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #666;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .watermark a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed w-full top-0 z-50 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.primatechnology.it/files/img/logo.png?2" alt="PR.I.MA. Technology" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition font-medium">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-accent transition font-medium">Servizi</a>
+                    <a href="#domotica" class="text-white hover:text-accent transition font-medium">Domotica</a>
+                    <a href="#sicurezza" class="text-white hover:text-accent transition font-medium">Sicurezza</a>
+                    <a href="#ristrutturazioni" class="text-white hover:text-accent transition font-medium">Ristrutturazioni</a>
+                    <a href="#gallery" class="text-white hover:text-accent transition font-medium">Gallery</a>
+                    <a href="#contatti" class="btn-primary">Contatti</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#home" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Home</a>
+                <a href="#chi-siamo" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Chi siamo</a>
+                <a href="#servizi" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Servizi</a>
+                <a href="#domotica" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Domotica</a>
+                <a href="#sicurezza" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Sicurezza</a>
+                <a href="#ristrutturazioni" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Ristrutturazioni</a>
+                <a href="#gallery" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Gallery</a>
+                <a href="#contatti" class="block py-2 text-gray-800 hover:text-accent transition font-medium">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <div class="geometric-line line-1"></div>
+        <div class="geometric-line line-2"></div>
+        <div class="geometric-line line-3"></div>
+        <div class="geometric-line line-4"></div>
+        <div class="geometric-line line-5"></div>
+        
+        <div class="hero-content relative z-10 h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Soluzioni Impiantistiche Professionali per il Tuo Spazio
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Progettiamo e realizziamo impianti elettrici, termici, domotici e sistemi di sicurezza per abitazioni e industrie. Tutto certificato, tutto garantito.
+                </p>
+                <a href="#contatti" class="btn-primary text-lg">Richiedi una consulenza gratuita</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="section-title">Chi siamo</h2>
+                    <div class="w-20 h-1 mb-6" style="background-color: #4DB8A4;"></div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        PR.I.MA. Technology è un centro tecnico specializzato nella progettazione, realizzazione e manutenzione di impianti elettrici, termici e tecnologici per il settore civile e industriale.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Guidati da Giovanni e Alfonso, il nostro team affianca il cliente in ogni fase del progetto: dagli studi di fattibilità alla consegna finale, rilasciando tutta la documentazione tecnica obbligatoria prevista dalla normativa vigente.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        La nostra missione è offrire la soluzione più efficace al miglior prezzo, con professionalità, puntualità e trasparenza.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.primatechnology.it/files/upload/167887896000.jpg" alt="PR.I.MA. Technology Team" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="py-20" style="background-color: #F4F7FA;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">I nostri servizi</h2>
+                <div class="w-20 h-1 mx-auto mb-6" style="background-color: #4DB8A4;"></div>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Offriamo una gamma completa di servizi impiantistici e tecnologici. Ogni intervento è realizzato nel rispetto delle normative vigenti e corredato da certificazione ufficiale.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="service-icon" fill="none" stroke="#4DB8A4" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #1A4F8A;">Impianti Elettrici</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Progettazione e realizzazione di impianti elettrici industriali e civili con certificazione completa e componenti di ultima generazione.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="service-icon" fill="none" stroke="#4DB8A4" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #1A4F8A;">Riscaldamento e Climatizzazione</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Impianti termici, condizionamento, trattamento acque e aria, canalizzazioni e canne fumarie per ogni esigenza di comfort.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="service-icon" fill="none" stroke="#4DB8A4" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #1A4F8A;">Sistemi Antincendio</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Progettazione e installazione di impianti antincendio conformi alle normative di sicurezza più stringenti.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impianti" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.primatechnology.it/files/upload/167887914300.jpg" alt="Impianti Certificati" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="section-title">Impianti Certificati</h2>
+                    <div class="w-20 h-1 mb-6" style="background-color: #4DB8A4;"></div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Progettiamo e realizziamo impianti elettrici e termici certificati per abitazioni, uffici e capannoni industriali.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Utilizziamo componenti di ultima generazione per garantire efficienza energetica, sicurezza e conformità alle normative.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Dall'installazione alla manutenzione, siamo al tuo fianco in ogni fase.
+                    </p>
+                    <a href="#contatti" class="btn-secondary">Scopri di più</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="domotica" class="py-20" style="background-color: #1A4F8A;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Domotica e Smart Home</h2>
+                    <div class="w-20 h-1 mb-6" style="background-color: #4DB8A4;"></div>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                        Porta la tua casa o la tua azienda nel futuro con i nostri sistemi domotici e di gestione remota.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                        Controllo luci, climatizzazione, sicurezza e molto altro direttamente dal tuo smartphone.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-8 leading-relaxed">
+                        Le ultime innovazioni tecnologiche, progettate su misura per le tue esigenze.
+                    </p>
+                    <a href="#contatti" class="btn-primary">Richiedi un preventivo</a>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.primatechnology.it/files/upload/167887916300.jpg" alt="Domotica Smart Home" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sicurezza" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.primatechnology.it/files/upload/167887917800.jpg" alt="Sistemi di Sicurezza" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="section-title">Sicurezza</h2>
+                    <div class="w-20 h-1 mb-6" style="background-color: #4DB8A4;"></div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Proteggi ciò che conta con i nostri sistemi anti-intrusione, impianti antincendio e sistemi TVCC.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Progettiamo soluzioni integrate di sicurezza per abitazioni e ambienti industriali, garantendo copertura completa, affidabilità e certificazione normativa.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-700">Anti-intrusione</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-700">Antincendio</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-700">Videosorveglianza</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-gray-700">Controllo accessi</span>
+                        </div>
+                    </div>
+                    <a href="#contatti" class="btn-secondary">Proteggi il tuo spazio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ristrutturazioni" class="py-20" style="background-color: #F4F7FA;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="section-title">Ristrutturazioni</h2>
+                    <div class="w-20 h-1 mb-6" style="background-color: #4DB8A4;"></div>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Che si tratti di un immobile residenziale da valorizzare o di uno spazio industriale da riqualificare, il nostro team gestisce ogni aspetto della ristrutturazione strutturale e impiantistica.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Offriamo soluzioni chiavi in mano, con gestione completa del progetto e rispetto dei tempi concordati.
+                    </p>
+                    <a href="#contatti" class="btn-secondary">Inizia il tuo progetto</a>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.primatechnology.it/files/upload/167887919500.jpg" alt="Ristrutturazioni" class="rounded-lg shadow-2xl w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="perche-sceglierci" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">Perché sceglierci</h2>
+                <div class="w-20 h-1 mx-auto mb-6" style="background-color: #4DB8A4;"></div>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Scegliere PR.I.MA. Technology significa affidarsi a professionisti con anni di esperienza sul campo.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: rgba(77, 184, 164, 0.1);">
+                        <svg class="w-10 h-10" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #1A4F8A;">Professionalità</h3>
+                    <p class="text-gray-700">Team qualificato e certificato</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: rgba(77, 184, 164, 0.1);">
+                        <svg class="w-10 h-10" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #1A4F8A;">Puntualità</h3>
+                    <p class="text-gray-700">Rispetto dei tempi concordati</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: rgba(77, 184, 164, 0.1);">
+                        <svg class="w-10 h-10" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #1A4F8A;">Qualità Certificata</h3>
+                    <p class="text-gray-700">Standard elevati e documentazione completa</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style="background-color: rgba(77, 184, 164, 0.1);">
+                        <svg class="w-10 h-10" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #1A4F8A;">Risparmio Energetico</h3>
+                    <p class="text-gray-700">Fino al 25% di risparmio annuo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonianze" class="py-20" style="background-color: #F4F7FA;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">Cosa dicono i nostri clienti</h2>
+                <div class="w-20 h-1 mx-auto mb-6" style="background-color: #4DB8A4;"></div>
+                <p class="text-xl text-gray-700">I nostri clienti parlano per noi</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex mb-4">
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Professionali e competenti. Hanno gestito gli imprevisti con grande esperienza, mantenendo sempre la qualità del servizio."
+                    </p>
+                    <p class="font-bold" style="color: #1A4F8A;">— Andrea</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex mb-4">
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Impianto realizzato a tempo di record senza sacrificare la qualità. Consigliati!"
+                    </p>
+                    <p class="font-bold" style="color: #1A4F8A;">— Gianni</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex mb-4">
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <svg class="w-5 h-5" style="color: #4DB8A4;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">
+                        "Risparmio annuo superiore al 25% grazie ai loro interventi. Investimento recuperato in pochi anni!"
+                    </p>
+                    <p class="font-bold" style="color: #1A4F8A;">— Pino</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">I nostri progetti</h2>
+                <div class="w-20 h-1 mx-auto mb-6" style="background-color: #4DB8A4;"></div>
+                <p class="text-xl text-gray-700">Alcuni dei lavori realizzati per i nostri clienti</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-lg shadow-lg card-hover" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://www.primatechnology.it/files/upload/167887896000.jpg" alt="Progetto 1" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg card-hover" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.primatechnology.it/files/upload/167887914300.jpg" alt="Progetto 2" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg card-hover" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://www.primatechnology.it/files/upload/167887916300.jpg" alt="Progetto 3" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg card-hover" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://www.primatechnology.it/files/upload/167887917800.jpg" alt="Progetto 4" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg card-hover" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.primatechnology.it/files/upload/167887919500.jpg" alt="Progetto 5" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg card-hover" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://www.primatechnology.it/files/upload/167887896000.jpg" alt="Progetto 6" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1581092918484-8313e1f7e8c3?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-20" style="background-color: #F4F7FA;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title">Contattaci</h2>
+                <div class="w-20 h-1 mx-auto mb-6" style="background-color: #4DB8A4;"></div>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Hai un progetto in mente o hai bisogno di assistenza tecnica? Contattaci per una consulenza gratuita e senza impegno.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: rgba(77, 184, 164, 0.1);">
+                                <svg class="w-6 h-6" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg" style="color: #1A4F8A;">Telefono</h3>
+                                <a href="tel:+390000000000" class="text-gray-700 hover:text-accent transition">+39 000 000 0000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: rgba(77, 184, 164, 0.1);">
+                                <svg class="w-6 h-6" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg" style="color: #1A4F8A;">Email</h3>
+                                <a href="mailto:info@primatechnology.it" class="text-gray-700 hover:text-accent transition">info@primatechnology.it</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4" style="background-color: rgba(77, 184, 164, 0.1);">
+                                <svg class="w-6 h-6" style="color: #4DB8A4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg" style="color: #1A4F8A;">Orari</h3>
+                                <p class="text-gray-700">Lun-Ven: 8:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4" style="color: #1A4F8A;">Il nostro team</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Il nostro team è pronto ad ascoltarti e a trovare la soluzione più adatta alle tue esigenze, nel rispetto del tuo budget e dei tuoi tempi. Contattaci oggi stesso per una consulenza gratuita.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form class="bg-white p-8 rounded-lg shadow-lg" action="#" method="POST">
+                        <div class="mb-6">
+                            <label for="nome" class="block text-sm font-semibold mb-2" style="color: #1A4F8A;">Nome completo</label>
+                            <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent transition">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-semibold mb-2" style="color: #1A4F8A;">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent transition">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="telefono" class="block text-sm font-semibold mb-2" style="color: #1A4F8A;">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent transition">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="messaggio" class="block text-sm font-semibold mb-2" style="color: #1A4F8A;">Messaggio</label>
+                            <textarea id="messaggio" name="messaggio" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-accent transition resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full text-center">Invia richiesta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white" style="color: #1C2B3A;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="https://www.primatechnology.it/files/img/logo.png?2" alt="PR.I.MA. Technology" style="max-height:60px; object-fit:contain; margin-bottom: 1rem;" onerror="this.style.display='none'">
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Progettazione, Realizzazione e Manutenzione di Impianti Certificati
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4" style="color: #1A4F8A;">Servizi</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#servizi" class="text-gray-600 hover:text-accent transition">Impianti Elettrici</a></li>
+                        <li><a href="#servizi" class="text-gray-600 hover:text-accent transition">Riscaldamento</a></li>
+                        <li><a href="#domotica" class="text-gray-600 hover:text-accent transition">Domotica</a></li>
+                        <li><a href="#sicurezza" class="text-gray-600 hover:text-accent transition">Sicurezza</a></li>
+                        <li><a href="#ristrutturazioni" class="text-gray-600 hover:text-accent transition">Ristrutturazioni</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4" style="color: #1A4F8A;">Azienda</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#chi-siamo" class="text-gray-600 hover:text-accent transition">Chi siamo</a></li>
+                        <li><a href="#perche-sceglierci" class="text-gray-600 hover:text-accent transition">Perché sceglierci</a></li>
+                        <li><a href="#testimonianze" class="text-gray-600 hover:text-accent transition">Testimonianze</a></li>
+                        <li><a href="#gallery" class="text-gray-600 hover:text-accent transition">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4" style="color: #1A4F8A;">Contatti</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-gray-600">
+                            <a href="tel:+390000000000" class="hover:text-accent transition">Tel: +39 000 000 0000</a>
+                        </li>
+                        <li class="text-gray-600">
+                            <a href="mailto:info@primatechnology.it" class="hover:text-accent transition">info@primatechnology.it</a>
+                        </li>
+                        <li class="text-gray-600">Lun-Ven: 8:00 - 18:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 text-center text-sm text-gray-600">
+                <p>&copy; 2024 PR.I.MA. Technology. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="watermark">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const navbar = document.querySelector('.navbar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                mobileMenu.classList.remove('active');
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
