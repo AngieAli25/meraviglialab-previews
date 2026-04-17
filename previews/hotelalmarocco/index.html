@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Al Marocco - Il tuo 3 stelle di famiglia a pochi passi dal mare</title>
+    <meta name="description" content="Hotel 3 stelle a Miramare di Rimini, gestione familiare. All Inclusive, cucina romagnola e Piano Famiglia con bimbo gratis. A 30 passi dalla spiaggia.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A6B8A',
+                        secondary: '#F4A228',
+                        accent: '#E8532A',
+                        background: '#F9F5EF',
+                        textColor: '#2C2C2C'
+                    },
+                    fontFamily: {
+                        'display': ['"Playfair Display"', 'serif'],
+                        'body': ['Lato', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #2C2C2C;
+            background-color: #F9F5EF;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .navbar-scrolled {
+            background-color: rgba(26, 107, 138, 0.98) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(232, 83, 42, 0.2);
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp linear infinite;
+        }
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="#home">
+                        <img src="https://www.hotelalmarocco.it/wp-content/uploads/2018/03/logo-hotel-al-marocco.png" alt="Hotel Al Marocco" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-6">
+                        <a href="#home" class="text-white hover:text-secondary transition font-medium">Home</a>
+                        <a href="#hotel" class="text-white hover:text-secondary transition font-medium">Hotel</a>
+                        <a href="#camere" class="text-white hover:text-secondary transition font-medium">Camere</a>
+                        <a href="#cucina" class="text-white hover:text-secondary transition font-medium">Cucina</a>
+                        <a href="#prezzi" class="text-white hover:text-secondary transition font-medium">Prezzi</a>
+                        <a href="#pacchetti" class="text-white hover:text-secondary transition font-medium">Pacchetti</a>
+                        <a href="#spiaggia" class="text-white hover:text-secondary transition font-medium">Spiaggia</a>
+                        <a href="#contatti" class="bg-accent hover:bg-secondary text-white px-6 py-2 rounded-full transition font-bold">Contatti</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl">
+            <div class="flex justify-end p-4">
+                <button id="mobile-menu-close" class="text-white">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4 px-6">
+                <a href="#home" class="text-white hover:text-secondary transition font-medium text-lg">Home</a>
+                <a href="#hotel" class="text-white hover:text-secondary transition font-medium text-lg">Hotel</a>
+                <a href="#camere" class="text-white hover:text-secondary transition font-medium text-lg">Camere</a>
+                <a href="#cucina" class="text-white hover:text-secondary transition font-medium text-lg">Cucina</a>
+                <a href="#prezzi" class="text-white hover:text-secondary transition font-medium text-lg">Prezzi</a>
+                <a href="#pacchetti" class="text-white hover:text-secondary transition font-medium text-lg">Pacchetti</a>
+                <a href="#spiaggia" class="text-white hover:text-secondary transition font-medium text-lg">Spiaggia</a>
+                <a href="#contatti" class="bg-accent text-white px-6 py-3 rounded-full transition font-bold text-center">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80') center/cover no-repeat;">
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);"></div>
+        
+        <!-- Particles -->
+        <span class="particle" style="width: 8px; height: 8px; background: #1A6B8A; left: 10%; animation-duration: 15s; animation-delay: 0s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background: #E8532A; left: 20%; animation-duration: 18s; animation-delay: 2s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background: #F4A228; left: 30%; animation-duration: 20s; animation-delay: 4s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background: #1A6B8A; left: 40%; animation-duration: 16s; animation-delay: 1s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background: #E8532A; left: 50%; animation-duration: 19s; animation-delay: 3s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 9px; height: 9px; background: #F4A228; left: 60%; animation-duration: 17s; animation-delay: 5s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 6px; height: 6px; background: #1A6B8A; left: 70%; animation-duration: 21s; animation-delay: 2s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 8px; height: 8px; background: #E8532A; left: 80%; animation-duration: 15s; animation-delay: 4s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 10px; height: 10px; background: #1A6B8A; left: 85%; animation-duration: 18s; animation-delay: 1s; opacity: 0.5;"></span>
+        <span class="particle" style="width: 7px; height: 7px; background: #F4A228; left: 15%; animation-duration: 20s; animation-delay: 6s; opacity: 0.4;"></span>
+        <span class="particle" style="width: 5px; height: 5px; background: #E8532A; left: 25%; animation-duration: 16s; animation-delay: 3s; opacity: 0.3;"></span>
+        <span class="particle" style="width: 9px; height: 9px; background: #1A6B8A; left: 90%; animation-duration: 19s; animation-delay: 5s; opacity: 0.5;"></span>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                La tua vacanza al mare<br>
+                <span id="tw" class="text-secondary"></span><span class="cursor-blink" style="color: #E8532A;">|</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 font-light max-w-3xl mx-auto leading-relaxed">
+                Hotel 3 stelle a gestione familiare, a 30 passi dalla spiaggia. Cucina romagnola, camere confortevoli e pacchetti All Inclusive per tutta la famiglia.
+            </p>
+            <a href="#contatti" class="inline-block bg-accent hover:bg-secondary text-white font-bold text-lg px-10 py-4 rounded-full transition transform hover:scale-105 shadow-2xl">
+                Richiedi il tuo preventivo
+            </a>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="hotel" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-accent font-bold text-sm uppercase tracking-wider">Il Nostro Hotel</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6">Chi siamo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        L'Hotel Al Marocco è un hotel 3 stelle situato a Miramare di Rimini, gestito con passione dalla famiglia Terenzi da oltre vent'anni. Completamente ristrutturato, il nostro albergo unisce la cura artigianale di una gestione familiare alla qualità di un hotel moderno.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Ogni ospite per noi è un membro della famiglia: troverai sempre un sorriso, un consiglio e un'attenzione in più.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Hotel Al Marocco" class="rounded-2xl shadow-2xl w-full h-96 object-cover" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-4 gap-8 mt-16">
+                <div class="text-center card-hover bg-background rounded-xl p-8" data-aos="fade-up" data-aos-delay="0">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Gestione Familiare</h3>
+                    <p class="text-gray-600">Da oltre 20 anni</p>
+                </div>
+                <div class="text-center card-hover bg-background rounded-xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-secondary rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Completamente Ristrutturato</h3>
+                    <p class="text-gray-600">Comfort moderno</p>
+                </div>
+                <div class="text-center card-hover bg-background rounded-xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-accent rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Ideale per Famiglie</h3>
+                    <p class="text-gray-600">Bimbi benvenuti</p>
+                </div>
+                <div class="text-center card-hover bg-background rounded-xl p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">30 Passi dal Mare</h3>
+                    <p class="text-gray-600">Posizione perfetta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camere -->
+    <section id="camere" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-accent font-bold text-sm uppercase tracking-wider">Comfort e Relax</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6">Le Nostre Camere</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    Luminose, spaziose e arredate con gusto per il massimo comfort durante la tua vacanza a Rimini
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Camera" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Camera Comfort</h3>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Le nostre camere sono luminose, spaziose e arredate con gusto. Dotate di bagno con box doccia rinnovato, balcone con vista mare e tutti i comfort moderni, sono pensate per farti vivere il massimo relax durante la tua vacanza a Rimini.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-gray-700">
+                                <svg class="w-5 h-5 text-secondary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Bagno con box doccia rinnovato
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <svg class="w-5 h-5 text-secondary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Balcone con vista mare
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <svg class="w-5 h-5 text-secondary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Tutti i comfort moderni
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Camera Famiglia" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Camera Famiglia</h3>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Disponibili soluzioni per famiglie, coppie e gruppi. Spazi ampi e funzionali per garantire privacy e comfort a tutti i membri della famiglia, con attenzione speciale ai più piccoli.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center text-gray-700">
+                                <svg class="w-5 h-5 text-secondary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Ideale per 4 persone
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <svg class="w-5 h-5 text-secondary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Spazi funzionali e ampi
+                            </li>
+                            <li class="flex items-center text-gray-700">
+                                <svg class="w-5 h-5 text-secondary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                Attenzioni speciali per bimbi
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cucina -->
+    <section id="cucina" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=800&q=80" alt="Cucina Romagnola" class="rounded-2xl shadow-2xl w-full h-96 object-cover" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <span class="text-accent font-bold text-sm uppercase tracking-wider">Sapori Autentici</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6">La Nostra Cucina</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        La nostra cucina è un viaggio nei sapori autentici della Romagna. Ogni giorno lo chef prepara piatti della tradizione italiana e locale, con ingredienti freschi e ricette tramandate nel tempo.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        La colazione è un rito: cornetti appena sfornati, torte fatte in casa e il profumo del caffè per iniziare la giornata con energia.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="font-bold text-primary">Ingredienti Freschi</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mr-3">
+                                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <span class="font-bold text-primary">Ricette Tradizionali</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Inclusive & Piano Famiglia -->
+    <section id="prezzi" class="py-20 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <svg class="absolute top-0 left-0 w-64 h-64" viewBox="0 0 200 200" fill="currentColor">
+                <circle cx="100" cy="100" r="80"/>
+            </svg>
+            <svg class="absolute bottom-0 right-0 w-96 h-96" viewBox="0 0 200 200" fill="currentColor">
+                <circle cx="100" cy="100" r="80"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-secondary font-bold text-sm uppercase tracking-wider">Le Nostre Offerte</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-6">Pacchetti Vantaggiosi</h2>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                    Scegli la formula più adatta alle tue esigenze e goditi una vacanza senza pensieri
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-hover bg-white text-textColor rounded-2xl p-8" data-aos="fade-up">
+                    <div class="inline-block bg-accent text-white px-4 py-2 rounded-full text-sm font-bold mb-4">FORMULA ALL INCLUSIVE</div>
+                    <h3 class="text-3xl font-bold text-primary mb-4">All Inclusive</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Con la formula All Inclusive dell'Hotel Al Marocco hai tutto incluso: pasti, spiaggia, animazione e tanti regali esclusivi. Dimentica i pensieri e goditi la vacanza al massimo, sapendo esattamente quanto spendi. Il relax totale inizia qui.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Tutti i pasti inclusi</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Servizio spiaggia compreso</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Animazione per grandi e piccini</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Regali esclusivi</span>
+                        </li>
+                    </ul>
+                    <a href="#contatti" class="block w-full bg-accent hover:bg-secondary text-white text-center font-bold py-4 rounded-full transition">
+                        Richiedi Preventivo
+                    </a>
+                </div>
+
+                <div class="card-hover bg-secondary text-white rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="inline-block bg-white text-primary px-4 py-2 rounded-full text-sm font-bold mb-4">OFFERTA SPECIALE</div>
+                    <h3 class="text-3xl font-bold mb-4">Piano Famiglia 2+2=3</h3>
+                    <p class="mb-6 leading-relaxed">
+                        Pensiamo alle famiglie con il nostro esclusivo Piano Famiglia 2+2=3: due adulti e due bambini pagano come tre! Un'offerta pensata per chi vuole trascorrere una vacanza indimenticabile al mare senza rinunciare al risparmio.
+                    </p>
+                    <p class="mb-6 leading-relaxed">
+                        I bambini sono i benvenuti, con area giochi dedicata e attenzioni speciali.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>2 adulti + 2 bambini = prezzo per 3</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Area giochi dedicata</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Menu dedicato ai piccoli</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-white mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Animazione per bimbi</span>
+                        </li>
+                    </ul>
+                    <a href="#contatti" class="block w-full bg-white hover:bg-accent text-primary hover:text-white text-center font-bold py-4 rounded-full transition">
+                        Scopri l'Offerta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spiaggia -->
+    <section id="spiaggia" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-accent font-bold text-sm uppercase tracking-wider">30 Passi dal Mare</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6">La Nostra Spiaggia</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        L'Hotel Al Marocco è convenzionato con la spiaggia 146/147 Le Fontane di Miramare di Rimini, a pochi passi dall'albergo.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                        Ombrelloni, lettini e tutto ciò che ti serve per una giornata perfetta al mare ti aspettano ogni mattina.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <div class="text-4xl font-bold text-accent mb-2">30</div>
+                            <div class="text-gray-600">passi dal mare</div>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <div class="text-4xl font-bold text-accent mb-2">146</div>
+                            <div class="text-gray-600">bagno Le Fontane</div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Spiaggia Rimini" class="rounded-2xl shadow-2xl w-full h-96 object-cover" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="pacchetti" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
+            <div class="bg-gradient-to-br from-primary to-accent rounded-3xl p-12 shadow-2xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Prenota Ora la Tua Vacanza!</h2>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Non aspettare oltre! Contattaci per ricevere un preventivo personalizzato e scoprire tutte le nostre offerte speciali.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="tel:+390541372059" class="inline-flex items-center justify-center bg-white text-primary hover:bg-secondary hover:text-white font-bold text-lg px-10 py-4 rounded-full transition transform hover:scale-105 shadow-xl">
+                        <svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        Chiamaci Ora
+                    </a>
+                    <a href="#contatti" class="inline-flex items-center justify-center bg-secondary text-white hover:bg-white hover:text-primary font-bold text-lg px-10 py-4 rounded-full transition transform hover:scale-105 shadow-xl">
+                        <svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Scrivici
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-accent font-bold text-sm uppercase tracking-wider">Richiedi Informazioni</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mt-3 mb-6">Contattaci</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    Siamo a tua disposizione per offrirti un preventivo personalizzato. Ti risponderemo nel più breve tempo possibile.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Informazioni di Contatto</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-primary mb-1">Indirizzo</h4>
+                                    <p class="text-gray-700">Via Pescara, 3<br>47924 Miramare di Rimini (RN)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-primary mb-1">Telefono</h4>
+                                    <p class="text-gray-700">
+                                        <a href="tel:+390541372059" class="hover:text-accent transition">+39 0541.372059</a><br>
+                                        <a href="tel:+393386653390" class="hover:text-accent transition">+39 338.6653390</a>
+                                        <a href="https://wa.me/393386653390" target="_blank" class="ml-2 inline-flex items-center text-green-600 hover:text-green-700">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                            </svg>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-primary mb-1">Email</h4>
+                                    <p class="text-gray-700">
+                                        <a href="mailto:info@hotelalmarocco.it" class="hover:text-accent transition">info@hotelalmarocco.it</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary rounded-2xl shadow-lg p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Chiamaci Ora!</h3>
+                        <p class="mb-6">Il nostro staff è pronto a rispondere a tutte le tue domande</p>
+                        <a href="tel:+390541372059" class="block w-full bg-white text-primary hover:bg-secondary hover:text-white text-center font-bold text-xl py-4 rounded-full transition transform hover:scale-105 shadow-xl">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-6 h-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                +39 0541.372059
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Richiedi Preventivo</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Nome e Cognome *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Il tuo nome">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Email *</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="la.tua@email.it">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Telefono</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Il tuo telefono">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Check-in</label>
+                                    <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Check-out</label>
+                                    <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Messaggio</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Raccontaci le tue esigenze..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-accent hover:bg-secondary text-white font-bold text-lg py-4 rounded-full transition transform hover:scale-105 shadow-lg">
+                                Invia Richiesta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="https://www.hotelalmarocco.it/wp-content/uploads/2018/03/logo-hotel-al-marocco.png" alt="Hotel Al Marocco" class="h-16 mb-4" onerror="this.style.display='none'">
+                    <p class="text-white/80">Il tuo 3 stelle di famiglia a pochi passi dal mare</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Menu Rapido</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hotel" class="text-white/80 hover:text-secondary transition">Hotel</a></li>
+                        <li><a href="#camere" class="text-white/80 hover:text-secondary transition">Camere</a></li>
+                        <li><a href="#cucina" class="text-white/80 hover:text-secondary transition">Cucina</a></li>
+                        <li><a href="#contatti" class="text-white/80 hover:text-secondary transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Contatti</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li>Via Pescara, 3</li>
+                        <li>47924 Miramare di Rimini</li>
+                        <li><a href="tel:+390541372059" class="hover:text-secondary transition">+39 0541.372059</a></li>
+                        <li><a href="mailto:info@hotelalmarocco.it" class="hover:text-secondary transition">info@hotelalmarocco.it</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Seguici</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/60 text-sm mb-2">&copy; 2024 Hotel Al Marocco. Tutti i diritti riservati.</p>
+                <p class="text-white/40 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-secondary transition">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typewriter effect
+        const words = ["indimenticabile", "perfetto", "autentico", "unico", "speciale"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('tw');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseBetweenWords = 2000;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, pauseBetweenWords);
+                return;
+            }
+
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeWriter, speed);
+        }
+
+        // Start typewriter effect
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>
