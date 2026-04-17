@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Officina APS — Imagination Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C3E2D;
+            --secondary: #C8A96E;
+            --accent: #A63D2F;
+            --bg: #F9F6F0;
+            --text: #1E1E1E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Jost', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .navbar {
+            transition: all 0.4s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(44, 62, 45, 0.97);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background: url("https://www.officinaaps.org/wp-content/uploads/2022/02/officina-aps-logo-home-1024x362.png") center/cover no-repeat;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideLine {
+            from { left: -60%; }
+            to { left: 110%; }
+        }
+        
+        .line-1 { animation: slideLine 12s linear infinite; animation-delay: 0s; top: 15%; }
+        .line-2 { animation: slideLine 9s linear infinite; animation-delay: 2s; top: 35%; }
+        .line-3 { animation: slideLine 14s linear infinite; animation-delay: 4s; top: 55%; }
+        .line-4 { animation: slideLine 10s linear infinite; animation-delay: 1s; top: 75%; }
+        .line-5 { animation: slideLine 11s linear infinite; animation-delay: 3s; top: 90%; }
+        
+        .animated-line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(166, 61, 47, 0.15);
+        }
+        
+        .menu-toggle {
+            display: none;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .menu-toggle:checked + .mobile-menu {
+            max-height: 500px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 100vh;
+            }
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: rgba(0,0,0,0.3);
+            z-index: 9999;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="watermark">Bozza realizzata da meravigliä Lab · meraviglialab.com</div>
+
+    <nav class="navbar fixed w-full top-0 z-50 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://www.officinaaps.org/wp-content/uploads/2022/02/officina-aps-logo-home.png" alt="L'Officina APS" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-[#C8A96E] transition font-light">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-[#C8A96E] transition font-light">Chi siamo</a>
+                    <a href="#attivita" class="text-white hover:text-[#C8A96E] transition font-light">Attività</a>
+                    <a href="#biblioteca" class="text-white hover:text-[#C8A96E] transition font-light">Biblioteca</a>
+                    <a href="#archivio" class="text-white hover:text-[#C8A96E] transition font-light">Archivio</a>
+                    <a href="#eventi" class="text-white hover:text-[#C8A96E] transition font-light">Eventi</a>
+                    <a href="#collaborazioni" class="text-white hover:text-[#C8A96E] transition font-light">Collaborazioni</a>
+                    <a href="#contatti" class="text-white hover:text-[#C8A96E] transition font-light">Contatti</a>
+                </div>
+                
+                <label for="menu-toggle" class="md:hidden cursor-pointer">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
+            </div>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <div class="mobile-menu md:hidden mt-4 bg-[#2C3E2D] rounded-lg p-4">
+                <a href="#home" class="block py-2 text-white hover:text-[#C8A96E] transition">Home</a>
+                <a href="#chi-siamo" class="block py-2 text-white hover:text-[#C8A96E] transition">Chi siamo</a>
+                <a href="#attivita" class="block py-2 text-white hover:text-[#C8A96E] transition">Attività</a>
+                <a href="#biblioteca" class="block py-2 text-white hover:text-[#C8A96E] transition">Biblioteca</a>
+                <a href="#archivio" class="block py-2 text-white hover:text-[#C8A96E] transition">Archivio</a>
+                <a href="#eventi" class="block py-2 text-white hover:text-[#C8A96E] transition">Eventi</a>
+                <a href="#collaborazioni" class="block py-2 text-white hover:text-[#C8A96E] transition">Collaborazioni</a>
+                <a href="#contatti" class="block py-2 text-white hover:text-[#C8A96E] transition">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <div class="animated-line line-1"></div>
+        <div class="animated-line line-2"></div>
+        <div class="animated-line line-3"></div>
+        <div class="animated-line line-4"></div>
+        <div class="animated-line line-5"></div>
+        
+        <div class="relative h-full flex items-center justify-center text-center px-6">
+            <div class="hero-content max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-light text-white mb-6">Un laboratorio dell'immaginazione</h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-8 font-light">Uno spazio dedicato alla creatività, alla cultura e al benessere — dove l'arte incontra la vita e le persone si incontrano tra loro.</p>
+                <a href="#chi-siamo" class="inline-block bg-[#C8A96E] text-white px-10 py-4 rounded-full hover:bg-[#A63D2F] transition text-lg font-light">Scopri L'Officina</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="chi-siamo" class="py-24 px-6 bg-[#F9F6F0]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.officinaaps.org/wp-content/uploads/2022/02/officina-testo-aggiornato-logo.png" alt="L'Officina" class="w-full rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-[#C8A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-light text-[#2C3E2D] mb-6">Chi siamo</h2>
+                    <p class="text-lg text-[#1E1E1E] leading-relaxed mb-6">L'Officina APS è un circolo ri-creativo, un luogo vivo in cui la creatività produce benessere e cultura. Nata dalla passione per l'arte, i libri e le connessioni umane, L'Officina è uno spazio in cui si animano scambi di esperienze e conoscenze, si accende la curiosità e si tessono legami profondi tra le culture.</p>
+                    <p class="text-lg text-[#1E1E1E] leading-relaxed">Come suggerisce la sua stessa radice latina — <em>opus</em>, fare — L'Officina è un luogo di lavoro trasformativo, gentile e comunitario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="attivita" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl md:text-6xl font-light text-[#2C3E2D] mb-6">Le nostre attività</h2>
+                <p class="text-lg text-[#1E1E1E] max-w-3xl mx-auto leading-relaxed">L'Officina offre una ricca gamma di laboratori e percorsi creativi per adulti, bambini e adolescenti. Dalla sofrologia all'arte espressiva, dalla ceramica alla fotografia, dall'inglese ludico agli incontri dedicati alla cultura indiana: ogni attività è pensata per nutrire la mente, il corpo e lo spirito.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card-hover bg-[#F9F6F0] rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-[#A63D2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-[#2C3E2D] mb-3">Sofrologia</h3>
+                        <p class="text-[#1E1E1E] leading-relaxed">Laboratori individuali e di gruppo per adulti e bambini, dedicati all'apprendimento di tecniche di respirazione, visualizzazione e rilassamento profondo. Un percorso dolce verso il benessere interiore e la consapevolezza di sé.</p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-[#F9F6F0] rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-8">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-[#A63D2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-[#2C3E2D] mb-3">L'arte che è vita</h3>
+                        <p class="text-[#1E1E1E] leading-relaxed">Laboratori di gruppo per bambini e adulti alla scoperta della propria creatività attraverso il movimento, la respirazione, la scrittura e il disegno. Non è richiesta alcuna conoscenza artistica: basta il desiderio di ascoltare il proprio mondo interiore e dargli forma.</p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-[#F9F6F0] rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-8">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-[#A63D2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-[#2C3E2D] mb-3">La fotografia — Il libro su di me</h3>
+                        <p class="text-[#1E1E1E] leading-relaxed">Un laboratorio per bambini e adolescenti dai 10 ai 16 anni che realizzano un libro fotografico su sé stessi, riflettendo sul proprio vissuto e intervistando genitori, nonni e amici. Un approccio ispirato al curriculum dell'associazione internazionale Outside the Lens.</p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-[#F9F6F0] rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-[#A63D2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-[#2C3E2D] mb-3">La ceramica — Terra mia</h3>
+                        <p class="text-[#1E1E1E] leading-relaxed">Laboratorio per adulti. Un invito a saper ascoltare la terra nel microcosmo di un pezzo d'argilla, per dare forma al proprio mondo interiore. Un'esperienza tattile, meditativa e profondamente creativa.</p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-[#F9F6F0] rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-8">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-[#A63D2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-[#2C3E2D] mb-3">Let's play in English</h3>
+                        <p class="text-[#1E1E1E] leading-relaxed">Laboratori in lingua inglese per bambini e adolescenti dai 6 ai 16 anni. Imparare la lingua diventando protagonisti di giochi, storie e avventure: perché la vera acquisizione nasce dal piacere e dalla scoperta.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="biblioteca" class="py-24 px-6 bg-[#2C3E2D] text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="mb-4">
+                        <svg class="w-16 h-16 text-[#C8A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-light mb-6">Biblioteca</h2>
+                    <p class="text-lg leading-relaxed mb-6 text-white/90">La biblioteca de L'Officina raccoglie oltre 1000 volumi sull'arte, il tessile, il design, l'architettura, il viaggio, la poesia, la letteratura e la psicologia, in italiano, inglese e francese.</p>
+                    <p class="text-lg leading-relaxed text-white/90">Nata dalla passione per i libri di Jan e Rosenda, è uno spazio aperto alla consultazione, alla ricerca e all'ispirazione. È anche possibile svolgere tesi di biblioteconomia sulla catalogazione della collezione.</p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80" alt="Biblioteca" class="w-full rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="archivio" class="py-24 px-6 bg-[#F9F6F0]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <img src="https://www.officinaaps.org/wp-content/uploads/2022/03/lettera-a-officina.png" alt="Archivio Le Cachemirien" class="w-full rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <div class="mb-4">
+                        <svg class="w-16 h-16 text-[#C8A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-light text-[#2C3E2D] mb-6">Archivio Le Cachemirien</h2>
+                    <p class="text-lg text-[#1E1E1E] leading-relaxed mb-6">Una collezione unica al mondo composta da 850 opere tessili e abiti preziosi — creazioni filate, tessute e ricamate a mano in India.</p>
+                    <p class="text-lg text-[#1E1E1E] leading-relaxed">Frutto della creatività e della sensibilità di Rosenda Arcioni Meer, l'archivio non è in vendita ma può essere visitato su appuntamento. Un patrimonio di bellezza, cultura e memoria artigianale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eventi" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <div data-aos="fade-up" class="mb-12">
+                <div class="inline-block mb-4">
+                    <svg class="w-16 h-16 text-[#A63D2F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-light text-[#2C3E2D] mb-6">Eventi</h2>
+                <p class="text-lg text-[#1E1E1E] leading-relaxed max-w-3xl mx-auto">L'Officina organizza regolarmente mostre di artisti locali e internazionali, incontri con poeti, scrittori, fotografi e autori, spettacoli teatrali e serate culturali. Ogni evento nasce dal desiderio di celebrare e condividere la creatività e l'ingegno umano.</p>
+                <p class="text-lg text-[#1E1E1E] leading-relaxed max-w-3xl mx-auto mt-4">Iscriviti alla newsletter per non perdere nessun appuntamento.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.officinaaps.org/wp-content/uploads/2022/02/lettera-l-officina.png" alt="Eventi culturali" class="w-full h-64 object-cover rounded-lg shadow-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80'; this.onerror=null;">
+                    <h3 class="text-2xl font-semibold text-[#2C3E2D]">Mostre d'arte</h3>
+                </div>
+                <div class="card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.officinaaps.org/wp-content/uploads/2022/03/lettera-f-officina.png" alt="Incontri letterari" class="w-full h-64 object-cover rounded-lg shadow-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80'; this.onerror=null;">
+                    <h3 class="text-2xl font-semibold text-[#2C3E2D]">Incontri letterari</h3>
+                </div>
+                <div class="card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://www.officinaaps.org/wp-content/uploads/2022/03/lettera-i-officina.png" alt="Spettacoli" class="w-full h-64 object-cover rounded-lg shadow-lg mb-4" onerror="this.src='https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80'; this.onerror=null;">
+                    <h3 class="text-2xl font-semibold text-[#2C3E2D]">Spettacoli teatrali</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="collaborazioni" class="py-24 px-6 bg-[#F9F6F0]">
+        <div class="max-w-4xl mx-auto text-center">
+            <div data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-16 h-16 text-[#C8A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-light text-[#2C3E2D] mb-6">Collaborazioni</h2>
+                <p class="text-lg text-[#1E1E1E] leading-relaxed mb-6">L'Officina è uno spazio aperto alla collaborazione. Artisti, associazioni, professionisti del benessere e della cultura sono invitati a convergere in questo luogo per imparare, insegnare, condividere, immaginare e creare insieme.</p>
+                <p class="text-lg text-[#1E1E1E] leading-relaxed mb-8">Per proporre una collaborazione, scrivici o chiamaci direttamente.</p>
+                <a href="#contatti" class="inline-block bg-[#A63D2F] text-white px-10 py-4 rounded-full hover:bg-[#2C3E2D] transition text-lg">Proponi una collaborazione</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="py-24 px-6 bg-[#2C3E2D] text-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-16 h-16 text-[#C8A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-light mb-6">Contatti</h2>
+                <p class="text-lg leading-relaxed text-white/90 max-w-3xl mx-auto">Sei curioso di scoprire L'Officina, partecipare a un laboratorio o proporre una collaborazione? Siamo felici di ascoltarti. Scrivici oppure chiamaci direttamente per ricevere informazioni sulle attività, il calendario eventi e le modalità di visita all'archivio.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold mb-4 text-[#C8A96E]">Informazioni dirette</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-[#C8A96E] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <a href="tel:+393389025234" class="text-lg hover:text-[#C8A96E] transition">+39 338 90 25 234</a>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-[#C8A96E] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span class="text-lg">info@officinaaps.org</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Il tuo nome" class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-[#C8A96E] transition">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="La tua email" class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-[#C8A96E] transition">
+                        </div>
+                        <div>
+                            <textarea rows="5" placeholder="Il tuo messaggio" class="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-[#C8A96E] transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-[#C8A96E] text-white px-8 py-4 rounded-lg hover:bg-[#A63D2F] transition text-lg font-medium">Invia messaggio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#1E1E1E] text-white py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-[#C8A96E]">L'Officina APS</h4>
+                    <p class="text-white/70 leading-relaxed">Un laboratorio dell'immaginazione dedicato alla creatività, alla cultura e al benessere.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-[#C8A96E]">Link rapidi</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="#chi-siamo" class="hover:text-[#C8A96E] transition">Chi siamo</a></li>
+                        <li><a href="#attivita" class="hover:text-[#C8A96E] transition">Attività</a></li>
+                        <li><a href="#biblioteca" class="hover:text-[#C8A96E] transition">Biblioteca</a></li>
+                        <li><a href="#archivio" class="hover:text-[#C8A96E] transition">Archivio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-[#C8A96E]">Contatti</h4>
+                    <ul class="space-y-2 text-white/70">
+                        <li><a href="tel:+393389025234" class="hover:text-[#C8A96E] transition">+39 338 90 25 234</a></li>
+                        <li>info@officinaaps.org</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center text-white/60">
+                <p>&copy; 2024 L'Officina APS. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    const menuToggle = document.getElementById('menu-toggle');
+                    if (menuToggle) menuToggle.checked = false;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
