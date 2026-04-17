@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scuderie Del Rey - Dove l'Eccellenza Incontra la Passione</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A1A2E',
+                        secondary: '#C9A84C',
+                        accent: '#B8860B',
+                        bglight: '#F5F2EC',
+                        textdark: '#2C2C2C',
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background: url("https://www.delrey.it/wp-content/uploads/2026/02/Gessica-Notaro-profilo.jpg") center/cover no-repeat;
+            overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animated-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        @keyframes slideLine {
+            from { left: -60%; }
+            to { left: 110%; }
+        }
+        .line1 { top: 20%; animation-duration: 9s; animation-delay: 0s; }
+        .line2 { top: 35%; animation-duration: 12s; animation-delay: 2s; }
+        .line3 { top: 50%; animation-duration: 7s; animation-delay: 4s; }
+        .line4 { top: 65%; animation-duration: 14s; animation-delay: 1s; }
+        .line5 { top: 80%; animation-duration: 10s; animation-delay: 3s; }
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: rgba(26, 26, 46, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(184, 134, 11, 0.2);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+        .watermark a {
+            color: #C9A84C;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-bglight">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed w-full top-0 z-50 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.scuderiedelrey.it/wp-content/uploads/2024/01/logo-del-rey.png" alt="Scuderie Del Rey" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition font-body font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition font-body font-medium">Chi Siamo</a>
+                    <a href="#selezione" class="text-white hover:text-secondary transition font-body font-medium">Selezione d'Élite</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition font-body font-medium">Servizi</a>
+                    <a href="#testimonial" class="text-white hover:text-secondary transition font-body font-medium">Dicono di Noi</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-body font-medium">Contatti</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl md:hidden">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white mb-8 ml-auto block">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="flex flex-col space-y-6">
+                    <a href="#home" class="text-white hover:text-secondary transition font-body text-lg">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition font-body text-lg">Chi Siamo</a>
+                    <a href="#selezione" class="text-white hover:text-secondary transition font-body text-lg">Selezione d'Élite</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition font-body text-lg">Servizi</a>
+                    <a href="#testimonial" class="text-white hover:text-secondary transition font-body text-lg">Dicono di Noi</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-body text-lg">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="animated-line line1"></div>
+        <div class="animated-line line2"></div>
+        <div class="animated-line line3"></div>
+        <div class="animated-line line4"></div>
+        <div class="animated-line line5"></div>
+        
+        <div class="hero-content absolute inset-0 flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-heading font-bold text-white mb-6 leading-tight">
+                    Scuderie Del Rey:<br>Dove l'Eccellenza Incontra la Passione
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-10 font-body font-light leading-relaxed">
+                    Selezioniamo e prepariamo cavalli da salto ostacoli per chi punta ai massimi livelli. Perché l'eccellenza nasce solo quando cavallo e cavaliere diventano una cosa sola.
+                </p>
+                <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-primary font-body font-semibold px-10 py-4 rounded-full transition-all transform hover:scale-105 shadow-xl">
+                    Scopri il tuo binomio perfetto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary">Chi Siamo</h2>
+                    </div>
+                    <p class="text-lg text-textdark leading-relaxed mb-6 font-body">
+                        Scuderie Del Rey nasce dalla visione di <strong>Filippo Bologni</strong>, atleta d'élite dell'Arma dei Carabinieri e pluricampione italiano, con vittorie in Coppe delle Nazioni 5 stelle e una carriera internazionale di assoluto prestigio, e di <strong>Gessica Notaro</strong>, amministratrice unica di Del Rey Srl, che unisce passione, empatia e visione manageriale nella gestione quotidiana della scuderia.
+                    </p>
+                    <p class="text-lg text-textdark leading-relaxed font-body">
+                        Insieme hanno creato una realtà unica in Italia: un punto di riferimento per chi cerca non solo un cavallo, ma il compagno di gara ideale.
+                    </p>
+                </div>
+                <div data-aos="fade-left" class="grid grid-cols-2 gap-4">
+                    <img src="https://www.delrey.it/wp-content/uploads/2026/02/Filippo-Bologni-foto-profilo-2.jpeg" alt="Filippo Bologni" class="w-full h-64 object-cover rounded-lg shadow-lg" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                    <img src="https://www.delrey.it/wp-content/uploads/2026/02/Gessica-Notaro-profilo.jpg" alt="Gessica Notaro" class="w-full h-64 object-cover rounded-lg shadow-lg mt-8" onerror="this.src='https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selezione d'Élite -->
+    <section id="selezione" class="py-20 md:py-28 bg-bglight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary">Selezione d'Élite</h2>
+                </div>
+                <p class="text-xl text-textdark max-w-3xl mx-auto font-body leading-relaxed">
+                    Selezioniamo soggetti d'eccellenza per professionisti e amatori con accesso a una rete di contatti in Italia e all'estero.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold text-primary mb-4">Valutazione Rigorosa</h3>
+                    <p class="text-textdark font-body leading-relaxed">
+                        Ogni cavallo viene valutato con rigore tecnico e passione autentica, garantendo standard qualitativi ai massimi livelli del panorama sportivo internazionale.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold text-primary mb-4">Rete Internazionale</h3>
+                    <p class="text-textdark font-body leading-relaxed">
+                        Accesso privilegiato a una rete di contatti in Italia e all'estero per individuare i migliori soggetti disponibili sul mercato internazionale.
+                    </p>
+                </div>
+                <div class="card-hover bg-white p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold text-primary mb-4">Reputazione d'Eccellenza</h3>
+                    <p class="text-textdark font-body leading-relaxed">
+                        La nostra reputazione è costruita su anni di successi nei campi di gara più prestigiosi del mondo, dal circuito nazionale alle competizioni 5 stelle.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il Binomio Perfetto -->
+    <section class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.delrey.it/wp-content/uploads/2026/02/Filippo-Bologni-competizione-1024x670.jpeg" alt="Il Binomio Perfetto" class="w-full h-96 object-cover rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1534281988426-e3a77f97c8c8?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary">Il Binomio Perfetto</h2>
+                    </div>
+                    <p class="text-lg text-textdark leading-relaxed mb-6 font-body">
+                        La nostra missione è creare l'abbinamento ideale tra cavallo e cavaliere. Ogni consulenza è personalizzata per trovare il compagno di gara più adatto alle specifiche aspirazioni, al carattere e al livello tecnico del cliente.
+                    </p>
+                    <p class="text-lg text-textdark leading-relaxed font-body">
+                        Crediamo che nel salto ostacoli la vera eccellenza nasca solo dall'intesa profonda tra due atleti: l'umano e il cavallo.
+                    </p>
+                    <div class="mt-8 p-6 bg-bglight rounded-lg border-l-4 border-secondary">
+                        <p class="text-textdark font-body italic">
+                            "L'armonia tra cavaliere e cavallo non si acquista, si costruisce con pazienza, competenza e rispetto reciproco."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section id="servizi" class="py-20 md:py-28 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold">I Nostri Servizi</h2>
+                </div>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto font-body leading-relaxed">
+                    Un ventaglio completo di servizi dedicati al mondo dell'equitazione sportiva di alto livello.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold mb-4">Commercio Internazionale</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Compravendita di cavalli da salto ostacoli con accesso privilegiato al mercato internazionale e network di allevamenti d'élite.
+                    </p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold mb-4">Preparazione Agonistica</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Programmi personalizzati di addestramento e preparazione fisica per cavalli da competizione a tutti i livelli.
+                    </p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold mb-4">Gestione Carriera</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Pianificazione strategica della carriera agonistica del binomio, dalla selezione delle competizioni al coaching.
+                    </p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold mb-4">Consulenza Strategica</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Supporto per l'avvio e la gestione di business nel settore equestre, dalla scuderia all'organizzazione eventi.
+                    </p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold mb-4">Stallo e Gestione</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Strutture dedicate alle alte prestazioni con protocolli di gestione del benessere certificati e personale qualificato.
+                    </p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-white/10 hover:bg-white/10 transition" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-semibold mb-4">Formazione Continua</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Aggiornamento costante sulle migliori tecniche di addestramento e gestione del cavallo sportivo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Etica e Benessere -->
+    <section class="py-20 md:py-28 bg-bglight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary">Etica e Benessere</h2>
+                    </div>
+                    <p class="text-lg text-textdark leading-relaxed mb-6 font-body">
+                        Il benessere del cavallo non è un optional: è il fondamento di tutto ciò che facciamo. Ogni protocollo di addestramento e ogni sistema di stallo è studiato per rispettare la salute, la sensibilità e la natura di ogni soggetto.
+                    </p>
+                    <p class="text-lg text-textdark leading-relaxed font-body mb-8">
+                        Perché solo un cavallo sano, sereno e rispettato può esprimere il suo massimo potenziale in gara.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-textdark font-body">Protocolli veterinari certificati e controlli periodici approfonditi</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-textdark font-body">Alimentazione personalizzata e gestione del recupero fisico</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-textdark font-body">Rispetto dei ritmi naturali e delle attitudini individuali</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p class="text-textdark font-body">Strutture moderne con ampi spazi e socializzazione guidata</p>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.delrey.it/wp-content/uploads/2026/02/ChatGPT-Image-4-feb-2026-13_12_37.png" alt="Benessere del cavallo" class="w-full h-96 object-cover rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dicono di Noi -->
+    <section id="testimonial" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary">Dicono di Noi</h2>
+                </div>
+                <p class="text-xl text-textdark max-w-3xl mx-auto font-body leading-relaxed">
+                    La fiducia dei nostri clienti è il nostro miglior risultato.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-bglight p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-heading font-bold text-xl mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-semibold text-lg text-primary">Marcello D.</h4>
+                            <p class="text-sm text-textdark/70 font-body">Cavaliere Professionista</p>
+                        </div>
+                    </div>
+                    <svg class="w-8 h-8 text-secondary/30 mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    <p class="text-textdark font-body leading-relaxed italic">
+                        "Cercavo un cavallo per fare il salto di categoria nei concorsi 5 stelle e ho trovato in Filippo Bologni un consulente preparatissimo. Il 'Metodo Bologni' si vede tutto in campo gara."
+                    </p>
+                </div>
+                <div class="bg-bglight p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-heading font-bold text-xl mr-4">
+                            E
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-semibold text-lg text-primary">Elena V.</h4>
+                            <p class="text-sm text-textdark/70 font-body">Amazzone Amateur</p>
+                        </div>
+                    </div>
+                    <svg class="w-8 h-8 text-secondary/30 mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    <p class="text-textdark font-body leading-relaxed italic">
+                        "Grazie a Gessica ho trovato il compagno ideale. La sua capacità di leggere l'anima del cavallo e la mia personalità è stata la chiave per creare un'intesa immediata."
+                    </p>
+                </div>
+                <div class="bg-bglight p-8 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-heading font-bold text-xl mr-4">
+                            T
+                        </div>
+                        <div>
+                            <h4 class="font-heading font-semibold text-lg text-primary">Thomas S.</h4>
+                            <p class="text-sm text-textdark/70 font-body">Horse Dealer & Trainer</p>
+                        </div>
+                    </div>
+                    <svg class="w-8 h-8 text-secondary/30 mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    <p class="text-textdark font-body leading-relaxed italic">
+                        "Collaborare con Del Rey Srl significa garanzia di trasparenza. Ogni dettaglio, dal pedigree alla documentazione medica, è gestito con estrema serietà."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-20 md:py-28 bg-bglight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">La Nostra Passione in Immagini</h2>
+                <p class="text-xl text-textdark font-body">Momenti di eccellenza e dedizione quotidiana</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://www.delrey.it/wp-content/uploads/2026/02/ChatGPT-Image-4-feb-2026-13_13_40.png" alt="Scuderie Del Rey" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1534281988426-e3a77f97c8c8?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.delrey.it/wp-content/uploads/2026/02/ChatGPT-Image-4-feb-2026-13_14_40.png" alt="Preparazione agonistica" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1551797568-a5949ddd7c39?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://www.delrey.it/wp-content/uploads/2019/02/lander-downBTN.png" alt="Salto ostacoli" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1568572933382-74d440642117?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="text-4xl md:text-5xl font-heading font-bold text-primary">Contattaci</h2>
+                </div>
+                <p class="text-xl text-textdark max-w-3xl mx-auto font-body leading-relaxed">
+                    Affidatevi all'expertise del nostro team per l'acquisto, la vendita e l'addestramento del vostro cavallo. Grazie alla nostra rete di contatti internazionale, offriamo soluzioni su misura per ogni esigenza sportiva.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-textdark font-body font-medium mb-2">Nome e Cognome</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition" placeholder="Il tuo nome completo">
+                        </div>
+                        <div>
+                            <label class="block text-textdark font-body font-medium mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition" placeholder="tua@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-textdark font-body font-medium mb-2">Telefono</label>
+                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition" placeholder="+39 000 000 0000">
+                        </div>
+                        <div>
+                            <label class="block text-textdark font-body font-medium mb-2">Messaggio</label>
+                            <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent transition" placeholder="Raccontaci di cosa hai bisogno..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-secondary hover:bg-accent text-primary font-body font-semibold px-8 py-4 rounded-lg transition-all transform hover:scale-105 shadow-lg">
+                            Invia Richiesta
+                        </button>
+                    </form>
+                </div>
+                <div data-aos="fade-left" class="space-y-8">
+                    <div class="bg-bglight p-8 rounded-lg">
+                        <div class="flex items-start mb-4">
+                            <svg class="w-6 h-6 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="text-xl font-heading font-semibold text-primary mb-2">Sede</h3>
+                                <p class="text-textdark font-body">Via Flaminia 171<br>47923 Rimini (RN)<br>Italia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-bglight p-8 rounded-lg">
+                        <div class="flex items-start mb-4">
+                            <svg class="w-6 h-6 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="text-xl font-heading font-semibold text-primary mb-2">Telefono</h3>
+                                <p class="text-textdark font-body">+39 000 000 0000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-bglight p-8 rounded-lg">
+                        <div class="flex items-start mb-4">
+                            <svg class="w-6 h-6 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <h3 class="text-xl font-heading font-semibold text-primary mb-2">Orari</h3>
+                                <p class="text-textdark font-body">Lun-Ven: 9:00 - 18:00<br>Sabato: Su appuntamento<br>Domenica: Chiuso</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-secondary">Scuderie Del Rey</h3>
+                    <p class="text-white/80 font-body leading-relaxed">
+                        Dove l'eccellenza incontra la passione. Selezioniamo e prepariamo cavalli da salto ostacoli per chi punta ai massimi livelli.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-heading font-semibold mb-4 text-secondary">Link Rapidi</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="#chi-siamo" class="text-white/80 hover:text-secondary transition">Chi Siamo</a></li>
+                        <li><a href="#selezione" class="text-white/80 hover:text-secondary transition">Selezione d'Élite</a></li>
+                        <li><a href="#servizi" class="text-white/80 hover:text-secondary transition">Servizi</a></li>
+                        <li><a href="#contatti" class="text-white/80 hover:text-secondary transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-heading font-semibold mb-4 text-secondary">Seguici</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/60 font-body text-sm">
+                    © 2024 Scuderie Del Rey - Del Rey Srl. Tutti i diritti riservati.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
