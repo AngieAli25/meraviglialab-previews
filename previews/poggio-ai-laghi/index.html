@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poggio ai Laghi - Vino, Terra, Esperienza nel cuore del Chianti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C1A0E',
+                        secondary: '#C8A96E',
+                        accent: '#8B1A1A',
+                        background: '#FAF6F0',
+                        textcolor: '#1E1208'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1E1208;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        .hero-line:nth-child(1) { top: 20%; animation-duration: 10s; animation-delay: 0s; }
+        .hero-line:nth-child(2) { top: 40%; animation-duration: 14s; animation-delay: 2s; }
+        .hero-line:nth-child(3) { top: 60%; animation-duration: 8s; animation-delay: 4s; }
+        .hero-line:nth-child(4) { top: 75%; animation-duration: 12s; animation-delay: 1s; }
+        .hero-line:nth-child(5) { top: 90%; animation-duration: 9s; animation-delay: 3s; }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 26, 26, 0.2);
+        }
+        .navbar-transparent {
+            background: transparent;
+        }
+        .navbar-solid {
+            background: rgba(44, 26, 14, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            max-height: 600px;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 11px;
+            color: rgba(0,0,0,0.3);
+            z-index: 9999;
+            font-family: 'Jost', sans-serif;
+        }
+        .watermark a {
+            color: rgba(0,0,0,0.5);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 navbar-transparent">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex-shrink-0">
+                    <img src="https://poggioailaghi.com/wp-content/uploads/2020/03/logo-white1-poggio-ai-laghi-.png" alt="Poggio ai Laghi" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#home" class="text-white hover:text-secondary transition">Home</a>
+                    <a href="#vini" class="text-white hover:text-secondary transition">I Nostri Vini</a>
+                    <a href="#esperienze" class="text-white hover:text-secondary transition">Esperienze</a>
+                    <a href="#eventi" class="text-white hover:text-secondary transition">Eventi</a>
+                    <a href="#wineclub" class="text-white hover:text-secondary transition">Wine Club</a>
+                    <a href="#regali" class="text-white hover:text-secondary transition">Idee Regalo</a>
+                    <a href="#chisiamo" class="text-white hover:text-secondary transition">Chi Siamo</a>
+                    <a href="#contatti" class="bg-accent text-white px-6 py-2 rounded hover:bg-opacity-90 transition">Contatti</a>
+                </div>
+                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="mobile-menu lg:hidden pb-4">
+                <a href="#home" class="block text-white py-2 hover:text-secondary transition">Home</a>
+                <a href="#vini" class="block text-white py-2 hover:text-secondary transition">I Nostri Vini</a>
+                <a href="#esperienze" class="block text-white py-2 hover:text-secondary transition">Esperienze</a>
+                <a href="#eventi" class="block text-white py-2 hover:text-secondary transition">Eventi</a>
+                <a href="#wineclub" class="block text-white py-2 hover:text-secondary transition">Wine Club</a>
+                <a href="#regali" class="block text-white py-2 hover:text-secondary transition">Idee Regalo</a>
+                <a href="#chisiamo" class="block text-white py-2 hover:text-secondary transition">Chi Siamo</a>
+                <a href="#contatti" class="block text-white py-2 hover:text-secondary transition">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://poggioailaghi.com/wp-content/uploads/2025/11/vigna-scaled.jpg');">
+            <img src="https://poggioailaghi.com/wp-content/uploads/2025/11/vigna-scaled.jpg" alt="Vigna Poggio ai Laghi" class="hidden" onerror="this.parentElement.style.backgroundImage='url(https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1920&q=80)'; this.onerror=null;">
+        </div>
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-content relative h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+                <p class="text-secondary text-lg md:text-xl mb-4 tracking-widest uppercase">Vino, Terra, Esperienza</p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">Benvenuti nel cuore del Chianti</h1>
+                <p class="text-white text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">Scegli la tua esperienza: acquista i nostri vini, prenota una degustazione o organizza il tuo evento esclusivo in Toscana.</p>
+                <a href="#modi" class="inline-block bg-accent text-white px-10 py-4 text-lg rounded hover:bg-opacity-90 transition transform hover:scale-105">Scopri cosa fare</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tre Modi Section -->
+    <section id="modi" class="py-20 px-4 bg-background">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Tre modi per vivere Poggio ai Laghi</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-4 text-center">Shop Online</h3>
+                        <p class="text-textcolor leading-relaxed text-center">Acquista i nostri vini direttamente online e ricevili a casa tua. Scopri la nostra selezione di vini rossi, bianchi, spumanti e oli toscani.</p>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-4 text-center">Degustazioni</h3>
+                        <p class="text-textcolor leading-relaxed text-center">Prenota una degustazione o un tour nella nostra tenuta nel Chianti. Vivi il vino da dentro con esperienze guidate e personalizzate.</p>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-4 text-center">Eventi Privati</h3>
+                        <p class="text-textcolor leading-relaxed text-center">Organizza un evento indimenticabile — matrimonio, cena privata, team building — in una location toscana da sogno.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chisiamo" class="py-20 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://poggioailaghi.com/wp-content/uploads/2025/11/vigna-scaled.jpg" alt="Poggio ai Laghi Vigna" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1474440692490-2e83ae13ba29?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Chi siamo</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-textcolor text-lg leading-relaxed mb-6">Poggio ai Laghi nasce dall'amore per la terra toscana e per il vino autentico. La nostra tenuta, immersa nelle colline del Chianti, unisce tradizione vinicola e visione moderna.</p>
+                    <p class="text-textcolor text-lg leading-relaxed mb-6">Samanta guida l'azienda con passione, affiancata dall'enologo Alessandro Cellai, riconosciuto tra i migliori professionisti del settore.</p>
+                    <p class="text-textcolor text-lg leading-relaxed">Ogni bottiglia è il frutto di cura, rispetto per il territorio e una ricerca continua della qualità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I Nostri Vini Section -->
+    <section id="vini" class="py-20 px-4 bg-primary text-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">I nostri vini</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed opacity-90">Dai grandi rossi del Chianti ai bianchi profumati, dai Vinsanti ai grandi formati da collezione: ogni etichetta di Poggio ai Laghi racconta un pezzo di questa terra.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-white bg-opacity-10 backdrop-blur rounded-lg p-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Vini Rossi</h3>
+                    <p class="text-center text-sm opacity-80">Chianti Classico, Riserva e grandi selezioni</p>
+                </div>
+                <div class="card-hover bg-white bg-opacity-10 backdrop-blur rounded-lg p-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Vini Bianchi</h3>
+                    <p class="text-center text-sm opacity-80">Profumati, freschi e versatili</p>
+                </div>
+                <div class="card-hover bg-white bg-opacity-10 backdrop-blur rounded-lg p-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Spumanti</h3>
+                    <p class="text-center text-sm opacity-80">Per celebrare ogni momento</p>
+                </div>
+                <div class="card-hover bg-white bg-opacity-10 backdrop-blur rounded-lg p-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Liquori e Oli</h3>
+                    <p class="text-center text-sm opacity-80">Prodotti tipici toscani</p>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#contatti" class="inline-block bg-accent text-white px-8 py-3 rounded hover:bg-opacity-90 transition">Scopri la Collezione</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Esperienze Section -->
+    <section id="esperienze" class="py-20 px-4 bg-background">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Esperienze</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed text-textcolor">Vivi il Chianti da dentro. Ogni esperienza è pensata per chi vuole andare oltre il bicchiere e toccare con mano la cultura, la storia e il sapore autentico della Toscana.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://poggioailaghi.com/wp-content/uploads/2025/02/Donna-Ava-e-le-7-ancelle-poggio-ai-laghi.jpg" alt="Degustazione Vini" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Tour & Degustazioni</h3>
+                        <p class="text-textcolor leading-relaxed mb-4">Visita guidata della tenuta con degustazione dei nostri vini. Scopri il processo produttivo, i vigneti e la cantina accompagnato dai nostri esperti.</p>
+                        <a href="#contatti" class="text-accent font-semibold hover:text-secondary transition">Prenota ora →</a>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://poggioailaghi.com/wp-content/uploads/2025/11/San-Gimignano.jpg" alt="San Gimignano" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Tour Territoriali</h3>
+                        <p class="text-textcolor leading-relaxed mb-4">Itinerari alla scoperta di San Gimignano e Monteriggioni. Cultura, storia e vino in un'esperienza completa della Toscana autentica.</p>
+                        <a href="#contatti" class="text-accent font-semibold hover:text-secondary transition">Scopri di più →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Experiences Section -->
+    <section class="py-20 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Esperienze di lusso</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-textcolor text-lg leading-relaxed mb-6">Per chi cerca qualcosa di irripetibile: degustazioni private con l'enologo, cene al tramonto tra i vigneti, percorsi enogastronomici su misura.</p>
+                    <p class="text-textcolor text-lg leading-relaxed mb-8">Le nostre esperienze luxury sono progettate per stupire, emozionare e restare nel cuore. Contattaci per costruire insieme la tua giornata perfetta in Toscana.</p>
+                    <a href="#contatti" class="inline-block bg-accent text-white px-8 py-3 rounded hover:bg-opacity-90 transition">Richiedi Info</a>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://poggioailaghi.com/wp-content/uploads/2025/11/Monteriggioni.jpg" alt="Monteriggioni Enoteca" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventi Section -->
+    <section id="eventi" class="py-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://poggioailaghi.com/wp-content/uploads/2025/11/vigna-scaled.jpg');"></div>
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Organizza il tuo evento</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed text-textcolor">Matrimoni, anniversari, cene aziendali, presentazioni di prodotto: Poggio ai Laghi è la cornice perfetta per ogni occasione speciale.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-2xl p-8 md:p-12 max-w-4xl mx-auto" data-aos="zoom-in">
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-primary text-lg">Matrimoni</h3>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-primary text-lg">Eventi Corporate</h3>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-primary text-lg">Feste Private</h3>
+                    </div>
+                </div>
+                <p class="text-textcolor text-center leading-relaxed mb-6">La nostra tenuta nel Chianti offre spazi esclusivi, catering personalizzato, vini della casa e un'atmosfera unica. Il tuo evento merita una location straordinaria — parliamoci.</p>
+                <div class="text-center">
+                    <a href="#contatti" class="inline-block bg-accent text-white px-8 py-3 rounded hover:bg-opacity-90 transition">Richiedi un Preventivo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Club Section -->
+    <section id="wineclub" class="py-20 px-4 bg-primary text-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Wine Club</h2>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg leading-relaxed mb-6 opacity-90">Unisciti alla nostra community di appassionati. Con il Wine Club di Poggio ai Laghi ricevi una selezione curata di vini direttamente a casa tua, accedi a degustazioni riservate, eventi esclusivi e guide all'abbinamento firmate dal nostro enologo.</p>
+                    <p class="text-lg leading-relaxed mb-8 opacity-90">Il modo migliore per avere sempre il Chianti nel bicchiere, ovunque tu sia.</p>
+                    <a href="#contatti" class="inline-block bg-accent text-white px-8 py-3 rounded hover:bg-opacity-90 transition">Iscriviti Ora</a>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="bg-white bg-opacity-10 backdrop-blur rounded-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6">Vantaggi del Club</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Selezione mensile di vini esclusivi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Accesso anticipato alle nuove annate</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Degustazioni riservate in tenuta</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Guide e consigli dall'enologo Alessandro Cellai</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span>Sconti esclusivi sugli acquisti online</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Idee Regalo Section -->
+    <section id="regali" class="py-20 px-4 bg-background">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Idee regalo</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed text-textcolor">Cerca un regalo speciale? Il lusso del Chianti, confezionato per te. Perfetti per ogni occasione: compleanno, anniversario, Natale o semplicemente per stupire chi ami.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="flip-left" data-aos-delay="100">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-4 text-center">Buoni Regalo</h3>
+                        <p class="text-textcolor text-center leading-relaxed mb-4">Regala un'esperienza unica: degustazioni, tour o acquisti nel nostro shop online.</p>
+                        <div class="text-center">
+                            <a href="#contatti" class="text-accent font-semibold hover:text-secondary transition">Acquista →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="flip-left" data-aos-delay="200">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-4 text-center">Box Selezionate</h3>
+                        <p class="text-textcolor text-center leading-relaxed mb-4">Confezioni curate con i nostri migliori vini, pronte per essere regalate.</p>
+                        <div class="text-center">
+                            <a href="#contatti" class="text-accent font-semibold hover:text-secondary transition">Scopri →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="flip-left" data-aos-delay="300">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-4 text-center">Collezioni Esclusive</h3>
+                        <p class="text-textcolor text-center leading-relaxed mb-4">Grandi formati e annate da collezione per i veri intenditori.</p>
+                        <div class="text-center">
+                            <a href="#contatti" class="text-accent font-semibold hover:text-secondary transition">Esplora →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dove Siamo Section -->
+    <section class="py-20 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Dove siamo</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed text-textcolor">La tenuta Poggio ai Laghi si trova nel cuore del Chianti Toscano, facilmente raggiungibile da Firenze e Siena.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://poggioailaghi.com/wp-content/uploads/2025/11/Progetto-senza-titolo-1.png" alt="Mappa Poggio ai Laghi" class="rounded-lg shadow-xl w-full" onerror="this.src='https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-accent bg-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-2">Poggio ai Laghi - Sede Principale</h3>
+                                <p class="text-textcolor">Vigneto e cantina nel cuore del Chianti</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-2">San Gimignano</h3>
+                                <p class="text-textcolor">Punto vendita e degustazioni</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-2">Enoteca Monteriggioni</h3>
+                                <p class="text-textcolor">Selezione vini e prodotti tipici</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <p class="text-textcolor leading-relaxed">Siamo a disposizione per accoglierti, guidarti tra i vigneti e farti scoprire tutto quello che questa terra straordinaria ha da offrire.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 px-4 bg-primary text-white">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Contattaci</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl opacity-90">Parliamoci. Siamo qui per rispondere a ogni tua domanda e per costruire insieme la tua esperienza perfetta.</p>
+            </div>
+            <div class="bg-white bg-opacity-10 backdrop-blur rounded-lg p-8 md:p-12" data-aos="zoom-in">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Nome *</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:border-secondary transition" placeholder="Il tuo nome">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Email *</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:border-secondary transition" placeholder="tua@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Telefono</label>
+                        <input type="tel" class="w-full px-4 py-3 rounded bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:border-secondary transition" placeholder="+39 123 456 7890">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Messaggio *</label>
+                        <textarea required rows="5" class="w-full px-4 py-3 rounded bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:border-secondary transition resize-none" placeholder="Raccontaci cosa hai in mente..."></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-accent text-white px-10 py-4 rounded text-lg font-semibold hover:bg-opacity-90 transition transform hover:scale-105">Invia Messaggio</button>
+                    </div>
+                </form>
+                <div class="text-center mt-8 pt-8 border-t border-white border-opacity-20">
+                    <p class="text-lg mb-2">Oppure chiamaci direttamente</p>
+                    <a href="tel:+393510101736" class="text-2xl font-bold text-secondary hover:text-white transition">+39 351 010 1736</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 font-serif">Poggio ai Laghi</h3>
+                    <p class="text-sm opacity-80 leading-relaxed">Vino, Terra, Esperienza nel cuore del Chianti Toscano.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Esplora</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#vini" class="opacity-80 hover:text-secondary transition">I Nostri Vini</a></li>
+                        <li><a href="#esperienze" class="opacity-80 hover:text-secondary transition">Esperienze</a></li>
+                        <li><a href="#eventi" class="opacity-80 hover:text-secondary transition">Eventi</a></li>
+                        <li><a href="#wineclub" class="opacity-80 hover:text-secondary transition">Wine Club</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Informazioni</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#chisiamo" class="opacity-80 hover:text-secondary transition">Chi Siamo</a></li>
+                        <li><a href="#regali" class="opacity-80 hover:text-secondary transition">Idee Regalo</a></li>
+                        <li><a href="#contatti" class="opacity-80 hover:text-secondary transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-2 text-sm opacity-80">
+                        <li>Tel: +39 351 010 1736</li>
+                        <li>Chianti, Toscana</li>
+                        <li class="pt-2">
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-8 h-8 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                                <a href="#" class="w-8 h-8 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-secondary transition">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white border-opacity-20 pt-8 text-center text-sm opacity-60">
+                <p>&copy; 2025 Poggio ai Laghi. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.remove('navbar-transparent');
+                navbar.classList.add('navbar-solid');
+            } else {
+                navbar.classList.remove('navbar-solid');
+                navbar.classList.add('navbar-transparent');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
