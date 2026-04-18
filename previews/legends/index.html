@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legends - Choose Your Legend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A1A1A',
+                        secondary: '#C8A96E',
+                        accent: '#D72B2B',
+                        background: '#F5F5F0',
+                        textColor: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        'bebas': ['"Bebas Neue"', 'cursive'],
+                        'nunito': ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #1A1A1A;
+        }
+        .font-bebas {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.05em;
+        }
+        .navbar-scrolled {
+            background-color: rgba(26, 26, 26, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+        .hero-title {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideLine {
+            0% {
+                left: -60%;
+            }
+            100% {
+                left: 110%;
+            }
+        }
+        .geometric-line {
+            position: absolute;
+            height: 1px;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+        .geometric-line:nth-child(1) {
+            top: 20%;
+            animation: slideLine 12s linear infinite;
+        }
+        .geometric-line:nth-child(2) {
+            top: 35%;
+            animation: slideLine 9s linear infinite;
+            animation-delay: 2s;
+        }
+        .geometric-line:nth-child(3) {
+            top: 50%;
+            animation: slideLine 14s linear infinite;
+            animation-delay: 4s;
+        }
+        .geometric-line:nth-child(4) {
+            top: 65%;
+            animation: slideLine 10s linear infinite;
+            animation-delay: 1s;
+        }
+        .geometric-line:nth-child(5) {
+            top: 80%;
+            animation: slideLine 7s linear infinite;
+            animation-delay: 3s;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(215, 43, 43, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #D72B2B 0%, #b82323 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(215, 43, 43, 0.4);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/1596053800839-IF65OTT9OCJWR98HXAPX/LOGO_LEGENDS.png" alt="Legends" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition font-semibold">Home</a>
+                    <a href="#shop" class="text-white hover:text-secondary transition font-semibold">Shop</a>
+                    <a href="#tshirt" class="text-white hover:text-secondary transition font-semibold">T-shirt</a>
+                    <a href="#felpe" class="text-white hover:text-secondary transition font-semibold">Felpe</a>
+                    <a href="#jeans" class="text-white hover:text-secondary transition font-semibold">Jeans</a>
+                    <a href="#storia" class="text-white hover:text-secondary transition font-semibold">La nostra storia</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-semibold">Contatti</a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl md:hidden">
+            <div class="flex justify-end p-6">
+                <button id="close-menu-btn" class="text-white">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6 px-6">
+                <a href="#home" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">Home</a>
+                <a href="#shop" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">Shop</a>
+                <a href="#tshirt" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">T-shirt</a>
+                <a href="#felpe" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">Felpe</a>
+                <a href="#jeans" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">Jeans</a>
+                <a href="#storia" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">La nostra storia</a>
+                <a href="#contatti" class="text-white hover:text-secondary transition text-lg font-semibold mobile-link">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/5e754a05-1e19-4dfd-b0ff-d29634b57361/Shooting-Cosenza-44.jpeg') center/cover no-repeat;">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Geometric Lines -->
+        <div class="geometric-line"></div>
+        <div class="geometric-line"></div>
+        <div class="geometric-line"></div>
+        <div class="geometric-line"></div>
+        <div class="geometric-line"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="hero-title font-bebas text-6xl md:text-8xl lg:text-9xl text-white mb-6 leading-none">
+                Indossa la tua leggenda
+            </h1>
+            <p class="hero-title text-white text-lg md:text-xl lg:text-2xl mb-12 max-w-3xl mx-auto font-light" style="animation-delay: 0.5s;">
+                Abbigliamento ispirato ai più grandi campioni della storia del calcio. Ogni capo è un tributo, ogni dettaglio racconta una storia.
+            </p>
+            <a href="#shop" class="hero-title inline-block btn-primary text-white font-bold px-10 py-4 rounded-full text-lg" style="animation-delay: 0.7s;">
+                Scopri la collezione
+            </a>
+        </div>
+    </section>
+
+    <!-- La Nostra Storia -->
+    <section id="storia" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/dfbf5ed8-8a41-4ab3-8bcd-49c28a2009cc/da5e4f20-5d43-4f12-80d1-8b5df23d6d89.jpeg" alt="La nostra storia" class="rounded-lg shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-accent mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <h2 class="font-bebas text-5xl md:text-6xl text-primary">La nostra storia</h2>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Legends nasce dall'amore per il calcio e per i suoi protagonisti immortali. Siamo un brand italiano che trasforma la passione per i grandi campioni in capi di abbigliamento unici, pensati per chi vuole portare con sé il fascino delle leggende ogni giorno.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Non vendiamo solo vestiti: raccontiamo carriere straordinarie, momenti indimenticabili e storie che hanno fatto la storia del football mondiale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- La Collezione -->
+    <section id="shop" class="py-20 md:py-32 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-bebas text-6xl md:text-7xl text-primary mb-6">La collezione</h2>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    Dalle t-shirt grafiche alle felpe, passando per i jeans dal taglio moderno: ogni pezzo della collezione Legends è dedicato a un campione iconico. Maldini, Totti, Maradona e tanti altri rivivono attraverso design esclusivi realizzati con cura e attenzione ai dettagli.
+                </p>
+                <p class="text-xl md:text-2xl text-accent font-bold mt-6">Scegli il tuo eroe, indossa la sua leggenda.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- T-shirt Card -->
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/147a91a2-5f6b-4fe6-bc12-bb10337b55af/Shooting-Cosenza-37.jpeg" alt="T-shirt" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-8 h-8 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                            </svg>
+                            <h3 class="font-bebas text-3xl text-primary">T-shirt</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Le nostre t-shirt sono il cuore della collezione. Grafiche esclusive, tessuti premium e tagli contemporanei per celebrare le carriere dei più grandi calciatori di sempre. Ogni modello è un pezzo da collezione dedicato a un campione leggendario.
+                        </p>
+                        <a href="#tshirt" class="inline-block bg-accent text-white font-bold px-6 py-3 rounded-full hover:bg-primary transition">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Felpe Card -->
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/6672831a-1ede-4259-a4e7-5d1d9e87b64d/Shooting-Cosenza-45.jpeg" alt="Felpe" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-8 h-8 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
+                            </svg>
+                            <h3 class="font-bebas text-3xl text-primary">Felpe</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Comode, versatili e dal design ricercato. Le felpe Legends combinano comfort quotidiano e storytelling visivo, perfette per chi vuole esibire la propria passione calcistica con stile in ogni stagione.
+                        </p>
+                        <a href="#felpe" class="inline-block bg-accent text-white font-bold px-6 py-3 rounded-full hover:bg-primary transition">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Jeans Card -->
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/802f010f-c1e5-48fd-8bff-cedbb0368ae1/Shooting-Cosenza-47.jpeg" alt="Jeans" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-8 h-8 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h3 class="font-bebas text-3xl text-primary">Jeans</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            Una linea di jeans dal taglio moderno e dall'identità forte. I jeans Legends completano un look urban ispirato alla cultura del calcio, pensati per chi vive lo sport come una filosofia di vita.
+                        </p>
+                        <a href="#jeans" class="inline-block bg-accent text-white font-bold px-6 py-3 rounded-full hover:bg-primary transition">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- T-shirt Section -->
+    <section id="tshirt" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-accent mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                        <h2 class="font-bebas text-5xl md:text-6xl text-primary">T-shirt</h2>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Le nostre t-shirt sono il cuore della collezione. Grafiche esclusive, tessuti premium e tagli contemporanei per celebrare le carriere dei più grandi calciatori di sempre.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                        Ogni modello è un pezzo da collezione dedicato a un campione leggendario.
+                    </p>
+                    <a href="#contatti" class="inline-block btn-primary text-white font-bold px-8 py-4 rounded-full text-lg">
+                        Richiedi informazioni
+                    </a>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/1773246852084-1UY1DV596SPWGTTXNKTZ/C7282A3B-E3CA-4B33-B46E-ACDE314FA872.png" alt="T-shirt collection" class="rounded-lg shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Felpe Section -->
+    <section id="felpe" class="py-20 md:py-32 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/6672831a-1ede-4259-a4e7-5d1d9e87b64d/Shooting-Cosenza-45.jpeg" alt="Felpe collection" class="rounded-lg shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-accent mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
+                        </svg>
+                        <h2 class="font-bebas text-5xl md:text-6xl text-primary">Felpe</h2>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Comode, versatili e dal design ricercato. Le felpe Legends combinano comfort quotidiano e storytelling visivo, perfette per chi vuole esibire la propria passione calcistica con stile in ogni stagione.
+                    </p>
+                    <a href="#contatti" class="inline-block btn-primary text-white font-bold px-8 py-4 rounded-full text-lg">
+                        Richiedi informazioni
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jeans Section -->
+    <section id="jeans" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-12 h-12 text-accent mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h2 class="font-bebas text-5xl md:text-6xl text-primary">Jeans</h2>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Una linea di jeans dal taglio moderno e dall'identità forte. I jeans Legends completano un look urban ispirato alla cultura del calcio, pensati per chi vive lo sport come una filosofia di vita.
+                    </p>
+                    <a href="#contatti" class="inline-block btn-primary text-white font-bold px-8 py-4 rounded-full text-lg">
+                        Richiedi informazioni
+                    </a>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5f21bc5259d57e7430edd553/802f010f-c1e5-48fd-8bff-cedbb0368ae1/Shooting-Cosenza-47.jpeg" alt="Jeans collection" class="rounded-lg shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 md:py-32 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-bebas text-6xl md:text-7xl mb-6">Contatti</h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-gray-300">
+                    Hai domande sulla collezione, sulle taglie o su un ordine? Siamo qui per aiutarti. Scrivici o seguici su Instagram per restare aggiornato sulle nuove uscite, le collaborazioni esclusive e le storie delle leggende che ispirano ogni nostro capo.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <svg class="w-8 h-8 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <h3 class="font-bebas text-3xl">Telefono</h3>
+                        </div>
+                        <a href="tel:053800839" class="text-2xl text-secondary hover:text-white transition font-bold">
+                            053800839
+                        </a>
+                    </div>
+
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8 mb-8">
+                        <div class="flex items-center mb-6">
+                            <svg class="w-8 h-8 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <h3 class="font-bebas text-3xl">Email</h3>
+                        </div>
+                        <a href="mailto:info@legends.com" class="text-xl text-secondary hover:text-white transition">
+                            info@legends.com
+                        </a>
+                    </div>
+
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8">
+                        <div class="flex items-center mb-6">
+                            <svg class="w-8 h-8 text-secondary mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <h3 class="font-bebas text-3xl">Instagram</h3>
+                        </div>
+                        <a href="https://instagram.com/legends" target="_blank" class="text-xl text-secondary hover:text-white transition">
+                            @legends
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <form class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-8">
+                        <div class="mb-6">
+                            <label for="name" class="block text-sm font-semibold mb-2 text-gray-200">Nome</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Il tuo nome" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-200">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="la.tua@email.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-semibold mb-2 text-gray-200">Messaggio</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Come possiamo aiutarti?" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary text-white font-bold px-8 py-4 rounded-full text-lg">
+                            Invia messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bebas text-2xl mb-4 text-secondary">Legends</h4>
+                    <p class="text-gray-400 text-sm">Choose Your Legend</p>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4">Shop</h5>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#tshirt" class="hover:text-secondary transition">T-shirt</a></li>
+                        <li><a href="#felpe" class="hover:text-secondary transition">Felpe</a></li>
+                        <li><a href="#jeans" class="hover:text-secondary transition">Jeans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4">Info</h5>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#storia" class="hover:text-secondary transition">La nostra storia</a></li>
+                        <li><a href="#contatti" class="hover:text-secondary transition">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4">Contatti</h5>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="tel:053800839" class="hover:text-secondary transition">053800839</a></li>
+                        <li><a href="mailto:info@legends.com" class="hover:text-secondary transition">info@legends.com</a></li>
+                        <li><a href="https://instagram.com/legends" target="_blank" class="hover:text-secondary transition">@legends</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-sm mb-2">&copy; 2024 Legends. Tutti i diritti riservati.</p>
+                <p class="text-gray-600 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-secondary hover:text-white transition">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
