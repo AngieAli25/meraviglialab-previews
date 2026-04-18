@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HASL - Health And Safety Lab | Formazione Sicurezza sul Lavoro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A3A5C',
+                        secondary: '#2E7D9E',
+                        accent: '#F4A800',
+                        background: '#F5F7FA',
+                        textdark: '#1C1C1C'
+                    },
+                    fontFamily: {
+                        'heading': ['"Libre Baskerville"', 'serif'],
+                        'body': ['"Source Sans Pro"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #1C1C1C;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Libre Baskerville', serif;
+        }
+        
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        
+        .animated-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        
+        .line-1 { top: 20%; animation-duration: 9s; animation-delay: 0s; }
+        .line-2 { top: 35%; animation-duration: 12s; animation-delay: 2s; }
+        .line-3 { top: 50%; animation-duration: 7s; animation-delay: 4s; }
+        .line-4 { top: 65%; animation-duration: 14s; animation-delay: 1s; }
+        .line-5 { top: 80%; animation-duration: 10s; animation-delay: 3s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .navbar-scrolled {
+            background-color: rgba(26, 58, 92, 0.98) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(244, 168, 0, 0.2);
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 11px;
+            color: rgba(0,0,0,0.3);
+            z-index: 9999;
+            background: rgba(255,255,255,0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .watermark a {
+            color: #2E7D9E;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-background">
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/logo.jpg" alt="HASL - Health And Safety Lab" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition font-body font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition font-body font-medium">Chi siamo</a>
+                    <a href="#corsi" class="text-white hover:text-accent transition font-body font-medium">Corsi di formazione</a>
+                    <a href="#aziende" class="text-white hover:text-accent transition font-body font-medium">News</a>
+                    <a href="#gallery" class="text-white hover:text-accent transition font-body font-medium">Gallery</a>
+                    <a href="#lavora" class="text-white hover:text-accent transition font-body font-medium">Lavora con noi</a>
+                    <a href="#contatti" class="bg-accent text-primary px-6 py-2 rounded-lg hover:bg-yellow-500 transition font-semibold">Contatti</a>
+                </div>
+                
+                <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="mobile-menu lg:hidden bg-primary">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block text-white hover:text-accent px-3 py-2 transition">Home</a>
+                    <a href="#chi-siamo" class="block text-white hover:text-accent px-3 py-2 transition">Chi siamo</a>
+                    <a href="#corsi" class="block text-white hover:text-accent px-3 py-2 transition">Corsi di formazione</a>
+                    <a href="#aziende" class="block text-white hover:text-accent px-3 py-2 transition">News</a>
+                    <a href="#gallery" class="block text-white hover:text-accent px-3 py-2 transition">Gallery</a>
+                    <a href="#lavora" class="block text-white hover:text-accent px-3 py-2 transition">Lavora con noi</a>
+                    <a href="#contatti" class="block text-white hover:text-accent px-3 py-2 transition">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://www.hasl.it/wp-content/uploads/2018/01/logo-slide02.png');"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <div class="animated-line line-1"></div>
+        <div class="animated-line line-2"></div>
+        <div class="animated-line line-3"></div>
+        <div class="animated-line line-4"></div>
+        <div class="animated-line line-5"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto hero-content">
+            <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl text-white font-bold mb-6 leading-tight">
+                La sicurezza sul lavoro inizia da una formazione seria
+            </h1>
+            <p class="font-body text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Corsi accreditati per aziende e lavoratori. Conformi agli Accordi Stato-Regioni, erogati da professionisti del settore.
+            </p>
+            <a href="#corsi" class="inline-block bg-accent text-primary px-10 py-4 rounded-lg text-lg font-bold hover:bg-yellow-500 transition transform hover:scale-105 shadow-xl">
+                Scopri i nostri corsi
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-flex items-center justify-center p-3 bg-secondary/10 rounded-lg mb-4">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl text-primary font-bold mb-6">Chi siamo</h2>
+                    <p class="font-body text-lg text-gray-700 leading-relaxed mb-4">
+                        HASL – Health And Safety Lab è un ente di formazione professionale dedicato alla salute e sicurezza nei luoghi di lavoro. Con anni di esperienza al fianco di aziende di ogni dimensione e settore, offriamo percorsi formativi certificati, aggiornati secondo le più recenti normative nazionali.
+                    </p>
+                    <p class="font-body text-lg text-gray-700 leading-relaxed">
+                        Il nostro team di docenti qualificati garantisce una formazione concreta, efficace e sempre in linea con gli obblighi di legge.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/impresa-edile01.jpg" 
+                         alt="HASL Formazione" 
+                         class="rounded-2xl shadow-2xl w-full h-auto"
+                         onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corsi di Formazione -->
+    <section id="corsi" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center p-3 bg-accent/10 rounded-lg mb-4">
+                    <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading text-4xl md:text-5xl text-primary font-bold mb-6">Corsi di formazione</h2>
+                <p class="font-body text-xl text-gray-600 max-w-3xl mx-auto">
+                    Un catalogo completo di corsi certificati per ogni esigenza formativa
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/metalmeccanica01.jpg" 
+                         alt="Corsi macchine operatrici" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-3 font-semibold">CERTIFICATI</div>
+                        <h3 class="font-heading text-xl text-primary font-bold mb-3">Patentini e Macchine</h3>
+                        <p class="font-body text-gray-600 leading-relaxed">
+                            Patentino muletto, gru, PLE, ponteggi e macchine operatrici. Formazione pratica e teorica completa.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/industria02.jpg" 
+                         alt="Formazione figure aziendali" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-3 font-semibold">OBBLIGATORI</div>
+                        <h3 class="font-heading text-xl text-primary font-bold mb-3">Figure Aziendali</h3>
+                        <p class="font-body text-gray-600 leading-relaxed">
+                            Lavoratori, preposti, dirigenti, RSPP e datori di lavoro. Corsi conformi al D.Lgs. 81/2008.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/privati01.jpg" 
+                         alt="Primo soccorso antincendio" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-accent text-primary text-xs px-3 py-1 rounded-full mb-3 font-semibold">EMERGENZA</div>
+                        <h3 class="font-heading text-xl text-primary font-bold mb-3">Primo Soccorso e Antincendio</h3>
+                        <p class="font-body text-gray-600 leading-relaxed">
+                            Formazione per addetti alle emergenze. Corsi pratici con attestato valido a norma di legge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/settore-alimentare01.jpg" 
+                         alt="HACCP alimentare" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-3 font-semibold">ALIMENTARE</div>
+                        <h3 class="font-heading text-xl text-primary font-bold mb-3">HACCP</h3>
+                        <p class="font-body text-gray-600 leading-relaxed">
+                            Corsi per operatori del settore alimentare. Igiene degli alimenti e sicurezza sanitaria.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/ecm01.jpg" 
+                         alt="DPI e dispositivi" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-accent text-primary text-xs px-3 py-1 rounded-full mb-3 font-semibold">SPECIALISTICI</div>
+                        <h3 class="font-heading text-xl text-primary font-bold mb-3">DPI e Spazi Confinati</h3>
+                        <p class="font-body text-gray-600 leading-relaxed">
+                            DPI di 3ª categoria, lavori in quota, spazi confinati. Formazione tecnica avanzata.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/impresa-edile01.jpg" 
+                         alt="Segnaletica stradale" 
+                         class="w-full h-48 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <div class="inline-block bg-secondary text-white text-xs px-3 py-1 rounded-full mb-3 font-semibold">CANTIERI</div>
+                        <h3 class="font-heading text-xl text-primary font-bold mb-3">Segnaletica Stradale</h3>
+                        <p class="font-body text-gray-600 leading-relaxed">
+                            Corsi per operatori addetti alla segnaletica stradale nei cantieri. Conformi alla normativa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-white rounded-2xl shadow-xl p-8 md:p-12" data-aos="fade-up">
+                <div class="text-center max-w-3xl mx-auto">
+                    <p class="font-body text-lg text-gray-700 leading-relaxed mb-6">
+                        Offriamo un catalogo completo di corsi per la sicurezza sul lavoro: dal patentino muletto ai corsi per operatori di gru, PLE, ponteggi e macchine operatrici. Formiamo lavoratori, preposti, dirigenti, RSPP e datori di lavoro. Tra i nostri corsi anche Primo Soccorso, Antincendio, HACCP, DPI di 3ª categoria, spazi confinati, segnaletica stradale e molto altro.
+                    </p>
+                    <p class="font-body text-lg font-semibold text-primary">
+                        Tutti i corsi sono conformi agli Accordi Stato-Regioni vigenti.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formazione per Aziende -->
+    <section id="aziende" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/metalmeccanica01.jpg" 
+                         alt="Formazione aziendale" 
+                         class="rounded-2xl shadow-2xl w-full h-auto"
+                         onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="inline-flex items-center justify-center p-3 bg-primary/10 rounded-lg mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl text-primary font-bold mb-6">Formazione per le aziende</h2>
+                    <p class="font-body text-lg text-gray-700 leading-relaxed mb-6">
+                        Supportiamo le aziende nell'adempimento degli obblighi formativi previsti dal D.Lgs. 81/2008. Organizziamo corsi in sede, presso la tua azienda o in modalità mista, adattando i calendari alle tue esigenze operative.
+                    </p>
+                    <p class="font-body text-lg text-gray-700 leading-relaxed mb-8">
+                        Grazie alla nostra esperienza, garantiamo una gestione completa della documentazione e delle attestazioni richieste dalla legge.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-gray-700">Corsi in sede aziendale</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-gray-700">Calendari personalizzati</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-gray-700">Gestione documentale completa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aggiornamenti Normativi -->
+    <section id="normativa" class="py-20 bg-gradient-to-br from-primary to-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center p-3 bg-white/10 rounded-lg mb-4">
+                    <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">Aggiornamenti normativi 2025</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div data-aos="fade-right">
+                    <p class="font-body text-xl text-white/90 leading-relaxed mb-6">
+                        Restiamo costantemente aggiornati sulle novità legislative. Con il nuovo Accordo Stato-Regioni 2025 e l'introduzione della patente a crediti per i cantieri, è fondamentale che lavoratori e imprese siano in regola.
+                    </p>
+                    <p class="font-body text-xl text-white/90 leading-relaxed">
+                        HASL ti guida passo dopo passo attraverso ogni cambiamento normativo, con corsi già aggiornati ai nuovi standard.
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8" data-aos="fade-left">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-lg">Accordi Stato-Regioni 2025</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-lg">Patente a crediti cantieri</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-lg">D.Lgs. 81/2008 aggiornato</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="font-body text-lg">Corsi sempre conformi</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center p-3 bg-secondary/10 rounded-lg mb-4">
+                    <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading text-4xl md:text-5xl text-primary font-bold mb-6">I nostri settori</h2>
+                <p class="font-body text-xl text-gray-600 max-w-3xl mx-auto">
+                    Operiamo in diversi ambiti produttivi con soluzioni formative personalizzate
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative overflow-hidden rounded-xl shadow-lg group" data-aos="zoom-in" data-aos-delay="0">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/impresa-edile01.jpg" 
+                         alt="Imprese edili" 
+                         class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'; this.onerror=null;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent flex items-end">
+                        <p class="font-heading text-white text-lg font-bold p-4">Imprese Edili</p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl shadow-lg group" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/metalmeccanica01.jpg" 
+                         alt="Metalmeccanica" 
+                         class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80'; this.onerror=null;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/90 to-transparent flex items-end">
+                        <p class="font-heading text-white text-lg font-bold p-4">Metalmeccanica</p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl shadow-lg group" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/industria02.jpg" 
+                         alt="Industria" 
+                         class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80'; this.onerror=null;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent flex items-end">
+                        <p class="font-heading text-white text-lg font-bold p-4">Industria</p>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl shadow-lg group" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://www.hasl.it/wp-content/uploads/2018/01/settore-alimentare01.jpg" 
+                         alt="Settore alimentare" 
+                         class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80'; this.onerror=null;">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/90 to-transparent flex items-end">
+                        <p class="font-heading text-white text-lg font-bold p-4">Alimentare</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lavora con noi -->
+    <section id="lavora" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <div class="inline-flex items-center justify-center p-3 bg-accent/10 rounded-lg mb-4">
+                <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+            </div>
+            <h2 class="font-heading text-4xl md:text-5xl text-primary font-bold mb-6">Lavora con noi</h2>
+            <p class="font-body text-xl text-gray-700 leading-relaxed mb-8">
+                Siamo sempre alla ricerca di docenti qualificati e professionisti del settore sicurezza. Se hai esperienza nel campo della formazione e vuoi entrare a far parte del nostro team, contattaci.
+            </p>
+            <a href="#contatti" class="inline-block bg-primary text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-secondary transition transform hover:scale-105 shadow-lg">
+                Invia la tua candidatura
+            </a>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center justify-center p-3 bg-primary/10 rounded-lg mb-4">
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading text-4xl md:text-5xl text-primary font-bold mb-6">Contatti</h2>
+                <p class="font-body text-xl text-gray-600 max-w-3xl mx-auto">
+                    Hai bisogno di informazioni su un corso o vuoi organizzare una sessione formativa per la tua azienda?
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                        <h3 class="font-heading text-2xl text-primary font-bold mb-6">Informazioni di contatto</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-body text-sm text-gray-500 mb-1">Telefono</p>
+                                    <a href="tel:0331516951" class="font-body text-xl text-primary font-bold hover:text-secondary transition">0331 516951</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-body text-sm text-gray-500 mb-1">Email</p>
+                                    <a href="mailto:info@hasl.it" class="font-body text-xl text-primary font-bold hover:text-secondary transition">info@hasl.it</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-body text-sm text-gray-500 mb-1">Orari</p>
+                                    <p class="font-body text-lg text-primary font-semibold">Lun - Ven: 9:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl shadow-xl p-8 text-white">
+                        <h3 class="font-heading text-2xl font-bold mb-4">Il nostro team è a tua disposizione</h3>
+                        <p class="font-body text-lg text-white/90 leading-relaxed">
+                            Contattaci per trovare la soluzione più adatta alle tue esigenze formative. Rispondiamo entro 24 ore.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="font-heading text-2xl text-primary font-bold mb-6">Invia un messaggio</h3>
+                        
+                        <div class="mb-6">
+                            <label for="nome" class="font-body block text-gray-700 font-semibold mb-2">Nome e Cognome *</label>
+                            <input type="text" id="nome" name="nome" required 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition font-body">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="font-body block text-gray-700 font-semibold mb-2">Email *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition font-body">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="telefono" class="font-body block text-gray-700 font-semibold mb-2">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition font-body">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="messaggio" class="font-body block text-gray-700 font-semibold mb-2">Messaggio *</label>
+                            <textarea id="messaggio" name="messaggio" rows="5" required 
+                                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition font-body resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-accent text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">
+                            Invia richiesta
+                        </button>
+
+                        <p class="font-body text-sm text-gray-500 mt-4 text-center">
+                            * Campi obbligatori
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-4">HASL</h4>
+                    <p class="font-body text-white/80 leading-relaxed">
+                        Health And Safety Lab - Formazione professionale per la sicurezza sul lavoro.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-4">Menu</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="#chi-siamo" class="text-white/80 hover:text-accent transition">Chi siamo</a></li>
+                        <li><a href="#corsi" class="text-white/80 hover:text-accent transition">Corsi</a></li>
+                        <li><a href="#aziende" class="text-white/80 hover:text-accent transition">Aziende</a></li>
+                        <li><a href="#contatti" class="text-white/80 hover:text-accent transition">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-4">Corsi principali</h4>
+                    <ul class="space-y-2 font-body text-white/80">
+                        <li>Patentino Muletto</li>
+                        <li>Primo Soccorso</li>
+                        <li>Antincendio</li>
+                        <li>HACCP</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-3 font-body">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <a href="tel:0331516951" class="text-white/80 hover:text-accent transition">0331 516951</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <a href="mailto:info@hasl.it" class="text-white/80 hover:text-accent transition">info@hasl.it</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/20 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="font-body text-white/60 text-sm">
+                        © 2025 HASL - Health And Safety Lab. Tutti i diritti riservati.
+                    </p>
+                    <p class="font-body text-white/60 text-sm">
+                        Formiamo la sicurezza. Proteggiamo le persone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da meravigliä Lab · <a href="https://meraviglialab.com" target="_blank">meraviglialab.com</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Grazie per averci contattato! Riceverai una risposta entro 24 ore.');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
