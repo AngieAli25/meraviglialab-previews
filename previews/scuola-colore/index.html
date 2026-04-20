@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scuola Colore - La Prima Scuola Sull'Energia del Colore in Italia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#7B3FA0',
+                        secondary: '#E8A838',
+                        accent: '#E05C8A',
+                        bg: '#FDF8F4',
+                        text: '#2C1A3E'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #2C1A3E;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .nav-scrolled {
+            background: rgba(253, 248, 244, 0.98);
+            box-shadow: 0 4px 20px rgba(44, 26, 62, 0.08);
+        }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .animated-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+        .line-1 { top: 15%; animation: slideLine 12s infinite linear; animation-delay: 0s; }
+        .line-2 { top: 35%; animation: slideLine 9s infinite linear; animation-delay: 2s; }
+        .line-3 { top: 55%; animation: slideLine 14s infinite linear; animation-delay: 4s; }
+        .line-4 { top: 75%; animation: slideLine 11s infinite linear; animation-delay: 1s; }
+        .line-5 { top: 90%; animation: slideLine 8s infinite linear; animation-delay: 3s; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(224, 92, 138, 0.2);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-bg">
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://scuolacolore.com/wp-content/uploads/2022/02/logo-enpaco.png.webp" alt="Scuola Colore" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white font-medium hover:text-secondary transition">Home</a>
+                    <a href="#chi-siamo" class="text-white font-medium hover:text-secondary transition">Chi Siamo</a>
+                    <a href="#corsi" class="text-white font-medium hover:text-secondary transition">Corsi</a>
+                    <a href="#master" class="text-white font-medium hover:text-secondary transition">Master Colour Coach</a>
+                    <a href="#metodo" class="text-white font-medium hover:text-secondary transition">Metodo</a>
+                    <a href="#contatti" class="text-white font-medium hover:text-secondary transition">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white mb-8 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="flex flex-col space-y-6">
+                    <a href="#home" class="text-white text-lg font-medium hover:text-secondary transition">Home</a>
+                    <a href="#chi-siamo" class="text-white text-lg font-medium hover:text-secondary transition">Chi Siamo</a>
+                    <a href="#corsi" class="text-white text-lg font-medium hover:text-secondary transition">Corsi</a>
+                    <a href="#master" class="text-white text-lg font-medium hover:text-secondary transition">Master Colour Coach</a>
+                    <a href="#metodo" class="text-white text-lg font-medium hover:text-secondary transition">Metodo</a>
+                    <a href="#contatti" class="text-white text-lg font-medium hover:text-secondary transition">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://scuolacolore.com/wp-content/uploads/2025/05/master-colori-portale.jpg');">
+            <img src="https://scuolacolore.com/wp-content/uploads/2025/05/master-colori-portale.jpg" alt="" class="hidden" onerror="this.parentElement.style.backgroundImage='url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80)'; this.onerror=null;">
+        </div>
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Animated Lines -->
+        <div class="animated-line line-1"></div>
+        <div class="animated-line line-2"></div>
+        <div class="animated-line line-3"></div>
+        <div class="animated-line line-4"></div>
+        <div class="animated-line line-5"></div>
+
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl hero-content">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
+                Il Colore è il Linguaggio<br>della Tua Anima
+            </h1>
+            <p class="text-xl sm:text-2xl text-white/90 mb-8 font-light leading-relaxed max-w-3xl mx-auto">
+                Scopri la prima scuola italiana sull'energia del colore. Percorsi formativi per coach, terapeuti e creativi che vogliono usare il colore come strumento di trasformazione autentica.
+            </p>
+            <a href="#corsi" class="inline-block bg-accent hover:bg-primary text-white font-semibold px-10 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Scopri i Percorsi
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 lg:py-32 bg-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://scuolacolore.com/wp-content/uploads/2025/05/foto-master-coaching-mani-colore.jpg" alt="Chi Siamo" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">Chi Siamo</h2>
+                    <p class="text-lg text-text leading-relaxed mb-6">
+                        Scuola Colore è il primo portale formativo in Italia dedicato all'energia del colore. Con <strong>18 anni di esperienza</strong> e centinaia di studenti soddisfatti, siamo un ente di formazione registrato che accompagna coach, terapeuti, creativi e guide spirituali verso una nuova consapevolezza.
+                    </p>
+                    <p class="text-lg text-text leading-relaxed mb-6">
+                        Qui il colore non si insegna: si vive, si sente, si trasmette. Ogni percorso è un atto di risveglio e ogni lezione è un invito a scoprire chi sei davvero.
+                    </p>
+                    <a href="#contatti" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                        Scopri di più
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I Nostri Corsi -->
+    <section id="corsi" class="py-20 lg:py-32 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-12 h-12 text-secondary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">I Nostri Corsi</h2>
+                <p class="text-xl text-text max-w-3xl mx-auto leading-relaxed">
+                    Offriamo una vasta gamma di percorsi online e in presenza, adatti a chi si avvicina per la prima volta al mondo del colore e a chi desidera ottenere una certificazione professionale come Colour Coach o Operatore Olistico.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Corso 1 -->
+                <div class="card-hover bg-bg rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://scuolacolore.com/wp-content/uploads/2025/05/master-colori-portale.jpg" alt="Master Colour Coach" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Master in Professional Colour Coaching</h3>
+                        <p class="text-text leading-relaxed mb-4">
+                            Il percorso completo per diventare un professionista certificato nel Coaching del Colore. Un titolo professionale riconosciuto per chi vuole fare del colore la propria missione di vita.
+                        </p>
+                        <a href="#master" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                            Scopri il Master
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Corso 2 -->
+                <div class="card-hover bg-bg rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://scuolacolore.com/wp-content/uploads/2023/11/16-1024x1024.jpg.webp" alt="Consulenza d'Immagine Avanzata" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Consulenza d'Immagine Avanzata</h3>
+                        <p class="text-text leading-relaxed mb-4">
+                            Un percorso straordinario per far emergere la tua vera immagine interiore. Scoprirai i significati dei colori che indossi e come posizionarli sul corpo per il tuo benessere emotivo.
+                        </p>
+                        <a href="#contatti" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                            Maggiori informazioni
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Corso 3 -->
+                <div class="card-hover bg-bg rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://scuolacolore.com/wp-content/uploads/2025/02/CORSO-CODICE-SEGRETO-COLORI-2025-1024x1024.jpg" alt="Il Codice Segreto dei Colori" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1502691876148-a84978e59af8?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Il Codice Segreto dei Colori</h3>
+                        <p class="text-text leading-relaxed mb-4">
+                            Accedi al segreto per sprigionare la tua energia creativa e rendere illimitato il tuo potenziale. Esplorerai le tue origini, i colori di nascita e la spirale dell'abbondanza.
+                        </p>
+                        <a href="#contatti" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                            Maggiori informazioni
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Corso 4 -->
+                <div class="card-hover bg-bg rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://scuolacolore.com/wp-content/uploads/2024/01/corso-divinazione-1024x1024.jpg" alt="Carte Oracolo dei Colori" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Carte Oracolo dei Colori</h3>
+                        <p class="text-text leading-relaxed mb-4">
+                            Impara a leggere i messaggi dell'anima attraverso le carte dei colori. Un metodo divinatorio profondo che ti connette con la saggezza interiore e la guida spirituale.
+                        </p>
+                        <a href="#contatti" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                            Maggiori informazioni
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Corso 5 -->
+                <div class="card-hover bg-bg rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://scuolacolore.com/wp-content/uploads/2022/09/Master-Class-Colore-1024x1024.jpg.webp" alt="Workshop 5 Sistemi Energetici" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Workshop sui 5 Sistemi Energetici Umani</h3>
+                        <p class="text-text leading-relaxed mb-4">
+                            Esplora i cinque sistemi energetici che governano la tua esistenza e scopri come il colore può armonizzarli e potenziarli per il tuo benessere totale.
+                        </p>
+                        <a href="#contatti" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                            Maggiori informazioni
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Corso 6 -->
+                <div class="card-hover bg-bg rounded-xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://scuolacolore.com/wp-content/uploads/2025/05/foto-colori-intelligenza-emotiva.jpg" alt="Alfabeto a Colori" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Alfabeto a Colori e Arcobaleno di Nascita</h3>
+                        <p class="text-text leading-relaxed mb-4">
+                            Rivela il colore del tuo destino e scopri la magia nascosta nel tuo nome. Un alfabeto luminoso dove ogni lettera vibra di colori profondi e significativi.
+                        </p>
+                        <a href="#contatti" class="inline-flex items-center text-accent font-semibold hover:text-primary transition">
+                            Maggiori informazioni
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master Colour Coach -->
+    <section id="master" class="py-20 lg:py-32 bg-gradient-to-br from-primary/5 to-accent/5">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div data-aos="fade-right" class="order-2 lg:order-1">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">Master Colour Coach</h2>
+                    <p class="text-lg text-text leading-relaxed mb-6">
+                        Il percorso completo per diventare un professionista certificato nel Coaching del Colore. Imparerai a leggere l'energia invisibile dei colori, a guidare le persone attraverso la luce e a usare il colore come strumento di evoluzione concreta e animica.
+                    </p>
+                    <p class="text-lg text-text leading-relaxed mb-8">
+                        Un titolo professionale riconosciuto per chi vuole fare del colore la propria missione di vita.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-text">Certificazione professionale riconosciuta</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-text">Metodo unico ed esclusivo</span>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-text">Supporto continuo e community esclusiva</span>
+                        </div>
+                    </div>
+                    <a href="#contatti" class="inline-block bg-accent hover:bg-primary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Richiedi Informazioni
+                    </a>
+                </div>
+                <div data-aos="fade-left" class="order-1 lg:order-2">
+                    <img src="https://scuolacolore.com/wp-content/uploads/2025/05/master-colori-portale.jpg" alt="Master Colour Coach" class="rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodo/Perché Scegliere -->
+    <section id="metodo" class="py-20 lg:py-32 bg-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-12 h-12 text-secondary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">Perché Scegliere Scuola Colore</h2>
+                <p class="text-xl text-text max-w-3xl mx-auto leading-relaxed">
+                    Siamo l'unico portale formativo in Italia interamente dedicato all'energia del colore
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover h-full">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">18 Anni di Esperienza</h3>
+                        <p class="text-text leading-relaxed">
+                            Quasi due decenni di attività e centinaia di studenti trasformati attraverso il potere del colore.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover h-full">
+                        <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Ente Registrato</h3>
+                        <p class="text-text leading-relaxed">
+                            Formazione certificata e riconosciuta per garantire la massima professionalità e credibilità.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover h-full">
+                        <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Metodo Unico</h3>
+                        <p class="text-text leading-relaxed">
+                            Un approccio esclusivo che unisce spiritualità, psicologia del colore e trasformazione personale.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover h-full">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-3">Community Attiva</h3>
+                        <p class="text-text leading-relaxed">
+                            Entra a far parte di una rete di professionisti consapevoli che condividono la tua visione.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-lg text-text max-w-4xl mx-auto leading-relaxed mb-8">
+                    Che tu voglia crescere personalmente o costruire una carriera professionale nel colore, qui trovi la strada giusta. Il mondo ha bisogno di professionisti consapevoli: <strong>il colore è la chiave, la tua voce è il ponte</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 lg:py-32 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">Contattaci</h2>
+                    <p class="text-xl text-text max-w-3xl mx-auto leading-relaxed">
+                        Hai domande sui nostri percorsi o vuoi capire quale corso fa per te? Contattaci e un nostro esperto ti guiderà nella scelta più adatta al tuo cammino.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div data-aos="fade-right">
+                        <div class="bg-bg rounded-xl p-8 shadow-lg h-full">
+                            <h3 class="text-2xl font-heading font-bold text-primary mb-6">Informazioni di Contatto</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold text-primary mb-1">Telefono</h4>
+                                        <a href="tel:+390000000000" class="text-text hover:text-accent transition">+39 000 000 0000</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold text-primary mb-1">Email</h4>
+                                        <a href="mailto:info@scuolacolore.com" class="text-text hover:text-accent transition">info@scuolacolore.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold text-primary mb-1">Orari</h4>
+                                        <p class="text-text">Lun - Ven: 9:00 - 18:00</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-8 border-t border-primary/10">
+                                <p class="text-text leading-relaxed">
+                                    Siamo qui per accompagnarti nel tuo viaggio verso la consapevolezza e la trasformazione attraverso il colore.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-left">
+                        <form class="bg-bg rounded-xl p-8 shadow-lg" onsubmit="return false;">
+                            <div class="mb-6">
+                                <label for="nome" class="block text-primary font-semibold mb-2">Nome</label>
+                                <input type="text" id="nome" name="nome" class="w-full px-4 py-3 rounded-lg border border-primary/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="email" class="block text-primary font-semibold mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-primary/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="messaggio" class="block text-primary font-semibold mb-2">Messaggio</label>
+                                <textarea id="messaggio" name="messaggio" rows="5" class="w-full px-4 py-3 rounded-lg border border-primary/20 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition resize-none" required></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-accent hover:bg-primary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Invia Messaggio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <img src="https://scuolacolore.com/wp-content/uploads/2022/02/logo-enpaco.png.webp" alt="Scuola Colore" style="max-height:60px; object-fit:contain; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
+                    <p class="text-white/80 mt-4 leading-relaxed">
+                        La Prima Scuola Sull'Energia del Colore in Italia
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-4">Link Utili</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#chi-siamo" class="text-white/80 hover:text-secondary transition">Chi Siamo</a></li>
+                        <li><a href="#corsi" class="text-white/80 hover:text-secondary transition">I Nostri Corsi</a></li>
+                        <li><a href="#master" class="text-white/80 hover:text-secondary transition">Master Colour Coach</a></li>
+                        <li><a href="#metodo" class="text-white/80 hover:text-secondary transition">Il Nostro Metodo</a></li>
+                        <li><a href="#contatti" class="text-white/80 hover:text-secondary transition">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xl font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <a href="tel:+390000000000" class="hover:text-secondary transition">+39 000 000 0000</a>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <a href="mailto:info@scuolacolore.com" class="hover:text-secondary transition">info@scuolacolore.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/80 text-sm mb-2">
+                    &copy; 2025 Scuola Colore. Tutti i diritti riservati.
+                </p>
+                <p class="text-white/60 text-xs">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-secondary hover:text-white transition font-semibold">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const navbar = document.getElementById('navbar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
