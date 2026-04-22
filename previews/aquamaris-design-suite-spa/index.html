@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquamaris Design Suite & Spa - Una fuga di lusso vista mare alle porte di Paestum</title>
+    <meta name="description" content="Hotel boutique sul mare a Paestum con suite di design arredate by LAGO e Open Spa con vasca idromassaggio, sauna finlandese e docce emozionali.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E6E7E',
+                        secondary: '#C9A96E',
+                        accent: '#A8D5DC',
+                        background: '#F7F4EF',
+                        textColor: '#2C2C2C',
+                    },
+                    fontFamily: {
+                        title: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #2C2C2C;
+        }
+        
+        .font-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+
+        .animated-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+
+        .animated-line:nth-child(1) {
+            top: 20%;
+            animation-duration: 12s;
+            animation-delay: 0s;
+        }
+
+        .animated-line:nth-child(2) {
+            top: 35%;
+            animation-duration: 14s;
+            animation-delay: 2s;
+        }
+
+        .animated-line:nth-child(3) {
+            top: 50%;
+            animation-duration: 10s;
+            animation-delay: 4s;
+        }
+
+        .animated-line:nth-child(4) {
+            top: 65%;
+            animation-duration: 13s;
+            animation-delay: 1s;
+        }
+
+        .animated-line:nth-child(5) {
+            top: 80%;
+            animation-duration: 11s;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(168, 213, 220, 0.4);
+        }
+
+        .navbar-scrolled {
+            background: rgba(46, 110, 126, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: rgba(46, 110, 126, 0.5);
+            z-index: 9999;
+            background: rgba(247, 244, 239, 0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background">
+    
+    <!-- Watermark -->
+    <div class="watermark font-body">
+        Bozza realizzata da meravigliä Lab · meraviglialab.com
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.aquamarispaestum.com/source/logo-barra.svg" alt="Aquamaris Design Suite & Spa" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition font-body">Home</a>
+                    <a href="#suites" class="text-white hover:text-accent transition font-body">Design Suites</a>
+                    <a href="#spa" class="text-white hover:text-accent transition font-body">Open Spa</a>
+                    <a href="#offerte" class="text-white hover:text-accent transition font-body">Offerte</a>
+                    <a href="#gallery" class="text-white hover:text-accent transition font-body">Gallery</a>
+                    <a href="#dove-siamo" class="text-white hover:text-accent transition font-body">Dove siamo</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition font-body">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-white hover:text-accent transition font-body">Home</a>
+                    <a href="#suites" class="block px-3 py-2 text-white hover:text-accent transition font-body">Design Suites</a>
+                    <a href="#spa" class="block px-3 py-2 text-white hover:text-accent transition font-body">Open Spa</a>
+                    <a href="#offerte" class="block px-3 py-2 text-white hover:text-accent transition font-body">Offerte</a>
+                    <a href="#gallery" class="block px-3 py-2 text-white hover:text-accent transition font-body">Gallery</a>
+                    <a href="#dove-siamo" class="block px-3 py-2 text-white hover:text-accent transition font-body">Dove siamo</a>
+                    <a href="#contatti" class="block px-3 py-2 text-white hover:text-accent transition font-body">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp560x470-foto-menu.png?v=1768828447.jpg') center/cover no-repeat;">
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Animated Lines -->
+        <div class="animated-line"></div>
+        <div class="animated-line"></div>
+        <div class="animated-line"></div>
+        <div class="animated-line"></div>
+        <div class="animated-line"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl hero-content">
+            <h1 class="font-title text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+                Una fuga di lusso vista mare
+            </h1>
+            <p class="font-body text-lg md:text-xl lg:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Suites di design, Open Spa e colazione panoramica alle porte di Paestum. Ogni dettaglio è curato per rendere unica la vostra esperienza.
+            </p>
+            <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-white font-body font-semibold px-10 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+                Prenota la tua Suite
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp1600x350-index-1.jpg?v=1768828447.jpg" alt="Aquamaris Design Suite & Spa" class="rounded-lg shadow-xl w-full h-96 object-cover" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Chi siamo</h2>
+                    </div>
+                    <p class="font-body text-lg text-textColor leading-relaxed mb-6">
+                        Aquamaris Design Suite & Spa sorge direttamente sul mare di Paestum, offrendo un rifugio esclusivo dove il design si fonde con il benessere. Le nostre ampie suites, finemente arredate by LAGO, sono caratterizzate da spazi luminosi, colori tenui e una cura artigianale di ogni dettaglio.
+                    </p>
+                    <p class="font-body text-lg text-textColor leading-relaxed">
+                        Con un punteggio di <span class="font-bold text-secondary">9.7/10</span>, siamo la scelta di chi desidera vivere una vacanza al mare senza rinunciare al comfort e all'eleganza.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Suites -->
+    <section id="suites" class="py-20 px-4 bg-background">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Design Suites</h2>
+                </div>
+                <p class="font-body text-lg text-textColor max-w-3xl mx-auto">
+                    Le nostre Design Suites sono pensate per chi cerca il meglio. Dalla Suite con balcone e vista mare alla Suite King con vasca idromassaggio e terrazza privata, ogni ambiente è un'opera di design firmata LAGO.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp614x700-index-2.jpg?v=1768828447.jpg" alt="Suite Vista Mare" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="font-title text-2xl font-bold text-primary mb-3">Suite Vista Mare</h3>
+                        <p class="font-body text-textColor">Balcone privato con vista panoramica sul mare, arredi LAGO e ogni comfort per un soggiorno indimenticabile.</p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp450x450-index-3.jpg?v=1768828447.jpg" alt="Suite King" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="font-title text-2xl font-bold text-primary mb-3">Suite King Deluxe</h3>
+                        <p class="font-body text-textColor">Vasca idromassaggio e terrazza privata per un'esperienza di lusso completa nel cuore del design contemporaneo.</p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp614x700-index-4.jpg?v=1768828447.jpg" alt="Suite Quadrupla" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80'; this.onerror=null;">
+                    <div class="p-6">
+                        <h3 class="font-title text-2xl font-bold text-primary mb-3">Suite Quadrupla</h3>
+                        <p class="font-body text-textColor">Spazi ampi per famiglie o gruppi, senza rinunciare all'eleganza e al design firmato LAGO con vista mare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Spa -->
+    <section id="spa" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Open Spa Aquamaris</h2>
+                    </div>
+                    <p class="font-body text-lg text-textColor leading-relaxed mb-6">
+                        Spegni la mente e accendi i sensi nella nostra Open Spa. Un'oasi di benessere dotata di vasca idromassaggio, sauna finlandese e docce emozionali, immersa in un giardino rigoglioso a due passi dal mare.
+                    </p>
+                    <p class="font-body text-lg text-textColor leading-relaxed mb-6">
+                        L'Open Spa di Aquamaris è accessibile anche agli ospiti esterni: il luogo ideale per rigenerarsi corpo e mente in un contesto di pura bellezza naturale.
+                    </p>
+                    <a href="#contatti" class="inline-block bg-primary hover:bg-secondary text-white font-body font-semibold px-8 py-3 rounded-full transition-all duration-300">
+                        Scopri i nostri pacchetti
+                    </a>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp1500x740-slide-index-4.jpg?v=1768828447.jpg" alt="Open Spa Aquamaris" class="rounded-lg shadow-xl w-full h-96 object-cover" onerror="this.src='https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Colazione Vista Mare -->
+    <section class="py-20 px-4 bg-primary text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp1500x740-slide-index-6.jpg?v=1768828447.jpg" alt="Colazione Vista Mare" class="rounded-lg shadow-xl w-full h-96 object-cover" onerror="this.src='https://images.unsplash.com/photo-1533777324565-a040eb52facd?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <h2 class="font-title text-4xl md:text-5xl font-bold">Colazione Vista Mare</h2>
+                    </div>
+                    <p class="font-body text-lg leading-relaxed mb-6">
+                        Inizia la giornata con una colazione ricca di amore e sapori locali. Sulla nostra terrazza panoramica affacciata sul mare, potrai gustare le prelibatezze del territorio campano mentre il sole si riflette sull'acqua.
+                    </p>
+                    <p class="font-body text-lg leading-relaxed">
+                        Un momento di pura dolcezza che renderà ogni mattina speciale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offerte -->
+    <section id="offerte" class="py-20 px-4 bg-background">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                    <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Offerte Esclusive</h2>
+                </div>
+                <p class="font-body text-lg text-textColor max-w-3xl mx-auto">
+                    Scopri le nostre offerte esclusive per pianificare la vacanza perfetta a Paestum. Pacchetti benessere, soggiorni romantici, proposte per famiglie e last minute: trovi sempre la soluzione giusta per vivere l'esperienza Aquamaris al miglior prezzo.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-white rounded-lg p-6 shadow-lg text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-title text-xl font-bold text-primary mb-2">Soggiorno Romantico</h3>
+                    <p class="font-body text-textColor text-sm">Pacchetto speciale per coppie con spa privata</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-6 shadow-lg text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-title text-xl font-bold text-primary mb-2">Famiglia</h3>
+                    <p class="font-body text-textColor text-sm">Offerte dedicate per famiglie con bambini</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-6 shadow-lg text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-title text-xl font-bold text-primary mb-2">Benessere</h3>
+                    <p class="font-body text-textColor text-sm">Pacchetti spa e relax personalizzati</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-6 shadow-lg text-center" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-title text-xl font-bold text-primary mb-2">Last Minute</h3>
+                    <p class="font-body text-textColor text-sm">Prenota ora e risparmia fino al 30%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Gallery</h2>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp1500x740-slide-index-4.jpg?v=1768828447.jpg" alt="Gallery 1" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="card-hover overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp1500x740-slide-index-5.jpg?v=1768828447.jpg" alt="Gallery 2" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="card-hover overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp614x700-index-2.jpg?v=1768828447.jpg" alt="Gallery 3" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="card-hover overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp450x450-index-3.jpg?v=1768828447.jpg" alt="Gallery 4" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="card-hover overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp614x700-index-4.jpg?v=1768828447.jpg" alt="Gallery 5" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div class="card-hover overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://www.aquamarispaestum.com/inc/scripts/source/www.aquamarispaestum.com/crp1500x740-slide-index-6.jpg?v=1768828447.jpg" alt="Gallery 6" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dove Siamo -->
+    <section id="dove-siamo" class="py-20 px-4 bg-background">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Dove siamo</h2>
+                    </div>
+                    <p class="font-body text-lg text-textColor leading-relaxed mb-6">
+                        Aquamaris Design Suite & Spa si trova a Paestum, sul litorale della Piana del Sele, a pochi passi dalle celebri rovine greche e immersa nella natura incontaminata del Cilento.
+                    </p>
+                    <p class="font-body text-lg text-textColor leading-relaxed mb-6">
+                        Una posizione privilegiata che permette di coniugare mare cristallino, storia millenaria e percorsi enogastronomici unici. Facilmente raggiungibile in auto e treno.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            </svg>
+                            <p class="font-body text-textColor">5 minuti a piedi dal mare</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            <p class="font-body text-textColor">10 minuti dai Templi di Paestum</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            <p class="font-body text-textColor">Nel cuore del Cilento UNESCO</p>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="bg-white rounded-lg shadow-xl p-4">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.8967265748954!2d15.008862!3d40.384444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDIzJzA0LjAiTiAxNcKwMDAnMzEuOSJF!5e0!3m2!1sit!2sit!4v1234567890" width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="font-title text-4xl md:text-5xl font-bold text-primary">Contatti</h2>
+                </div>
+                <p class="font-body text-lg text-textColor max-w-3xl mx-auto">
+                    Siamo a tua disposizione per qualsiasi informazione o per aiutarti a pianificare il tuo soggiorno ideale. Il team di Aquamaris ti risponderà con piacere e professionalità.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-title text-xl font-bold text-primary mb-1">Telefono</h3>
+                                <a href="tel:0828503749" class="font-body text-lg text-secondary hover:text-primary transition">0828 503749</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-title text-xl font-bold text-primary mb-1">WhatsApp</h3>
+                                <a href="https://wa.me/390828503749" class="font-body text-lg text-secondary hover:text-primary transition">Scrivici su WhatsApp</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-title text-xl font-bold text-primary mb-1">Email</h3>
+                                <a href="mailto:info@aquamarispaestum.com" class="font-body text-lg text-secondary hover:text-primary transition">info@aquamarispaestum.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-title text-xl font-bold text-primary mb-1">Indirizzo</h3>
+                                <p class="font-body text-lg text-textColor">Paestum (SA), Italia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="bg-background p-8 rounded-lg shadow-lg">
+                        <div class="mb-6">
+                            <label class="block font-body font-semibold text-primary mb-2">Nome</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-accent transition" placeholder="Il tuo nome">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block font-body font-semibold text-primary mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-accent transition" placeholder="tua@email.com">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block font-body font-semibold text-primary mb-2">Messaggio</label>
+                            <textarea rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-accent transition" placeholder="Come possiamo aiutarti?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-secondary hover:bg-primary text-white font-body font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+                            Invia Richiesta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-title text-2xl font-bold mb-4">Aquamaris</h3>
+                    <p class="font-body text-white/80">Design Suite & Spa</p>
+                    <p class="font-body text-white/80">Paestum, Italia</p>
+                </div>
+                <div>
+                    <h4 class="font-title text-xl font-bold mb-4">Link Rapidi</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="#suites" class="text-white/80 hover:text-accent transition">Design Suites</a></li>
+                        <li><a href="#spa" class="text-white/80 hover:text-accent transition">Open Spa</a></li>
+                        <li><a href="#offerte" class="text-white/80 hover:text-accent transition">Offerte</a></li>
+                        <li><a href="#gallery" class="text-white/80 hover:text-accent transition">Gallery</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-title text-xl font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-2 font-body">
+                        <li><a href="tel:0828503749" class="text-white/80 hover:text-accent transition">Tel: 0828 503749</a></li>
+                        <li><a href="mailto:info@aquamarispaestum.com" class="text-white/80 hover:text-accent transition">info@aquamarispaestum.com</a></li>
+                        <li><a href="https://wa.me/390828503749" class="text-white/80 hover:text-accent transition">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-title text-xl font-bold mb-4">Seguici</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-accent rounded-full flex items-center justify-center transition">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center font-body text-white/60">
+                <p>&copy; 2024 Aquamaris Design Suite & Spa. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
