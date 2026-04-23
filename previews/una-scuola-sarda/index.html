@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Scuola Sarda - Creatori di Eventi in Sardegna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A3A2A',
+                        secondary: '#C8A96E',
+                        accent: '#E63C2F',
+                        background: '#F9F5EF',
+                        text: '#1C1C1C'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Lato', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #1C1C1C;
+        }
+        
+        .hero-title {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideLine {
+            from {
+                left: -60%;
+            }
+            to {
+                left: 110%;
+            }
+        }
+        
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            pointer-events: none;
+        }
+        
+        .hero-line:nth-child(1) {
+            top: 20%;
+            animation: slideLine 14s linear infinite;
+        }
+        
+        .hero-line:nth-child(2) {
+            top: 35%;
+            animation: slideLine 11s linear infinite 2s;
+        }
+        
+        .hero-line:nth-child(3) {
+            top: 50%;
+            animation: slideLine 13s linear infinite 4s;
+        }
+        
+        .hero-line:nth-child(4) {
+            top: 65%;
+            animation: slideLine 9s linear infinite 1s;
+        }
+        
+        .hero-line:nth-child(5) {
+            top: 80%;
+            animation: slideLine 12s linear infinite 3s;
+        }
+        
+        .navbar-scrolled {
+            background-color: rgba(26, 58, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .event-card {
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(230, 60, 47, 0.2), 0 10px 10px -5px rgba(230, 60, 47, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: #E63C2F;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c12e23;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(230, 60, 47, 0.4);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #C8A96E;
+            color: #C8A96E;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #C8A96E;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            opacity: 0.4;
+            z-index: 9999;
+            background: rgba(255,255,255,0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .watermark a {
+            color: #1A3A2A;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="bg-background">
+    
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da meravigliä Lab · <a href="https://meraviglialab.com" target="_blank">meraviglialab.com</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/logo-una-scuola-sarda-white.png" alt="Una Scuola Sarda" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition-colors duration-300">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition-colors duration-300">Chi siamo</a>
+                    <a href="#eventi" class="text-white hover:text-secondary transition-colors duration-300">Eventi</a>
+                    <a href="#gallery" class="text-white hover:text-secondary transition-colors duration-300">Gallery</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition-colors duration-300">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-white hover:text-secondary transition-colors duration-300">Home</a>
+                <a href="#chi-siamo" class="block py-2 text-white hover:text-secondary transition-colors duration-300">Chi siamo</a>
+                <a href="#eventi" class="block py-2 text-white hover:text-secondary transition-colors duration-300">Eventi</a>
+                <a href="#gallery" class="block py-2 text-white hover:text-secondary transition-colors duration-300">Gallery</a>
+                <a href="#contatti" class="block py-2 text-white hover:text-secondary transition-colors duration-300">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background: url('https://www.unascuolasarda.it/wp-content/uploads/meeting-di-olbia-2.jpg') center/cover no-repeat;">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Animated Lines -->
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto hero-title">
+            <h1 class="font-serif text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                Creatori di Eventi<br>in Sardegna
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+                Da oltre 20 anni ideiamo esperienze culturali, artistiche e tradizionali per valorizzare la nostra terra e la sua identità autentica.
+            </p>
+            <a href="#eventi" class="btn-primary inline-block px-10 py-4 rounded-full text-lg font-semibold">
+                Scopri i nostri eventi
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 md:py-32 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <div class="mb-4">
+                            <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
+                            Chi siamo
+                        </h2>
+                        <div class="w-24 h-1 bg-accent mb-8"></div>
+                        <p class="text-lg text-text leading-relaxed mb-6">
+                            Una Scuola Sarda è una realtà consolidata nel panorama culturale del nord Sardegna. Con sede a Olbia e oltre vent'anni di attività, ideiamo, creiamo e organizziamo eventi che valorizzano la cultura, le tradizioni e il territorio sardo.
+                        </p>
+                        <p class="text-lg text-text leading-relaxed">
+                            Collaboriamo con enti pubblici, aziende e privati per dare vita a esperienze autentiche che raccontano la Sardegna in ogni sua forma: spettacolo, turismo, formazione e identità popolare.
+                        </p>
+                    </div>
+                    <div data-aos="fade-left">
+                        <img src="https://www.unascuolasarda.it/wp-content/uploads/logo-una-scuola-sarda-nero.png" alt="Una Scuola Sarda" class="w-full rounded-lg shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- I Nostri Format Section -->
+    <section class="py-20 md:py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up">
+                <div class="flex justify-center mb-4">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
+                    I nostri format
+                </h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+                <p class="text-lg text-text leading-relaxed">
+                    Abbiamo costruito nel tempo un portfolio di eventi iconici che rappresentano l'anima della Sardegna. Dal Meeting di Olbia, punto di riferimento dal 2006 per il dialogo tra istituzioni, imprese e università sul futuro del turismo sardo, a L'Isola in Gallura, la manifestazione folkloristica che celebra le tradizioni popolari unendo arte, musica e cultura.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventi Section -->
+    <section id="eventi" class="py-20 md:py-32 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
+                    Eventi
+                </h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Meeting di Olbia -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://www.unascuolasarda.it/wp-content/uploads/meeting-di-olbia-cover.webp" alt="Meeting di Olbia" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80'; this.onerror=null;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-70"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <span class="inline-block bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">Dal 2006</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-3xl font-bold text-primary mb-4">
+                            Meeting di Olbia
+                        </h3>
+                        <p class="text-text leading-relaxed mb-6">
+                            Dal 2006, il Meeting di Olbia è il principale appuntamento annuale dedicato al dialogo tra istituzioni, mondo imprenditoriale e accademia sul futuro del turismo e dello sviluppo della Sardegna. Un evento di riferimento che riunisce esperti, decisori e appassionati per costruire insieme il domani dell'isola.
+                        </p>
+                        <a href="#contatti" class="text-accent font-semibold hover:text-primary transition-colors inline-flex items-center">
+                            Scopri di più
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- L'Isola in Gallura -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://www.unascuolasarda.it/wp-content/uploads/isola-in-gallura-cover.webp" alt="L'Isola in Gallura" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1920&q=80'; this.onerror=null;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-70"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <span class="inline-block bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">Tradizioni</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-3xl font-bold text-primary mb-4">
+                            L'Isola in Gallura
+                        </h3>
+                        <p class="text-text leading-relaxed mb-6">
+                            Una manifestazione folkloristica unica nel suo genere, dedicata alla celebrazione delle tradizioni popolari sarde. L'Isola in Gallura unisce musica, arte, danze tradizionali e cultura in un'esperienza immersiva che porta il visitatore nel cuore dell'identità sarda.
+                        </p>
+                        <a href="#contatti" class="text-accent font-semibold hover:text-primary transition-colors inline-flex items-center">
+                            Scopri di più
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Vino Village -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://www.unascuolasarda.it/wp-content/uploads/vino-village-san-teodoro-cover.webp" alt="Vino Village" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1920&q=80'; this.onerror=null;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-70"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <span class="inline-block bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">Enogastronomia</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-3xl font-bold text-primary mb-4">
+                            Vino Village
+                        </h3>
+                        <p class="text-text leading-relaxed mb-6">
+                            Un weekend all'insegna del gusto e della bellezza. Il Vino Village è l'evento dedicato ai vini sardi di qualità, abbinato ai sapori autentici della tradizione gastronomica isolana, immerso in uno degli scenari costieri più affascinanti del Mediterraneo.
+                        </p>
+                        <a href="#contatti" class="text-accent font-semibold hover:text-primary transition-colors inline-flex items-center">
+                            Scopri di più
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Golfo Aranci Music Festival -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://www.unascuolasarda.it/wp-content/uploads/gamf-in-gallura-cover-2.webp" alt="Golfo Aranci Music Festival" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&q=80'; this.onerror=null;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-70"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <span class="inline-block bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">Musica</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-serif text-3xl font-bold text-primary mb-4">
+                            Golfo Aranci Music Festival
+                        </h3>
+                        <p class="text-text leading-relaxed mb-6">
+                            Musica, divertimento e spettacolo in uno dei borghi marinari più suggestivi della Sardegna. Il Golfo Aranci Music Festival è l'appuntamento estivo dedicato alla musica dal vivo e all'intrattenimento, capace di attrarre pubblico da tutta l'isola e oltre.
+                        </p>
+                        <a href="#contatti" class="text-accent font-semibold hover:text-primary transition-colors inline-flex items-center">
+                            Scopri di più
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 md:py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex justify-center mb-4">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
+                    Gallery
+                </h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+                <p class="text-lg text-text max-w-2xl mx-auto">
+                    Uno sguardo ai nostri eventi che hanno fatto la storia della cultura sarda
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                <div class="overflow-hidden rounded-lg shadow-lg h-64" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/logandina-19-meeting-di-olbia.jpg" alt="Meeting di Olbia" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-64" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/meeting-di-olbia-cover.webp" alt="Meeting di Olbia" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-64" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/isola-in-gallura-cover.webp" alt="L'Isola in Gallura" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-64" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/vino-village-san-teodoro-cover.webp" alt="Vino Village" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-64" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/gamf-in-gallura-cover-2.webp" alt="Golfo Aranci Music Festival" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-64" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/comune-di-golfo-aranci.png" alt="Partner Comune di Golfo Aranci" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 bg-white" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collabora Section -->
+    <section class="py-20 md:py-32 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#grid)" />
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <div class="flex justify-center mb-4">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">
+                    Collabora con noi
+                </h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+                <p class="text-xl leading-relaxed mb-10">
+                    Sei un ente, un'azienda o un privato e vuoi creare qualcosa di speciale in Sardegna? Collaboriamo con realtà che condividono la nostra passione per il territorio e la cultura. Contattaci per scoprire come possiamo costruire insieme un evento su misura, autentico e memorabile.
+                </p>
+                <a href="#contatti" class="btn-secondary inline-block px-10 py-4 rounded-full text-lg font-semibold">
+                    Inizia un progetto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 md:py-32 bg-background">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
+                        Contatti
+                    </h2>
+                    <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+                    <p class="text-lg text-text max-w-2xl mx-auto">
+                        Hai una domanda o vuoi saperne di più sui nostri eventi e servizi? Siamo a Olbia, nel cuore del nord Sardegna. Scrivici o chiamaci per iniziare a costruire insieme la tua prossima esperienza sarda.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div data-aos="fade-right">
+                        <div class="bg-white rounded-lg p-8 shadow-lg mb-8">
+                            <h3 class="font-serif text-2xl font-bold text-primary mb-6">
+                                Informazioni
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-semibold text-primary mb-1">Sede</h4>
+                                        <p class="text-text">Olbia, Nord Sardegna</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-semibold text-primary mb-1">Telefono</h4>
+                                        <a href="tel:02577680909" class="text-accent hover:text-primary transition-colors">02 5776 80909</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-semibold text-primary mb-1">Orari</h4>
+                                        <p class="text-text">Lun - Ven: 9:00 - 18:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-secondary bg-opacity-10 rounded-lg p-8">
+                            <p class="text-primary font-serif text-xl italic">
+                                "Da oltre 20 anni raccontiamo la Sardegna attraverso eventi che celebrano la nostra identità"
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div data-aos="fade-left">
+                        <form class="bg-white rounded-lg p-8 shadow-lg">
+                            <div class="mb-6">
+                                <label for="nome" class="block text-primary font-semibold mb-2">Nome e Cognome</label>
+                                <input type="text" id="nome" name="nome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-all" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-primary font-semibold mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-all" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="messaggio" class="block text-primary font-semibold mb-2">Messaggio</label>
+                                <textarea id="messaggio" name="messaggio" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-all" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full px-8 py-4 rounded-lg text-lg font-semibold">
+                                Invia Messaggio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <img src="https://www.unascuolasarda.it/wp-content/uploads/logo-una-scuola-sarda-white.png" alt="Una Scuola Sarda" style="max-height:50px; object-fit:contain; margin-bottom: 1rem;" onerror="this.style.display='none'">
+                    <p class="text-gray-300 mt-4">
+                        Da oltre 20 anni raccontiamo la Sardegna attraverso eventi culturali, tradizionali e artistici.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl font-bold mb-4 text-secondary">Link Rapidi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#chi-siamo" class="text-gray-300 hover:text-secondary transition-colors">Chi siamo</a></li>
+                        <li><a href="#eventi" class="text-gray-300 hover:text-secondary transition-colors">Eventi</a></li>
+                        <li><a href="#gallery" class="text-gray-300 hover:text-secondary transition-colors">Gallery</a></li>
+                        <li><a href="#contatti" class="text-gray-300 hover:text-secondary transition-colors">Contatti</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl font-bold mb-4 text-secondary">Contatti</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Olbia, Sardegna</li>
+                        <li><a href="tel:02577680909" class="hover:text-secondary transition-colors">02 5776 80909</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Una Scuola Sarda. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
