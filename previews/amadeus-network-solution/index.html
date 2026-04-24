@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amadeus Network Solution | Tecnologia che connette. Innovazione che integra.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A1F44',
+                        secondary: '#1B6CA8',
+                        accent: '#00AEEF',
+                        background: '#F4F7FA',
+                        textcolor: '#1A1A2E',
+                    },
+                    fontFamily: {
+                        'heading': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1A1A2E;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .navbar-scrolled {
+            background-color: rgba(10, 31, 68, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 174, 239, 0.2);
+        }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .animate-line-1 {
+            animation: slideLine 7s infinite ease-in-out;
+        }
+        .animate-line-2 {
+            animation: slideLine 10s infinite ease-in-out 1s;
+        }
+        .animate-line-3 {
+            animation: slideLine 12s infinite ease-in-out 2s;
+        }
+        .animate-line-4 {
+            animation: slideLine 9s infinite ease-in-out 3s;
+        }
+        .animate-line-5 {
+            animation: slideLine 14s infinite ease-in-out 4s;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo SVG -->
+                <div class="flex-shrink-0">
+                    <a href="#home">
+                        <svg width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg">
+                            <text x="0" y="22" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Amadeus</text>
+                            <text x="0" y="40" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" fill="#00AEEF" letter-spacing="1.5">NETWORK SOLUTION</text>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition duration-300 font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition duration-300 font-medium">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-accent transition duration-300 font-medium">Servizi</a>
+                    <a href="#professionisti" class="text-white hover:text-accent transition duration-300 font-medium">Per i professionisti</a>
+                    <a href="#storia" class="text-white hover:text-accent transition duration-300 font-medium">La nostra storia</a>
+                    <a href="#contatti" class="text-white hover:text-accent transition duration-300 font-medium">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-primary">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#home" class="block text-white hover:text-accent transition duration-300 py-2">Home</a>
+                <a href="#chi-siamo" class="block text-white hover:text-accent transition duration-300 py-2">Chi siamo</a>
+                <a href="#servizi" class="block text-white hover:text-accent transition duration-300 py-2">Servizi</a>
+                <a href="#professionisti" class="block text-white hover:text-accent transition duration-300 py-2">Per i professionisti</a>
+                <a href="#storia" class="block text-white hover:text-accent transition duration-300 py-2">La nostra storia</a>
+                <a href="#contatti" class="block text-white hover:text-accent transition duration-300 py-2">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://amadeusns.it/amadeus/wp-content/uploads/2020/03/slide-azienda-amadeus.jpg');"></div>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Animated Lines -->
+        <div class="absolute top-1/4 w-full h-px animate-line-1" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
+        <div class="absolute top-2/4 w-full h-px animate-line-2" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
+        <div class="absolute top-3/4 w-full h-px animate-line-3" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
+        <div class="absolute top-1/3 w-full h-px animate-line-4" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
+        <div class="absolute top-2/3 w-full h-px animate-line-5" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto hero-content">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                Il futuro degli edifici intelligenti inizia qui
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
+                Dal 1999 integriamo tecnologia, automazione e connettività per realizzare ambienti smart, sicuri e ad alte prestazioni. Siamo il partner tecnico di architetti, progettisti e installatori di eccellenza.
+            </p>
+            <a href="#contatti" class="inline-block bg-accent hover:bg-secondary text-white font-semibold px-8 py-4 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                Scopri cosa possiamo fare per te
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://amadeusns.it/wp-content/themes/yootheme/cache/12/slide-azienda-amadeus-12b5276a.jpeg" 
+                         alt="Amadeus Network Solution Team" 
+                         class="rounded-lg shadow-2xl w-full h-auto"
+                         onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Chi siamo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Amadeus Network Solution nasce nel 1999 da un gruppo di tecnici appassionati, con radici solide nel networking e nelle telecomunicazioni. In oltre 25 anni abbiamo trasformato quella passione in leadership: siamo diventati un punto di riferimento nel settore della Home e Building Automation, dell'integrazione di sistemi, della sicurezza e delle reti.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Dalla nostra sede di Montebelluna (TV), operiamo in stretta collaborazione con architetti, progettisti e specialisti di mercato, portando know-how, curiosità e aggiornamento costante in ogni progetto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cosa Facciamo -->
+    <section class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold text-primary mb-6">Cosa facciamo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                        Siamo System Integrator: progettiamo e realizziamo impianti tecnologici complessi che fanno parlare tra loro luce, clima, sicurezza, reti di comunicazione, videocontrollo e automazione. Gestiamo ogni fase, dalla consulenza iniziale alla messa in opera, garantendo soluzioni su misura per residenze di pregio, edifici commerciali e strutture industriali.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Lavoriamo con le migliori tecnologie di produttori europei, americani e asiatici, selezionati per qualità e affidabilità.
+                    </p>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=1920&q=80" 
+                         alt="System Integration" 
+                         class="rounded-lg shadow-2xl w-full h-auto"
+                         onerror="this.src='https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section id="servizi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">I nostri servizi</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Soluzioni integrate per edifici intelligenti e connessi</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-background p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Home & Building Automation</h3>
+                    <p class="text-gray-700">Progettazione e installazione di sistemi di automazione integrati per abitazioni e edifici commerciali.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-background p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Reti LAN/WiFi</h3>
+                    <p class="text-gray-700">Progettazione e installazione di infrastrutture di rete cablate e wireless ad alte prestazioni.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-background p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Telefonia VoIP</h3>
+                    <p class="text-gray-700">Sistemi di comunicazione integrati basati su tecnologia VoIP per massima flessibilità.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-background p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Sicurezza e Videosorveglianza</h3>
+                    <p class="text-gray-700">Impianti di sicurezza integrati con sistemi di videocontrollo e controllo accessi.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-background p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">BMS e Supervisione</h3>
+                    <p class="text-gray-700">Building Management System per il controllo centralizzato e la supervisione remota degli impianti.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-background p-8 rounded-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">Gestione Energetica</h3>
+                    <p class="text-gray-700">Sistemi di gestione energetica e climatizzazione intelligente per efficienza e risparmio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Per i Professionisti -->
+    <section id="professionisti" class="py-20 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full filter blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-block mb-4">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-6">Per i professionisti</h2>
+                    <p class="text-lg leading-relaxed mb-4 text-gray-100">
+                        Collaboriamo attivamente con architetti, progettisti e ditte di impianti elettrici che cercano un partner tecnico affidabile e aggiornato. Siamo in grado di affiancare il team di progettazione fin dalle prime fasi, offrendo consulenza tecnica, specifiche di prodotto e supporto operativo durante la realizzazione.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-100">
+                        La nostra esperienza diventa un vantaggio concreto per i tuoi clienti finali.
+                    </p>
+                    <a href="#contatti" class="inline-block mt-6 bg-accent hover:bg-white hover:text-primary text-white font-semibold px-8 py-3 rounded-lg transition duration-300 transform hover:scale-105">
+                        Diventa nostro partner
+                    </a>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80" 
+                         alt="Professionisti al lavoro" 
+                         class="rounded-lg shadow-2xl w-full h-auto"
+                         onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- La Nostra Storia -->
+    <section id="storia" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">La nostra storia</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">25 anni di innovazione e crescita continua</p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-accent"></div>
+
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- 1999 -->
+                    <div class="relative" data-aos="fade-right">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 text-right">
+                                <div class="bg-background p-6 rounded-lg shadow-lg card-hover">
+                                    <span class="text-accent font-bold text-2xl">1999</span>
+                                    <h3 class="text-xl font-bold text-primary mt-2 mb-3">La nascita</h3>
+                                    <p class="text-gray-700">Nasce Amadeus Network Solution con la visione di esplorare mercati tecnologici emergenti.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-12"></div>
+                        </div>
+                    </div>
+
+                    <!-- 2002 -->
+                    <div class="relative" data-aos="fade-left">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12"></div>
+                            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-background p-6 rounded-lg shadow-lg card-hover">
+                                    <span class="text-accent font-bold text-2xl">2002</span>
+                                    <h3 class="text-xl font-bold text-primary mt-2 mb-3">L'era della banda larga</h3>
+                                    <p class="text-gray-700">Cavalchiamo l'onda dell'ADSL e dell'internet a banda larga, diventando punto di riferimento per la connettività avanzata.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2008 -->
+                    <div class="relative" data-aos="fade-right">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 text-right">
+                                <div class="bg-background p-6 rounded-lg shadow-lg card-hover">
+                                    <span class="text-accent font-bold text-2xl">2008</span>
+                                    <h3 class="text-xl font-bold text-primary mt-2 mb-3">Home Automation</h3>
+                                    <p class="text-gray-700">Realizziamo il primo impianto complesso di Home Automation, aprendo una nuova era nella nostra crescita come System Integrator.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-12"></div>
+                        </div>
+                    </div>
+
+                    <!-- 2014 -->
+                    <div class="relative" data-aos="fade-left">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12"></div>
+                            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-background p-6 rounded-lg shadow-lg card-hover">
+                                    <span class="text-accent font-bold text-2xl">2014</span>
+                                    <h3 class="text-xl font-bold text-primary mt-2 mb-3">Nuova sede</h3>
+                                    <p class="text-gray-700">Apriamo la nuova sede a Montebelluna (TV) e consolidiamo il nostro team tecnico specializzato.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oggi -->
+                    <div class="relative" data-aos="fade-right">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 text-right">
+                                <div class="bg-gradient-to-br from-primary to-secondary text-white p-6 rounded-lg shadow-lg card-hover">
+                                    <span class="text-accent font-bold text-2xl">Oggi</span>
+                                    <h3 class="text-xl font-bold mt-2 mb-3">Leadership riconosciuta</h3>
+                                    <p>Siamo un partner riconosciuto da professionisti e produttori internazionali, con oltre 25 anni di esperienza nel settore.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent rounded-full border-4 border-white"></div>
+                            <div class="md:w-1/2 md:pl-12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Contatti</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Hai un progetto in mente? Parliamone insieme</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Informazioni di contatto</h3>
+                        <p class="text-gray-700 mb-8 leading-relaxed">
+                            Hai un progetto in mente o vuoi sapere come possiamo supportare il tuo lavoro? Contattaci per una consulenza tecnica senza impegno. Il nostro team è a tua disposizione per valutare insieme la soluzione più adatta alle tue esigenze.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1">Sede</h4>
+                                    <p class="text-gray-700">Montebelluna (TV), Italy</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1">Telefono</h4>
+                                    <a href="tel:+39000000000" class="text-accent hover:text-secondary transition duration-300">+39 000 000 0000</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent mr-4 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-primary mb-1">Azienda</h4>
+                                    <p class="text-gray-700">Amadeus Network Solution S.r.l.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <form class="bg-white p-8 rounded-lg shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Nome e Cognome</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-300" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-300" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Messaggio</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-300" required></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-accent hover:bg-secondary text-white font-semibold px-6 py-3 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                            Invia Messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <svg width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <text x="0" y="22" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Amadeus</text>
+                        <text x="0" y="40" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" fill="#00AEEF" letter-spacing="1.5">NETWORK SOLUTION</text>
+                    </svg>
+                    <p class="text-gray-300 mt-4">Tecnologia che connette. Innovazione che integra.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Link Veloci</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#chi-siamo" class="text-gray-300 hover:text-accent transition duration-300">Chi siamo</a></li>
+                        <li><a href="#servizi" class="text-gray-300 hover:text-accent transition duration-300">Servizi</a></li>
+                        <li><a href="#professionisti" class="text-gray-300 hover:text-accent transition duration-300">Per i professionisti</a></li>
+                        <li><a href="#contatti" class="text-gray-300 hover:text-accent transition duration-300">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Contatti</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Montebelluna (TV), Italy</li>
+                        <li><a href="tel:+39000000000" class="hover:text-accent transition duration-300">+39 000 000 0000</a></li>
+                        <li>Amadeus Network Solution S.r.l.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400 text-sm mb-2">&copy; 2024 Amadeus Network Solution S.r.l. Tutti i diritti riservati.</p>
+                <p class="text-gray-500 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-accent hover:underline">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
