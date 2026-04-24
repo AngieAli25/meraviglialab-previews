@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Metalli Italiano Vicenza - Compro Oro e Argento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A1A2E',
+                        secondary: '#C9A84C',
+                        accent: '#E8C96D',
+                        background: '#F9F6F0',
+                        textColor: '#2C2C2C'
+                    },
+                    fontFamily: {
+                        heading: ['Libre Baskerville', 'serif'],
+                        body: ['Source Sans Pro', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #2C2C2C;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Libre Baskerville', serif;
+        }
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80') center/cover no-repeat;
+            overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        .hero-line:nth-child(1) { top: 20%; animation-duration: 14s; animation-delay: 0s; }
+        .hero-line:nth-child(2) { top: 35%; animation-duration: 10s; animation-delay: 2s; }
+        .hero-line:nth-child(3) { top: 50%; animation-duration: 12s; animation-delay: 4s; }
+        .hero-line:nth-child(4) { top: 65%; animation-duration: 9s; animation-delay: 1s; }
+        .hero-line:nth-child(5) { top: 80%; animation-duration: 13s; animation-delay: 3s; }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .navbar-scrolled {
+            background: rgba(26, 26, 46, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(201, 168, 76, 0.3);
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        .watermark {
+            font-size: 11px;
+            opacity: 0.5;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body class="bg-background">
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" style="background: rgba(26, 26, 46, 0.7); backdrop-filter: blur(10px);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.bancometalliitalianovicenza.it/templates/yootheme/cache/a7/logo-bmi-a74eb70d.png" alt="Banco Metalli Italiano Vicenza" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition font-body font-medium">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition font-body font-medium">Chi Siamo</a>
+                    <a href="#cosa-acquistiamo" class="text-white hover:text-accent transition font-body font-medium">Cosa Acquistiamo</a>
+                    <a href="#come-funziona" class="text-white hover:text-accent transition font-body font-medium">Come Funziona</a>
+                    <a href="#perche-sceglierci" class="text-white hover:text-accent transition font-body font-medium">Perché Sceglierci</a>
+                    <a href="#sedi" class="text-white hover:text-accent transition font-body font-medium">Le Nostre Sedi</a>
+                    <a href="#contatti" class="bg-secondary hover:bg-accent text-primary px-6 py-2 rounded-full transition font-body font-semibold">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu lg:hidden">
+                <div class="px-2 pt-2 pb-4 space-y-2">
+                    <a href="#home" class="block text-white hover:text-accent transition py-2 font-body">Home</a>
+                    <a href="#chi-siamo" class="block text-white hover:text-accent transition py-2 font-body">Chi Siamo</a>
+                    <a href="#cosa-acquistiamo" class="block text-white hover:text-accent transition py-2 font-body">Cosa Acquistiamo</a>
+                    <a href="#come-funziona" class="block text-white hover:text-accent transition py-2 font-body">Come Funziona</a>
+                    <a href="#perche-sceglierci" class="block text-white hover:text-accent transition py-2 font-body">Perché Sceglierci</a>
+                    <a href="#sedi" class="block text-white hover:text-accent transition py-2 font-body">Le Nostre Sedi</a>
+                    <a href="#contatti" class="block text-white hover:text-accent transition py-2 font-body">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay">
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+            <div class="hero-line"></div>
+        </div>
+        <div class="relative h-full flex items-center justify-center text-center px-4">
+            <div class="hero-content max-w-4xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+                    I tuoi oggetti preziosi valgono più di quanto pensi
+                </h1>
+                <p class="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-10 font-body font-light max-w-3xl mx-auto">
+                    Porta oro e argento inutilizzati nel nostro banco e ricevi subito una valutazione gratuita, trasparente e senza impegno. Le migliori quotazioni di Vicenza ti aspettano.
+                </p>
+                <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-primary px-10 py-4 rounded-full text-lg font-body font-bold transition transform hover:scale-105 shadow-2xl">
+                    Richiedi una Valutazione Gratuita
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <svg class="w-16 h-16 text-secondary mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-6">Chi Siamo</h2>
+                    <p class="text-lg text-textColor font-body leading-relaxed mb-4">
+                        Banco Metalli Italiano Vicenza è parte di un rinomato franchising nazionale, leader nel settore del compro oro. Con due sedi nel cuore di Vicenza, siamo il punto di riferimento per chi desidera vendere oro e argento con la massima affidabilità.
+                    </p>
+                    <p class="text-lg text-textColor font-body leading-relaxed">
+                        La nostra forza è la reputazione costruita nel tempo grazie a valutazioni oneste, personale qualificato e un servizio che mette sempre il cliente al centro. Non siamo un semplice negozio: siamo il tuo partner di fiducia per trasformare oggetti preziosi inutilizzati in liquidità immediata.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343a?w=800&q=80" alt="Banco Metalli Italiano" class="rounded-2xl shadow-2xl w-full" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cosa Acquistiamo -->
+    <section id="cosa-acquistiamo" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <svg class="w-16 h-16 text-secondary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">Cosa Acquistiamo</h2>
+                <p class="text-xl text-textColor font-body max-w-3xl mx-auto">
+                    Acquistiamo una vasta gamma di oggetti in oro e argento con valutazioni sempre trasparenti
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="0">
+                    <svg class="w-12 h-12 text-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold text-primary mb-3">Orologi</h3>
+                    <p class="text-textColor font-body">Orologi vintage e moderni di ogni marca e condizione</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="w-12 h-12 text-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold text-primary mb-3">Gioielli</h3>
+                    <p class="text-textColor font-body">Bracciali, anelli nuziali e da collezione in oro e argento</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="w-12 h-12 text-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold text-primary mb-3">Monete</h3>
+                    <p class="text-textColor font-body">Monete antiche e contemporanee in metalli preziosi</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="w-12 h-12 text-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold text-primary mb-3">Rottami</h3>
+                    <p class="text-textColor font-body">Anche pezzi rotti o danneggiati hanno valore per noi</p>
+                </div>
+            </div>
+            <p class="text-center text-lg text-textColor font-body mt-12 max-w-2xl mx-auto" data-aos="fade-up">
+                Qualunque sia l'articolo che possiedi, vieni a scoprire quanto vale davvero.
+            </p>
+        </div>
+    </section>
+
+    <!-- Come Funziona -->
+    <section id="come-funziona" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <svg class="w-16 h-16 text-secondary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">Come Funziona</h2>
+                <p class="text-xl text-textColor font-body max-w-3xl mx-auto">
+                    Vendere i tuoi oggetti preziosi con noi è semplice e rapido
+                </p>
+            </div>
+            <div class="grid md:grid-cols-5 gap-6">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-heading font-bold mx-auto mb-4 shadow-lg">1</div>
+                    <h3 class="text-lg font-heading font-bold text-primary mb-2">Porta i tuoi articoli</h3>
+                    <p class="text-textColor font-body text-sm">Vieni presso una delle nostre sedi</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-heading font-bold mx-auto mb-4 shadow-lg">2</div>
+                    <h3 class="text-lg font-heading font-bold text-primary mb-2">Esaminiamo</h3>
+                    <p class="text-textColor font-body text-sm">Ispezioniamo con cura ogni articolo</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-heading font-bold mx-auto mb-4 shadow-lg">3</div>
+                    <h3 class="text-lg font-heading font-bold text-primary mb-2">Pesiamo</h3>
+                    <p class="text-textColor font-body text-sm">Con strumenti certificati e precisi</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-heading font-bold mx-auto mb-4 shadow-lg">4</div>
+                    <h3 class="text-lg font-heading font-bold text-primary mb-2">Valutiamo</h3>
+                    <p class="text-textColor font-body text-sm">Offerta trasparente basata su peso e qualità</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-secondary text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-heading font-bold mx-auto mb-4 shadow-lg">5</div>
+                    <h3 class="text-lg font-heading font-bold text-primary mb-2">Pagamento</h3>
+                    <p class="text-textColor font-body text-sm">Liquidità immediata in contanti</p>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-textColor font-body font-semibold">Tutto in totale trasparenza, senza sorprese.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perché Sceglierci -->
+    <section id="perche-sceglierci" class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <svg class="w-16 h-16 text-accent mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold mb-4">Perché Sceglierci</h2>
+                <p class="text-xl text-gray-300 font-body max-w-3xl mx-auto">
+                    Scegliere Banco Metalli Italiano Vicenza significa affidarsi a professionisti del settore con anni di esperienza
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="0">
+                    <svg class="w-16 h-16 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold mb-3">Migliori Quotazioni</h3>
+                    <p class="text-gray-300 font-body">Offriamo le migliori quotazioni di mercato su oro e argento</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <svg class="w-16 h-16 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold mb-3">Team Qualificato</h3>
+                    <p class="text-gray-300 font-body">Personale cortese e preparato sempre a tua disposizione</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <svg class="w-16 h-16 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold mb-3">Massima Riservatezza</h3>
+                    <p class="text-gray-300 font-body">Ogni operazione è trattata con la massima discrezione</p>
+                </div>
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <svg class="w-16 h-16 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-heading font-bold mb-3">Due Sedi Comode</h3>
+                    <p class="text-gray-300 font-body">Sedi facilmente raggiungibili con parcheggio nelle vicinanze</p>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-xl text-gray-200 font-body font-light">La tua soddisfazione è la nostra priorità, dalla prima valutazione all'incasso finale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recensioni -->
+    <section class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <svg class="w-16 h-16 text-secondary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                </svg>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">Recensioni</h2>
+                <p class="text-xl text-textColor font-body max-w-3xl mx-auto">
+                    I nostri clienti ci scelgono e ci consigliano
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex text-secondary mb-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-textColor font-body italic mb-4">"Professionali e trasparenti. Ho ricevuto una valutazione equa e il pagamento immediato. Consigliatissimo!"</p>
+                    <p class="text-secondary font-body font-semibold">- Maria R.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex text-secondary mb-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-textColor font-body italic mb-4">"Personale gentilissimo e quotazioni ottime. Ho venduto diversi gioielli e sono rimasto molto soddisfatto."</p>
+                    <p class="text-secondary font-body font-semibold">- Luca B.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex text-secondary mb-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="text-textColor font-body italic mb-4">"Esperienza fantastica! Hanno valutato il mio orologio in modo corretto e mi hanno pagato subito. Tornerò sicuramente."</p>
+                    <p class="text-secondary font-body font-semibold">- Giulia T.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-textColor font-body">Con centinaia di recensioni a cinque stelle, la nostra reputazione parla per noi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Nostre Sedi -->
+    <section id="sedi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <svg class="w-16 h-16 text-secondary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">Le Nostre Sedi</h2>
+                <p class="text-xl text-textColor font-body max-w-3xl mx-auto">
+                    Siamo presenti con due agenzie a Vicenza per servirti al meglio
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-10 mb-12">
+                <div class="bg-background p-8 rounded-xl shadow-lg" data-aos="fade-right">
+                    <h3 class="text-2xl font-heading font-bold text-primary mb-4">Agenzia 1</h3>
+                    <div class="space-y-3 text-textColor font-body">
+                        <p class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span><strong>Indirizzo:</strong> Corso Santi Felice e Fortunato, 132</span>
+                        </p>
+                        <p class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>A 50 metri dagli uffici INPS, di fronte Banca UniCredit</span>
+                        </p>
+                        <p class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Parcheggio Cattaneo a 30 metri</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-background p-8 rounded-xl shadow-lg" data-aos="fade-left">
+                    <h3 class="text-2xl font-heading font-bold text-primary mb-4">Agenzia 2</h3>
+                    <div class="space-y-3 text-textColor font-body">
+                        <p class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span><strong>Indirizzo:</strong> Viale Del Sole 2/4 — angolo Strada Pasubio</span>
+                        </p>
+                        <p class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Di fronte alla Farmacia del Sole</span>
+                        </p>
+                        <p class="flex items-start">
+                            <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Vicino al parcheggio del Superstore PAM</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-primary text-white p-8 rounded-xl text-center" data-aos="zoom-in">
+                <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="text-2xl font-heading font-bold mb-4">Orari di Apertura</h3>
+                <div class="space-y-2 font-body text-lg">
+                    <p><strong>Lunedì - Venerdì:</strong> 09:15 - 12:45 / 15:00 - 19:00</p>
+                    <p><strong>Sabato:</strong> 10:00 - 12:30 / 15:00 - 19:00</p>
+                    <p><strong>Domenica:</strong> Chiuso</p>
+                </div>
+            </div>
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <img src="https://www.bancometalliitalianovicenza.it/templates/yootheme/cache/05/Piantina-sedi-0544eebd.png" alt="Mappa Sedi" class="rounded-xl shadow-2xl mx-auto max-w-full" onerror="this.src='https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80'; this.onerror=null;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificazioni -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12" data-aos="fade-up">
+                <div class="text-center">
+                    <img src="https://www.bancometalliitalianovicenza.it/templates/yootheme/cache/20/OAM-20837dec.png" alt="Certificazione OAM" class="h-24 mx-auto mb-4" onerror="this.src='https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&q=80'; this.onerror=null;">
+                    <p class="text-textColor font-body font-semibold">Operatori Professionali Oro</p>
+                    <p class="text-textColor font-body text-sm">Iscritti all'Organismo Agenti e Mediatori</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://www.bancometalliitalianovicenza.it/templates/yootheme/cache/a7/logo-bmi-a74eb70d.png" alt="Banco Metalli Italiano" class="h-24 mx-auto mb-4" onerror="this.style.display='none'">
+                    <p class="text-textColor font-body font-semibold">Franchising Nazionale</p>
+                    <p class="text-textColor font-body text-sm">Leader nel settore compro oro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <svg class="w-16 h-16 text-secondary mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <h2 class="text-4xl lg:text-5xl font-heading font-bold text-primary mb-4">Contatti</h2>
+                <p class="text-xl text-textColor font-body max-w-3xl mx-auto">
+                    Hai domande o vuoi prenotare una valutazione gratuita e senza impegno? Contattaci oggi stesso.
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="bg-background p-8 rounded-xl shadow-lg mb-8">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-6">Informazioni di Contatto</h3>
+                        <div class="space-y-4">
+                            <a href="tel:03267190795" class="flex items-center text-textColor hover:text-secondary transition font-body text-lg">
+                                <svg class="w-6 h-6 text-secondary mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <span><strong>Telefono:</strong> 0326 719 0795</span>
+                            </a>
+                            <div class="flex items-start text-textColor font-body text-lg">
+                                <svg class="w-6 h-6 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div>
+                                    <p><strong>Orari:</strong></p>
+                                    <p class="text-base">Lun-Ven: 09:15-12:45 / 15:00-19:00</p>
+                                    <p class="text-base">Sab: 10:00-12:30 / 15:00-19:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-primary text-white p-8 rounded-xl">
+                        <h3 class="text-xl font-heading font-bold mb-4">Il nostro team è a tua disposizione</h3>
+                        <p class="font-body">per rispondere a qualsiasi domanda e guidarti passo dopo passo nel processo di vendita. Non aspettare: i tuoi oggetti preziosi potrebbero valere molto più di quanto immagini.</p>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <form class="bg-background p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-heading font-bold text-primary mb-6">Richiedi una Valutazione Gratuita</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-textColor font-body font-semibold mb-2" for="nome">Nome e Cognome</label>
+                                <input type="text" id="nome" name="nome" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="Il tuo nome" required>
+                            </div>
+                            <div>
+                                <label class="block text-textColor font-body font-semibold mb-2" for="email">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="la.tua.email@esempio.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-textColor font-body font-semibold mb-2" for="telefono">Telefono (opzionale)</label>
+                                <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="Il tuo numero">
+                            </div>
+                            <div>
+                                <label class="block text-textColor font-body font-semibold mb-2" for="messaggio">Messaggio</label>
+                                <textarea id="messaggio" name="messaggio" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary transition" placeholder="Descrivici cosa vorresti valutare..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-secondary hover:bg-accent text-primary py-4 rounded-lg font-body font-bold text-lg transition transform hover:scale-105 shadow-lg">
+                                Invia Richiesta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-heading font-bold mb-4 text-accent">Banco Metalli Italiano Vicenza</h4>
+                    <p class="font-body text-gray-300 text-sm leading-relaxed">
+                        Il tuo partner di fiducia per la vendita di oro e argento a Vicenza. Quotazioni trasparenti, servizio professionale, pagamento immediato.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-heading font-bold mb-4 text-accent">Le Nostre Sedi</h4>
+                    <div class="space-y-3 font-body text-gray-300 text-sm">
+                        <p><strong>Agenzia 1:</strong><br>Corso Santi Felice e Fortunato, 132</p>
+                        <p><strong>Agenzia 2:</strong><br>Viale Del Sole 2/4</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xl font-heading font-bold mb-4 text-accent">Contatti</h4>
+                    <div class="space-y-3 font-body text-gray-300 text-sm">
+                        <p><strong>Tel:</strong> <a href="tel:03267190795" class="hover:text-accent transition">0326 719 0795</a></p>
+                        <p><strong>Orari:</strong><br>Lun-Ven: 09:15-12:45 / 15:00-19:00<br>Sab: 10:00-12:30 / 15:00-19:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="font-body text-gray-400 text-sm mb-2">© 2024 Banco Metalli Italiano Vicenza. Tutti i diritti riservati.</p>
+                <p class="watermark font-body text-gray-500">Bozza realizzata da meravigliä Lab · <a href="https://meraviglialab.com" class="hover:text-accent transition" target="_blank">meraviglialab.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.getElementById('navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Grazie per averci contattato! Ti risponderemo al più presto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
