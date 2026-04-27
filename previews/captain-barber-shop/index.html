@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captain's Barber Shop | Il tuo stile, la nostra missione</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1A1A1A',
+                        secondary: '#C9A84C',
+                        accent: '#8B0000',
+                        background: '#F5F0EB',
+                        textcolor: '#2C2C2C'
+                    },
+                    fontFamily: {
+                        heading: ['"Bebas Neue"', 'cursive'],
+                        body: ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #2C2C2C;
+            background-color: #F5F0EB;
+        }
+
+        .navbar-scrolled {
+            background-color: rgba(26, 26, 26, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section {
+            background: url("https://1951880946.rsc.cdn77.org/resize?type=auto&width=1200&url=https://reservio-static-production.s3.eu-central-1.amazonaws.com/businesses/7d4e910d-8abf-4e4b-a091-2e2dd957c257.png&height=630") center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp 8s ease-in infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .typewriter-cursor {
+            animation: blink 1s infinite;
+            color: #8B0000;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #C9A84C 0%, #A08938 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #A08938 0%, #C9A84C 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(201, 168, 76, 0.4);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: #1A1A1A;
+            letter-spacing: 2px;
+        }
+
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo SVG -->
+                <a href="#home" class="flex items-center">
+                    <svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="35" font-family="Bebas Neue, sans-serif" font-size="24" fill="#C9A84C" letter-spacing="1">CAPTAIN'S</text>
+                        <text x="0" y="48" font-family="Bebas Neue, sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="2">BARBER SHOP</text>
+                    </svg>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition font-semibold">Home</a>
+                    <a href="#chisiamo" class="text-white hover:text-secondary transition font-semibold">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition font-semibold">Servizi</a>
+                    <a href="#sedi" class="text-white hover:text-secondary transition font-semibold">Le nostre sedi</a>
+                    <a href="#prenota" class="text-white hover:text-secondary transition font-semibold">Prenota</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-semibold">Contatti</a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="hamburger" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl">
+            <div class="flex flex-col p-8 space-y-6">
+                <button id="close-menu" class="self-end text-white mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <a href="#home" class="text-white hover:text-secondary transition text-xl font-semibold mobile-link">Home</a>
+                <a href="#chisiamo" class="text-white hover:text-secondary transition text-xl font-semibold mobile-link">Chi siamo</a>
+                <a href="#servizi" class="text-white hover:text-secondary transition text-xl font-semibold mobile-link">Servizi</a>
+                <a href="#sedi" class="text-white hover:text-secondary transition text-xl font-semibold mobile-link">Le nostre sedi</a>
+                <a href="#prenota" class="text-white hover:text-secondary transition text-xl font-semibold mobile-link">Prenota</a>
+                <a href="#contatti" class="text-white hover:text-secondary transition text-xl font-semibold mobile-link">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <!-- Particles -->
+        <span class="particle" style="left: 10%; width: 6px; height: 6px; background: #C9A84C; opacity: 0.4; animation-delay: 0s;"></span>
+        <span class="particle" style="left: 25%; width: 8px; height: 8px; background: #8B0000; opacity: 0.3; animation-delay: 1.5s;"></span>
+        <span class="particle" style="left: 40%; width: 5px; height: 5px; background: #C9A84C; opacity: 0.5; animation-delay: 3s;"></span>
+        <span class="particle" style="left: 55%; width: 7px; height: 7px; background: #8B0000; opacity: 0.4; animation-delay: 4.5s;"></span>
+        <span class="particle" style="left: 70%; width: 6px; height: 6px; background: #C9A84C; opacity: 0.3; animation-delay: 2s;"></span>
+        <span class="particle" style="left: 85%; width: 9px; height: 9px; background: #8B0000; opacity: 0.5; animation-delay: 5.5s;"></span>
+        <span class="particle" style="left: 15%; width: 4px; height: 4px; background: #C9A84C; opacity: 0.4; animation-delay: 6s;"></span>
+        <span class="particle" style="left: 30%; width: 10px; height: 10px; background: #8B0000; opacity: 0.3; animation-delay: 7s;"></span>
+        <span class="particle" style="left: 50%; width: 5px; height: 5px; background: #C9A84C; opacity: 0.5; animation-delay: 1s;"></span>
+        <span class="particle" style="left: 65%; width: 7px; height: 7px; background: #8B0000; opacity: 0.4; animation-delay: 3.5s;"></span>
+        <span class="particle" style="left: 80%; width: 6px; height: 6px; background: #C9A84C; opacity: 0.3; animation-delay: 4s;"></span>
+        <span class="particle" style="left: 90%; width: 8px; height: 8px; background: #8B0000; opacity: 0.5; animation-delay: 5s;"></span>
+
+        <div class="relative z-10 flex items-center justify-center min-h-screen px-4">
+            <div class="text-center max-w-4xl" data-aos="fade-up">
+                <h1 class="font-heading text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight">
+                    Benvenuto da<br><span class="text-secondary">Captain's Barber Shop</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-white mb-4 font-light">
+                    Un'esperienza <span id="tw" class="text-secondary font-bold"></span><span class="typewriter-cursor">|</span>
+                </p>
+                <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
+                    Esperienza, stile e precisione in due sedi: Cesano Maderno e Seregno.<br>Prenota il tuo appuntamento e vivi il vero rituale del barbiere.
+                </p>
+                <a href="#prenota" class="btn-primary inline-block px-10 py-4 rounded-full text-white text-lg font-bold shadow-lg">
+                    Prenota ora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chisiamo" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://1951880946.rsc.cdn77.org/resize?type=auto&width=256&url=https://reservio-static-production.s3.eu-central-1.amazonaws.com/businesses/f17c69e7-d7ec-4f69-becb-1c4396fc9dc9.png" 
+                         alt="Captain's Barber Shop" 
+                         class="rounded-lg shadow-2xl w-full"
+                         onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="section-title mb-6">Chi Siamo</h2>
+                    <div class="w-20 h-1 bg-secondary mb-8"></div>
+                    <p class="text-lg text-textcolor leading-relaxed mb-6">
+                        Captain's Barber Shop nasce dalla passione di Abdul per l'arte del barbiere. Con due sedi nel cuore della Brianza — una a Cesano Maderno e una a Seregno — offriamo un'esperienza autentica, dove ogni taglio è un'opera di precisione.
+                    </p>
+                    <p class="text-lg text-textcolor leading-relaxed">
+                        Il nostro ambiente è accogliente, professionale e pensato per farti sentire a tuo agio dal primo al secondo in cui esci dalla porta. Che tu venga per un semplice ritocco o per una sessione completa, qui troverai sempre il massimo della cura.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">I Nostri Servizi</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-textcolor max-w-3xl mx-auto">
+                    Offriamo una gamma completa di servizi per il grooming maschile: taglio capelli, taglio barba, rifinitura contorni, sopracciglia, trattamenti specifici e molto altro.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card-hover service-card bg-background p-8 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon mb-6 flex justify-center">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-primary mb-4">Taglio Capelli</h3>
+                    <p class="text-textcolor">Tagli moderni e classici eseguiti con precisione per valorizzare il tuo stile personale.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card-hover service-card bg-background p-8 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon mb-6 flex justify-center">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-primary mb-4">Taglio Barba</h3>
+                    <p class="text-textcolor">Rifinitura e cura della barba con tecniche professionali per un look sempre impeccabile.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card-hover service-card bg-background p-8 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon mb-6 flex justify-center">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-primary mb-4">Trattamenti Premium</h3>
+                    <p class="text-textcolor">Rifinitura contorni, sopracciglia e trattamenti specifici a partire da soli 5€.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-textcolor mb-6">
+                    I prezzi partono da <span class="font-bold text-accent">5€</span> e ogni servizio è pensato per valorizzare al massimo il tuo stile personale.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Nostre Sedi Section -->
+    <section id="sedi" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Le Nostre Sedi</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-textcolor">Due location in Brianza per servirti al meglio</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Sede Cesano Maderno -->
+                <div class="card-hover bg-white p-8 rounded-lg shadow-lg" data-aos="fade-right">
+                    <div class="flex items-start mb-6">
+                        <svg class="w-12 h-12 text-accent mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-heading text-3xl text-primary mb-2">Cesano Maderno</h3>
+                            <p class="text-lg text-textcolor font-semibold">Via Alessandro Volta 49</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-textcolor"><span class="font-semibold">Lunedì - Venerdì:</span> 09:30 - 20:00</p>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-textcolor"><span class="font-semibold">Sabato:</span> 09:30 - 20:00</p>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-textcolor"><span class="font-semibold">Domenica:</span> 10:00 - 20:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sede Seregno -->
+                <div class="card-hover bg-white p-8 rounded-lg shadow-lg" data-aos="fade-left">
+                    <div class="flex items-start mb-6">
+                        <svg class="w-12 h-12 text-accent mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-heading text-3xl text-primary mb-2">Seregno</h3>
+                            <p class="text-lg text-textcolor font-semibold">Disponibile per te</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-textcolor leading-relaxed">
+                            La nostra seconda sede a Seregno è pronta ad accoglierti con gli stessi standard di qualità e professionalità. Seleziona la sede direttamente durante la prenotazione online e scegli il giorno e l'orario che preferisci.
+                        </p>
+                        <div class="mt-6">
+                            <a href="#prenota" class="inline-block text-secondary font-bold hover:text-accent transition">
+                                Scopri gli orari →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prenota Section -->
+    <section id="prenota" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="section-title mb-4">Prenota il Tuo Appuntamento</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-textcolor max-w-3xl mx-auto mb-8">
+                    Prenotare da Captain's Barber Shop è semplice e veloce. Scegli la sede più vicina a te, seleziona il servizio desiderato, il giorno e l'orario preferito. In pochi secondi il tuo appuntamento è confermato.
+                </p>
+                <p class="text-lg text-textcolor font-semibold mb-10">
+                    Niente file, niente attese: vieni e siediti sulla poltrona del capitano.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://1951880946.rsc.cdn77.org/resize?type=auto&width=2400&url=https://reservio-static-production.s3.eu-central-1.amazonaws.com/businesses/7d4e910d-8abf-4e4b-a091-2e2dd957c257.png" 
+                         alt="Prenota Captain's Barber Shop" 
+                         class="rounded-lg shadow-2xl w-full"
+                         onerror="this.src='https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1200&q=80'; this.onerror=null;">
+                </div>
+                <div class="text-center md:text-left" data-aos="fade-left">
+                    <div class="bg-background p-10 rounded-lg shadow-lg">
+                        <h3 class="font-heading text-3xl text-primary mb-6">Prenota Online</h3>
+                        <ul class="space-y-4 mb-8 text-left">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-textcolor">Scegli la sede: Cesano Maderno o Seregno</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-textcolor">Seleziona il servizio desiderato</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-textcolor">Scegli data e orario preferito</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-secondary mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-textcolor">Conferma in pochi secondi</span>
+                            </li>
+                        </ul>
+                        <a href="https://captain-s-barber-shop.reservio.com/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-10 py-4 rounded-full text-white text-lg font-bold shadow-lg w-full md:w-auto">
+                            Prenota Ora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-5xl mb-4 text-white">Contatti</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl">Resta sempre aggiornato e connesso con noi</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info Sede -->
+                <div data-aos="fade-right">
+                    <h3 class="font-heading text-3xl mb-6 text-secondary">Sede Cesano Maderno</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg class="w-8 h-8 text-secondary mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-lg">Indirizzo</p>
+                                <p class="text-gray-300">Via Alessandro Volta 49, Cesano Maderno</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social -->
+                <div data-aos="fade-left">
+                    <h3 class="font-heading text-3xl mb-6 text-secondary">Seguici</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <svg class="w-8 h-8 text-secondary mr-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-lg">Instagram</p>
+                                <a href="https://www.instagram.com/captain.barber_shop_" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-secondary transition">
+                                    @captain.barber_shop_
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed">
+                            Seguici su Instagram per restare aggiornato su novità, promozioni e ispirazione per il tuo look. Per qualsiasi informazione o per prenotare direttamente, contattaci attraverso i canali social o prenota online dal nostro sito.
+                        </p>
+                        <a href="https://captain-s-barber-shop.reservio.com/" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block px-8 py-3 rounded-full text-white font-bold shadow-lg mt-4">
+                            Prenota Ora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Logo e Tagline -->
+                <div>
+                    <svg width="180" height="50" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <text x="0" y="35" font-family="Bebas Neue, sans-serif" font-size="24" fill="#C9A84C" letter-spacing="1">CAPTAIN'S</text>
+                        <text x="0" y="48" font-family="Bebas Neue, sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="2">BARBER SHOP</text>
+                    </svg>
+                    <p class="text-gray-400 italic">Il tuo stile, la nostra missione</p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-heading text-xl text-secondary mb-4">Link Rapidi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-secondary transition">Home</a></li>
+                        <li><a href="#chisiamo" class="text-gray-400 hover:text-secondary transition">Chi siamo</a></li>
+                        <li><a href="#servizi" class="text-gray-400 hover:text-secondary transition">Servizi</a></li>
+                        <li><a href="#prenota" class="text-gray-400 hover:text-secondary transition">Prenota</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contatti -->
+                <div>
+                    <h4 class="font-heading text-xl text-secondary mb-4">Contatti</h4>
+                    <p class="text-gray-400 mb-2">Via Alessandro Volta 49</p>
+                    <p class="text-gray-400 mb-4">Cesano Maderno</p>
+                    <a href="https://www.instagram.com/captain.barber_shop_" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-secondary transition">
+                        @captain.barber_shop_
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-sm mb-2">© 2024 Captain's Barber Shop. Tutti i diritti riservati.</p>
+                <p class="text-gray-600 text-xs">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Init
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typewriter Effect
+        const words = ["indimenticabile", "perfetto", "autentico", "unico", "speciale"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('tw');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeWriter() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, pauseTime);
+                return;
+            }
+
+            if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeWriter, speed);
+        }
+
+        // Start typewriter
+        typeWriter();
+    </script>
+</body>
+</html>
