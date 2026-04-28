@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrill International - Raffredda Bicchieri Professionali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A0A0A',
+                        secondary: '#1E1E1E',
+                        accent: '#00C2FF',
+                        bglight: '#F5F7FA',
+                        textdark: '#1A1A2E'
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1A1A2E;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .animated-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        .line-1 { top: 20%; animation-duration: 12s; animation-delay: 0s; }
+        .line-2 { top: 35%; animation-duration: 9s; animation-delay: 2s; }
+        .line-3 { top: 50%; animation-duration: 14s; animation-delay: 4s; }
+        .line-4 { top: 65%; animation-duration: 10s; animation-delay: 1s; }
+        .line-5 { top: 80%; animation-duration: 11s; animation-delay: 3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .navbar-scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 194, 255, 0.1);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 194, 255, 0.2);
+        }
+
+        .mobile-menu {
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+        .watermark a {
+            color: #00C2FF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-bglight">
+
+    <!-- Watermark -->
+    <div class="watermark hidden md:block">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <img src="https://www.thrillinternational.com/typo3conf/ext/webconf/Resources/Public/Images/thrill_logo.svg" alt="Thrill International" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white hover:text-accent transition font-medium">Home</a>
+                    <a href="#prodotti" class="text-white hover:text-accent transition font-medium">Raffredda Bicchieri</a>
+                    <a href="#tecnologia" class="text-white hover:text-accent transition font-medium">Tecnologia</a>
+                    <a href="#distribuzione" class="text-white hover:text-accent transition font-medium">Distribuzione</a>
+                    <a href="#chi-siamo" class="text-white hover:text-accent transition font-medium">Chi Siamo</a>
+                    <a href="#contatti" class="bg-accent text-primary px-6 py-2 rounded-full hover:bg-white transition font-semibold">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary transform translate-x-full lg:hidden">
+            <div class="flex flex-col p-6 space-y-6">
+                <button id="close-menu" class="self-end text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <a href="#home" class="text-white hover:text-accent transition font-medium">Home</a>
+                <a href="#prodotti" class="text-white hover:text-accent transition font-medium">Raffredda Bicchieri</a>
+                <a href="#tecnologia" class="text-white hover:text-accent transition font-medium">Tecnologia</a>
+                <a href="#distribuzione" class="text-white hover:text-accent transition font-medium">Distribuzione</a>
+                <a href="#chi-siamo" class="text-white hover:text-accent transition font-medium">Chi Siamo</a>
+                <a href="#contatti" class="bg-accent text-primary px-6 py-2 rounded-full hover:bg-white transition font-semibold text-center">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0" style="background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80') center/cover no-repeat;"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+            <div class="animated-line line-1"></div>
+            <div class="animated-line line-2"></div>
+            <div class="animated-line line-3"></div>
+            <div class="animated-line line-4"></div>
+            <div class="animated-line line-5"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 hero-content">
+            <h1 class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+                Raffredda Bicchieri<br>Professionali
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto font-light leading-relaxed">
+                Sanifica e congela in pochi secondi. Offri ai tuoi clienti cocktail perfetti, bevande non annacquate e un'esperienza unica con la tecnologia Thrill.
+            </p>
+            <a href="#prodotti" class="inline-block bg-accent text-primary px-10 py-4 rounded-full text-lg font-bold hover:bg-white transition transform hover:scale-105 shadow-2xl">
+                Scopri i Prodotti
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-block mb-4">
+                        <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-textdark mb-6">Chi Siamo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Thrill International è un'azienda italiana specializzata nella progettazione e produzione di raffredda bicchieri professionali <strong>100% Made in Italy</strong>. I nostri dispositivi sono scelti da migliaia di locali in tutto il mondo: cocktail bar, ristoranti, hotel, enoteche e birrerie che vogliono offrire un servizio di eccellenza.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Siamo i pionieri del congela bicchieri professionale, unendo tecnologia avanzata, design curato e materiali di alta qualità in ogni prodotto della gamma Vortex.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Wood/ghiaccia-bichieri-thrill-wood-frassino.png" alt="Thrill Wood Frassino" class="rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologia E.R.T. -->
+    <section id="tecnologia" class="py-24 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-20 h-20 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">Tecnologia E.R.T.</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Enhanced Rapid Temperature: il sistema proprietario che porta il raffreddamento professionale a un nuovo livello</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold mb-4">-40°C in Secondi</h3>
+                    <p class="text-gray-300 leading-relaxed">Il cuore di ogni prodotto Thrill è il sistema proprietario E.R.T. che consente di abbassare la temperatura interna del bicchiere fino a -40°C in pochi secondi.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold mb-4">Zero Annacquamento</h3>
+                    <p class="text-gray-300 leading-relaxed">Le bevande rimangono fredde più a lungo senza l'aggiunta di ghiaccio, eliminando l'effetto annacquamento e preservando intatto il profilo aromatico.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold mb-4">88% Batteri Eliminati</h3>
+                    <p class="text-gray-300 leading-relaxed">Oltre a raffreddare, sanifica il bicchiere eliminando l'88% dei batteri responsabili di cattivi odori e retrogusti sgradevoli.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sanificazione -->
+    <section class="py-24 bg-bglight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Raffredda_bicchieri/gela-bicchieri-thrill-tap.png" alt="Thrill TAP" class="rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <div class="inline-block mb-4">
+                        <svg class="w-16 h-16 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-textdark mb-6">Sanificazione</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Oltre a raffreddare, i dispositivi Thrill sanificano il bicchiere in pochi secondi, eliminando l'88% dei batteri responsabili di cattivi odori e retrogusti sgradevoli.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                        Un bicchiere igienicamente impeccabile è la base per un cocktail perfetto: con Thrill ogni servizio è sicuro, pulito e di qualità superiore.
+                    </p>
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-accent">
+                        <p class="text-2xl font-bold text-accent mb-2">88%</p>
+                        <p class="text-gray-700">Batteri eliminati in pochi secondi per un servizio impeccabile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prodotti -->
+    <section id="prodotti" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-textdark mb-6">I Nostri Prodotti</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    La gamma Thrill International comprende modelli per ogni esigenza professionale. Dal design in acciaio inox al caldo effetto legno, ogni prodotto coniuga prestazioni eccezionali con un'estetica che valorizza il banco bar.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/ghiaccia-bicchieri-Thrill-Jet1.png" alt="Thrill JET" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Vortex JET</h3>
+                        <p class="text-gray-700">Potenza e velocità per i locali ad alta produzione</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Raffredda_bicchieri/gela-bicchieri-thrill-tap.png" alt="Thrill TAP" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Vortex TAP</h3>
+                        <p class="text-gray-700">Design compatto e prestazioni professionali</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Raffredda_bicchieri/raffredda-bicchieri-thrill-f1.png" alt="Thrill F1 PRO" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Vortex F1 Pro</h3>
+                        <p class="text-gray-700">Acciaio inox di alta qualità per performance top</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Raffredda_bicchieri/raffredda-bicchieri-thrill-cube.png" alt="Thrill Cube" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Vortex Cube</h3>
+                        <p class="text-gray-700">Design essenziale in acciaio inox</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Raffredda_bicchieri/ghiaccia-bichieri-thrill-sbi.png" alt="Thrill SBI" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Vortex SBI</h3>
+                        <p class="text-gray-700">Modello da incasso per integrazione perfetta</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="600">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Wood/ghiaccia-bichieri-thrill-wood-frassino.png" alt="Thrill Wood" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Vortex Wood</h3>
+                        <p class="text-gray-700">Effetto legno: frassino, noce e wenge</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="700">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/Content/Tower/ghiaccia-bichieri-thrill-tower.png" alt="Thrill Tower" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Tower</h3>
+                        <p class="text-gray-700">Soluzione verticale salvaspazio</p>
+                    </div>
+                </div>
+
+                <div class="bg-bglight rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up" data-aos-delay="800">
+                    <div class="h-64 overflow-hidden bg-white">
+                        <img src="https://www.thrillinternational.com/fileadmin/user_upload/ghiaccia-bicchieri-Thrill-Rock.png" alt="Thrill Rock" class="w-full h-full object-contain p-4" onerror="this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading text-2xl font-bold text-textdark mb-3">Rock</h3>
+                        <p class="text-gray-700">Bar mat integrato per versatilità totale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- A chi è rivolto -->
+    <section class="py-24 bg-gradient-to-br from-bglight to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-textdark mb-6">A Chi è Rivolto</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    I prodotti Thrill sono la scelta ideale per professionisti del beverage e dell'ospitalità
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-accent/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Cocktail Bar</h3>
+                    <p class="text-gray-700">Mixology bar e locali di tendenza</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-accent/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Ristoranti & Hotel</h3>
+                    <p class="text-gray-700">Strutture ricettive di alto livello</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-accent/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Enoteche</h3>
+                    <p class="text-gray-700">Wine bar e cantine specializzate</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-accent/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Birrerie</h3>
+                    <p class="text-gray-700">Pub e birrerie artigianali</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distribuzione -->
+    <section id="distribuzione" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4">
+                    <svg class="w-20 h-20 text-accent mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-textdark mb-6">Distribuzione e Partnership</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Thrill International opera a livello globale attraverso una rete strutturata di distributori
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-bglight rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Canale Horeca</h3>
+                    <p class="text-gray-700 text-sm">Soluzioni dedicate per professionisti</p>
+                </div>
+
+                <div class="bg-bglight rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Co-Branding</h3>
+                    <p class="text-gray-700 text-sm">Partnership con brand del settore</p>
+                </div>
+
+                <div class="bg-bglight rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Contract</h3>
+                    <p class="text-gray-700 text-sm">Grandi strutture e installazioni</p>
+                </div>
+
+                <div class="bg-bglight rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-accent w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-textdark mb-3">Uso Domestico</h3>
+                    <p class="text-gray-700 text-sm">Disponibile anche per la casa</p>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-gradient-to-br from-primary to-secondary text-white rounded-2xl p-12 text-center" data-aos="fade-up">
+                <h3 class="font-heading text-3xl font-bold mb-4">Partner per CO2 Professionale</h3>
+                <p class="text-xl text-gray-300 mb-6">Forniamo anche CO2 professionale per garantire il massimo delle prestazioni</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-24 bg-gradient-to-br from-bglight to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-textdark mb-6">Contattaci</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Vuoi scoprire quale prodotto Thrill fa al caso tuo? Contattaci per ricevere una consulenza personalizzata, richiedere una demo o trovare il distributore più vicino a te.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden" data-aos="fade-up">
+                <div class="grid md:grid-cols-2">
+                    <div class="bg-gradient-to-br from-primary to-secondary p-12 text-white">
+                        <h3 class="font-heading text-3xl font-bold mb-8">Informazioni</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold mb-1">Telefono</p>
+                                    <a href="tel:02779610308" class="text-accent hover:text-white transition">02 779 610 308</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold mb-1">Sede</p>
+                                    <p class="text-gray-300">Made in Italy<br>Distributori in tutto il mondo</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-accent mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold mb-1">Orari</p>
+                                    <p class="text-gray-300">Lun - Ven: 9:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 pt-8 border-t border-white/20">
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Il team Thrill International è a tua disposizione per aiutarti a elevare la qualità del tuo servizio.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-12">
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-textdark mb-2">Nome</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition" placeholder="Il tuo nome">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-textdark mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition" placeholder="tua@email.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-textdark mb-2">Telefono</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition" placeholder="+39 123 456 7890">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-textdark mb-2">Messaggio</label>
+                                <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition resize-none" placeholder="Raccontaci le tue esigenze..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-accent text-primary px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary hover:text-white transition transform hover:scale-105 shadow-lg">
+                                Invia Richiesta
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="https://www.thrillinternational.com/typo3conf/ext/webconf/Resources/Public/Images/thrill_logo.svg" alt="Thrill International" style="max-height:50px; object-fit:contain; margin-bottom: 1rem;" onerror="this.style.display='none'">
+                    <p class="text-gray-400 text-sm leading-relaxed">Raffredda bicchieri professionali 100% Made in Italy</p>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold mb-4">Prodotti</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#prodotti" class="hover:text-accent transition">Vortex JET</a></li>
+                        <li><a href="#prodotti" class="hover:text-accent transition">Vortex TAP</a></li>
+                        <li><a href="#prodotti" class="hover:text-accent transition">Vortex F1 Pro</a></li>
+                        <li><a href="#prodotti" class="hover:text-accent transition">Vortex Cube</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold mb-4">Azienda</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#chi-siamo" class="hover:text-accent transition">Chi Siamo</a></li>
+                        <li><a href="#tecnologia" class="hover:text-accent transition">Tecnologia E.R.T.</a></li>
+                        <li><a href="#distribuzione" class="hover:text-accent transition">Distribuzione</a></li>
+                        <li><a href="#contatti" class="hover:text-accent transition">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold mb-4">Contatti</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Tel: <a href="tel:02779610308" class="hover:text-accent transition">02 779 610 308</a></li>
+                        <li>100% Made in Italy</li>
+                        <li>Distributori globali</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 Thrill International. Tutti i diritti riservati. 100% Made in Italy.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
