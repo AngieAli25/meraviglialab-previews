@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydra Tek | Enter the Hydra-Verse — A New World of Sound</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A0A0A;
+            --secondary: #00E5FF;
+            --accent: #7B2FFF;
+            --background: #080818;
+            --text: #E8E8F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(123, 47, 255, 0.1);
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        @keyframes slideLine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(200%);
+            }
+        }
+        
+        .animated-line {
+            animation: slideLine 8s linear infinite;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(123, 47, 255, 0.3);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        }
+        
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        input, textarea {
+            background-color: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(123, 47, 255, 0.3);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+        }
+        
+        .overlay-dark {
+            background: linear-gradient(135deg, rgba(8, 8, 24, 0.85), rgba(10, 10, 10, 0.75));
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed w-full z-50 py-4 transition-all duration-300">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between">
+                <!-- Logo SVG -->
+                <a href="#home" class="flex items-center">
+                    <svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#7B2FFF;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="0" y="28" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700" fill="url(#logoGradient)" letter-spacing="2">HYDRATEK</text>
+                    </svg>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-secondary transition">Home</a>
+                    <a href="#chi-siamo" class="text-sm font-medium hover:text-secondary transition">Chi siamo</a>
+                    <a href="#servizi" class="text-sm font-medium hover:text-secondary transition">Servizi</a>
+                    <a href="#store" class="text-sm font-medium hover:text-secondary transition">Store</a>
+                    <a href="#contatti" class="text-sm font-medium hover:text-secondary transition">Contatti</a>
+                </div>
+                
+                <!-- Hamburger -->
+                <button class="lg:hidden text-secondary focus:outline-none" id="hamburger">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu lg:hidden" id="mobileMenu">
+                <div class="flex flex-col space-y-4 mt-6 pb-4">
+                    <a href="#home" class="text-sm font-medium hover:text-secondary transition">Home</a>
+                    <a href="#chi-siamo" class="text-sm font-medium hover:text-secondary transition">Chi siamo</a>
+                    <a href="#servizi" class="text-sm font-medium hover:text-secondary transition">Servizi</a>
+                    <a href="#store" class="text-sm font-medium hover:text-secondary transition">Store</a>
+                    <a href="#contatti" class="text-sm font-medium hover:text-secondary transition">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Split Layout -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <div class="w-full grid lg:grid-cols-2 min-h-screen">
+            <!-- Left Content -->
+            <div class="relative flex items-center justify-center px-6 lg:px-12 py-24 lg:py-0" style="background-color: #080818;">
+                <!-- Animated Lines -->
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="absolute top-1/4 w-full h-px animated-line" style="background: linear-gradient(90deg, transparent, rgba(123, 47, 255, 0.06), transparent); animation-delay: 0s;"></div>
+                    <div class="absolute top-2/4 w-full h-px animated-line" style="background: linear-gradient(90deg, transparent, rgba(123, 47, 255, 0.06), transparent); animation-delay: 2s;"></div>
+                    <div class="absolute top-3/4 w-full h-px animated-line" style="background: linear-gradient(90deg, transparent, rgba(123, 47, 255, 0.06), transparent); animation-delay: 4s;"></div>
+                </div>
+                
+                <div class="relative z-10 max-w-xl" data-aos="fade-right">
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6 glow-text" style="color: #00E5FF;">
+                        Benvenuto nella Hydra-Verse
+                    </h1>
+                    <p class="text-lg lg:text-xl mb-8 leading-relaxed" style="color: #E8E8F0;">
+                        Sound design futuristico, beat strumentali e produzione audio professionale per musicisti, compositori e sound designer che vogliono spingersi oltre i confini del suono.
+                    </p>
+                    
+                    <!-- Counter -->
+                    <div class="mb-8 flex items-baseline space-x-3">
+                        <span class="text-6xl font-bold counter" style="color: #7B2FFF;" id="counter">0</span>
+                        <span class="text-2xl" style="color: #00E5FF;">progetti completati</span>
+                    </div>
+                    
+                    <a href="#contatti" class="btn-primary inline-block px-8 py-4 rounded-lg font-semibold text-lg text-white">
+                        Esplora il Suono
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Image -->
+            <div class="relative min-h-[400px] lg:min-h-screen">
+                <img 
+                    src="https://static.wixstatic.com/media/aee8cf_0e25a9aeaf964e66ab6ba75a5e1a2ca6~mv2.png/v1/fit/w_2500,h_1330,al_c/aee8cf_0e25a9aeaf964e66ab6ba75a5e1a2ca6~mv2.png" 
+                    alt="Hydra Tek Sound Design" 
+                    class="absolute inset-0 w-full h-full object-cover"
+                    onerror="this.src='https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&q=80'; this.onerror=null;"
+                >
+                <div class="absolute inset-0 bg-gradient-to-r from-[#080818] via-transparent to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-24 lg:py-32 relative">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="relative">
+                        <img 
+                            src="https://static.wixstatic.com/media/aee8cf_4f389e46f8c7473aa8eb78b581fe9f08~mv2.jpg/v1/fill/w_945,h_1080,al_c,q_85,enc_avif,quality_auto/aee8cf_4f389e46f8c7473aa8eb78b581fe9f08~mv2.jpg" 
+                            alt="Hydra Tek Studio" 
+                            class="rounded-2xl shadow-2xl w-full"
+                            onerror="this.src='https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1920&q=80'; this.onerror=null;"
+                        >
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(123, 47, 255, 0.4), transparent);"></div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(0, 229, 255, 0.1); color: #00E5FF;">
+                        CHI SIAMO
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: #00E5FF;">
+                        Esploriamo territori sonori futuristici
+                    </h2>
+                    <p class="text-lg leading-relaxed mb-6" style="color: #E8E8F0;">
+                        Hydra Tek è il progetto di Fabio, tecnico del suono professionista con oltre dieci anni di esperienza nella produzione musicale e nel sound design. Nato dalla passione per i suoni che non esistono ancora, Hydra Tek esplora territori sonori futuristici, creando beat strumentali e design audio originali per chi cerca un'identità sonora unica e potente.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <svg class="w-12 h-12" style="color: #7B2FFF;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                        </svg>
+                        <div>
+                            <p class="text-2xl font-bold" style="color: #00E5FF;">10+ anni</p>
+                            <p class="text-sm" style="color: #E8E8F0;">di esperienza professionale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-24 lg:py-32 relative">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl" style="background: #7B2FFF;"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl" style="background: #00E5FF;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(123, 47, 255, 0.1); color: #7B2FFF;">
+                    SERVIZI
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: #00E5FF;">
+                    Costruiamo il tuo sound su misura
+                </h2>
+                <p class="text-lg max-w-3xl mx-auto" style="color: #E8E8F0;">
+                    Offriamo beat strumentali originali, sound design personalizzato per progetti multimediali, consulenza tecnica audio e produzione professionale in studio.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="card-hover p-8 rounded-2xl" style="background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(123, 47, 255, 0.2);" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 mb-6 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #00E5FF, #7B2FFF);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #00E5FF;">Beat Strumentali</h3>
+                    <p style="color: #E8E8F0;">Produzioni originali e uniche per dare vita al tuo progetto musicale.</p>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="card-hover p-8 rounded-2xl" style="background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(123, 47, 255, 0.2);" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mb-6 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #7B2FFF, #00E5FF);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #00E5FF;">Sound Design</h3>
+                    <p style="color: #E8E8F0;">Audio personalizzato per progetti multimediali, film e videogiochi.</p>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="card-hover p-8 rounded-2xl" style="background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(123, 47, 255, 0.2);" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mb-6 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #00E5FF, #7B2FFF);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #00E5FF;">Consulenza Audio</h3>
+                    <p style="color: #E8E8F0;">Supporto tecnico professionale per il tuo setup e i tuoi progetti.</p>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="card-hover p-8 rounded-2xl" style="background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(123, 47, 255, 0.2);" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mb-6 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg, #7B2FFF, #00E5FF);">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3" style="color: #00E5FF;">Produzione Studio</h3>
+                    <p style="color: #E8E8F0;">Recording, mixing e mastering di livello professionale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="store" class="py-24 lg:py-32 relative">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(0, 229, 255, 0.1); color: #00E5FF;">
+                        STORE
+                    </div>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: #00E5FF;">
+                        Sample pack e sound kit professionali
+                    </h2>
+                    <p class="text-lg leading-relaxed mb-8" style="color: #E8E8F0;">
+                        Nel nostro store trovi una selezione di beat, sample pack e sound kit progettati per ispirare e accelerare il tuo processo creativo. Prodotti digitali di alta qualità, pronti per essere usati in produzione professionale.
+                    </p>
+                    <div class="p-6 rounded-2xl mb-8" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(123, 47, 255, 0.1)); border: 1px solid rgba(0, 229, 255, 0.2);">
+                        <p class="text-lg font-semibold mb-2" style="color: #00E5FF;">🎁 Offerta speciale</p>
+                        <p style="color: #E8E8F0;">Iscriviti alla newsletter e ricevi un coupon esclusivo del <span class="font-bold" style="color: #7B2FFF;">30% di sconto</span> sul tuo primo ordine.</p>
+                    </div>
+                    <a href="#contatti" class="btn-primary inline-block px-8 py-4 rounded-lg font-semibold text-white">
+                        Scopri i Prodotti
+                    </a>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="relative">
+                        <img 
+                            src="https://static.wixstatic.com/media/aee8cf_7e3c3dad947544a0aac3b9c69788ea55~mv2.png/v1/fill/w_1280,h_1563,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/aee8cf_7e3c3dad947544a0aac3b9c69788ea55~mv2.png" 
+                            alt="Enter The Hydra-Verse" 
+                            class="rounded-2xl shadow-2xl w-full float-animation"
+                            onerror="this.src='https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1920&q=80'; this.onerror=null;"
+                        >
+                        <div class="absolute -top-6 -left-6 w-32 h-32 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(0, 229, 255, 0.4), transparent);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-24 lg:py-32 relative">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl" style="background: #7B2FFF;"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold" style="background: rgba(123, 47, 255, 0.1); color: #7B2FFF;">
+                    CONTATTI
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6" style="color: #00E5FF;">
+                    Entra nel Hydra-Verse
+                </h2>
+                <p class="text-lg max-w-3xl mx-auto" style="color: #E8E8F0;">
+                    Hai un progetto in mente? Vuoi collaborare o semplicemente entrare in contatto con il mondo Hydra Tek?
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #00E5FF, #7B2FFF);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2" style="color: #00E5FF;">Email</h3>
+                                <a href="mailto:contact.hydrasound@gmail.com" class="text-lg hover:text-secondary transition" style="color: #E8E8F0;">contact.hydrasound@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #7B2FFF, #00E5FF);">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2" style="color: #00E5FF;">Telefono</h3>
+                                <a href="tel:+39000000000" class="text-lg hover:text-secondary transition" style="color: #E8E8F0;">+39 000 000 0000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #00E5FF, #7B2FFF);">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2" style="color: #00E5FF;">Instagram</h3>
+                                <a href="https://instagram.com/hydratek_music" target="_blank" class="text-lg hover:text-secondary transition" style="color: #E8E8F0;">@hydratek_music</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <form class="space-y-6" onsubmit="return false;">
+                        <div>
+                            <label class="block text-sm font-medium mb-2" style="color: #00E5FF;">Nome</label>
+                            <input 
+                                type="text" 
+                                class="w-full px-4 py-3 rounded-lg"
+                                placeholder="Il tuo nome"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2" style="color: #00E5FF;">Email</label>
+                            <input 
+                                type="email" 
+                                class="w-full px-4 py-3 rounded-lg"
+                                placeholder="la-tua-email@esempio.com"
+                                required
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2" style="color: #00E5FF;">Messaggio</label>
+                            <textarea 
+                                rows="6" 
+                                class="w-full px-4 py-3 rounded-lg resize-none"
+                                placeholder="Raccontaci del tuo progetto..."
+                                required
+                            ></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full px-8 py-4 rounded-lg font-semibold text-white">
+                            Invia Messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t" style="border-color: rgba(123, 47, 255, 0.2);">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <svg width="160" height="36" viewBox="0 0 160 36" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <defs>
+                            <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#00E5FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#7B2FFF;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="0" y="24" font-family="Space Grotesk, sans-serif" font-size="20" font-weight="700" fill="url(#logoGradientFooter)" letter-spacing="2">HYDRATEK</text>
+                    </svg>
+                    <p class="text-sm" style="color: #E8E8F0;">Enter the Hydra-Verse — A New World of Sound</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4" style="color: #00E5FF;">Link Rapidi</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-secondary transition" style="color: #E8E8F0;">Home</a></li>
+                        <li><a href="#chi-siamo" class="hover:text-secondary transition" style="color: #E8E8F0;">Chi siamo</a></li>
+                        <li><a href="#servizi" class="hover:text-secondary transition" style="color: #E8E8F0;">Servizi</a></li>
+                        <li><a href="#store" class="hover:text-secondary transition" style="color: #E8E8F0;">Store</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4" style="color: #00E5FF;">Contatti</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mailto:contact.hydrasound@gmail.com" class="hover:text-secondary transition" style="color: #E8E8F0;">contact.hydrasound@gmail.com</a></li>
+                        <li><a href="tel:+39000000000" class="hover:text-secondary transition" style="color: #E8E8F0;">+39 000 000 0000</a></li>
+                        <li><a href="https://instagram.com/hydratek_music" target="_blank" class="hover:text-secondary transition" style="color: #E8E8F0;">@hydratek_music</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0" style="border-color: rgba(123, 47, 255, 0.2);">
+                <p class="text-sm" style="color: #E8E8F0;">© 2024 Hydra Tek. Tutti i diritti riservati.</p>
+                <p class="text-xs opacity-60" style="color: #E8E8F0;">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-secondary transition font-semibold">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ 
+            duration: 800, 
+            once: true 
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Counter animation
+        function animateCounter() {
+            const counter = document.getElementById('counter');
+            const target = 150;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // Trigger counter when hero is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.getElementById('home'));
+    </script>
+</body>
+</html>
