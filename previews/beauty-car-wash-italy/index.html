@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Car Wash Italy - Lavaggio Auto a Mano Professionale | Pieve Emanuele</title>
+    <meta name="description" content="Autolavaggio a mano professionale a Pieve Emanuele. Da oltre 10 anni offriamo lavaggi artigianali con prodotti di alta qualità e cura del dettaglio.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A1A2E;
+            --secondary: #C9A84C;
+            --accent: #E8C96A;
+            --bg: #F7F5F0;
+            --text: #1A1A2E;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Barlow', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+        }
+        .navbar-scrolled {
+            background-color: rgba(26, 26, 46, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: slideLine linear infinite;
+        }
+        .hero-line:nth-child(1) { top: 15%; animation-duration: 9s; animation-delay: 0s; }
+        .hero-line:nth-child(2) { top: 35%; animation-duration: 12s; animation-delay: 2s; }
+        .hero-line:nth-child(3) { top: 55%; animation-duration: 7s; animation-delay: 4s; }
+        .hero-line:nth-child(4) { top: 75%; animation-duration: 14s; animation-delay: 1s; }
+        .hero-line:nth-child(5) { top: 90%; animation-duration: 10s; animation-delay: 3s; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(201, 168, 76, 0.3);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.4);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            width: 60%;
+            margin: 0 auto;
+        }
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+        .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .watermark {
+            font-size: 11px;
+            color: rgba(26, 26, 46, 0.4);
+            text-align: center;
+            padding: 8px 0;
+            border-top: 1px solid rgba(26, 26, 46, 0.1);
+        }
+        .watermark a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .watermark a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo SVG -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="flex items-center">
+                        <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+                            <text x="0" y="30" font-family="Barlow Condensed, sans-serif" font-size="20" font-weight="700" fill="#C9A84C" letter-spacing="2">BEAUTY</text>
+                            <text x="0" y="45" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" fill="#E8C96A" letter-spacing="3">CAR WASH</text>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-white hover:text-[#E8C96A] px-3 py-2 text-sm font-medium uppercase tracking-wider transition">Home</a>
+                        <a href="#chi-siamo" class="text-white hover:text-[#E8C96A] px-3 py-2 text-sm font-medium uppercase tracking-wider transition">Chi Siamo</a>
+                        <a href="#servizi" class="text-white hover:text-[#E8C96A] px-3 py-2 text-sm font-medium uppercase tracking-wider transition">Servizi</a>
+                        <a href="#processo" class="text-white hover:text-[#E8C96A] px-3 py-2 text-sm font-medium uppercase tracking-wider transition">Il Nostro Processo</a>
+                        <a href="#prodotti" class="text-white hover:text-[#E8C96A] px-3 py-2 text-sm font-medium uppercase tracking-wider transition">Prodotti</a>
+                        <a href="#contatti" class="text-white hover:text-[#E8C96A] px-3 py-2 text-sm font-medium uppercase tracking-wider transition">Contatti</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white p-2">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-[#1A1A2E] shadow-2xl md:hidden z-50">
+            <div class="flex justify-end p-4">
+                <button id="mobile-menu-close" class="text-white">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="px-4 py-6 space-y-4">
+                <a href="#home" class="block text-white hover:text-[#E8C96A] py-2 text-sm font-medium uppercase tracking-wider transition">Home</a>
+                <a href="#chi-siamo" class="block text-white hover:text-[#E8C96A] py-2 text-sm font-medium uppercase tracking-wider transition">Chi Siamo</a>
+                <a href="#servizi" class="block text-white hover:text-[#E8C96A] py-2 text-sm font-medium uppercase tracking-wider transition">Servizi</a>
+                <a href="#processo" class="block text-white hover:text-[#E8C96A] py-2 text-sm font-medium uppercase tracking-wider transition">Il Nostro Processo</a>
+                <a href="#prodotti" class="block text-white hover:text-[#E8C96A] py-2 text-sm font-medium uppercase tracking-wider transition">Prodotti</a>
+                <a href="#contatti" class="block text-white hover:text-[#E8C96A] py-2 text-sm font-medium uppercase tracking-wider transition">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden" style="background: url('https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/lavaggio-a-mano-scaled.jpg') center/cover no-repeat;">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-content relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">Il tuo veicolo merita<br>la cura migliore</h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">Lavaggio a mano professionale con prodotti di alta qualità. Da oltre 10 anni il punto di riferimento a Pieve Emanuele per chi vuole il meglio per la propria auto.</p>
+            <a href="#servizi" class="btn-primary inline-block px-10 py-4 text-white font-semibold uppercase tracking-wider text-lg rounded-full">Scopri i nostri servizi</a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/auto-lavaggio-scaled.jpg" alt="Beauty Car Wash Italy - Lavaggio professionale" class="rounded-2xl shadow-2xl w-full h-[500px] object-cover" onerror="this.src='https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="text-5xl font-bold text-[#1A1A2E] mb-6">Chi Siamo</h2>
+                    <div class="section-divider mb-8"></div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">Beauty Car Wash Italy è il punto di riferimento per il lavaggio a mano professionale nell'hinterland milanese. Siamo specialisti artigiani del dettaglio: niente tunnel automatici, solo mani esperte, prodotti selezionati e una cura genuina per ogni veicolo che entra nella nostra struttura.</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">Da oltre 10 anni Christian e il suo team lavorano con passione per restituire al tuo veicolo la brillantezza che merita. Siamo facilmente raggiungibili a Pieve Emanuele, con ampio parcheggio per ogni tipo di mezzo.</p>
+                    <div class="flex items-center space-x-8 mt-8">
+                        <div>
+                            <div class="text-4xl font-bold text-[#C9A84C]">10+</div>
+                            <div class="text-sm text-gray-600 uppercase tracking-wider">Anni di Esperienza</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-[#C9A84C]">100%</div>
+                            <div class="text-sm text-gray-600 uppercase tracking-wider">Lavaggio a Mano</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-20" style="background-color: #F7F5F0;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-[#1A1A2E] mb-4">I Nostri Servizi</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Una gamma completa di servizi realizzati interamente a mano con prodotti professionali di alta qualità</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Servizio 1 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/lavaggio-a-mano-scaled.jpg" alt="Lavaggio Auto a Mano" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="icon-wrapper">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-3">Lavaggio Auto a Mano</h3>
+                        <p class="text-gray-600 leading-relaxed">Shampoo specifici per carrozzeria, vetri e plastiche. Trattamento delicato e accurato su ogni superficie del veicolo.</p>
+                    </div>
+                </div>
+
+                <!-- Servizio 2 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/lavaggio-a-mano-interni-scaled.jpg" alt="Pulizia Interni" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="icon-wrapper">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-3">Pulizia Interni</h3>
+                        <p class="text-gray-600 leading-relaxed">Aspirazione profonda, igienizzazione di sedili, cruscotto e tappetini. Cura meticolosa di ogni dettaglio dell'abitacolo.</p>
+                    </div>
+                </div>
+
+                <!-- Servizio 3 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/lucidatura-carrozzeria-1-scaled.jpg" alt="Car Detailing" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="icon-wrapper">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-3">Car Detailing</h3>
+                        <p class="text-gray-600 leading-relaxed">Lucidatura e protezione professionale della carrozzeria. Riportare la vernice al suo splendore originale.</p>
+                    </div>
+                </div>
+
+                <!-- Servizio 4 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/flotte-veicoli-scaled.jpg" alt="Furgoni e Flotte" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="icon-wrapper">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-3">Furgoni e Flotte</h3>
+                        <p class="text-gray-600 leading-relaxed">Servizi dedicati per veicoli commerciali e flotte aziendali. Convenzioni personalizzate per aziende.</p>
+                    </div>
+                </div>
+
+                <!-- Servizio 5 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/igienizzante-auto.png" alt="Igienizzazione Abitacolo" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="icon-wrapper">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-3">Igienizzazione Abitacolo</h3>
+                        <p class="text-gray-600 leading-relaxed">Sanificazione profonda anti-batteri e anti-odori. Un ambiente sano e igienizzato per te e i tuoi passeggeri.</p>
+                    </div>
+                </div>
+
+                <!-- Servizio 6 -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/moto.png" alt="Lavaggio Moto e Scooter" class="w-full h-56 object-cover" onerror="this.src='https://images.unsplash.com/photo-1558981852-426c6c22a060?w=800&q=80'; this.onerror=null;">
+                    <div class="p-8">
+                        <div class="icon-wrapper">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-3">Lavaggio Moto e Scooter</h3>
+                        <p class="text-gray-600 leading-relaxed">Prodotti specifici per ogni materiale. Cura delicata per cromature, plastiche e parti meccaniche.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il Nostro Processo Section -->
+    <section id="processo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-[#1A1A2E] mb-4">Il Nostro Processo</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ogni lavaggio segue un processo collaudato in 5 fasi per garantire un risultato impeccabile</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-6">
+                <!-- Fase 1 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="process-number">1</div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Valutazione</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Valutiamo le condizioni del veicolo e scegliamo il trattamento più adatto</p>
+                </div>
+
+                <!-- Fase 2 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-number">2</div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Pre-Trattamento</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Applichiamo un pre-trattamento per ammorbidire lo sporco più ostinato</p>
+                </div>
+
+                <!-- Fase 3 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-number">3</div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Lavaggio a Mano</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Procediamo con il lavaggio accurato su ogni superficie del veicolo</p>
+                </div>
+
+                <!-- Fase 4 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-number">4</div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Asciugatura</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Asciughiamo con panni in microfibra per evitare aloni e graffi</p>
+                </div>
+
+                <!-- Fase 5 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-number">5</div>
+                    <h3 class="text-xl font-bold text-[#1A1A2E] mb-3">Controllo Qualità</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Controllo finale per garantire un risultato impeccabile al 100%</p>
+                </div>
+            </div>
+
+            <div class="mt-16" data-aos="fade-up">
+                <img src="https://www.beautycarwashitaly.it/wp-content/uploads/2026/03/spray-bottle-barber-shop-scaled.jpg" alt="Processo di lavaggio professionale" class="w-full h-96 object-cover rounded-2xl shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1920&q=80'; this.onerror=null;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Prodotti Section -->
+    <section id="prodotti" class="py-20" style="background: linear-gradient(135deg, #1A1A2E 0%, #2d2d4a 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-white mb-4">Prodotti Professionali</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-white/80 max-w-3xl mx-auto">Utilizziamo esclusivamente prodotti professionali selezionati tra i migliori del settore</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Prodotto 1 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Shampoo Carrozzeria pH Neutro</h3>
+                    <p class="text-white/70 text-sm">Delicato sulla vernice, efficace contro lo sporco</p>
+                </div>
+
+                <!-- Prodotto 2 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Trattamenti Protettivi</h3>
+                    <p class="text-white/70 text-sm">Protezione duratura per la vernice del veicolo</p>
+                </div>
+
+                <!-- Prodotto 3 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Cere e Sigillanti</h3>
+                    <p class="text-white/70 text-sm">Brillantezza professionale e protezione avanzata</p>
+                </div>
+
+                <!-- Prodotto 4 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Detergenti per Cerchi</h3>
+                    <p class="text-white/70 text-sm">Specifici per rimuovere polvere freni e sporco</p>
+                </div>
+
+                <!-- Prodotto 5 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Prodotti per Plastiche e Interni</h3>
+                    <p class="text-white/70 text-sm">Cura completa per cruscotto, sedili e tappetini</p>
+                </div>
+
+                <!-- Prodotto 6 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Panni in Microfibra Premium</h3>
+                    <p class="text-white/70 text-sm">Asciugatura delicata senza graffi o aloni</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <p class="text-white/90 text-lg">Ogni prodotto è <span class="text-[#E8C96A] font-semibold">sicuro per la carrozzeria</span>, <span class="text-[#E8C96A] font-semibold">altamente efficace</span> e <span class="text-[#E8C96A] font-semibold">rispettoso dell'ambiente</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Veicoli Trattati Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-[#1A1A2E] mb-4">Veicoli Trattati</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Trattiamo ogni tipo di mezzo con la stessa cura e attenzione al dettaglio</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-6 text-center">
+                <div data-aos="zoom-in" data-aos-delay="0">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-[#1A1A2E]">Automobili</h4>
+                    <p class="text-sm text-gray-600">Ogni marca e modello</p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-[#1A1A2E]">SUV e Crossover</h4>
+                    <p class="text-sm text-gray-600">Veicoli di grandi dimensioni</p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-[#1A1A2E]">Furgoni Commerciali</h4>
+                    <p class="text-sm text-gray-600">Veicoli da lavoro</p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-[#1A1A2E]">Moto e Scooter</h4>
+                    <p class="text-sm text-gray-600">Due ruote e quad</p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="400">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-bold text-[#1A1A2E]">Flotte Aziendali</h4>
+                    <p class="text-sm text-gray-600">Convenzioni dedicate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dove Siamo Section -->
+    <section class="py-20" style="background-color: #F7F5F0;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-5xl font-bold text-[#1A1A2E] mb-6">Dove Siamo e Orari</h2>
+                    <div class="section-divider mb-8"></div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">Ci trovi a <span class="font-semibold text-[#C9A84C]">Pieve Emanuele</span>, facilmente raggiungibili da Milano e dall'hinterland milanese. Disponiamo di ampio parcheggio per tutti i tipi di veicoli.</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#1A1A2E] mb-1">Orari di Apertura</h4>
+                                <p class="text-gray-600">Lunedì - Sabato: 08:00 - 13:00 | 14:00 - 18:30</p>
+                                <p class="text-gray-600">Domenica: Chiuso</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#1A1A2E] mb-1">Indirizzo</h4>
+                                <p class="text-gray-600">Pieve Emanuele (MI)</p>
+                                <p class="text-gray-600">Ampio parcheggio disponibile</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 leading-relaxed">Contattaci telefonicamente o scrivici su WhatsApp per informazioni o per prenotare il tuo lavaggio.</p>
+                </div>
+
+                <div data-aos="fade-left">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8">
+                        <div class="aspect-video bg-gray-200 rounded-xl mb-6 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-4 text-center">Raggiungici Facilmente</h3>
+                        <p class="text-gray-600 text-center">Vicino alle principali vie di comunicazione dell'hinterland milanese</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-[#1A1A2E] mb-4">Contattaci</h2>
+                <div class="section-divider mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Siamo qui per rispondere a tutte le tue domande e prenotare il tuo lavaggio</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- Info Contatto -->
+                <div data-aos="fade-right">
+                    <div class="bg-gradient-to-br from-[#1A1A2E] to-[#2d2d4a] rounded-2xl p-10 text-white">
+                        <h3 class="text-3xl font-bold mb-8">Informazioni di Contatto</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Telefono</h4>
+                                    <a href="tel:+39000000000" class="text-[#E8C96A] hover:text-white transition text-lg">+39 000 000 0000</a>
+                                    <p class="text-white/70 text-sm mt-1">Chiamaci per prenotazioni</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">WhatsApp</h4>
+                                    <a href="https://wa.me/39000000000" class="text-[#E8C96A] hover:text-white transition text-lg">+39 000 000 0000</a>
+                                    <p class="text-white/70 text-sm mt-1">Scrivici per informazioni</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Indirizzo</h4>
+                                    <p class="text-white/90">Pieve Emanuele (MI)</p>
+                                    <p class="text-white/70 text-sm mt-1">Facilmente raggiungibile da Milano</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#C9A84C] to-[#E8C96A] rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Orari</h4>
+                                    <p class="text-white/90">Lun-Sab: 08:00-13:00 | 14:00-18:30</p>
+                                    <p class="text-white/70 text-sm mt-1">Domenica chiuso</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Contatto -->
+                <div data-aos="fade-left">
+                    <form class="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-100">
+                        <h3 class="text-2xl font-bold text-[#1A1A2E] mb-6">Inviaci un Messaggio</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label for="nome" class="block text-sm font-semibold text-[#1A1A2E] mb-2">Nome Completo</label>
+                                <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#C9A84C] focus:outline-none transition" placeholder="Il tuo nome">
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-[#1A1A2E] mb-2">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#C9A84C] focus:outline-none transition" placeholder="tua@email.com">
+                            </div>
+
+                            <div>
+                                <label for="messaggio" class="block text-sm font-semibold text-[#1A1A2E] mb-2">Messaggio</label>
+                                <textarea id="messaggio" name="messaggio" rows="6" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#C9A84C] focus:outline-none transition resize-none" placeholder="Scrivi qui il tuo messaggio..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full py-4 text-white font-bold uppercase tracking-wider rounded-lg">
+                                Invia Messaggio
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section class="py-20" style="background: linear-gradient(135deg, #1A1A2E 0%, #2d2d4a 100%);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Pronto a far brillare il tuo veicolo?</h2>
+            <p class="text-xl text-white/80 mb-8">Affidati alla cura artigianale di Beauty Car Wash Italy. Da oltre 10 anni il meglio per la tua auto.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+39000000000" class="btn-primary inline-block px-10 py-4 text-white font-semibold uppercase tracking-wider text-lg rounded-full">
+                    Chiamaci Ora
+                </a>
+                <a href="https://wa.me/39000000000" class="bg-white hover:bg-gray-100 inline-block px-10 py-4 text-[#1A1A2E] font-semibold uppercase tracking-wider text-lg rounded-full transition">
+                    Scrivici su WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1A1A2E] text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Colonna 1 -->
+                <div>
+                    <svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" class="mb-4">
+                        <text x="0" y="30" font-family="Barlow Condensed, sans-serif" font-size="20" font-weight="700" fill="#C9A84C" letter-spacing="2">BEAUTY</text>
+                        <text x="0" y="45" font-family="Barlow Condensed, sans-serif" font-size="14" font-weight="600" fill="#E8C96A" letter-spacing="3">CAR WASH</text>
+                    </svg>
+                    <p class="text-white/70 text-sm">Il tuo veicolo merita la cura migliore. Lavaggio a mano professionale da oltre 10 anni.</p>
+                </div>
+
+                <!-- Colonna 2 -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-[#E8C96A]">Link Rapidi</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#chi-siamo" class="text-white/70 hover:text-[#E8C96A] transition">Chi Siamo</a></li>
+                        <li><a href="#servizi" class="text-white/70 hover:text-[#E8C96A] transition">Servizi</a></li>
+                        <li><a href="#processo" class="text-white/70 hover:text-[#E8C96A] transition">Il Nostro Processo</a></li>
+                        <li><a href="#contatti" class="text-white/70 hover:text-[#E8C96A] transition">Contatti</a></li>
+                    </ul>
+                </div>
+
+                <!-- Colonna 3 -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-[#E8C96A]">Contatti</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-white/70">Pieve Emanuele (MI)</li>
+                        <li><a href="tel:+39000000000" class="text-white/70 hover:text-[#E8C96A] transition">+39 000 000 0000</a></li>
+                        <li class="text-white/70">Lun-Sab: 08:00-18:30</li>
+                        <li class="text-white/70">Domenica: Chiuso</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/60 text-sm">&copy; 2024 Beauty Car Wash Italy. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da <strong>meravigliä Lab</strong> · <a href="https://meraviglialab.com" target="_blank">meraviglialab.com</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Init
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form Submit Handler
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Grazie per averci contattato! Ti risponderemo al più presto.');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
