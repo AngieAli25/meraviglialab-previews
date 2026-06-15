@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondo Respiro | Mental Coach per Professionisti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A9DC8;
+            --secondary: #1A6A8A;
+            --accent: #F5C518;
+            --bg: #F7FAFB;
+            --text: #1C2B33;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("https://d1yei2z3i6k35z.cloudfront.net/14600162/69cbafebf0c807.83228763_WhatsAppImage2026-03-31at13.26.43.jpeg") center/cover no-repeat;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(42, 157, 200, 0.15);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(42, 157, 200, 0.3);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text);
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #e0b200;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 197, 24, 0.4);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: rgba(0,0,0,0.3);
+            z-index: 9999;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .watermark a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="logo">
+                <img src="https://d1yei2z3i6k35z.cloudfront.net/14600162/69cbc6e9a6cbc1.01040240_secondo_respiro_navbar_logo.png" alt="Secondo Respiro" style="max-height:60px; object-fit:contain;" onerror="this.style.display='none'">
+            </div>
+            
+            <div class="desktop-menu hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#chi-sono" class="nav-link">Chi sono</a>
+                <a href="#come-funziona" class="nav-link">Come funziona</a>
+                <a href="#testimonianze" class="nav-link">Testimonianze</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#prenota" class="btn-primary">Prenota la call</a>
+            </div>
+            
+            <div class="hamburger md:hidden" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="flex flex-col p-6">
+                <a href="#home" class="nav-link py-3 border-b" onclick="toggleMenu()">Home</a>
+                <a href="#chi-sono" class="nav-link py-3 border-b" onclick="toggleMenu()">Chi sono</a>
+                <a href="#come-funziona" class="nav-link py-3 border-b" onclick="toggleMenu()">Come funziona</a>
+                <a href="#testimonianze" class="nav-link py-3 border-b" onclick="toggleMenu()">Testimonianze</a>
+                <a href="#faq" class="nav-link py-3 border-b" onclick="toggleMenu()">FAQ</a>
+                <a href="#prenota" class="btn-primary mt-4 text-center" onclick="toggleMenu()">Prenota la call</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        
+        <div class="particle" style="width: 8px; height: 8px; background: #2A9DC8; opacity: 0.4; bottom: 10%; left: 15%; animation: floatUp 15s infinite; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; background: #F5C518; opacity: 0.5; bottom: 5%; left: 25%; animation: floatUp 18s infinite; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 10px; height: 10px; background: #2A9DC8; opacity: 0.3; bottom: 15%; left: 35%; animation: floatUp 20s infinite; animation-delay: 4s;"></div>
+        <div class="particle" style="width: 7px; height: 7px; background: #F5C518; opacity: 0.4; bottom: 8%; left: 45%; animation: floatUp 16s infinite; animation-delay: 1s;"></div>
+        <div class="particle" style="width: 9px; height: 9px; background: #2A9DC8; opacity: 0.5; bottom: 12%; left: 55%; animation: floatUp 19s infinite; animation-delay: 3s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; background: #F5C518; opacity: 0.3; bottom: 6%; left: 65%; animation: floatUp 17s infinite; animation-delay: 5s;"></div>
+        <div class="particle" style="width: 8px; height: 8px; background: #2A9DC8; opacity: 0.4; bottom: 14%; left: 75%; animation: floatUp 21s infinite; animation-delay: 2.5s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; background: #F5C518; opacity: 0.5; bottom: 9%; left: 85%; animation: floatUp 18s infinite; animation-delay: 4.5s;"></div>
+        <div class="particle" style="width: 10px; height: 10px; background: #2A9DC8; opacity: 0.3; bottom: 11%; left: 20%; animation: floatUp 22s infinite; animation-delay: 1.5s;"></div>
+        <div class="particle" style="width: 7px; height: 7px; background: #F5C518; opacity: 0.4; bottom: 7%; left: 70%; animation: floatUp 16s infinite; animation-delay: 3.5s;"></div>
+        <div class="particle" style="width: 9px; height: 9px; background: #2A9DC8; opacity: 0.5; bottom: 13%; left: 50%; animation: floatUp 20s infinite; animation-delay: 0.5s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; background: #F5C518; opacity: 0.3; bottom: 10%; left: 90%; animation: floatUp 19s infinite; animation-delay: 5.5s;"></div>
+        
+        <div class="hero-content text-center px-6 max-w-5xl mx-auto">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6" data-aos="fade-up">
+                Si sta spegnendo lentamente.<br>Io lo aiuto a riaccendersi.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Non è ancora burnout. Ma quella stanchezza che non passa, quella distanza dalle cose che ami, quel senso di andare avanti per inerzia... tu lo sai già che qualcosa non va. Parliamone.
+            </p>
+            <a href="#prenota" class="btn-accent text-lg" data-aos="fade-up" data-aos-delay="400">
+                Prenota la tua call gratuita Ossigeno 45
+            </a>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="section-title">Il problema</h2>
+            <p class="text-lg leading-relaxed text-gray-700">
+                Lavori tanto. I risultati ci sono. Le persone intorno a te ti vedono come qualcuno su cui si può contare. Eppure c'è una stanchezza che non passa con il sonno. Una distanza dalle cose che ti piacevano. Un senso vago che stai andando avanti per inerzia più che per scelta. Non lo chiami burnout. Ma sai già che qualcosa non va.
+            </p>
+        </div>
+    </section>
+
+    <section id="chi-sono" class="py-20 px-6" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://d1yei2z3i6k35z.cloudfront.net/14600162/69bc28a77527a3.64000259_WhatsAppImage2026-03-17at10.21.211.jpeg" 
+                         alt="Marco Mariani" 
+                         class="rounded-2xl shadow-2xl w-full"
+                         onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="section-title">Chi sono</h2>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-4">
+                        Sono Marco Mariani, coach professionista certificato ICF, 42 anni, papà di Futura e Orlando. Per oltre vent'anni ho lavorato nel settore dello shipping, partendo dal centralino e arrivando a gestire team come sales manager.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-4">
+                        Nel 2022 mi sono fermato — non per scelta. Il burnout non arriva con una lettera di preavviso. Arriva quando sei talmente dentro al ritmo che non riesci più a distinguere la stanchezza dalla normalità.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-700">
+                        Io ci sono passato davvero. Ho trovato il coaching, ho conseguito la mia certificazione ICF e ho scelto di dedicarmi al 100% alle persone che stanno attraversando quello che ho attraversato io. Ad oggi ho aiutato quasi un centinaio di persone a riprendere in mano la propria vita.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center mb-12" data-aos="fade-up">Per chi è</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">È per te se:</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Vuoi rimettere ordine a priorità e confini</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Cerchi un confronto schietto per far crescere la fiducia in te stesso</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✓</span>
+                            <span>Preferisci un lavoro pratico e misurabile, senza scorciatoie</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-4">
+                        <svg class="w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Non è per te se:</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="mr-2">✗</span>
+                            <span>Cerchi terapia o supporto clinico</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✗</span>
+                            <span>Vuoi ricette magiche</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">✗</span>
+                            <span>Non hai voglia di metterti in gioco tra una sessione e l'altra</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="come-funziona" class="py-20 px-6" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center mb-16" data-aos="fade-up">Come funziona</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="card-hover bg-white p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--secondary);">Ossigeno 45</h3>
+                    <p class="text-gray-700">
+                        Una call gratuita di 45 minuti su Google Meet in cui analizziamo insieme contesto, priorità e aspettative.
+                    </p>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--secondary);">Percorso 1:1</h3>
+                    <p class="text-gray-700">
+                        8 sessioni in 90 giorni, con ascolto attivo, domande potenti e feedback costruttivo.
+                    </p>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3 class="text-xl font-bold mb-4" style="color: var(--secondary);">Supporto continuo</h3>
+                    <p class="text-gray-700">
+                        Accesso a chat WhatsApp o Telegram con risposta garantita entro 12 ore.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--secondary);">Le tappe del percorso</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: var(--primary); color: white;">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-gray-700">Esplorazione</span>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: var(--primary); color: white;">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-gray-700">Presa di coscienza</span>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: var(--primary); color: white;">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-gray-700">Determinazione dell'obiettivo</span>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: var(--primary); color: white;">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-gray-700">Analisi delle risorse</span>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: var(--primary); color: white;">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <span class="text-gray-700">Elaborazione della strategia</span>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-4 flex-shrink-0" style="background: var(--accent); color: var(--text);">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-gray-700 font-bold">E poi... tocca a te</span>
+                    </div>
+                </div>
+                <div class="mt-8 p-6 rounded-xl" style="background: var(--bg);">
+                    <p class="text-center text-gray-700">
+                        <strong>Il prezzo viene concordato e messo per iscritto prima di iniziare.</strong> Nessuna sorpresa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonianze" class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center mb-16" data-aos="fade-up">Testimonianze</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="quote-icon">"</div>
+                    <p class="text-gray-700 mb-4 mt-4 italic">
+                        "Cercavo proprio Ossigeno... ed è quello che è arrivato! Volevo ritrovare fiducia nella mia persona e nella mia visione dal punto di vista del lavoro. È stato intenso ma un percorso vissuto e vero che ha lasciato un ottimo segno."
+                    </p>
+                    <p class="font-bold" style="color: var(--primary);">G., 37 anni</p>
+                    <p class="text-sm text-gray-600">Professionista sanitario</p>
+                </div>
+                
+                <div class="testimonial-card card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="quote-icon">"</div>
+                    <p class="text-gray-700 mb-4 mt-4 italic">
+                        "Non è facile parlare apertamente, ma quando trovi qualcuno che ti ascolta senza giudicare o imporre… il mondo cambia con gentilezza. Marco non mi ha mai detto cosa fare, mi ha aiutato a rivedere me stesso con occhi nuovi."
+                    </p>
+                    <p class="font-bold" style="color: var(--primary);">F., 43 anni</p>
+                    <p class="text-sm text-gray-600">Real Estate Manager</p>
+                </div>
+                
+                <div class="testimonial-card card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="quote-icon">"</div>
+                    <p class="text-gray-700 mb-4 mt-4 italic">
+                        "Conoscere Marco è stato proprio un regalo che mi ha fatto la vita. Si è creata una connessione di fiducia e uno spazio sicuro che mi ha permesso di lavorare su me stessa ed evolvere. Marco ha un'anima pura e luminosa."
+                    </p>
+                    <p class="font-bold" style="color: var(--primary);">A., 44 anni</p>
+                    <p class="text-sm text-gray-600">Freelance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 px-6" style="background: var(--bg);">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="section-title text-center mb-16" data-aos="fade-up">FAQ</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--secondary);">Quanto costa?</h3>
+                    <p class="text-gray-700">
+                        I percorsi partono da €900. Il prezzo definitivo viene concordato durante la call Ossigeno 45 in base al percorso scelto, e viene messo per iscritto prima di iniziare. Nessuna sorpresa.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--secondary);">Sei un terapeuta?</h3>
+                    <p class="text-gray-700">
+                        No. Sono un mental coach certificato ICF. Il coaching non è terapia e non la sostituisce. Se durante il nostro lavoro dovessi accorgermi che hai bisogno di altre figure professionali, sarà mia cura indirizzarti al professionista più idoneo.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--secondary);">Come si svolgono le sessioni?</h3>
+                    <p class="text-gray-700">
+                        Online, via Google Meet. Il ritmo e la durata del percorso vengono decisi insieme durante la call conoscitiva gratuita.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prenota" class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="section-title">Prenota la tua call Ossigeno 45</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    In 45 minuti analizziamo insieme il tuo contesto, le tue priorità e capiamo se ha senso lavorare insieme. Nessun impegno, nessuna pressione. Solo un confronto onesto.
+                </p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 md:p-12 rounded-2xl shadow-xl" data-aos="fade-up" data-aos-delay="200">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2" style="color: var(--text);">Nome e Cognome</label>
+                        <input type="text" placeholder="Il tuo nome" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2" style="color: var(--text);">Email</label>
+                        <input type="email" placeholder="tua@email.com" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2" style="color: var(--text);">Telefono</label>
+                        <input type="tel" placeholder="07.83228763" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2" style="color: var(--text);">Messaggio</label>
+                        <textarea rows="5" placeholder="Raccontami brevemente la tua situazione..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-accent w-full text-center text-lg">
+                        Invia richiesta per Ossigeno 45
+                    </button>
+                    
+                    <p class="text-sm text-center text-gray-600">
+                        Ti ricontatteremo entro 24 ore per fissare la call
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Secondo Respiro</h3>
+                    <p class="text-gray-400">
+                        Mental coaching per professionisti che vogliono riaccendere la propria energia prima che sia troppo tardi.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Contatti</h3>
+                    <p class="text-gray-400 mb-2">
+                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        07.83228763
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-xl mb-4">Link rapidi</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#chi-sono" class="text-gray-400 hover:text-white transition">Chi sono</a>
+                        <a href="#come-funziona" class="text-gray-400 hover:text-white transition">Come funziona</a>
+                        <a href="#testimonianze" class="text-gray-400 hover:text-white transition">Testimonianze</a>
+                        <a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Secondo Respiro - Marco Mariani, Mental Coach Certificato ICF</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="watermark">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
