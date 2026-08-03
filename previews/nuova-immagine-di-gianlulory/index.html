@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuova Immagine di GianluLory | Salone Parrucchieri Vittuone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E2D',
+                        secondary: '#C9A96E',
+                        accent: '#E8D5B0',
+                        background: '#F7F4EF',
+                        textColor: '#1A1A18'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1A1A18;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .hero-title-animation {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideLine {
+            from {
+                left: -60%;
+            }
+            to {
+                left: 110%;
+            }
+        }
+        
+        .geometric-line {
+            position: absolute;
+            height: 1px;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        }
+        
+        .line-1 {
+            top: 15%;
+            animation: slideLine 12s linear infinite;
+        }
+        
+        .line-2 {
+            top: 35%;
+            animation: slideLine 9s linear infinite 2s;
+        }
+        
+        .line-3 {
+            top: 55%;
+            animation: slideLine 14s linear infinite 4s;
+        }
+        
+        .line-4 {
+            top: 75%;
+            animation: slideLine 10s linear infinite 1s;
+        }
+        
+        .line-5 {
+            top: 90%;
+            animation: slideLine 11s linear infinite 3s;
+        }
+        
+        .navbar-scrolled {
+            background-color: rgba(44, 62, 45, 0.98);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(201, 169, 110, 0.3), 0 10px 10px -5px rgba(201, 169, 110, 0.2);
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-background">
+    
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo SVG -->
+                <div class="flex-shrink-0">
+                    <svg width="280" height="50" viewBox="0 0 280 50" class="w-48 sm:w-64">
+                        <text x="0" y="30" font-family="Cormorant Garamond" font-size="22" font-weight="600" fill="#C9A96E">
+                            Nuova Immagine
+                        </text>
+                        <text x="0" y="45" font-family="Cormorant Garamond" font-size="14" font-weight="400" fill="#E8D5B0">
+                            di GianluLory
+                        </text>
+                    </svg>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition-colors duration-300 font-body">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition-colors duration-300 font-body">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition-colors duration-300 font-body">Servizi</a>
+                    <a href="#perche-sceglierci" class="text-white hover:text-secondary transition-colors duration-300 font-body">Perché sceglierci</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition-colors duration-300 font-body">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Home</a>
+                    <a href="#chi-siamo" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Chi siamo</a>
+                    <a href="#servizi" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Servizi</a>
+                    <a href="#perche-sceglierci" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Perché sceglierci</a>
+                    <a href="#contatti" class="block px-3 py-2 text-white hover:text-secondary transition-colors duration-300">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80');">
+        </div>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Geometric Lines -->
+        <div class="geometric-line line-1"></div>
+        <div class="geometric-line line-2"></div>
+        <div class="geometric-line line-3"></div>
+        <div class="geometric-line line-4"></div>
+        <div class="geometric-line line-5"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative h-full flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+                <h1 class="hero-title-animation text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white mb-6">
+                    Benvenuto da Nuova Immagine
+                </h1>
+                <p class="hero-title-animation text-xl sm:text-2xl text-white/90 mb-8 font-light leading-relaxed" style="animation-delay: 0.2s;">
+                    Il salone di GianluLory a Vittuone dove ogni visita è un'esperienza di stile e cura personale. Affidati a mani esperte e lasciati trasformare.
+                </p>
+                <a href="#servizi" class="hero-title-animation inline-block bg-secondary hover:bg-accent text-primary px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105" style="animation-delay: 0.4s;">
+                    Scopri i nostri servizi
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" 
+                             alt="Salone Nuova Immagine" 
+                             class="rounded-lg shadow-2xl"
+                             onerror="this.src='https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80'; this.onerror=null;">
+                        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/20 rounded-lg -z-10"></div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <h2 class="text-4xl font-heading font-bold text-primary">Chi siamo</h2>
+                    </div>
+                    <div class="w-20 h-1 bg-secondary mb-6"></div>
+                    <p class="text-lg text-textColor leading-relaxed mb-4">
+                        Nuova Immagine di GianluLory è il salone di parrucchieri di riferimento a Vittuone, in Via Volontari della Libertà 40. Con passione, tecnica e attenzione ai dettagli, offriamo un'esperienza di bellezza su misura per ogni cliente.
+                    </p>
+                    <p class="text-lg text-textColor leading-relaxed mb-4">
+                        La nostra filosofia è semplice: ascoltare, valorizzare e sorprendere. Ogni taglio, colore e trattamento nasce da un dialogo autentico con chi si siede sulla nostra poltrona.
+                    </p>
+                    <p class="text-lg text-textColor leading-relaxed font-medium">
+                        Non a caso, i nostri clienti ci descrivono con una sola parola: <span class="text-secondary">Top</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h2 class="text-5xl font-heading font-bold text-primary">I nostri servizi</h2>
+                </div>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-textColor max-w-3xl mx-auto">
+                    Offriamo una gamma completa di servizi professionali per capelli: tagli personalizzati per donna e uomo, colorazioni, meches e balayage, trattamenti nutrienti e ristrutturanti, messa in piega, acconciature per occasioni speciali e molto altro.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Servizio 1 -->
+                <div class="card-hover bg-background p-8 rounded-lg" data-aos="fade-up" data-aos-delay="0">
+                    <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-primary mb-4">Tagli Personalizzati</h3>
+                    <p class="text-textColor leading-relaxed">
+                        Tagli donna e uomo studiati per valorizzare i tuoi lineamenti e il tuo stile personale, con tecniche sempre aggiornate.
+                    </p>
+                </div>
+
+                <!-- Servizio 2 -->
+                <div class="card-hover bg-background p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-primary mb-4">Colorazioni Expert</h3>
+                    <p class="text-textColor leading-relaxed">
+                        Colorazioni complete, meches e balayage realizzate con prodotti di alta qualità per risultati luminosi e duraturi.
+                    </p>
+                </div>
+
+                <!-- Servizio 3 -->
+                <div class="card-hover bg-background p-8 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-primary mb-4">Trattamenti Speciali</h3>
+                    <p class="text-textColor leading-relaxed">
+                        Trattamenti nutrienti e ristrutturanti per capelli sani e splendenti, oltre ad acconciature per ogni occasione speciale.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-lg text-textColor italic">
+                    Ogni servizio è realizzato con prodotti di alta qualità e tecniche aggiornate alle ultime tendenze.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perché Sceglierci Section -->
+    <section id="perche-sceglierci" class="py-20 bg-gradient-to-b from-background to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                    <h2 class="text-5xl font-heading font-bold text-primary">Perché sceglierci</h2>
+                </div>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="bg-primary text-white p-12 rounded-lg shadow-2xl">
+                        <div class="text-center mb-8">
+                            <div class="text-7xl font-heading font-bold text-secondary mb-2">4.7</div>
+                            <div class="flex justify-center mb-2">
+                                <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-xl text-accent">su 5</div>
+                        </div>
+                        <div class="border-t border-accent/30 pt-8">
+                            <div class="text-5xl font-heading font-bold text-secondary text-center mb-2">184</div>
+                            <div class="text-xl text-accent text-center">Clienti Soddisfatti</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <p class="text-xl text-textColor leading-relaxed mb-6">
+                        Con una valutazione di <span class="font-bold text-secondary">4.7 su 5</span> basata su <span class="font-bold text-secondary">184 recensioni Google</span>, Nuova Immagine di GianluLory è uno dei saloni più apprezzati di Vittuone e dintorni.
+                    </p>
+                    <p class="text-xl text-textColor leading-relaxed mb-6">
+                        La nostra esperienza, unita a un ambiente accogliente e a un team dedicato, fa sì che ogni visita diventi un momento di relax e rinascita.
+                    </p>
+                    <p class="text-xl text-textColor leading-relaxed font-medium">
+                        Che tu voglia un cambio radicale o semplicemente mantenere il tuo stile, siamo qui per te.
+                    </p>
+                    
+                    <div class="mt-8 grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-accent/20 rounded-lg">
+                            <svg class="w-10 h-10 text-secondary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div class="font-heading font-bold text-lg text-primary">Esperienza</div>
+                        </div>
+                        <div class="text-center p-4 bg-accent/20 rounded-lg">
+                            <svg class="w-10 h-10 text-secondary mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                            <div class="font-heading font-bold text-lg text-primary">Passione</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orari Section -->
+    <section class="py-16 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 text-center" data-aos="fade-up">
+                <div class="text-white">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-2">Orari di apertura</h3>
+                    <p class="text-accent text-lg">Martedì - Sabato</p>
+                    <p class="text-white text-xl font-medium">9:00 - 18:00</p>
+                    <p class="text-accent mt-2 text-sm">Domenica e Lunedì chiuso</p>
+                </div>
+
+                <div class="text-white">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-2">Dove siamo</h3>
+                    <p class="text-white text-lg">Via Volontari della Libertà 40</p>
+                    <p class="text-accent">20009 Vittuone (MI)</p>
+                </div>
+
+                <div class="text-white">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-2">Telefono</h3>
+                    <a href="tel:0249459721" class="text-white text-xl font-medium hover:text-secondary transition-colors duration-300">
+                        02 4945 9721
+                    </a>
+                    <p class="text-accent mt-2">Chiama per prenotare</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-background">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-8 h-8 text-secondary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h2 class="text-5xl font-heading font-bold text-primary">Contattaci</h2>
+                </div>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-textColor">
+                    Vieni a trovarci o contattaci per prenotare il tuo appuntamento. Saremo felici di accoglierti e consigliarti il servizio più adatto alle tue esigenze.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-xl p-8 md:p-12" data-aos="fade-up">
+                <form class="space-y-6">
+                    <div>
+                        <label for="nome" class="block text-sm font-medium text-textColor mb-2">Nome</label>
+                        <input type="text" id="nome" name="nome" 
+                               class="w-full px-4 py-3 border border-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+                               placeholder="Il tuo nome">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-textColor mb-2">Email</label>
+                        <input type="email" id="email" name="email" 
+                               class="w-full px-4 py-3 border border-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+                               placeholder="la.tua.email@esempio.it">
+                    </div>
+
+                    <div>
+                        <label for="messaggio" class="block text-sm font-medium text-textColor mb-2">Messaggio</label>
+                        <textarea id="messaggio" name="messaggio" rows="5"
+                                  class="w-full px-4 py-3 border border-accent rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
+                                  placeholder="Come possiamo aiutarti?"></textarea>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full bg-secondary hover:bg-primary text-white font-medium py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        Invia messaggio
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-accent">
+                    <p class="text-center text-textColor mb-4">Oppure chiamaci direttamente:</p>
+                    <a href="tel:0249459721" 
+                       class="block text-center text-3xl font-heading font-bold text-secondary hover:text-primary transition-colors duration-300">
+                        02 4945 9721
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-secondary mb-4">Nuova Immagine</h3>
+                    <p class="text-accent">di GianluLory</p>
+                    <p class="text-white/80 mt-4">La tua trasformazione, ogni giorno</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-heading font-bold text-secondary mb-4">Contatti</h4>
+                    <p class="text-white/80 mb-2">Via Volontari della Libertà 40</p>
+                    <p class="text-white/80 mb-2">20009 Vittuone (MI)</p>
+                    <p class="text-white/80">Tel: 02 4945 9721</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-heading font-bold text-secondary mb-4">Orari</h4>
+                    <p class="text-white/80 mb-2">Martedì - Sabato: 9:00 - 18:00</p>
+                    <p class="text-white/80">Domenica e Lunedì: Chiuso</p>
+                </div>
+            </div>
+
+            <div class="border-t border-accent/30 pt-8 text-center">
+                <p class="text-white/60 text-sm mb-2">
+                    © 2024 Nuova Immagine di GianluLory. Tutti i diritti riservati.
+                </p>
+                <p class="text-accent/60 text-xs">
+                    Bozza realizzata da <span class="font-medium">meravigliä Lab</span> · <a href="https://meraviglialab.com" class="hover:text-secondary transition-colors">meraviglialab.com</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
