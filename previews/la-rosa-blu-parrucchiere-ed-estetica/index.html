@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Rosa Blu | Parrucchiere ed Estetica Corbetta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4A3F6B',
+                        secondary: '#C2A97E',
+                        accent: '#8B5E8C',
+                        bgLight: '#FAF7F4',
+                        textDark: '#2C2535',
+                        darkBg: '#0d0d0f',
+                        darkCard: '#1a1a1f'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background: #0d0d0f;
+            color: #e8e8ea;
+        }
+        
+        .glass-card {
+            background: rgba(26, 26, 31, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(26, 26, 31, 0.8);
+            border-color: rgba(194, 169, 126, 0.3);
+            box-shadow: 0 0 30px rgba(194, 169, 126, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(194, 169, 126, 0.3);
+        }
+
+        .glow-accent {
+            text-shadow: 0 0 20px rgba(139, 94, 140, 0.4);
+        }
+
+        .cta-glow {
+            box-shadow: 0 0 30px rgba(194, 169, 126, 0.4);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(194, 169, 126, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(194, 169, 126, 0.6); }
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, 
+                rgba(13, 13, 15, 0.7) 0%,
+                rgba(13, 13, 15, 0.5) 50%,
+                rgba(13, 13, 15, 0.9) 100%),
+                radial-gradient(ellipse at center, transparent 0%, rgba(13, 13, 15, 0.8) 100%);
+        }
+
+        .divider-glow {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(194, 169, 126, 0.6) 50%, 
+                transparent 100%);
+            box-shadow: 0 0 10px rgba(194, 169, 126, 0.3);
+        }
+
+        .navbar-glass {
+            background: rgba(13, 13, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-scrolled {
+            background: rgba(13, 13, 15, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            color: #C2A97E;
+            text-shadow: 0 0 15px rgba(194, 169, 126, 0.5);
+        }
+
+        input, textarea {
+            background: rgba(26, 26, 31, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e8e8ea;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            background: rgba(26, 26, 31, 0.8);
+            border-color: rgba(194, 169, 126, 0.5);
+            box-shadow: 0 0 20px rgba(194, 169, 126, 0.1);
+            outline: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(232, 232, 234, 0.4);
+        }
+
+        .icon-glow {
+            filter: drop-shadow(0 0 8px rgba(194, 169, 126, 0.3));
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 navbar-glass transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="flex items-center space-x-2">
+                    <span class="font-heading text-3xl font-bold glow-text" style="color: #C2A97E;">La Rosa Blu</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="hover-glow text-sm uppercase tracking-wider">Home</a>
+                    <a href="#chi-siamo" class="hover-glow text-sm uppercase tracking-wider">Chi Siamo</a>
+                    <a href="#servizi" class="hover-glow text-sm uppercase tracking-wider">Servizi</a>
+                    <a href="#hair-spa" class="hover-glow text-sm uppercase tracking-wider">Hair Spa</a>
+                    <a href="#prenota" class="hover-glow text-sm uppercase tracking-wider">Prenota</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <svg class="w-7 h-7 icon-glow" fill="none" stroke="#C2A97E" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden mt-6 pb-4 space-y-4">
+                <a href="#home" class="block hover-glow text-sm uppercase tracking-wider">Home</a>
+                <a href="#chi-siamo" class="block hover-glow text-sm uppercase tracking-wider">Chi Siamo</a>
+                <a href="#servizi" class="block hover-glow text-sm uppercase tracking-wider">Servizi</a>
+                <a href="#hair-spa" class="block hover-glow text-sm uppercase tracking-wider">Hair Spa</a>
+                <a href="#prenota" class="block hover-glow text-sm uppercase tracking-wider">Prenota</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBMUonxssMTWHbLK747d74NPd6xIhZnmx9Pm1hBhf56ZslGE8QfkathfXl16wN9GeQJV9tVQ0YdygvCKHwh-lXhY0X81c5SiwsvSDpaXri7UcptmbowpQNMmZ442lXlHvBjlWTdfDtk3FWz3Q=s4800-w1600" 
+                 alt="La Rosa Blu Salone" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto" data-aos="fade-up">
+            <h1 class="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-6 glow-text" style="color: #C2A97E;">
+                Il tuo momento.<br>La tua bellezza.
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-10 text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                A Corbetta, un luogo dove prendersi cura di sé è un'esperienza che va oltre il semplice trattamento. Benvenuta da La Rosa Blu.
+            </p>
+            <a href="#servizi" class="inline-block px-10 py-4 text-lg font-medium cta-glow rounded-full transition-all duration-300 hover:scale-105" 
+               style="background: linear-gradient(135deg, #C2A97E 0%, #8B5E8C 100%); color: #0d0d0f;">
+                Scopri i nostri servizi
+            </a>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 icon-glow" fill="none" stroke="#C2A97E" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="divider-glow mb-16" data-aos="fade"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 glow-accent" style="color: #8B5E8C;">
+                        Chi siamo
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                        Da La Rosa Blu, la bellezza è molto più di un risultato: è un'emozione che si vive dal momento in cui varchi la porta. Sonia e il nostro team ti accolgono in un ambiente curato e sereno, dove ogni cliente è al centro di un'attenzione esclusiva.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        Con anni di esperienza nel mondo della hair care e dell'estetica, abbiamo costruito un luogo in cui professionalità e calore umano convivono naturalmente. Lo confermano le oltre <span class="font-semibold glow-text" style="color: #C2A97E;">116 recensioni a 5 stelle</span> dei nostri clienti, che tornano non solo per i risultati, ma per come si sentono durante ogni visita.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-left">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDQdqhoVlnDt_PG0ADYZDhIMObgkc3i1p2Hyg2-dousHImYRbxoo5HtU-LEMnoBNZdv8gJstZo9DTEkIa0eD7r-m_CCm22Z4p0_tEXkeDtXf20_16k-YV3aDKIRC2M2eTXFdHm1_nctt9e7e2xiFIQNlw=s4800-w1600" 
+                         alt="Interno salone La Rosa Blu" 
+                         class="w-full h-96 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section id="servizi" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="divider-glow mb-16" data-aos="fade"></div>
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 glow-text" style="color: #C2A97E;">
+                    I nostri servizi
+                </h2>
+                <p class="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+                    Offriamo una gamma completa di servizi per capelli e benessere: tagli personalizzati, colorazioni, trattamenti ristrutturanti e il nostro esclusivo Hair Spa.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 icon-glow" fill="none" stroke="#C2A97E" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-4" style="color: #C2A97E;">Tagli personalizzati</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Ogni taglio è studiato sulle tue caratteristiche e desideri, per valorizzare la tua unicità.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 icon-glow" fill="none" stroke="#8B5E8C" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-4" style="color: #8B5E8C;">Colorazioni</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Dalla balayage alle tinte più audaci, creiamo il colore perfetto per te con prodotti di alta qualità.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 icon-glow" fill="none" stroke="#C2A97E" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-4" style="color: #C2A97E;">Trattamenti ristrutturanti</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Restituiamo vita e lucentezza ai tuoi capelli con trattamenti mirati e professionali.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hair Spa -->
+    <section id="hair-spa" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="divider-glow mb-16" data-aos="fade"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-right">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAhik0OUPviUdhq_fwU-B-yexkTVROMHhZtG335iPSdVcYz41M5gV0C5gjSFX1y7HIRk-Ok6wLspqm9tYa74vBtyGFvwSFZApCGMuenJdwOj6CljCIPwoy7d_FW5h0aZp79uYAnbKEmiW_e5tU=s4800-w1080" 
+                         alt="Hair Spa Treatment" 
+                         class="w-full h-96 object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+
+                <div data-aos="fade-left">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 glow-accent" style="color: #8B5E8C;">
+                        Hair Spa
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                        Il nostro Hair Spa è il trattamento più amato dalle clienti di La Rosa Blu. Un'ora e mezza in cui il mondo fuori non esiste: solo tu, il profumo dei prodotti, le mani esperte del nostro team e una sensazione di leggerezza che ti accompagna per giorni.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-8 text-lg">
+                        Esci con i capelli visibilmente trasformati e un benessere che si sente nell'anima. <span class="italic font-light glow-text" style="color: #C2A97E;">"Sei su un altro pianeta per un'ora e mezza"</span> — come ci ha scritto una delle nostre clienti.
+                    </p>
+                    <div class="glass-card rounded-xl p-6 border-l-4" style="border-left-color: #C2A97E;">
+                        <p class="text-xl font-heading font-semibold mb-2" style="color: #C2A97E;">90 minuti di puro relax</p>
+                        <p class="text-gray-400">Un rituale che trasforma completamente la tua chioma e ti regala un relax profondo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prenota -->
+    <section id="prenota" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="divider-glow mb-16" data-aos="fade"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 glow-text" style="color: #C2A97E;">
+                        Prenota il tuo appuntamento
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed mb-8 text-lg">
+                        Siamo aperti dal martedì al sabato, dalle 9:00 alle 18:00. Vieni a trovarci in Via Brera 42, a Corbetta, oppure chiamaci per prenotare il tuo appuntamento.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="glass-card rounded-xl p-6 flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1 icon-glow" fill="none" stroke="#C2A97E" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <div>
+                                <p class="font-semibold mb-1" style="color: #C2A97E;">Indirizzo</p>
+                                <p class="text-gray-400">Via Brera, 42 - 20011 Corbetta (MI)</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-6 flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1 icon-glow" fill="none" stroke="#8B5E8C" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <div>
+                                <p class="font-semibold mb-1" style="color: #8B5E8C;">Telefono</p>
+                                <a href="tel:+390297772091" class="text-gray-400 hover-glow">02 977 2091</a>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-6 flex items-start space-x-4">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1 icon-glow" fill="none" stroke="#C2A97E" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <p class="font-semibold mb-1" style="color: #C2A97E;">Orari</p>
+                                <p class="text-gray-400">Martedì-Sabato: 9:00–18:00</p>
+                                <p class="text-gray-500 text-sm">Lunedì e domenica chiusi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAAFbLieM67xn8o9AREXcKaZIoAz_VqYeSO-dzE83phXA61u5osktPAyW3lvnaDxBlvb_TPkBErPNcs3yX9UB74GFOzeefhY0hALuk-h0bfgX9XVPO8590aEwRHp6FEjSRpd4VTzJu281tw5kY=s4800-w1600" 
+                             alt="Esterno La Rosa Blu" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="glass-card rounded-2xl p-8">
+                        <h3 class="font-heading text-2xl font-semibold mb-6 glow-accent" style="color: #8B5E8C;">
+                            Inviaci un messaggio
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-300">Nome</label>
+                                <input type="text" 
+                                       placeholder="Il tuo nome" 
+                                       class="w-full px-4 py-3 rounded-lg"
+                                       required>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-300">Telefono</label>
+                                <input type="tel" 
+                                       placeholder="Il tuo numero di telefono" 
+                                       class="w-full px-4 py-3 rounded-lg"
+                                       required>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2 text-gray-300">Messaggio</label>
+                                <textarea rows="5" 
+                                          placeholder="Come possiamo aiutarti?" 
+                                          class="w-full px-4 py-3 rounded-lg resize-none"
+                                          required></textarea>
+                            </div>
+
+                            <button type="submit" 
+                                    class="w-full px-8 py-4 rounded-full font-medium cta-glow transition-all duration-300 hover:scale-105" 
+                                    style="background: linear-gradient(135deg, #C2A97E 0%, #8B5E8C 100%); color: #0d0d0f;">
+                                Invia richiesta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative py-12 px-6 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-heading text-2xl font-bold mb-4 glow-text" style="color: #C2A97E;">La Rosa Blu</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Bellezza che si sente, cura che si vede. Il tuo salone di fiducia a Corbetta.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: #8B5E8C;">Contatti</h4>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p>Via Brera, 42</p>
+                        <p>20011 Corbetta (MI)</p>
+                        <p>Tel: <a href="tel:+390297772091" class="hover-glow">02 977 2091</a></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: #8B5E8C;">Orari</h4>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p>Martedì - Sabato</p>
+                        <p>9:00 - 18:00</p>
+                        <p class="text-gray-500">Lunedì e domenica chiusi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider-glow mb-8"></div>
+
+            <div class="text-center">
+                <p class="text-gray-500 text-sm">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover-glow" style="color: #C2A97E;">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
