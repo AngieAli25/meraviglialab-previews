@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compagnia Dell'Immagine | Salone di Parrucchieri Voghera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3A3A',
+                        secondary: '#C9A96E',
+                        accent: '#8B5E52',
+                        background: '#F7F4F0',
+                        textcolor: '#1E2626'
+                    },
+                    fontFamily: {
+                        title: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1E2626;
+            background: #F7F4F0;
+            overflow-x: hidden;
+        }
+        .navbar-scrolled {
+            background: rgba(44, 58, 58, 0.98) !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-content {
+            animation: marquee 30s linear infinite;
+        }
+        .btn-pop {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-pop:hover {
+            transform: translateY(-4px);
+            box-shadow: 8px 8px 0px #C9A96E;
+        }
+        .btn-pop:active {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px #C9A96E;
+        }
+        .card-pop {
+            border: 4px solid #2C3A3A;
+            transition: all 0.3s ease;
+        }
+        .card-pop:hover {
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 0px #C9A96E;
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(44, 58, 58, 0.55), rgba(139, 94, 82, 0.45));
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .hamburger span {
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <div class="flex items-center">
+                <a href="#home" class="flex items-center space-x-2">
+                    <div class="text-white">
+                        <div class="font-title text-2xl sm:text-3xl font-semibold tracking-wide">Compagnia Dell'Immagine</div>
+                        <div class="text-secondary text-xs sm:text-sm tracking-widest uppercase font-body">Voghera</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-lg">Home</a>
+                <a href="#chi-siamo" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-lg">Chi siamo</a>
+                <a href="#servizi" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-lg">Servizi</a>
+                <a href="#perche" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-lg">Perché sceglierci</a>
+                <a href="#contatti" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-lg">Contatti</a>
+            </div>
+
+            <button class="md:hidden hamburger flex flex-col space-y-1.5 z-50" id="hamburger">
+                <span class="block w-8 h-1 bg-white"></span>
+                <span class="block w-8 h-1 bg-white"></span>
+                <span class="block w-8 h-1 bg-white"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-primary shadow-2xl md:hidden" id="mobileMenu">
+        <div class="flex flex-col space-y-6 p-8 mt-20">
+            <a href="#home" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-xl mobile-link">Home</a>
+            <a href="#chi-siamo" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-xl mobile-link">Chi siamo</a>
+            <a href="#servizi" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-xl mobile-link">Servizi</a>
+            <a href="#perche" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-xl mobile-link">Perché sceglierci</a>
+            <a href="#contatti" class="text-white hover:text-secondary transition-colors duration-300 font-body font-medium text-xl mobile-link">Contatti</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCtGd5ODjqtdv_GISA84z35jy3AGOe0xag-HUK06QkJbyJp4YXTG0H4oNGu7nGYuwXkQJg23VBg6yWkpP18NKfrhpPq2QYrPMZYFQLe4mBqAoZVxYByP9BHxGXSkA32TX7H66Mfw_H2Xek6=s4800-w1600" 
+         alt="Compagnia Dell'Immagine" 
+         class="absolute inset-0 w-full h-full object-cover"
+         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+    <div class="hero-overlay absolute inset-0"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="font-title font-extrabold text-white mb-6 leading-tight" 
+            style="font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 800;"
+            data-aos="fade-up">
+            La tua immagine,<br>la nostra passione
+        </h1>
+        <p class="text-white text-xl sm:text-2xl md:text-3xl font-body font-light max-w-4xl mx-auto mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+            A Voghera, un salone dove ogni taglio, colore e trattamento nasce da ascolto vero e competenza autentica. Perché il tuo look deve raccontare chi sei.
+        </p>
+        <a href="#contatti" class="inline-block bg-secondary text-primary px-12 py-5 text-xl sm:text-2xl font-body font-bold uppercase tracking-wider btn-pop" data-aos="fade-up" data-aos-delay="400">
+            Prenota il tuo appuntamento
+        </a>
+    </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="w-full bg-primary py-8 overflow-hidden">
+    <div class="flex whitespace-nowrap">
+        <div class="marquee-content flex">
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">STILE</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">PASSIONE</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">COMPETENZA</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">CURA</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">STILE</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">PASSIONE</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">COMPETENZA</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+            <span class="text-secondary font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">CURA</span>
+            <span class="text-white font-title text-5xl sm:text-6xl md:text-7xl font-bold mx-8">•</span>
+        </div>
+    </div>
+</div>
+
+<!-- CHI SIAMO -->
+<section id="chi-siamo" class="py-20 sm:py-32 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div data-aos="fade-right">
+                <h2 class="font-title font-bold text-primary text-5xl sm:text-6xl md:text-7xl mb-8">Chi siamo</h2>
+                <p class="text-textcolor text-lg sm:text-xl font-body leading-relaxed mb-6">
+                    Compagnia Dell'Immagine è il salone di Gabriella e Laura, due professioniste che hanno fatto della cura dei capelli una vera arte. Con anni di esperienza alle spalle e una passione genuina per il loro lavoro, accolgono ogni cliente con attenzione, ascolto e un occhio affinato per lo stile.
+                </p>
+                <p class="text-textcolor text-lg sm:text-xl font-body leading-relaxed mb-6">
+                    Il salone si trova in Via Carolina Agata Bellocchio 34 a Voghera, in un ambiente impeccabilmente curato dove ci si sente a proprio agio dal primo momento.
+                </p>
+                <p class="text-textcolor text-lg sm:text-xl font-body leading-relaxed font-semibold">
+                    Non troverete fretta, né standardizzazione: ogni visita è un percorso pensato esclusivamente per voi, per esaltare la vostra personalità e valorizzare la salute dei vostri capelli.
+                </p>
+            </div>
+            <div data-aos="fade-left" class="card-pop bg-white p-2 rounded-3xl">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAvVaq3iFFaGC-8n21PG4m3S4n0inYgWwcPPr8whY7zQ7h9WJ89yv7M456WNh8E7AHOx1FpOHaK4s4XtT8Jup3chOPNCZVZNr6l50Z_EP0c0PUlMM_1K0ovNdeJbYsuu4iA6E8t-b_G9rGHWDo=s4800-w1600" 
+                     alt="Interno salone" 
+                     class="w-full h-96 sm:h-[500px] object-cover rounded-3xl"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi" class="py-20 sm:py-32 bg-accent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-title font-bold text-white text-5xl sm:text-6xl md:text-7xl mb-16 text-center" data-aos="fade-down">I nostri servizi</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="card-pop bg-background p-8 sm:p-12 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                <div class="mb-6">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/>
+                    </svg>
+                </div>
+                <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-4">Taglio personalizzato</h3>
+                <p class="text-textcolor text-lg font-body leading-relaxed">
+                    Taglio su misura per uomo e donna, studiato sulle tue caratteristiche e il tuo stile di vita.
+                </p>
+            </div>
+
+            <div class="card-pop bg-background p-8 sm:p-12 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="mb-6">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                    </svg>
+                </div>
+                <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-4">Colorazione & schiariture</h3>
+                <p class="text-textcolor text-lg font-body leading-relaxed">
+                    Tecniche di colorazione avanzate per risultati naturali e luminosi, nel rispetto della salute del capello.
+                </p>
+            </div>
+
+            <div class="card-pop bg-background p-8 sm:p-12 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                <div class="mb-6">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    </svg>
+                </div>
+                <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-4">Trattamenti ristrutturanti</h3>
+                <p class="text-textcolor text-lg font-body leading-relaxed">
+                    Permanenti e trattamenti specifici per ristrutturare, nutrire e ridare vitalità ai capelli danneggiati.
+                </p>
+            </div>
+
+            <div class="card-pop bg-background p-8 sm:p-12 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+                <div class="mb-6">
+                    <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                    </svg>
+                </div>
+                <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-4">Messa in piega & styling</h3>
+                <p class="text-textcolor text-lg font-body leading-relaxed">
+                    Styling professionale per ogni occasione, dalla quotidianità agli eventi speciali.
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-background p-8 sm:p-12 rounded-3xl card-pop" data-aos="fade-up" data-aos-delay="500">
+            <p class="text-textcolor text-xl sm:text-2xl font-body leading-relaxed text-center font-medium">
+                Ogni trattamento viene studiato sulle caratteristiche specifiche del vostro capello, senza soluzioni preconfezionate. Che abbiate bisogno di un cambio radicale o di mantenere il vostro look con precisione, troverete in Gabriella e Laura due consulenti capaci di guidarvi verso il risultato migliore per voi.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- PERCHÉ SCEGLIERCI -->
+<section id="perche" class="py-20 sm:py-32 bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div data-aos="fade-right" class="order-2 lg:order-1">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="card-pop bg-secondary p-2 rounded-3xl">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCLG55y5aQgTjxUxjKtGUY_zGUBG-NebZl_BFcwnbauTc-jW11nsUXp1h2da4rUkKFKb4DKWKi-Y03_eTEezKFYzWhCCTeG2XFYQRiX5dwbealOpuLt72dZwhV-8ME2tAD_79PjlZ55eLoVag=s4800-w1600" 
+                             alt="Salone" 
+                             class="w-full h-64 object-cover rounded-3xl"
+                             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                    <div class="card-pop bg-secondary p-2 rounded-3xl mt-8">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBBgdDe3xbKyIAZfQ9AzVBMdvAeInYX0IjadvaIEZ_C2j2aHc2Stt0rYhRKfYo357F3XsrjzkU7uIN9UgB6yC4lhw1WYUN4CAx69hL7Ok4n_OvLTaoGOToGhCdYSLItrxZgMNs4LQOlbaDo_Dg=s4800-w1000" 
+                             alt="Dettaglio salone" 
+                             class="w-full h-64 object-cover rounded-3xl"
+                             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-left" class="order-1 lg:order-2">
+                <h2 class="font-title font-bold text-white text-5xl sm:text-6xl md:text-7xl mb-8">Perché sceglierci</h2>
+                
+                <div class="bg-secondary p-8 rounded-3xl mb-8">
+                    <div class="flex items-center mb-4">
+                        <span class="text-primary font-title text-6xl font-bold mr-4">4.9</span>
+                        <div>
+                            <div class="flex text-primary text-2xl">★★★★★</div>
+                            <p class="text-primary font-body font-medium">su 18+ recensioni</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-white text-lg sm:text-xl font-body leading-relaxed mb-6">
+                    Con una valutazione di 4.9 su 5 basata sulle recensioni dei nostri clienti, la soddisfazione di chi ci sceglie parla per noi.
+                </p>
+                <p class="text-white text-lg sm:text-xl font-body leading-relaxed mb-6">
+                    Clienti che arrivano con capelli danneggiati e ripartono con una nuova fiducia. Clienti che per la prima volta riescono a gestire i propri capelli da soli, grazie ai consigli ricevuti in salone. Clienti che tornano, perché sanno che qui trovano qualcuno che li ascolta davvero.
+                </p>
+                <p class="text-secondary text-xl sm:text-2xl font-body leading-relaxed font-bold">
+                    Non siamo un salone qualunque: siamo la vostra Compagnia Dell'Immagine.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti" class="py-20 sm:py-32 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-title font-bold text-primary text-5xl sm:text-6xl md:text-7xl mb-16 text-center" data-aos="fade-down">Contatti</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div data-aos="fade-right">
+                <div class="card-pop bg-white p-8 sm:p-12 rounded-3xl mb-8">
+                    <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-6">Orari di apertura</h3>
+                    <div class="space-y-4 font-body text-lg">
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Lunedì:</span>
+                            <span class="text-accent font-bold">CHIUSO</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Martedì - Giovedì:</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Venerdì - Sabato:</span>
+                            <span>8:00 - 18:00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Domenica:</span>
+                            <span class="text-accent font-bold">CHIUSO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-pop bg-white p-8 sm:p-12 rounded-3xl mb-8">
+                    <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-6">Dove siamo</h3>
+                    <p class="font-body text-lg mb-4">
+                        <span class="font-semibold">Via Carolina Agata Bellocchio 34</span><br>
+                        Voghera (PV)
+                    </p>
+                </div>
+
+                <div class="card-pop bg-accent p-8 sm:p-12 rounded-3xl">
+                    <h3 class="font-title font-bold text-white text-3xl sm:text-4xl mb-6">Chiamaci</h3>
+                    <a href="tel:+390383048028" class="inline-block bg-secondary text-primary px-8 py-4 text-xl font-body font-bold rounded-2xl btn-pop mb-4">
+                        <svg class="inline-block w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        0383 48028
+                    </a>
+                    <p class="text-white font-body text-sm">
+                        Chiamaci per prenotare il tuo appuntamento o per qualsiasi informazione.
+                    </p>
+                </div>
+            </div>
+
+            <div data-aos="fade-left">
+                <div class="card-pop bg-white p-8 sm:p-12 rounded-3xl">
+                    <h3 class="font-title font-bold text-primary text-3xl sm:text-4xl mb-8">Invia un messaggio</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="nome" class="block text-textcolor font-body font-semibold mb-2 text-lg">Nome</label>
+                            <input type="text" id="nome" name="nome" class="w-full px-6 py-4 border-4 border-primary rounded-2xl focus:outline-none focus:border-secondary transition-colors font-body text-lg" required>
+                        </div>
+                        <div>
+                            <label for="telefono" class="block text-textcolor font-body font-semibold mb-2 text-lg">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" class="w-full px-6 py-4 border-4 border-primary rounded-2xl focus:outline-none focus:border-secondary transition-colors font-body text-lg" required>
+                        </div>
+                        <div>
+                            <label for="messaggio" class="block text-textcolor font-body font-semibold mb-2 text-lg">Messaggio</label>
+                            <textarea id="messaggio" name="messaggio" rows="5" class="w-full px-6 py-4 border-4 border-primary rounded-2xl focus:outline-none focus:border-secondary transition-colors font-body text-lg resize-none" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent text-white px-8 py-5 text-xl font-body font-bold uppercase tracking-wider rounded-2xl btn-pop">
+                            Invia messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="py-20 bg-secondary">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+        <h2 class="font-title font-bold text-primary text-4xl sm:text-5xl md:text-6xl mb-6">
+            Pronto per il tuo nuovo look?
+        </h2>
+        <p class="text-primary text-xl sm:text-2xl font-body mb-10 leading-relaxed">
+            Il tuo look, unico. Fatto su misura per te.
+        </p>
+        <a href="tel:+390383048028" class="inline-block bg-primary text-white px-12 py-6 text-xl sm:text-2xl font-body font-bold uppercase tracking-wider rounded-2xl btn-pop">
+            Prenota ora
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-primary text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+                <h3 class="font-title text-3xl font-bold text-secondary mb-4">Compagnia Dell'Immagine</h3>
+                <p class="font-body text-base leading-relaxed">
+                    Il tuo salone di fiducia a Voghera per tagli, colori e trattamenti personalizzati.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-body font-bold text-xl mb-4 text-secondary">Contatti</h4>
+                <p class="font-body text-base mb-2">Via Carolina Agata Bellocchio 34</p>
+                <p class="font-body text-base mb-2">Voghera (PV)</p>
+                <p class="font-body text-base">Tel: 0383 48028</p>
+            </div>
+            <div>
+                <h4 class="font-body font-bold text-xl mb-4 text-secondary">Orari</h4>
+                <p class="font-body text-base mb-1">Mar-Gio: 9:00 - 18:00</p>
+                <p class="font-body text-base mb-1">Ven-Sab: 8:00 - 18:00</p>
+                <p class="font-body text-base">Lun-Dom: Chiuso</p>
+            </div>
+        </div>
+        <div class="border-t border-secondary pt-8 text-center">
+            <p class="font-body text-sm text-secondary">
+                Bozza realizzata da <strong>meravigliä Lab</strong> · <a href="https://meraviglialab.com" class="hover:text-white transition-colors">meraviglialab.com</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
