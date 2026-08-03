@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trezzi Paola Tea - Non solo un salone. Un'esperienza.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C2C2C',
+                        secondary: '#C9A96E',
+                        accent: '#7B4F3A',
+                        background: '#F5F0EA',
+                        textcolor: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1E1E1E;
+        }
+        .font-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee {
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-container:hover .marquee {
+            animation-play-state: paused;
+        }
+        
+        .nav-scrolled {
+            background: rgba(44, 44, 44, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cta-button {
+            box-shadow: 8px 8px 0 #C9A96E;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cta-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 #C9A96E;
+        }
+        .cta-button:active {
+            transform: translate(0, 0);
+            box-shadow: 4px 4px 0 #C9A96E;
+        }
+        
+        .bold-card {
+            border: 6px solid #2C2C2C;
+            transition: all 0.4s ease;
+        }
+        .bold-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(123, 79, 58, 0.3);
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 1;
+            text-shadow: 4px 4px 0 rgba(201, 169, 110, 0.3);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#home" class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">
+                Trezzi Paola <span class="text-secondary">Tea</span>
+            </a>
+            
+            <ul class="hidden md:flex gap-8 text-white font-medium">
+                <li><a href="#home" class="hover:text-secondary transition-colors duration-300">Home</a></li>
+                <li><a href="#chi-siamo" class="hover:text-secondary transition-colors duration-300">Chi siamo</a></li>
+                <li><a href="#servizi" class="hover:text-secondary transition-colors duration-300">Servizi</a></li>
+                <li><a href="#filosofia" class="hover:text-secondary transition-colors duration-300">La nostra filosofia</a></li>
+                <li><a href="#contatti" class="hover:text-secondary transition-colors duration-300">Contatti</a></li>
+            </ul>
+            
+            <button id="hamburger" class="md:hidden text-white z-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="mobile-menu md:hidden fixed top-0 right-0 w-full h-screen bg-primary z-40">
+            <ul class="flex flex-col items-center justify-center h-full gap-8 text-white text-2xl font-bold">
+                <li><a href="#home" class="mobile-link hover:text-secondary transition-colors">Home</a></li>
+                <li><a href="#chi-siamo" class="mobile-link hover:text-secondary transition-colors">Chi siamo</a></li>
+                <li><a href="#servizi" class="mobile-link hover:text-secondary transition-colors">Servizi</a></li>
+                <li><a href="#filosofia" class="mobile-link hover:text-secondary transition-colors">La nostra filosofia</a></li>
+                <li><a href="#contatti" class="mobile-link hover:text-secondary transition-colors">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1571875257727-256c39da42af?w=1920&q=80" 
+             alt="Trezzi Paola Tea Salone" 
+             class="absolute inset-0 w-full h-full object-cover"
+             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        <div class="absolute inset-0 bg-primary" style="opacity: 0.55;"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-6xl">
+            <h1 class="hero-title font-display text-white mb-6" data-aos="fade-up">
+                Benvenuta nel tuo nuovo salone preferito
+            </h1>
+            <p class="text-xl md:text-3xl text-white/95 mb-12 font-light tracking-wide max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                A Corbetta, dove ogni visita diventa un momento di stile e benessere tutto per te.
+            </p>
+            <a href="#contatti" class="cta-button inline-block bg-secondary text-primary px-12 py-5 text-xl md:text-2xl font-bold uppercase tracking-wider" data-aos="fade-up" data-aos-delay="200">
+                Prenota il tuo appuntamento
+            </a>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="bg-secondary py-6 overflow-hidden marquee-container">
+        <div class="flex whitespace-nowrap marquee">
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ STILE</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ CURA</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ PERSONALITÀ</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ BELLEZZA</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ ESPERIENZA</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ STILE</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ CURA</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ PERSONALITÀ</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ BELLEZZA</span>
+            <span class="text-primary font-bold text-3xl md:text-5xl mx-8 font-display">✦ ESPERIENZA</span>
+        </div>
+    </div>
+
+    <!-- CHI SIAMO -->
+    <section id="chi-siamo" class="py-24 md:py-32 bg-background">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" 
+                         alt="Salone Trezzi Paola Tea" 
+                         class="w-full h-[500px] object-cover bold-card"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="section-title font-display text-primary mb-8">Chi siamo</h2>
+                    <div class="space-y-6 text-lg leading-relaxed text-textcolor">
+                        <p>
+                            Trezzi Paola Tea non è un salone come gli altri. È un posto dove ci si sente accolte, dove lo stile incontra la cura autentica per la persona. Situato nel cuore di Corbetta, in Via Giacomo Matteotti 13, il nostro salone nasce dalla passione per la bellezza vera: quella che valorizza chi sei, non solo come appari.
+                        </p>
+                        <p class="font-medium">
+                            Con anni di esperienza e una dedizione totale al dettaglio, offriamo un servizio personalizzato che ha conquistato la fiducia e il sorriso di ogni cliente che ha varcato la nostra soglia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIZI -->
+    <section id="servizi" class="py-24 md:py-32 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title font-display text-center mb-20 text-secondary" data-aos="fade-up">I nostri servizi</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bold-card bg-white text-primary p-10" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-20 h-20 bg-secondary mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-3xl font-bold mb-4">Taglio</h3>
+                    <p class="text-lg leading-relaxed">Tagli su misura che esaltano la tua personalità e seguono le ultime tendenze.</p>
+                </div>
+                
+                <div class="bold-card bg-white text-primary p-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-accent mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-3xl font-bold mb-4">Colore</h3>
+                    <p class="text-lg leading-relaxed">Colorazioni fashion e trattamenti che rispettano e valorizzano i tuoi capelli.</p>
+                </div>
+                
+                <div class="bold-card bg-white text-primary p-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-secondary mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-3xl font-bold mb-4">Trattamenti</h3>
+                    <p class="text-lg leading-relaxed">Trattamenti rigeneranti e acconciature per eventi speciali indimenticabili.</p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-2xl md:text-3xl font-light leading-relaxed max-w-4xl mx-auto">
+                    Dal taglio su misura alle colorazioni più fashion, dai trattamenti rigeneranti alle acconciature per eventi speciali: da Trezzi Paola Tea ogni servizio è pensato per esaltare la tua bellezza naturale. Utilizziamo prodotti selezionati e tecniche aggiornate per garantire risultati che durano e che fanno sentire davvero speciale ogni cliente. <span class="font-bold text-secondary">Sempre fashion, sempre con stile.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILOSOFIA -->
+    <section id="filosofia" class="py-24 md:py-32 bg-accent text-white">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="section-title font-display mb-12" data-aos="fade-up">La nostra filosofia</h2>
+            <div class="space-y-8 text-xl md:text-2xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                <p>
+                    Crediamo che un buon salone sia molto più di un luogo dove tagliare i capelli. È uno spazio di cura, ascolto e trasformazione.
+                </p>
+                <p class="text-2xl md:text-3xl font-bold text-secondary">
+                    Ogni appuntamento è un momento dedicato a te.
+                </p>
+                <p>
+                    Parliamo del tuo stile, dei tuoi desideri, della tua routine quotidiana. Solo così possiamo offrirti un risultato che rispecchi davvero la tua personalità.
+                </p>
+                <p class="text-2xl md:text-3xl font-medium">
+                    Non a caso, chi ci sceglie una volta, continua a tornare.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGE BREAK -->
+    <div class="h-96 md:h-[600px] relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80" 
+             alt="Esperienza Trezzi Paola Tea" 
+             class="w-full h-full object-cover"
+             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-60"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <h3 class="font-display text-5xl md:text-7xl font-bold text-white text-center px-6" data-aos="zoom-in">
+                Non solo un salone.<br>Un'esperienza.
+            </h3>
+        </div>
+    </div>
+
+    <!-- CONTATTI -->
+    <section id="contatti" class="py-24 md:py-32 bg-background">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-title font-display text-primary text-center mb-20" data-aos="fade-up">Contattaci</h2>
+            
+            <div class="grid md:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <div class="bold-card bg-white p-10 mb-8">
+                        <h3 class="font-display text-3xl font-bold text-primary mb-6">Dove trovarci</h3>
+                        <div class="space-y-4 text-lg">
+                            <div class="flex items-start gap-4">
+                                <svg class="w-6 h-6 text-secondary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                </svg>
+                                <div>
+                                    <p class="font-bold">Indirizzo</p>
+                                    <p>Via Giacomo Matteotti 13<br>20011 Corbetta (MI)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <svg class="w-6 h-6 text-secondary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                                <div>
+                                    <p class="font-bold">Telefono</p>
+                                    <a href="tel:+390297779473" class="text-accent hover:text-secondary transition-colors font-medium">02 977 9473</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-lg leading-relaxed text-textcolor" data-aos="fade-up">
+                        <p>
+                            Vieni a trovarci o chiamaci per fissare il tuo appuntamento. Saremo felici di accoglierti e di dedicarci completamente a te.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form class="bold-card bg-white p-10 space-y-6">
+                        <div>
+                            <label class="block text-lg font-bold text-primary mb-2">Nome</label>
+                            <input type="text" class="w-full px-6 py-4 border-4 border-primary focus:outline-none focus:border-secondary transition-colors text-lg" placeholder="Il tuo nome">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-lg font-bold text-primary mb-2">Telefono</label>
+                            <input type="tel" class="w-full px-6 py-4 border-4 border-primary focus:outline-none focus:border-secondary transition-colors text-lg" placeholder="Il tuo numero">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-lg font-bold text-primary mb-2">Messaggio</label>
+                            <textarea rows="5" class="w-full px-6 py-4 border-4 border-primary focus:outline-none focus:border-secondary transition-colors text-lg resize-none" placeholder="Raccontaci cosa desideri..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button w-full bg-primary text-white py-5 text-xl font-bold uppercase tracking-wider">
+                            Invia richiesta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="font-display text-3xl font-bold mb-4 text-secondary">Trezzi Paola Tea</h4>
+                    <p class="text-white/80">Non solo un salone. Un'esperienza.</p>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-lg mb-3 text-secondary">Contatti</h5>
+                    <p class="text-white/80 text-sm">Via Giacomo Matteotti 13<br>20011 Corbetta (MI)<br>Tel: 02 977 9473</p>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-lg mb-3 text-secondary">Orari</h5>
+                    <p class="text-white/80 text-sm">Su appuntamento<br>Chiamaci per fissare la tua visita</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white/60 text-sm">© 2024 Trezzi Paola Tea. Tutti i diritti riservati.</p>
+                <p class="text-white/40 text-xs mt-3">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-secondary transition-colors">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
