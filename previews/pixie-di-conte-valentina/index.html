@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXIE di Conte Valentina | Salone di parrucchiera a Voghera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C2C2C',
+                        secondary: '#C9A96E',
+                        accent: '#E8D5B0',
+                        background: '#FAF8F5',
+                        textcolor: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1E1E1E;
+            background-color: #FAF8F5;
+        }
+        
+        @keyframes zoomHero {
+            from {
+                transform: scale(1.0);
+            }
+            to {
+                transform: scale(1.08);
+            }
+        }
+        
+        .hero-image {
+            animation: zoomHero 20s ease-in-out infinite alternate;
+        }
+        
+        .nav-link {
+            position: relative;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background-color: #C9A96E;
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .navbar-scrolled {
+            background-color: rgba(250, 248, 245, 0.98);
+            box-shadow: 0 1px 0 rgba(44, 44, 44, 0.1);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #C9A96E, transparent);
+        }
+        
+        .btn-outline {
+            border: 1px solid #2C2C2C;
+            padding: 1rem 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            font-weight: 400;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: #2C2C2C;
+            color: #FAF8F5;
+        }
+        
+        .btn-outline-accent {
+            border: 1px solid #C9A96E;
+            color: #C9A96E;
+        }
+        
+        .btn-outline-accent:hover {
+            background-color: #C9A96E;
+            color: #FAF8F5;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        input, textarea {
+            border: 1px solid #2C2C2C;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #C9A96E;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between h-24">
+                <a href="#home" class="font-serif text-2xl lg:text-3xl font-light tracking-wide text-primary">
+                    PIXIE <span class="text-secondary">di Conte Valentina</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#home" class="nav-link text-primary">Home</a>
+                    <a href="#chi-siamo" class="nav-link text-primary">Chi siamo</a>
+                    <a href="#servizi" class="nav-link text-primary">Servizi</a>
+                    <a href="#recensioni" class="nav-link text-primary">Recensioni</a>
+                    <a href="#prenota" class="nav-link text-primary">Prenota</a>
+                    <a href="#contatti" class="nav-link text-primary">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-primary">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full h-full bg-background z-40 lg:hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#home" class="nav-link text-primary text-xl mobile-menu-link">Home</a>
+            <a href="#chi-siamo" class="nav-link text-primary text-xl mobile-menu-link">Chi siamo</a>
+            <a href="#servizi" class="nav-link text-primary text-xl mobile-menu-link">Servizi</a>
+            <a href="#recensioni" class="nav-link text-primary text-xl mobile-menu-link">Recensioni</a>
+            <a href="#prenota" class="nav-link text-primary text-xl mobile-menu-link">Prenota</a>
+            <a href="#contatti" class="nav-link text-primary text-xl mobile-menu-link">Contatti</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCPuOrVfLfwvazi_3cBQWgCKIg8TsXRBhkYtYS9_tUH-XV4ZFyKYafV2w5pjjFHFo3LvqirKb9BkgZzXJt5cO_n1BIpZdEUIJPfSde6waw5doRJ9f9TEeIul_3zJLTUmCZ446AIxpaIHeVqTw=s4800-w1600" 
+                 alt="PIXIE Hair Salon" 
+                 class="hero-image w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+        </div>
+        
+        <div class="relative h-full flex items-center justify-center text-center px-6">
+            <div class="max-w-4xl">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white tracking-widest uppercase mb-8" data-aos="fade-up">
+                    Il tuo capello,<br>la tua identità
+                </h1>
+                <p class="text-lg md:text-xl text-white/90 font-light tracking-wide mb-12 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Tagli e colorazioni su misura per esaltare la tua bellezza naturale.<br>A Voghera, con passione e precisione.
+                </p>
+                <a href="#prenota" class="btn-outline inline-block text-white border-white hover:bg-white hover:text-primary" data-aos="fade-up" data-aos-delay="400">
+                    Prenota il tuo appuntamento
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-32 lg:py-40 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="section-title text-primary" data-aos="fade-up">Chi siamo</h2>
+            <div class="section-divider max-w-xs mx-auto mb-16" data-aos="fade-up"></div>
+            <p class="text-lg md:text-xl leading-relaxed mb-8 font-light" data-aos="fade-up" data-aos-delay="100">
+                PIXIE è il salone di Valentina Conte, una parrucchiera con una sola missione: farti uscire con i capelli che hai sempre desiderato. Ogni cliente è unico, ogni appuntamento è un momento dedicato interamente a te.
+            </p>
+            <p class="text-lg md:text-xl leading-relaxed font-light" data-aos="fade-up" data-aos-delay="200">
+                Valentina lavora con cura, precisione e passione, ascoltando le tue esigenze prima ancora di prendere in mano le forbici. Non troverai una fabbrica di teste: troverai una professionista che conosce il suo mestiere e ama davvero ciò che fa.
+            </p>
+        </div>
+    </section>
+
+    <!-- Image Break -->
+    <section class="py-0">
+        <div class="w-full h-96 md:h-[500px] overflow-hidden" data-aos="fade">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjACUEohG22PDIn_ANPSmkPV6i0R54KR_121jnLN1Tve8uOhi0Zjxk6hJEbijFtf3k0ELfywNu_NOT_heFTIVfBJUdOTxOTcIW-i1HIJ1FeA_1skfXqf5rCs7g4eT5ZS6NgVAbMl-mo8iW0b7jk=s4800-w1600" 
+                 alt="Salone PIXIE" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-32 lg:py-40 px-6 bg-background">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="section-title text-primary text-center" data-aos="fade-up">Servizi</h2>
+            <div class="section-divider max-w-xs mx-auto mb-20" data-aos="fade-up"></div>
+            
+            <div class="grid md:grid-cols-2 gap-16 mb-16">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-light tracking-wider uppercase mb-4 text-primary">Taglio</h3>
+                    <p class="font-light leading-relaxed">Taglio donna e bambina personalizzato, studiato per valorizzare i tuoi lineamenti e il tuo stile personale.</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-light tracking-wider uppercase mb-4 text-primary">Colorazione</h3>
+                    <p class="font-light leading-relaxed">Colorazioni e méches con prodotti di qualità, per risultati naturali e luminosi che rispettano la salute del capello.</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-light tracking-wider uppercase mb-4 text-primary">Trattamenti</h3>
+                    <p class="font-light leading-relaxed">Trattamenti ristrutturanti specifici per nutrire, riparare e proteggere la tua chioma in profondità.</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-light tracking-wider uppercase mb-4 text-primary">Piega & Styling</h3>
+                    <p class="font-light leading-relaxed">Piega e acconciature per ogni occasione, dalle più quotidiane a quelle per eventi speciali.</p>
+                </div>
+            </div>
+            
+            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="500">
+                <p class="text-lg font-light leading-relaxed">
+                    Ogni servizio è pensato per valorizzare la tua chioma nel rispetto della salute del capello. Valentina utilizza tecniche aggiornate e prodotti di qualità per garantire risultati duraturi e naturali. Gli appuntamenti sono su prenotazione, per dedicare a ogni cliente il tempo e l'attenzione che merita.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Break 2 -->
+    <section class="py-0">
+        <div class="w-full h-96 md:h-[500px] overflow-hidden" data-aos="fade">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjA1cHICkD0xQhIzvMUREs_7NPnOXuV4Emh1ha2iDuQe5-bmJYP7akmQv3wxXIR_3nMrcRHosUEIUh-BqGZgiDnDzqM8HzBiHYa7HCCIlPkv8F6OfoFmPQc8fN5PPqEz_gnq91ScbKqET_C3wQ=s4800-w624" 
+                 alt="Dettagli salone" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        </div>
+    </section>
+
+    <!-- Recensioni Section -->
+    <section id="recensioni" class="py-32 lg:py-40 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="section-title text-primary text-center" data-aos="fade-up">Recensioni</h2>
+            <div class="section-divider max-w-xs mx-auto mb-20" data-aos="fade-up"></div>
+            
+            <div class="text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center justify-center mb-4">
+                    <span class="text-6xl font-serif font-light text-secondary">4.9</span>
+                    <span class="text-2xl font-light text-primary ml-2">/5</span>
+                </div>
+                <p class="text-sm uppercase tracking-widest text-primary/60">Valutazione Google</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center border border-primary/10 p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 mx-auto text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="font-light italic mb-4 leading-relaxed">Valentina è competente e precisa, sia nel taglio che nella colorazione. La consiglio vivamente!</p>
+                </div>
+                
+                <div class="text-center border border-primary/10 p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 mx-auto text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="font-light italic mb-4 leading-relaxed">Fa sempre miracoli! Bravissima!!!</p>
+                </div>
+                
+                <div class="text-center border border-primary/10 p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 mx-auto text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="font-light italic mb-4 leading-relaxed">Parrucchiera fantastica, professionale, attenta, veloce ed economica, consigliatissima.</p>
+                </div>
+            </div>
+            
+            <p class="text-center text-lg font-light mt-16 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="500">
+                Le nostre clienti parlano per noi. La soddisfazione delle clienti è la nostra migliore carta da visita.
+            </p>
+        </div>
+    </section>
+
+    <!-- Prenota Section -->
+    <section id="prenota" class="py-32 lg:py-40 px-6 bg-primary text-background">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="section-title text-background" data-aos="fade-up">Prenota</h2>
+            <div class="section-divider max-w-xs mx-auto mb-20 opacity-30" data-aos="fade-up"></div>
+            
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-xl md:text-2xl font-light mb-8 leading-relaxed">
+                    Siamo aperti dal <span class="text-secondary">lunedì al sabato</span>, dalle <span class="text-secondary">9:30 alle 20:00</span>.
+                </p>
+                <p class="text-lg font-light leading-relaxed mb-12">
+                    Gli appuntamenti sono su prenotazione: contattaci via telefono o WhatsApp per trovare il giorno e l'orario più adatti a te. Ti aspettiamo in Via Gabetta Ermanno 9, Voghera (PV).
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="tel:+393471796156" class="btn-outline border-background text-background hover:bg-background hover:text-primary">
+                        Chiama ora
+                    </a>
+                    <a href="https://wa.me/393471796156" target="_blank" class="btn-outline-accent">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-sm uppercase tracking-widest text-background/60 mb-2">Telefono</p>
+                <p class="text-2xl font-serif text-secondary tracking-wide">347 179 6156</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Break 3 -->
+    <section class="py-0">
+        <div class="w-full h-96 md:h-[500px] overflow-hidden" data-aos="fade">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCVaOCoOCNKAWEE4R-luTR-qediWMybVcYsApTf61y_Hf-6EoicFQsxlf0V0BJpztfoPlvIqkYPlOR2xCgeRKWGUz343MoA7nk1ilrvZJwytDFEPf6u_Ki93Cs5IWD3ETd4G1JRffPCqQ7zMJk=s4800-w1242" 
+                 alt="Interno salone PIXIE" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-32 lg:py-40 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="section-title text-primary text-center" data-aos="fade-up">Contatti</h2>
+            <div class="section-divider max-w-xs mx-auto mb-20" data-aos="fade-up"></div>
+            
+            <div class="grid md:grid-cols-2 gap-16 mb-20">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="font-serif text-2xl font-light tracking-wider uppercase mb-8 text-primary">Dove siamo</h3>
+                    <div class="space-y-6 font-light">
+                        <div>
+                            <p class="text-sm uppercase tracking-widest text-primary/60 mb-2">Indirizzo</p>
+                            <p class="text-lg">Via Gabetta Ermanno, 9<br>27058 Voghera (PV)</p>
+                        </div>
+                        <div>
+                            <p class="text-sm uppercase tracking-widest text-primary/60 mb-2">Telefono</p>
+                            <p class="text-lg"><a href="tel:+393471796156" class="hover:text-secondary transition-colors">347 179 6156</a></p>
+                        </div>
+                        <div>
+                            <p class="text-sm uppercase tracking-widest text-primary/60 mb-2">Orari</p>
+                            <p class="text-lg">Lunedì - Sabato: 9:30 – 20:00<br>Domenica: Chiuso</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="font-serif text-2xl font-light tracking-wider uppercase mb-8 text-primary">Scrivici</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Nome" class="w-full px-4 py-4 font-light" required>
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Telefono" class="w-full px-4 py-4 font-light" required>
+                        </div>
+                        <div>
+                            <textarea rows="5" placeholder="Messaggio" class="w-full px-4 py-4 font-light resize-none" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-outline w-full">Invia messaggio</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="text-center font-light text-sm" data-aos="fade-up" data-aos-delay="300">
+                <p>Raggiungici facilmente nel cuore di Voghera. Per prenotazioni si consiglia di contattarci in anticipo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-background py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 mb-8">
+                <div>
+                    <h4 class="font-serif text-2xl mb-4 text-secondary">PIXIE</h4>
+                    <p class="font-light text-sm leading-relaxed">di Conte Valentina<br>Ogni taglio racconta chi sei</p>
+                </div>
+                <div>
+                    <h5 class="text-sm uppercase tracking-widest mb-4 text-background/60">Contatti</h5>
+                    <p class="font-light text-sm leading-relaxed">Via Gabetta Ermanno, 9<br>27058 Voghera (PV)<br>Tel: 347 179 6156</p>
+                </div>
+                <div>
+                    <h5 class="text-sm uppercase tracking-widest mb-4 text-background/60">Orari</h5>
+                    <p class="font-light text-sm leading-relaxed">Lun-Sab: 9:30 – 20:00<br>Domenica: Chiuso</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-background/10 pt-8 text-center">
+                <p class="text-xs font-light text-background/60 tracking-wide">
+                    © 2024 PIXIE di Conte Valentina. Tutti i diritti riservati.
+                </p>
+                <p class="text-xs font-light text-background/40 mt-4 tracking-wide">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-secondary hover:text-accent transition-colors">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
