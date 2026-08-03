@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bellezza & Benessere By Kella Academy | Corbetta</title>
+    <title>Bellezza & Benessere By Kella Academy | Parrucchiera Corbetta</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,15 +14,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B2A2A',
-                        secondary: '#C9A97A',
-                        accent: '#E8D5B7',
-                        background: '#FAF6F1',
-                        textcolor: '#2C1F1F'
+                        primary: '#3B2F2F',
+                        secondary: '#C9A96E',
+                        accent: '#E8D5B0',
+                        background: '#FAF7F2',
+                        textcolor: '#2B2420',
                     },
                     fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Jost', 'sans-serif']
+                        heading: ['"Cormorant Garamond"', 'serif'],
+                        body: ['Jost', 'sans-serif'],
                     }
                 }
             }
@@ -31,125 +31,121 @@
     <style>
         body {
             font-family: 'Jost', sans-serif;
-            color: #2C1F1F;
+            color: #2B2420;
+            background-color: #FAF7F2;
         }
-        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
         .scroll-indicator {
             animation: bounce 2s infinite;
         }
-        
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
         }
-        
+        .navbar-scroll {
+            background-color: rgba(59, 47, 47, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            display: block;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(59, 47, 47, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            padding: 2rem 1.5rem 1.5rem;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
         .masonry-grid {
             column-count: 1;
-            column-gap: 1rem;
+            column-gap: 1.5rem;
         }
-        
         @media (min-width: 640px) {
             .masonry-grid {
                 column-count: 2;
             }
         }
-        
         @media (min-width: 1024px) {
             .masonry-grid {
                 column-count: 3;
             }
         }
-        
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1rem;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .masonry-item img {
-            transition: transform 0.6s ease, filter 0.6s ease;
-        }
-        
-        .masonry-item:hover img {
-            transform: scale(1.15);
-            filter: brightness(0.7);
-        }
-        
-        .masonry-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(59, 42, 42, 0.95), transparent);
-            color: white;
-            padding: 2rem 1.5rem 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-        }
-        
-        .masonry-item:hover .masonry-caption {
-            transform: translateY(0);
-        }
-        
-        .navbar-scrolled {
-            background: rgba(250, 246, 241, 0.98) !important;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-        
-        .hero-overlay {
-            background: linear-gradient(to bottom, rgba(59, 42, 42, 0.1), rgba(59, 42, 42, 0.4));
-        }
-        
-        .menu-open {
-            max-height: 500px;
-            transition: max-height 0.3s ease-in;
-        }
-        
-        .menu-closed {
+        .mobile-menu {
             max-height: 0;
-            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            max-height: 400px;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 11px;
+            color: rgba(59, 47, 47, 0.4);
+            font-family: 'Jost', sans-serif;
+            z-index: 9999;
+            background: rgba(250, 247, 242, 0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .watermark a {
+            color: #C9A96E;
+            text-decoration: none;
         }
     </style>
 </head>
-<body class="bg-background">
+<body class="antialiased">
 
     <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#home" class="font-serif text-xl sm:text-2xl font-semibold text-white navbar-scrolled-text transition-colors" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
-                    Bellezza & Benessere By Kella Academy
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-white hover:text-secondary transition font-medium navbar-link" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Home</a>
-                    <a href="#chi-siamo" class="text-white hover:text-secondary transition font-medium navbar-link" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Chi siamo</a>
-                    <a href="#servizi" class="text-white hover:text-secondary transition font-medium navbar-link" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Servizi</a>
-                    <a href="#contatti" class="text-white hover:text-secondary transition font-medium navbar-link" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Orari e Contatti</a>
+                <div class="flex-shrink-0">
+                    <a href="#home" class="font-heading text-2xl sm:text-3xl font-semibold text-white tracking-wide">
+                        Bellezza & Benessere<span class="block text-lg sm:text-xl text-secondary">By Kella Academy</span>
+                    </a>
                 </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition font-body">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition font-body">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition font-body">Servizi</a>
+                    <a href="#perche-noi" class="text-white hover:text-secondary transition font-body">Perché noi</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-body">Contatti</a>
+                </div>
+                <button id="hamburger" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden menu-closed overflow-hidden bg-background">
-                <div class="py-4 space-y-4">
-                    <a href="#home" class="block text-primary hover:text-secondary transition font-medium px-4">Home</a>
-                    <a href="#chi-siamo" class="block text-primary hover:text-secondary transition font-medium px-4">Chi siamo</a>
-                    <a href="#servizi" class="block text-primary hover:text-secondary transition font-medium px-4">Servizi</a>
-                    <a href="#contatti" class="block text-primary hover:text-secondary transition font-medium px-4">Orari e Contatti</a>
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-white hover:text-secondary transition font-body">Home</a>
+                    <a href="#chi-siamo" class="block px-3 py-2 text-white hover:text-secondary transition font-body">Chi siamo</a>
+                    <a href="#servizi" class="block px-3 py-2 text-white hover:text-secondary transition font-body">Servizi</a>
+                    <a href="#perche-noi" class="block px-3 py-2 text-white hover:text-secondary transition font-body">Perché noi</a>
+                    <a href="#contatti" class="block px-3 py-2 text-white hover:text-secondary transition font-body">Contatti</a>
                 </div>
             </div>
         </div>
@@ -157,250 +153,236 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen w-full overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=1920&q=80" 
-             alt="Bellezza & Benessere By Kella Academy" 
-             class="absolute inset-0 w-full h-full object-cover"
-             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
-        <div class="hero-overlay absolute inset-0"></div>
-        
-        <div class="absolute bottom-0 left-0 p-8 sm:p-12 lg:p-20 max-w-3xl z-10">
-            <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-light text-white mb-4 leading-tight" data-aos="fade-up">
-                Benvenuta nel tuo spazio di bellezza
+        <div class="absolute inset-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDdx0PipEzOFIFtb-rjwMsaTgCqYkZm-nQKG34Bqi69GLZL--JCVVUuNZRnfCHMudtzlBV4ybrLSNbp7tlg3srqYbkkLJT4vVaCQTuTin2ssz9G7rFGLiBs7LB7M_wNR7B0bLWUD95URxCU5CEU3F0bmw=s4800-w676" 
+                 alt="Bellezza & Benessere By Kella Academy" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/20 to-transparent"></div>
+        </div>
+        <div class="absolute bottom-0 left-0 p-8 sm:p-12 lg:p-16 max-w-3xl">
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight" data-aos="fade-up">
+                Benvenuta da Kella.<br>Il tuo momento di cura inizia qui.
             </h1>
-            <p class="text-white text-lg sm:text-xl mb-8 font-light leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                Da Kella Academy a Corbetta, ogni visita è un momento dedicato interamente a te: capelli, cura e benessere con passione e professionalità.
+            <p class="font-body text-lg sm:text-xl text-white/90 mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                A Corbetta, un salone dove professionalità e calore umano si incontrano per valorizzare la tua bellezza ogni giorno.
             </p>
-            <a href="#contatti" class="inline-block bg-secondary hover:bg-primary text-white px-8 py-4 font-medium transition-all duration-300 transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+            <a href="#contatti" class="inline-block bg-secondary hover:bg-accent text-primary font-body font-semibold px-8 py-4 rounded-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
                 Prenota il tuo appuntamento
             </a>
         </div>
-        
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="py-16 px-4 sm:px-6 lg:px-12 bg-background">
-        <div class="masonry-grid max-w-7xl mx-auto">
-            <div class="masonry-item" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" 
-                     alt="Hair Styling" 
-                     class="w-full rounded-sm"
-                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                <div class="masonry-caption">
-                    <h3 class="font-serif text-2xl font-semibold mb-1">Taglio Personalizzato</h3>
-                    <p class="text-sm font-light">Ogni taglio è studiato per esaltare la tua unicità</p>
+    <!-- Gallery Masonry Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+        <div class="max-w-7xl mx-auto">
+            <div class="masonry-grid">
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjB8Mwn6PgA3_-5LFAdxI8f0R55bwPJep2Xj6_pqREKGteTUxPiHuwGODZgG0HNDLNO1yl0le7W-1D-M4_kPcT5t0eBe6uq-TeKqoFfa2iRFtaWZn2EE76xF2-GDdnJlqRGKNWQaldWm4vYQXQ=s4800-w1080" 
+                         alt="Salone Kella Academy" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Il nostro salone</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="masonry-item" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80" 
-                     alt="Colorazione" 
-                     class="w-full rounded-sm"
-                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                <div class="masonry-caption">
-                    <h3 class="font-serif text-2xl font-semibold mb-1">Colorazioni Sofisticate</h3>
-                    <p class="text-sm font-light">Tecniche innovative per risultati naturali</p>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" 
+                         alt="Cura dei capelli" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Taglio professionale</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="masonry-item" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80" 
-                     alt="Piega perfetta" 
-                     class="w-full rounded-sm"
-                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                <div class="masonry-caption">
-                    <h3 class="font-serif text-2xl font-semibold mb-1">Piega e Styling</h3>
-                    <p class="text-sm font-light">Per un look perfetto in ogni occasione</p>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDYkqgVDkNywR6miv4B7Gs1v0hftMzbmXYoq0HbDME6saLm9YugWPmFoWoYJFoy_h82wYv7k9VZGxzG0zF8AfqEHdwLkaLDccKhV0CVMcJRQJnz5fFSbuTRw6yfQzojcqnfjfz-3LgUcgtY7Vc=s4800-w1080" 
+                         alt="Prodotti professionali" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Prodotti di qualità</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="masonry-item" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80" 
-                     alt="Trattamenti" 
-                     class="w-full rounded-sm"
-                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                <div class="masonry-caption">
-                    <h3 class="font-serif text-2xl font-semibold mb-1">Trattamenti Rigeneranti</h3>
-                    <p class="text-sm font-light">Cura profonda per capelli sani e luminosi</p>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&q=80" 
+                         alt="Colore capelli" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Colore & Meches</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="masonry-item" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&q=80" 
-                     alt="Benessere" 
-                     class="w-full rounded-sm"
-                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                <div class="masonry-caption">
-                    <h3 class="font-serif text-2xl font-semibold mb-1">Momenti di Relax</h3>
-                    <p class="text-sm font-light">Un'esperienza che coccola corpo e mente</p>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAOKVn0OXkTEP8v_Av4q96COAB_zwKnSf5R1LmaX_qTWvuW4r3_-9dpfnqAeQ8IhI-1IzLJ-NrUDpMdQkQUwtHOulI884PirfKxw1nz_bMs3gt8v9E179d86iSU4rkt2PiDfWBf0m4CpML32A=s4800-w1079" 
+                         alt="Atmosfera Kella" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Ambiente accogliente</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="masonry-item" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80" 
-                     alt="Consulenza" 
-                     class="w-full rounded-sm"
-                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                <div class="masonry-caption">
-                    <h3 class="font-serif text-2xl font-semibold mb-1">Consulenza Personalizzata</h3>
-                    <p class="text-sm font-light">Ascoltiamo i tuoi desideri per creare il look perfetto</p>
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=800&q=80" 
+                         alt="Styling capelli" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Piega & Styling</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Full Bleed Image Divider -->
-    <section class="w-full h-96 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=1920&q=80" 
-             alt="Salone Bellezza" 
+    <section class="h-96 w-full overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80" 
+             alt="Bellezza naturale" 
              class="w-full h-full object-cover"
              onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
-        <div class="absolute inset-0 bg-primary bg-opacity-30"></div>
     </section>
 
     <!-- Chi Siamo Section -->
     <section id="chi-siamo" class="py-24 px-4 sm:px-6 lg:px-8 bg-background">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-primary mb-8" data-aos="fade-up">Chi siamo</h2>
-            <div class="w-20 h-1 bg-secondary mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
-            <p class="text-lg sm:text-xl leading-relaxed text-textcolor font-light mb-6" data-aos="fade-up" data-aos-delay="200">
-                Bellezza & Benessere By Kella Academy nasce dalla passione di Kella per l'arte della cura dei capelli e del benessere della persona. Situato nel cuore di Corbetta, in Via Filippo Turati 4, il nostro salone è un luogo dove ogni cliente è accolta come un'amica.
+            <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-8" data-aos="fade-up">Chi siamo</h2>
+            <p class="font-body text-lg sm:text-xl text-textcolor leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Bellezza & Benessere By Kella Academy nasce dalla passione di Kella per l'arte della cura dei capelli e per le persone. Un salone che unisce la competenza di una formazione professionale alla calore di un rapporto umano autentico. Qui ogni cliente è unica, ogni visita è un momento dedicato a te. Lo dicono le nostre clienti: chi entra la prima volta, non vuole più cambiare. Siamo in Via Filippo Turati 4, a Corbetta, e ti aspettiamo con il sorriso.
             </p>
-            <p class="text-lg sm:text-xl leading-relaxed text-textcolor font-light" data-aos="fade-up" data-aos-delay="300">
-                Con anni di esperienza e una formazione continua, Kella offre un servizio altamente personalizzato, capace di valorizzare la bellezza unica di ogni donna. Le nostre clienti ci scelgono non solo per i risultati eccellenti, ma per l'atmosfera calda e familiare che si respira dal primo momento. Con una valutazione di 4.8 stelle su Google, la soddisfazione delle nostre clienti è la nostra ricompensa più grande.
-            </p>
+        </div>
+    </section>
+
+    <!-- Gallery Masonry Section 2 -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="masonry-grid">
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80" 
+                         alt="Trattamenti ristrutturanti" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Trattamenti ristrutturanti</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800&q=80" 
+                         alt="Balayage" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Balayage naturale</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80" 
+                         alt="Taglio uomo" 
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <p class="font-heading text-xl text-white">Taglio uomo</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Full Bleed Image Divider 2 -->
-    <section class="w-full h-96 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1920&q=80" 
-             alt="Bellezza" 
+    <section class="h-96 w-full overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1920&q=80" 
+             alt="Cura professionale" 
              class="w-full h-full object-cover"
              onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
-        <div class="absolute inset-0 bg-primary bg-opacity-20"></div>
     </section>
 
     <!-- Servizi Section -->
-    <section id="servizi" class="py-24 px-4 sm:px-6 lg:px-8 bg-accent bg-opacity-20">
+    <section id="servizi" class="py-24 px-4 sm:px-6 lg:px-8 bg-background">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-primary mb-8" data-aos="fade-up">Servizi</h2>
-            <div class="w-20 h-1 bg-secondary mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
-            <p class="text-lg sm:text-xl leading-relaxed text-textcolor font-light mb-6" data-aos="fade-up" data-aos-delay="200">
-                Offriamo una gamma completa di servizi per capelli pensati per esaltare la tua bellezza naturale. Dal taglio su misura alle colorazioni più sofisticate, dalle piega e messa in piega ai trattamenti rigeneranti, ogni servizio è eseguito con cura, precisione e i migliori prodotti professionali.
-            </p>
-            <p class="text-lg sm:text-xl leading-relaxed text-textcolor font-light" data-aos="fade-up" data-aos-delay="300">
-                Che tu voglia un restyling completo o semplicemente mantenere il tuo look perfetto, da noi troverai la soluzione giusta. Ci occupiamo anche di trattamenti specifici per la salute del capello, perché per noi bellezza e benessere vanno sempre di pari passo.
+            <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-8" data-aos="fade-up">Servizi</h2>
+            <p class="font-body text-lg sm:text-xl text-textcolor leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Offriamo una gamma completa di trattamenti per capelli: taglio donna e uomo, colore, meches, balayage, trattamenti ristrutturanti, piega e styling per ogni occasione. Ogni servizio è pensato su misura per la tua tipologia di capello e per il risultato che desideri. Che tu voglia un cambiamento radicale o una cura delicata, siamo qui per guidarti con competenza e attenzione.
             </p>
         </div>
     </section>
 
-    <!-- Filosofia Section -->
-    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+    <!-- Perché Noi Section -->
+    <section id="perche-noi" class="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-primary mb-8" data-aos="fade-up">La nostra filosofia</h2>
-            <div class="w-20 h-1 bg-secondary mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
-            <p class="text-lg sm:text-xl leading-relaxed text-textcolor font-light" data-aos="fade-up" data-aos-delay="200">
-                Crediamo che prendersi cura di sé sia un atto d'amore. Per questo ogni appuntamento da Bellezza & Benessere By Kella Academy è pensato come un momento tutto tuo: ascoltiamo i tuoi desideri, analizziamo le caratteristiche dei tuoi capelli e costruiamo insieme il look che ti fa sentire al meglio. La fiducia che le nostre clienti ripongono in noi è il valore che ci guida ogni giorno, e ogni capello è per noi un'opera da rispettare e valorizzare.
+            <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-8" data-aos="fade-up">Perché sceglierci</h2>
+            <p class="font-body text-lg sm:text-xl text-textcolor leading-relaxed mb-6" data-aos="fade-up" data-aos-delay="100">
+                Con una valutazione di 4.8 su 5 e decine di clienti fidelizzate, la nostra reputazione si costruisce ogni giorno con dedizione. Non siamo solo un salone: siamo un luogo dove ti senti ascoltata, valorizzata e coccolata. La formazione continua garantisce tecniche aggiornate e prodotti di qualità, per risultati che durano nel tempo e che ti faranno sentire davvero te stessa.
             </p>
+            <div class="inline-flex items-center gap-2 text-secondary font-heading text-2xl font-semibold" data-aos="fade-up" data-aos-delay="200">
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                <span>4.8 / 5</span>
+            </div>
         </div>
-    </section>
-
-    <!-- Full Bleed Image Divider 3 -->
-    <section class="w-full h-96 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1920&q=80" 
-             alt="Salone Interior" 
-             class="w-full h-full object-cover"
-             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
-        <div class="absolute inset-0 bg-primary bg-opacity-25"></div>
     </section>
 
     <!-- Contatti Section -->
-    <section id="contatti" class="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+    <section id="contatti" class="py-24 px-4 sm:px-6 lg:px-8 bg-primary text-white">
         <div class="max-w-6xl mx-auto">
-            <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-light text-primary mb-8 text-center" data-aos="fade-up">Orari e contatti</h2>
-            <div class="w-20 h-1 bg-secondary mx-auto mb-16" data-aos="fade-up" data-aos-delay="100"></div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Info -->
-                <div data-aos="fade-right">
-                    <div class="mb-8">
-                        <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Orari di apertura</h3>
-                        <div class="space-y-3 text-textcolor">
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Lunedì</span>
-                                <span>12:00 – 20:30</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Martedì</span>
-                                <span>9:00 – 18:30</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Mercoledì</span>
-                                <span class="text-gray-500">Chiuso</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Giovedì</span>
-                                <span>12:00 – 20:30</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Venerdì</span>
-                                <span>9:00 – 18:30</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Sabato</span>
-                                <span>8:30 – 14:00</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-accent">
-                                <span class="font-medium">Domenica</span>
-                                <span class="text-gray-500">Chiuso</span>
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mb-8" data-aos="fade-up">Orari e Contatti</h2>
+                <p class="font-body text-lg sm:text-xl leading-relaxed max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Vieni a trovarci in Via Filippo Turati 4, Corbetta (MI). Siamo aperti il lunedì e giovedì dalle 12:00 alle 20:30, il martedì e venerdì dalle 9:00 alle 18:30, il sabato dalle 8:30 alle 14:00. Mercoledì e domenica siamo chiusi.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="space-y-6" data-aos="fade-right">
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-secondary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-heading text-xl font-semibold mb-1">Indirizzo</h3>
+                            <p class="font-body">Via Filippo Turati 4, Corbetta (MI)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-secondary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-heading text-xl font-semibold mb-1">Telefono</h3>
+                            <a href="tel:+390297778130" class="font-body hover:text-secondary transition">02 977 8130</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-6 h-6 text-secondary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-heading text-xl font-semibold mb-2">Orari</h3>
+                            <div class="font-body space-y-1 text-sm">
+                                <p>Lunedì: 12:00 - 20:30</p>
+                                <p>Martedì: 9:00 - 18:30</p>
+                                <p>Mercoledì: Chiuso</p>
+                                <p>Giovedì: 12:00 - 20:30</p>
+                                <p>Venerdì: 9:00 - 18:30</p>
+                                <p>Sabato: 8:30 - 14:00</p>
+                                <p>Domenica: Chiuso</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="mb-8">
-                        <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Dove siamo</h3>
-                        <p class="text-textcolor mb-2">
-                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            Via Filippo Turati 4, 20011 Corbetta (MI)
-                        </p>
-                        <p class="text-textcolor mb-4">
-                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                            <a href="tel:+390297781300" class="hover:text-secondary transition">02 977 8130</a>
-                        </p>
-                    </div>
-                    
-                    <a href="tel:+390297781300" class="inline-block w-full text-center bg-secondary hover:bg-primary text-white px-8 py-4 font-medium transition-all duration-300 transform hover:scale-105 mb-3">
-                        Chiama ora
-                    </a>
                 </div>
-                
-                <!-- Form -->
+
                 <div data-aos="fade-left">
-                    <h3 class="font-serif text-2xl font-semibold text-primary mb-6">Richiedi informazioni</h3>
-                    <form class="space-y-6">
+                    <form class="space-y-6 bg-white/10 backdrop-blur-sm p-8 rounded-lg">
                         <div>
-                            <label class="block text-textcolor mb-2 font-medium">Nome</label>
-                            <input type="text" class="w-full px-4 py-3 border border-accent focus:border-secondary focus:outline-none transition" placeholder="Il tuo nome">
+                            <label for="nome" class="block font-body text-sm font-medium mb-2">Nome</label>
+                            <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-sm text-white placeholder-white/60 focus:outline-none focus:border-secondary transition">
                         </div>
                         <div>
-                            <label class="block text-textcolor mb-2 font-medium">Telefono</label>
-                            <input type="tel" class="w-full px-4 py-3 border border-accent focus:border-secondary focus:outline-none transition" placeholder="Il tuo numero">
+                            <label for="telefono" class="block font-body text-sm font-medium mb-2">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-sm text-white placeholder-white/60 focus:outline-none focus:border-secondary transition">
                         </div>
                         <div>
-                            <label class="block text-textcolor mb-2 font-medium">Messaggio</label>
-                            <textarea rows="5" class="w-full px-4 py-3 border border-accent focus:border-secondary focus:outline-none transition" placeholder="Come possiamo aiutarti?"></textarea>
+                            <label for="messaggio" class="block font-body text-sm font-medium mb-2">Messaggio</label>
+                            <textarea id="messaggio" name="messaggio" rows="4" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-sm text-white placeholder-white/60 focus:outline-none focus:border-secondary transition resize-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-primary hover:bg-secondary text-white px-8 py-4 font-medium transition-all duration-300 transform hover:scale-105">
+                        <button type="submit" class="w-full bg-secondary hover:bg-accent text-primary font-body font-semibold px-8 py-4 rounded-sm transition-all duration-300 shadow-lg hover:shadow-xl">
                             Invia richiesta
                         </button>
                     </form>
@@ -410,103 +392,67 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <h4 class="font-serif text-2xl font-semibold mb-4">Bellezza & Benessere By Kella Academy</h4>
-                    <p class="text-accent font-light">La tua bellezza, la nostra passione</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-3">Contatti</h5>
-                    <p class="text-accent font-light mb-1">Via Filippo Turati 4</p>
-                    <p class="text-accent font-light mb-1">20011 Corbetta (MI)</p>
-                    <p class="text-accent font-light">Tel: 02 977 8130</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-3">Orari</h5>
-                    <p class="text-accent font-light mb-1">Lun e Gio: 12:00 – 20:30</p>
-                    <p class="text-accent font-light mb-1">Mar e Ven: 9:00 – 18:30</p>
-                    <p class="text-accent font-light">Sab: 8:30 – 14:00</p>
-                </div>
-            </div>
-            <div class="border-t border-secondary pt-8 text-center text-accent text-sm font-light">
-                <p class="mb-2">&copy; 2024 Bellezza & Benessere By Kella Academy. Tutti i diritti riservati.</p>
-                <p class="opacity-70">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-white transition">meravigliä Lab</a> · meraviglialab.com</p>
-            </div>
+    <footer class="bg-primary text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="font-heading text-3xl font-semibold mb-2">Bellezza & Benessere<span class="block text-xl text-secondary">By Kella Academy</span></div>
+            <p class="font-body text-sm text-white/70 mb-4">La tua bellezza, la nostra passione</p>
+            <p class="font-body text-sm text-white/60">Via Filippo Turati 4, Corbetta (MI) • Tel: 02 977 8130</p>
+            <p class="font-body text-xs text-white/40 mt-6">© 2024 Bellezza & Benessere By Kella Academy. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
+    <!-- Watermark -->
+    <div class="watermark">
+        Bozza realizzata da <a href="https://meraviglialab.com" target="_blank">meravigliä Lab</a> · meraviglialab.com
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
+        AOS.init({ 
+            duration: 800, 
             once: true,
             offset: 100
         });
-        
+
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
-        const navbarLinks = document.querySelectorAll('.navbar-link');
-        const navbarText = document.querySelector('.navbar-scrolled-text');
-        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                navbar.classList.add('navbar-scrolled');
-                navbarText.style.color = '#3B2A2A';
-                navbarText.style.textShadow = 'none';
-                navbarLinks.forEach(link => {
-                    link.style.color = '#3B2A2A';
-                    link.style.textShadow = 'none';
-                });
+                navbar.classList.add('navbar-scroll');
             } else {
-                navbar.classList.remove('navbar-scrolled');
-                navbarText.style.color = 'white';
-                navbarText.style.textShadow = '1px 1px 3px rgba(0,0,0,0.3)';
-                navbarLinks.forEach(link => {
-                    link.style.color = 'white';
-                    link.style.textShadow = '1px 1px 2px rgba(0,0,0,0.3)';
-                });
+                navbar.classList.remove('navbar-scroll');
             }
         });
-        
+
         // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('menu-closed')) {
-                mobileMenu.classList.remove('menu-closed');
-                mobileMenu.classList.add('menu-open');
-            } else {
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.add('menu-closed');
-            }
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
         });
-        
+
         // Close mobile menu on link click
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.add('menu-closed');
+                mobileMenu.classList.remove('active');
             });
         });
-        
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
     </script>
-
 </body>
 </html>
