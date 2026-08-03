@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parrucchiere Yi - Stile preciso, cura autentica | Voghera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700;800&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E35',
+                        secondary: '#C8A97E',
+                        accent: '#E8D5B0',
+                        background: '#F7F4EF',
+                        textcolor: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1A1A1A;
+            overflow-x: hidden;
+        }
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cta-button:hover {
+            transform: translateY(-6px);
+        }
+        .navbar-scroll {
+            background: rgba(44, 62, 53, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        .hamburger span {
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .card-thick {
+            border: 6px solid #2C3E35;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-thick:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 12px 12px 0 #C8A97E;
+        }
+        .section-full {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+    </style>
+</head>
+<body class="bg-background">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#home" class="text-white font-heading text-3xl lg:text-4xl font-bold tracking-tight">
+                    Parrucchiere Yi
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white font-body font-medium hover:text-secondary transition-colors">Home</a>
+                    <a href="#chi-siamo" class="text-white font-body font-medium hover:text-secondary transition-colors">Chi siamo</a>
+                    <a href="#servizi" class="text-white font-body font-medium hover:text-secondary transition-colors">Servizi</a>
+                    <a href="#contatti" class="text-white font-body font-medium hover:text-secondary transition-colors">Orari e contatti</a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="hamburger" class="hamburger md:hidden flex flex-col gap-1.5 z-50">
+                    <span class="block w-8 h-1 bg-white"></span>
+                    <span class="block w-8 h-1 bg-white"></span>
+                    <span class="block w-8 h-1 bg-white"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary py-6">
+            <div class="flex flex-col space-y-4 px-6">
+                <a href="#home" class="text-white font-body font-medium text-lg">Home</a>
+                <a href="#chi-siamo" class="text-white font-body font-medium text-lg">Chi siamo</a>
+                <a href="#servizi" class="text-white font-body font-medium text-lg">Servizi</a>
+                <a href="#contatti" class="text-white font-body font-medium text-lg">Orari e contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBV5QL3vRUnvLgFOPxvNiCyFsq3mDuZJ7vRcYpOaIy48JWi3Q4JxJmu1FpB5v4uMWvpFOXzzazTsPLE-Za3idrIjGsV4_3JqdoUADQe6gsPmdieF0KeoqV-YCjTPQX1UmLl5gRo9FeIM5SA=s4800-w1600" 
+                 alt="Parrucchiere Yi Hero" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="absolute inset-0 bg-primary opacity-55"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <h1 class="font-heading font-extrabold text-white leading-[0.95] mb-6" 
+                style="font-size: clamp(3.5rem, 10vw, 7rem); font-weight: 800;"
+                data-aos="fade-up">
+                Il tuo stile,<br>ogni giorno
+            </h1>
+            <p class="text-white text-xl lg:text-3xl font-body font-light max-w-3xl mx-auto mb-12 leading-relaxed" 
+               data-aos="fade-up" 
+               data-aos-delay="100">
+                Taglio, colore e piega a Voghera con professionalità, attenzione e prezzi onesti.<br>
+                Aperto sei giorni su sette, anche la domenica mattina.
+            </p>
+            <a href="#contatti" 
+               class="cta-button inline-block bg-secondary text-white font-body font-bold text-xl px-12 py-5 hover:bg-opacity-90 transition-all"
+               style="box-shadow: 8px 8px 0 #C8A97E; border: 4px solid #2C3E35;"
+               data-aos="fade-up" 
+               data-aos-delay="200">
+                Prenota la tua visita
+            </a>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="section-full bg-primary py-8">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="text-white font-heading text-5xl lg:text-7xl font-bold mx-12">TAGLIO</span>
+                <span class="text-secondary font-heading text-5xl lg:text-7xl font-bold mx-12">★</span>
+                <span class="text-white font-heading text-5xl lg:text-7xl font-bold mx-12">COLORE</span>
+                <span class="text-secondary font-heading text-5xl lg:text-7xl font-bold mx-12">★</span>
+                <span class="text-white font-heading text-5xl lg:text-7xl font-bold mx-12">PIEGA</span>
+                <span class="text-secondary font-heading text-5xl lg:text-7xl font-bold mx-12">★</span>
+                <span class="text-white font-heading text-5xl lg:text-7xl font-bold mx-12">TAGLIO</span>
+                <span class="text-secondary font-heading text-5xl lg:text-7xl font-bold mx-12">★</span>
+                <span class="text-white font-heading text-5xl lg:text-7xl font-bold mx-12">COLORE</span>
+                <span class="text-secondary font-heading text-5xl lg:text-7xl font-bold mx-12">★</span>
+                <span class="text-white font-heading text-5xl lg:text-7xl font-bold mx-12">PIEGA</span>
+                <span class="text-secondary font-heading text-5xl lg:text-7xl font-bold mx-12">★</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHI SIAMO -->
+    <section id="chi-siamo" class="section-full bg-background py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-heading font-extrabold text-primary mb-8" style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 0.95;">
+                        Chi siamo
+                    </h2>
+                    <p class="text-textcolor text-lg lg:text-xl font-body leading-relaxed mb-6">
+                        Parrucchiere Yi è un salone nel cuore di Voghera, in Via Emilia 82, dove ogni cliente viene accolto in un ambiente curato, pulito e rilassante. Il nostro obiettivo è semplice: farti uscire soddisfatto, con un risultato che rispecchi davvero te.
+                    </p>
+                    <p class="text-textcolor text-lg lg:text-xl font-body leading-relaxed">
+                        Grazie a una valutazione di 4,5 stelle su Google e a decine di clienti fedeli, portiamo avanti ogni giorno un lavoro artigianale fatto di precisione, rispetto dei tempi e passione per i capelli.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAwtng4jqZwMbaekvW2YYqGn0ww_HWVfPDFYlzn2_fMkCKF73_syuM5Vg42SsMf1LdFMum5cR5Ef3W_dPhBkekoAHwZQ5Whu2v2Zr6S6dit7iVRjjkTUZ5oVpYkf3LFGIrj5xkGFSpVvbv1uA=s4800-w1600" 
+                         alt="Interno Parrucchiere Yi" 
+                         class="w-full h-[500px] object-cover border-8 border-primary"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIZI -->
+    <section id="servizi" class="section-full bg-accent py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="font-heading font-extrabold text-primary text-center mb-6" 
+                style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 0.95;"
+                data-aos="fade-up">
+                Servizi
+            </h2>
+            <p class="text-textcolor text-xl lg:text-2xl font-body text-center max-w-4xl mx-auto mb-20 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Offriamo una gamma completa di servizi per capelli: taglio uomo, donna e bambino, colorazione e decolorazione, piega e messa in piega, trattamenti e shampoo professionale.
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-thick bg-white p-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-primary flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-primary mb-4">Taglio</h3>
+                    <p class="font-body text-lg text-textcolor leading-relaxed">
+                        Taglio uomo, donna e bambino con tecnica precisa e attenzione ai dettagli.
+                    </p>
+                </div>
+
+                <div class="card-thick bg-white p-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-secondary flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-primary mb-4">Colore</h3>
+                    <p class="font-body text-lg text-textcolor leading-relaxed">
+                        Colorazione e decolorazione con prodotti professionali di alta qualità.
+                    </p>
+                </div>
+
+                <div class="card-thick bg-white p-10" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-primary flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-primary mb-4">Piega</h3>
+                    <p class="font-body text-lg text-textcolor leading-relaxed">
+                        Piega e messa in piega per uno styling impeccabile e duraturo.
+                    </p>
+                </div>
+
+                <div class="card-thick bg-white p-10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-secondary flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-primary mb-4">Trattamenti</h3>
+                    <p class="font-body text-lg text-textcolor leading-relaxed">
+                        Trattamenti specifici per nutrire e rigenerare i capelli.
+                    </p>
+                </div>
+
+                <div class="card-thick bg-white p-10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-primary flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-primary mb-4">Shampoo</h3>
+                    <p class="font-body text-lg text-textcolor leading-relaxed">
+                        Shampoo professionale per una pulizia profonda e delicata.
+                    </p>
+                </div>
+
+                <div class="card-thick bg-white p-10" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-secondary flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-primary mb-4">Cura</h3>
+                    <p class="font-body text-lg text-textcolor leading-relaxed">
+                        Ogni servizio è eseguito con cura, senza fretta, per risultati ottimali.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERCHÉ SCEGLIERCI -->
+    <section class="section-full bg-primary py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDAQ2WuvztFzdUcqqBzn1UXcM94NMfl7-nZF1ZlW9kbgHBTvuQlO7LMu2nAu0BJsMDSwMGnlvcWyg-WMK5xNLdKUDg0v_bCGMxwYEZEHIlV43eAGPywZ6AS9YkaGTf4g-VcD9W-TXbf89BOtE8=s4800-w1600" 
+                         alt="Interno salone" 
+                         class="w-full h-[500px] object-cover border-8 border-accent"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="font-heading font-extrabold text-white mb-8" style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 0.95;">
+                        Perché sceglierci
+                    </h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6">
+                            <div class="w-16 h-16 bg-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-heading text-3xl font-bold">1</span>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-2xl text-accent mb-2">Veloci senza fretta</h3>
+                                <p class="text-white text-lg font-body leading-relaxed">
+                                    Rispettiamo il tuo tempo senza mai sacrificare la qualità del risultato.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-16 h-16 bg-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-heading text-3xl font-bold">2</span>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-2xl text-accent mb-2">Precisi senza rigidità</h3>
+                                <p class="text-white text-lg font-body leading-relaxed">
+                                    Tecnica impeccabile con l'attenzione alle tue esigenze personali.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-16 h-16 bg-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-heading text-3xl font-bold">3</span>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-2xl text-accent mb-2">Onesti nel prezzo</h3>
+                                <p class="text-white text-lg font-body leading-relaxed">
+                                    Qualità professionale a prezzi giusti, trasparenti e accessibili.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY MARQUEE -->
+    <div class="section-full bg-background py-16">
+        <div class="marquee">
+            <div class="marquee-content">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBtsUraXP9yyiyitu7pbD6jIoMz9HphFNm3ynP4TeWK02yvZd03BPwrTn1qIxm43nvGNSqUtQjM_Pm_VrTSmKn3qNQKmWuIlCZnUt-Vb_mLp7pAh90PtBQE_dRGB7_xIIYi5NpPGE2gdP_-DQ=s4800-w1600" 
+                     alt="Gallery 1" 
+                     class="inline-block w-80 h-80 object-cover border-6 border-primary mx-6"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAwtng4jqZwMbaekvW2YYqGn0ww_HWVfPDFYlzn2_fMkCKF73_syuM5Vg42SsMf1LdFMum5cR5Ef3W_dPhBkekoAHwZQ5Whu2v2Zr6S6dit7iVRjjkTUZ5oVpYkf3LFGIrj5xkGFSpVvbv1uA=s4800-w1600" 
+                     alt="Gallery 2" 
+                     class="inline-block w-80 h-80 object-cover border-6 border-primary mx-6"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDAQ2WuvztFzdUcqqBzn1UXcM94NMfl7-nZF1ZlW9kbgHBTvuQlO7LMu2nAu0BJsMDSwMGnlvcWyg-WMK5xNLdKUDg0v_bCGMxwYEZEHIlV43eAGPywZ6AS9YkaGTf4g-VcD9W-TXbf89BOtE8=s4800-w1600" 
+                     alt="Gallery 3" 
+                     class="inline-block w-80 h-80 object-cover border-6 border-primary mx-6"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBtsUraXP9yyiyitu7pbD6jIoMz9HphFNm3ynP4TeWK02yvZd03BPwrTn1qIxm43nvGNSqUtQjM_Pm_VrTSmKn3qNQKmWuIlCZnUt-Vb_mLp7pAh90PtBQE_dRGB7_xIIYi5NpPGE2gdP_-DQ=s4800-w1600" 
+                     alt="Gallery 1" 
+                     class="inline-block w-80 h-80 object-cover border-6 border-primary mx-6"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAwtng4jqZwMbaekvW2YYqGn0ww_HWVfPDFYlzn2_fMkCKF73_syuM5Vg42SsMf1LdFMum5cR5Ef3W_dPhBkekoAHwZQ5Whu2v2Zr6S6dit7iVRjjkTUZ5oVpYkf3LFGIrj5xkGFSpVvbv1uA=s4800-w1600" 
+                     alt="Gallery 2" 
+                     class="inline-block w-80 h-80 object-cover border-6 border-primary mx-6"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDAQ2WuvztFzdUcqqBzn1UXcM94NMfl7-nZF1ZlW9kbgHBTvuQlO7LMu2nAu0BJsMDSwMGnlvcWyg-WMK5xNLdKUDg0v_bCGMxwYEZEHIlV43eAGPywZ6AS9YkaGTf4g-VcD9W-TXbf89BOtE8=s4800-w1600" 
+                     alt="Gallery 3" 
+                     class="inline-block w-80 h-80 object-cover border-6 border-primary mx-6"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
+            </div>
+        </div>
+    </div>
+
+    <!-- ORARI E CONTATTI -->
+    <section id="contatti" class="section-full bg-secondary py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="font-heading font-extrabold text-white text-center mb-6" 
+                style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; line-height: 0.95;"
+                data-aos="fade-up">
+                Orari e contatti
+            </h2>
+            <p class="text-white text-xl lg:text-2xl font-body text-center max-w-3xl mx-auto mb-20" data-aos="fade-up" data-aos-delay="100">
+                Siamo qui per te. Chiamaci o passa a trovarci.
+            </p>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Info e Orari -->
+                <div data-aos="fade-right">
+                    <div class="bg-white p-10 border-8 border-primary mb-8">
+                        <h3 class="font-heading font-bold text-3xl text-primary mb-6">Orari di apertura</h3>
+                        <div class="space-y-4 text-lg font-body text-textcolor">
+                            <div class="flex justify-between border-b-2 border-accent pb-2">
+                                <span class="font-semibold">Lunedì - Sabato</span>
+                                <span>8:30 - 20:00</span>
+                            </div>
+                            <div class="flex justify-between border-b-2 border-accent pb-2">
+                                <span class="font-semibold">Domenica</span>
+                                <span>9:30 - 13:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-10 border-8 border-primary">
+                        <h3 class="font-heading font-bold text-3xl text-primary mb-6">Dove siamo</h3>
+                        <div class="space-y-4 text-lg font-body text-textcolor">
+                            <div class="flex items-start gap-4">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Via Emilia 82, Voghera (PV)</span>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <a href="tel:+393285595520" class="hover:text-primary transition-colors font-semibold">328 559 5520</a>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex gap-4">
+                            <a href="tel:+393285595520" 
+                               class="flex-1 bg-primary text-white text-center font-body font-bold py-4 px-6 hover:bg-opacity-90 transition-all border-4 border-primary"
+                               style="box-shadow: 4px 4px 0 #2C3E35;">
+                                Chiama ora
+                            </a>
+                            <a href="https://wa.me/393285595520" 
+                               target="_blank"
+                               class="flex-1 bg-[#25D366] text-white text-center font-body font-bold py-4 px-6 hover:bg-opacity-90 transition-all border-4 border-primary"
+                               style="box-shadow: 4px 4px 0 #2C3E35;">
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div data-aos="fade-left">
+                    <form class="bg-white p-10 border-8 border-primary">
+                        <h3 class="font-heading font-bold text-3xl text-primary mb-6">Richiedi informazioni</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block font-body font-semibold text-lg text-textcolor mb-2">Nome</label>
+                                <input type="text" 
+                                       class="w-full px-6 py-4 border-4 border-primary font-body text-lg focus:outline-none focus:border-secondary transition-colors" 
+                                       placeholder="Il tuo nome">
+                            </div>
+                            <div>
+                                <label class="block font-body font-semibold text-lg text-textcolor mb-2">Telefono</label>
+                                <input type="tel" 
+                                       class="w-full px-6 py-4 border-4 border-primary font-body text-lg focus:outline-none focus:border-secondary transition-colors" 
+                                       placeholder="Il tuo numero">
+                            </div>
+                            <div>
+                                <label class="block font-body font-semibold text-lg text-textcolor mb-2">Messaggio</label>
+                                <textarea rows="5" 
+                                          class="w-full px-6 py-4 border-4 border-primary font-body text-lg focus:outline-none focus:border-secondary transition-colors resize-none" 
+                                          placeholder="Come possiamo aiutarti?"></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full bg-primary text-white font-body font-bold text-xl py-5 hover:bg-opacity-90 transition-all"
+                                    style="box-shadow: 6px 6px 0 #C8A97E; border: 4px solid #2C3E35;">
+                                Invia richiesta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section-full bg-primary py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-8">
+                <div>
+                    <h3 class="font-heading text-3xl font-bold text-white mb-4">Parrucchiere Yi</h3>
+                    <p class="text-accent font-body text-lg">Stile preciso, cura autentica</p>
+                </div>
+                <div>
+                    <h4 class="font-body font-bold text-xl text-white mb-4">Contatti</h4>
+                    <p class="text-accent font-body mb-2">Via Emilia 82, Voghera (PV)</p>
+                    <p class="text-accent font-body mb-2">Tel: 328 559 5520</p>
+                </div>
+                <div>
+                    <h4 class="font-body font-bold text-xl text-white mb-4">Orari</h4>
+                    <p class="text-accent font-body mb-2">Lun-Sab: 8:30 - 20:00</p>
+                    <p class="text-accent font-body">Dom: 9:30 - 13:00</p>
+                </div>
+            </div>
+            <div class="border-t-2 border-secondary pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-accent font-body text-sm">© 2024 Parrucchiere Yi. Tutti i diritti riservati.</p>
+                <p class="text-accent font-body text-sm">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-white hover:text-secondary transition-colors font-semibold">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scroll');
+            } else {
+                navbar.classList.remove('navbar-scroll');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
