@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE parrucchieri UNITED | Salone di Parrucchieri a Voghera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C2C2C',
+                        secondary: '#B59A72',
+                        accent: '#8C6E4B',
+                        background: '#F5F0EA',
+                        textcolor: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1E1E1E;
+            background-color: #F5F0EA;
+        }
+        
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        
+        .hero-image {
+            animation: slowZoom 20s ease-out infinite alternate;
+        }
+        
+        .nav-link {
+            position: relative;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 300;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #B59A72;
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 2.5rem;
+        }
+        
+        .btn-outline {
+            border: 1px solid #2C2C2C;
+            padding: 1rem 2.5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background: #2C2C2C;
+            color: #F5F0EA;
+        }
+        
+        .divider {
+            height: 1px;
+            background: #2C2C2C;
+            opacity: 0.15;
+            max-width: 100px;
+            margin: 0 auto;
+        }
+        
+        .navbar-scroll {
+            background: rgba(245, 240, 234, 0.98);
+            box-shadow: 0 1px 0 rgba(44, 44, 44, 0.1);
+        }
+        
+        .menu-icon span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: #2C2C2C;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.65rem;
+            color: rgba(44, 44, 44, 0.4);
+            z-index: 9999;
+            letter-spacing: 0.05em;
+        }
+        
+        .watermark a {
+            color: rgba(181, 154, 114, 0.7);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Watermark -->
+    <div class="watermark font-sans">
+        Bozza realizzata da meravigliä Lab · <a href="https://meraviglialab.com" target="_blank">meraviglialab.com</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
+        <div class="container mx-auto px-6 lg:px-12 py-6">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="font-serif text-2xl lg:text-3xl tracking-wider text-primary">
+                    ONE <span class="font-light">parrucchieri</span> UNITED
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-12">
+                    <a href="#home" class="nav-link text-primary">Home</a>
+                    <a href="#chi-siamo" class="nav-link text-primary">Chi siamo</a>
+                    <a href="#servizi" class="nav-link text-primary">Servizi</a>
+                    <a href="#team" class="nav-link text-primary">Il nostro team</a>
+                    <a href="#contatti" class="nav-link text-primary">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="lg:hidden menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-background border-t border-primary/10">
+            <div class="container mx-auto px-6 py-8 flex flex-col space-y-6">
+                <a href="#home" class="nav-link text-primary text-center">Home</a>
+                <a href="#chi-siamo" class="nav-link text-primary text-center">Chi siamo</a>
+                <a href="#servizi" class="nav-link text-primary text-center">Servizi</a>
+                <a href="#team" class="nav-link text-primary text-center">Il nostro team</a>
+                <a href="#contatti" class="nav-link text-primary text-center">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50 z-10"></div>
+        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBOGrnlfSaTldcd1aspkeJWjUOs9x90B91OAANBIn2UG7MW8p_sXipdq5PsfZ4SeOMo4RixrvHNPWNqw6rUuQ9dD6-O1HgLYeHXrFf_Yu3g_jAjxSfQ2Dogb-KK3fRVtm2Gkx-J2YQJ0ReSeQ=s4800-w1079" 
+             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;"
+             alt="ONE parrucchieri UNITED" 
+             class="hero-image absolute inset-0 w-full h-full object-cover">
+        
+        <div class="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
+            <h1 class="font-serif font-light text-5xl md:text-7xl lg:text-8xl text-white tracking-widest uppercase mb-8" data-aos="fade-up">
+                Il tuo capello,<br>la nostra passione.
+            </h1>
+            <p class="font-sans font-light text-lg md:text-xl text-white/90 tracking-wide max-w-2xl mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Un team unito, un risultato unico. Scopri l'esperienza ONE a Voghera.
+            </p>
+            <a href="#contatti" class="btn-outline text-white border-white hover:bg-white hover:text-primary" data-aos="fade-up" data-aos-delay="400">
+                Prenota la tua visita
+            </a>
+        </div>
+    </section>
+
+    <!-- Chi siamo -->
+    <section id="chi-siamo" class="py-32 lg:py-40 px-6">
+        <div class="container mx-auto max-w-4xl text-center">
+            <div class="divider mb-12" data-aos="fade-up"></div>
+            <h2 class="section-title text-primary mb-12" data-aos="fade-up" data-aos-delay="100">Chi siamo</h2>
+            <p class="font-sans font-light text-lg leading-relaxed text-textcolor/80 mb-8" data-aos="fade-up" data-aos-delay="200">
+                ONE parrucchieri UNITED non è solo un salone: è un luogo dove il tempo si ferma e ogni cliente viene accolto come di casa. Siamo un team affiatato di professionisti con anni di esperienza nel settore, uniti dalla stessa passione per l'arte del capello.
+            </p>
+            <p class="font-sans font-light text-lg leading-relaxed text-textcolor/80" data-aos="fade-up" data-aos-delay="300">
+                Che tu venga da noi per un taglio quotidiano o per il giorno più importante della tua vita, ti garantiamo attenzione, cura e risultati che superano le aspettative. Il nostro salone si trova nel cuore di Voghera, in Via Emilia 82, ed è aperto dal martedì al sabato.
+            </p>
+        </div>
+    </section>
+
+    <!-- Immagine divisore -->
+    <section class="py-0">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="h-[50vh] lg:h-[60vh] overflow-hidden" data-aos="fade-up">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCt6oQHXXL9nYCQMEa2Vil5xuYUNMzfN9HqU3TKiLrCkCv0IOuOkKPmcTpgGW2H3R2UUtPe8eIt9JyBgjcL8sqQYrw52SgjiaCANDZTHFCWtLaNZ8Cb-zjeZ01EN4HC-nScfUmRHz-bdgPsPw=s4800-w1600" 
+                     onerror="this.src='https://images.unsplash.com/photo-1562322140-8baeececf3df?w=1920&q=80'; this.onerror=null;"
+                     alt="Salone ONE parrucchieri UNITED" 
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi -->
+    <section id="servizi" class="py-32 lg:py-40 px-6 bg-white/30">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-20">
+                <div class="divider mb-12" data-aos="fade-up"></div>
+                <h2 class="section-title text-primary mb-12" data-aos="fade-up" data-aos-delay="100">Servizi</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 lg:gap-20">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-wider uppercase text-primary mb-4">Tagli & Styling</h3>
+                    <p class="font-sans font-light leading-relaxed text-textcolor/75">
+                        Tagli uomo e donna, messe in piega e styling personalizzato per ogni occasione. Il nostro team è pronto a valorizzare il tuo stile.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-wider uppercase text-primary mb-4">Colore & Trattamenti</h3>
+                    <p class="font-sans font-light leading-relaxed text-textcolor/75">
+                        Colorazioni professionali e trattamenti rigeneranti con prodotti selezionati per salute e luminosità dei capelli.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-wider uppercase text-primary mb-4">Acconciature Sposa</h3>
+                    <p class="font-sans font-light leading-relaxed text-textcolor/75">
+                        Specializzati in acconciature da sposa e trucco per il giorno più importante della tua vita. Eleganza e perfezione su misura.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl tracking-wider uppercase text-primary mb-4">Servizi su Misura</h3>
+                    <p class="font-sans font-light leading-relaxed text-textcolor/75">
+                        Ogni servizio è pensato per te, valorizzando la tua personalità e la naturale bellezza dei tuoi capelli.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il nostro team -->
+    <section id="team" class="py-32 lg:py-40 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-20">
+                <div class="divider mb-12" data-aos="fade-up"></div>
+                <h2 class="section-title text-primary mb-12" data-aos="fade-up" data-aos-delay="100">Il nostro team</h2>
+            </div>
+            
+            <div class="space-y-16">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="font-sans font-light text-lg leading-relaxed text-textcolor/80 mb-8">
+                        Il cuore di ONE parrucchieri UNITED è il suo team. Luisa, Manuela e tutti i nostri stilisti portano avanti ogni giorno un lavoro fatto di passione, precisione e dedizione al cliente.
+                    </p>
+                    <p class="font-sans font-light text-lg leading-relaxed text-textcolor/80 mb-8">
+                        <span class="font-medium text-accent">Luisa</span> è famosa tra i suoi clienti per la capacità di ascoltare e valorizzare ogni persona.
+                    </p>
+                    <p class="font-sans font-light text-lg leading-relaxed text-textcolor/80">
+                        <span class="font-medium text-accent">Manuela</span> ha conquistato il cuore di tantissime spose con la sua maestria nelle acconciature e nel trucco.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="overflow-hidden h-80">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAFy_LEekFw91ZEBVbe8rvz9djIua79ng5OizRvZAS7IH_Lc_5hlctwMOqSJLkulhWwDE-mui38A9J-Ui7e3gDekxZC_0Kh_4z8_VaK3ePI8RIDTfoHXTAbeu70WVJzS4TtPHcUywsoLdK9=s4800-w1600" 
+                             onerror="this.src='https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=800&q=80'; this.onerror=null;"
+                             alt="Team ONE parrucchieri" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="overflow-hidden h-80">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAgLZk6u1fyT8o47lFZUu6MBzoPeTZrM2i9mqom1h4gOjkG0GFDUyzgl-NcI0Cp50ghpx_oiLSCJpbK2Kl7QwqE4i8v8Dbc68x_B2SBS3ITNfN4uRzNuRgaxOYx0e4PKTJOZJwMhbTYkb0Hyg=s4800-w1600" 
+                             onerror="this.src='https://images.unsplash.com/photo-1562004760-acb5685e9a03?w=800&q=80'; this.onerror=null;"
+                             alt="Professionisti del salone" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <p class="font-sans font-light text-lg leading-relaxed text-textcolor/80 text-center italic" data-aos="fade-up" data-aos-delay="400">
+                    Affidarsi alle nostre mani significa scegliere professionisti che amano davvero quello che fanno.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recensioni -->
+    <section class="py-32 lg:py-40 px-6 bg-white/30">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-20">
+                <div class="divider mb-12" data-aos="fade-up"></div>
+                <h2 class="section-title text-primary mb-12" data-aos="fade-up" data-aos-delay="100">Dicono di noi</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 mx-auto text-accent opacity-40" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="font-sans font-light text-base leading-relaxed text-textcolor/75 mb-6 italic">
+                        "L'atmosfera rilassante e accogliente rende questo salone unico. Le stiliste sono tutte altamente qualificate e offrono un servizio eccellente."
+                    </p>
+                    <p class="font-sans text-sm tracking-wider text-accent uppercase">Cliente soddisfatta</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 mx-auto text-accent opacity-40" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="font-sans font-light text-base leading-relaxed text-textcolor/75 mb-6 italic">
+                        "Luisa è una vera artigiana che ama il suo lavoro e lo dimostra ad ogni occasione. Ho piena fiducia nelle sue mani."
+                    </p>
+                    <p class="font-sans text-sm tracking-wider text-accent uppercase">Cliente fidelizzata</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 mx-auto text-accent opacity-40" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="font-sans font-light text-base leading-relaxed text-textcolor/75 mb-6 italic">
+                        "Tornata dal mio matrimonio ancora emozionata per il lavoro di Manuela. Oltre le mie aspettative. Sei eccezionale!"
+                    </p>
+                    <p class="font-sans text-sm tracking-wider text-accent uppercase">Sposa felice</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orari e Contatti -->
+    <section id="contatti" class="py-32 lg:py-40 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-20">
+                <div class="divider mb-12" data-aos="fade-up"></div>
+                <h2 class="section-title text-primary mb-12" data-aos="fade-up" data-aos-delay="100">Orari e contatti</h2>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-20">
+                <!-- Orari e Info -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="font-serif text-2xl tracking-wider uppercase text-primary mb-8 text-center lg:text-left">Orari di apertura</h3>
+                    <div class="space-y-4 font-sans font-light text-textcolor/75">
+                        <div class="flex justify-between border-b border-primary/10 pb-3">
+                            <span>Martedì</span>
+                            <span>8:00 – 16:00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-primary/10 pb-3">
+                            <span>Mercoledì</span>
+                            <span>8:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-primary/10 pb-3">
+                            <span>Giovedì</span>
+                            <span>8:00 – 18:00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-primary/10 pb-3">
+                            <span>Venerdì</span>
+                            <span>8:00 – 18:30</span>
+                        </div>
+                        <div class="flex justify-between border-b border-primary/10 pb-3">
+                            <span>Sabato</span>
+                            <span>7:00 – 16:30</span>
+                        </div>
+                        <div class="flex justify-between pb-3 opacity-50">
+                            <span>Lunedì e Domenica</span>
+                            <span>Chiuso</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 space-y-6 text-center lg:text-left">
+                        <div>
+                            <p class="font-sans text-sm tracking-wider uppercase text-accent mb-2">Indirizzo</p>
+                            <p class="font-sans font-light text-lg text-textcolor/80">Via Emilia 82<br>27058 Voghera (PV)</p>
+                        </div>
+                        <div>
+                            <p class="font-sans text-sm tracking-wider uppercase text-accent mb-2">Telefono</p>
+                            <a href="tel:+393406417551" class="font-sans font-light text-lg text-textcolor/80 hover:text-accent transition-colors">
+                                340 641 7551
+                            </a>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                            <a href="tel:+393406417551" class="btn-outline text-primary border-primary hover:bg-primary hover:text-background flex-1 text-center">
+                                Chiama ora
+                            </a>
+                            <a href="https://wa.me/393406417551" target="_blank" class="btn-outline text-primary border-primary hover:bg-primary hover:text-background flex-1 text-center">
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Contatti -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="font-serif text-2xl tracking-wider uppercase text-primary mb-8 text-center lg:text-left">Prenota un appuntamento</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" 
+                                   placeholder="Nome e cognome" 
+                                   class="w-full px-0 py-4 bg-transparent border-b border-primary/20 focus:border-accent outline-none font-sans font-light text-textcolor placeholder-textcolor/40 transition-colors">
+                        </div>
+                        <div>
+                            <input type="tel" 
+                                   placeholder="Telefono" 
+                                   class="w-full px-0 py-4 bg-transparent border-b border-primary/20 focus:border-accent outline-none font-sans font-light text-textcolor placeholder-textcolor/40 transition-colors">
+                        </div>
+                        <div>
+                            <textarea rows="4" 
+                                      placeholder="Messaggio (opzionale)" 
+                                      class="w-full px-0 py-4 bg-transparent border-b border-primary/20 focus:border-accent outline-none font-sans font-light text-textcolor placeholder-textcolor/40 resize-none transition-colors"></textarea>
+                        </div>
+                        <button type="submit" class="btn-outline text-primary border-primary hover:bg-primary hover:text-background w-full">
+                            Invia richiesta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-primary/10">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center space-y-4">
+                <p class="font-serif text-2xl tracking-widest text-primary">
+                    ONE <span class="font-light">parrucchieri</span> UNITED
+                </p>
+                <p class="font-sans font-light text-sm text-textcolor/60 tracking-wide">
+                    Via Emilia 82, 27058 Voghera (PV) · Tel. 340 641 7551
+                </p>
+                <p class="font-sans font-light text-xs text-textcolor/40 tracking-wide pt-4">
+                    © 2024 ONE parrucchieri UNITED. Tutti i diritti riservati.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({ 
+            duration: 800, 
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scroll');
+            } else {
+                navbar.classList.remove('navbar-scroll');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
