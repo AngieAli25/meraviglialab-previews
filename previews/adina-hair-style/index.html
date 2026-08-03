@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adina Hair Style | L'arte del capello, pensata per te</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C2C2C',
+                        secondary: '#C9A96E',
+                        accent: '#E8DDD0',
+                        background: '#FAF8F5',
+                        textcolor: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Jost', sans-serif;
+            overflow-x: hidden;
+        }
+        .nav-scrolled {
+            background: rgba(44, 44, 44, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 25s linear infinite;
+            padding-left: 100%;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.95;
+        }
+        .btn-pop {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-pop:hover {
+            transform: translateY(-6px);
+            box-shadow: 8px 8px 0 #C9A96E;
+        }
+        .card-bold {
+            border: 6px solid #2C2C2C;
+            transition: all 0.3s ease;
+        }
+        .card-bold:hover {
+            transform: scale(1.02);
+            border-color: #C9A96E;
+        }
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+        }
+        .hamburger span {
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-background text-textcolor font-body">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="font-heading text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                        Adina Hair Style
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-secondary transition font-medium text-lg">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition font-medium text-lg">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition font-medium text-lg">Servizi</a>
+                    <a href="#perche" class="text-white hover:text-secondary transition font-medium text-lg">Perché sceglierci</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-medium text-lg">Contatti</a>
+                </div>
+
+                <!-- Hamburger -->
+                <button class="hamburger md:hidden flex flex-col space-y-2 z-50" onclick="toggleMenu()">
+                    <span class="block w-8 h-1 bg-white"></span>
+                    <span class="block w-8 h-1 bg-white"></span>
+                    <span class="block w-8 h-1 bg-white"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden">
+                <div class="flex flex-col space-y-4 py-6">
+                    <a href="#home" class="text-white hover:text-secondary transition font-medium text-lg" onclick="toggleMenu()">Home</a>
+                    <a href="#chi-siamo" class="text-white hover:text-secondary transition font-medium text-lg" onclick="toggleMenu()">Chi siamo</a>
+                    <a href="#servizi" class="text-white hover:text-secondary transition font-medium text-lg" onclick="toggleMenu()">Servizi</a>
+                    <a href="#perche" class="text-white hover:text-secondary transition font-medium text-lg" onclick="toggleMenu()">Perché sceglierci</a>
+                    <a href="#contatti" class="text-white hover:text-secondary transition font-medium text-lg" onclick="toggleMenu()">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCbFqwcbh7TkoMu2nJvAGoIINVXemkPA-R3ZEkJT6I34NonZ3jaOGuh6_Wd6hO0hWCsF-YOrcbHWBd8TUNTTaezQDgq9sm0uSo4PN167M1u8dflHKb35XYOQNeuSVMltxeBBdX3r4c7EP-vY1s=s4800-w1600" 
+                 alt="Adina Hair Style" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="absolute inset-0 bg-primary opacity-55"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+            <h1 class="hero-title font-heading text-white mb-6" data-aos="fade-up">
+                Il tuo stile<br>inizia qui
+            </h1>
+            <p class="text-white text-xl sm:text-2xl md:text-3xl font-light mb-10 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Tagli, colore e acconciature su misura per esaltare la tua bellezza naturale. Ad Adina Hair Style ogni dettaglio è pensato per te.
+            </p>
+            <a href="#contatti" class="btn-pop inline-block bg-secondary text-primary px-10 py-5 text-xl sm:text-2xl font-bold uppercase tracking-wide shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                Prenota il tuo appuntamento
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="bg-secondary py-6 marquee">
+        <div class="marquee-content text-primary font-heading text-5xl sm:text-6xl md:text-7xl font-bold uppercase">
+            TAGLIO • COLORE • STYLING • CERIMONIE • BELLEZZA • PROFESSIONALITÀ • TAGLIO • COLORE • STYLING • CERIMONIE • BELLEZZA • PROFESSIONALITÀ •
+        </div>
+    </div>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 sm:py-32 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="section-title font-heading text-primary mb-6">Chi siamo</h2>
+                    <p class="text-textcolor text-lg sm:text-xl leading-relaxed mb-6">
+                        Adina Hair Style è un salone di acconciatura nel cuore di Voghera, in Via Cavagna 13a. Adina è una professionista appassionata, costantemente aggiornata sulle ultime tecniche di taglio, colorazione e styling.
+                    </p>
+                    <p class="text-textcolor text-lg sm:text-xl leading-relaxed">
+                        La sua missione è semplice: ascoltarti, capire il tuo stile e valorizzare al massimo la tua chioma. Ogni cliente è unico, ogni acconciatura è un'opera pensata su misura. Non a caso, chi viene da Adina torna sempre.
+                    </p>
+                </div>
+                <div data-aos="fade-left" class="card-bold bg-white p-2 rounded-3xl overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBcZ80FYqg__YdgV22agmOr1WawR9ClU10z2EhWgC_e3v5pOyfLsS0Y9sQZgPcbvCf_VJ1xK_v8m3YGI6_BCMQwLMDQLffJV1gNs8BT6-QyhUQRmOM5iF0DLlytKQthhh_ewPhryrRdq2QvJGo=s4800-w1600" 
+                         alt="Salone Adina" 
+                         class="w-full h-96 object-cover rounded-2xl"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-20 sm:py-32 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title font-heading text-center mb-16" data-aos="fade-up">Servizi</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-bold bg-white text-primary p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="0">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-heading font-bold mb-4">Taglio</h3>
+                    <p class="text-lg leading-relaxed">Tagli donna e uomo personalizzati, studiati per il tuo viso e stile di vita. Precisione e tendenza.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-bold bg-white text-primary p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-heading font-bold mb-4">Colore</h3>
+                    <p class="text-lg leading-relaxed">Colorazione, decolorazione, mèches e balayage con prodotti professionali per un risultato luminoso.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-bold bg-white text-primary p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-heading font-bold mb-4">Styling</h3>
+                    <p class="text-lg leading-relaxed">Piega, messa in piega e acconciature per cerimonie. Ogni occasione merita il look perfetto.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card-bold bg-white text-primary p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-heading font-bold mb-4">Trattamenti</h3>
+                    <p class="text-lg leading-relaxed">Trattamenti ristrutturanti e curativi per capelli sani, forti e splendenti dalla radice alle punte.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card-bold bg-white text-primary p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-heading font-bold mb-4">Cerimonie</h3>
+                    <p class="text-lg leading-relaxed">Acconciature eleganti per matrimoni, eventi speciali e occasioni importanti. Bellezza su misura.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card-bold bg-white text-primary p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="500">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-3xl font-heading font-bold mb-4">Consulenza</h3>
+                    <p class="text-lg leading-relaxed">Consigli personalizzati per scegliere il taglio e il colore più adatti al tuo viso e personalità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section 2 -->
+    <div class="bg-accent py-6 marquee">
+        <div class="marquee-content text-primary font-heading text-5xl sm:text-6xl md:text-7xl font-bold uppercase">
+            ESPERIENZA • QUALITÀ • PASSIONE • CREATIVITÀ • ELEGANZA • CURA • ESPERIENZA • QUALITÀ • PASSIONE • CREATIVITÀ • ELEGANZA • CURA •
+        </div>
+    </div>
+
+    <!-- Perché Sceglierci -->
+    <section id="perche" class="py-20 sm:py-32 bg-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="order-2 md:order-1">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="card-bold bg-white p-2 rounded-3xl overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDU1ybTuxINs1STU9dJCFzkXUjPXnlZTlPRr63wCKahhbRlL55kyBRn5VA66PxMVppM6EDT4oZD7_VgtUkh7Way-Wpj2do9G-Q_EFob5PZVpOwwZWCvk1uStzc-XMNoXvSVmJgxbdRPNNIa6w=s4800-w1600" 
+                                 alt="Salone" 
+                                 class="w-full h-48 object-cover rounded-2xl"
+                                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                        </div>
+                        <div class="card-bold bg-white p-2 rounded-3xl overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjClRX7TyqJWGNyXveeV1_ZtF7-fFEBFUcbD0eu9gpJTaf3d15_-_LpK3PfMdo7HV5onHDbQzR73gVfRoY7OvZ6LFFCz5PVEgTkSFoQRSnrnK95rPBZ9YAQ0p-bhzEv5FVP6UXUGM_tfAkY_fWM=s4800-w1600" 
+                                 alt="Dettagli" 
+                                 class="w-full h-48 object-cover rounded-2xl"
+                                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                        </div>
+                    </div>
+                    <div class="mt-12 text-center bg-primary text-white p-8 rounded-3xl card-bold">
+                        <div class="text-7xl font-heading font-bold mb-2">4.8</div>
+                        <div class="text-2xl font-bold">★★★★★</div>
+                        <div class="text-xl mt-2">Valutazione Google</div>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="order-1 md:order-2">
+                    <h2 class="section-title font-heading text-primary mb-6">Perché sceglierci</h2>
+                    <p class="text-primary text-lg sm:text-xl leading-relaxed mb-6">
+                        Con una valutazione di 4.8 su 5 su Google, Adina Hair Style è uno dei saloni più apprezzati di Voghera. I clienti la scelgono per la sua competenza tecnica, la precisione, la gentilezza e la capacità di consigliare il look giusto per ogni tipo di capello.
+                    </p>
+                    <p class="text-primary text-lg sm:text-xl leading-relaxed mb-8">
+                        Affidarsi ad Adina significa scegliere qualità, serietà e un risultato che ti farà sentire davvero bene.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-8 h-8 text-primary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-primary text-lg font-medium">Professionalità e competenza tecnica certificata</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-8 h-8 text-primary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-primary text-lg font-medium">Prodotti selezionati e di alta qualità</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-8 h-8 text-primary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-primary text-lg font-medium">Attenzione personale e consulenza su misura</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-8 h-8 text-primary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-primary text-lg font-medium">Sempre aggiornata sulle ultime tendenze</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 sm:py-32 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title font-heading text-primary text-center mb-16" data-aos="fade-up">Orari e contatti</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div data-aos="fade-right">
+                    <div class="card-bold bg-primary text-white p-8 sm:p-10 rounded-3xl mb-8">
+                        <h3 class="text-3xl font-heading font-bold mb-6">Informazioni</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <svg class="w-8 h-8 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-xl font-bold mb-1">Indirizzo</p>
+                                    <p class="text-lg">Via Cavagna 13a<br>Voghera (PV)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <svg class="w-8 h-8 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-xl font-bold mb-1">Telefono</p>
+                                    <a href="tel:+390383485001" class="text-lg hover:text-secondary transition">0383 48501</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <svg class="w-8 h-8 text-secondary mr-4 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <div>
+                                    <p class="text-xl font-bold mb-1">Orari</p>
+                                    <p class="text-lg">Mar - Sab: 8:30 - 19:00<br>Lun - Dom: Chiuso</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t border-secondary">
+                            <a href="tel:+390383485001" class="btn-pop block text-center bg-secondary text-primary px-8 py-4 text-xl font-bold uppercase tracking-wide mb-4">
+                                Chiama ora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div data-aos="fade-left">
+                    <div class="card-bold bg-white p-8 sm:p-10 rounded-3xl">
+                        <h3 class="text-3xl font-heading font-bold text-primary mb-6">Prenota un appuntamento</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-lg font-bold text-primary mb-2">Nome e Cognome</label>
+                                <input type="text" class="w-full px-6 py-4 border-4 border-primary rounded-2xl text-lg focus:outline-none focus:border-secondary transition" placeholder="Il tuo nome" required>
+                            </div>
+                            <div>
+                                <label class="block text-lg font-bold text-primary mb-2">Telefono</label>
+                                <input type="tel" class="w-full px-6 py-4 border-4 border-primary rounded-2xl text-lg focus:outline-none focus:border-secondary transition" placeholder="Il tuo numero" required>
+                            </div>
+                            <div>
+                                <label class="block text-lg font-bold text-primary mb-2">Messaggio</label>
+                                <textarea rows="5" class="w-full px-6 py-4 border-4 border-primary rounded-2xl text-lg focus:outline-none focus:border-secondary transition resize-none" placeholder="Raccontaci di cosa hai bisogno..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-pop w-full bg-primary text-white px-8 py-5 text-xl font-bold uppercase tracking-wide">
+                                Invia richiesta
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-heading text-3xl font-bold mb-4">Adina Hair Style</h3>
+                    <p class="text-accent text-lg">L'arte del capello, pensata per te</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-secondary">Contatti</h4>
+                    <p class="text-accent mb-2">Via Cavagna 13a, Voghera (PV)</p>
+                    <p class="text-accent mb-2">Tel: 0383 48501</p>
+                    <p class="text-accent">Mar-Sab: 8:30-19:00</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-secondary">Link rapidi</h4>
+                    <div class="space-y-2">
+                        <a href="#chi-siamo" class="block text-accent hover:text-white transition">Chi siamo</a>
+                        <a href="#servizi" class="block text-accent hover:text-white transition">Servizi</a>
+                        <a href="#contatti" class="block text-accent hover:text-white transition">Contatti</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-secondary pt-8 text-center">
+                <p class="text-accent text-sm">© 2024 Adina Hair Style. Tutti i diritti riservati.</p>
+                <p class="text-secondary text-xs mt-4">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-white transition">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ 
+            duration: 800, 
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
