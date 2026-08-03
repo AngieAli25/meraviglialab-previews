@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Rosa Blu | Parrucchiere ed Estetica Corbetta</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -13,14 +15,14 @@
                 extend: {
                     colors: {
                         primary: '#4A3F6B',
-                        secondary: '#C2A4C2',
-                        accent: '#7B5EA7',
-                        bglight: '#FAF7FB',
-                        textdark: '#2C2233',
+                        secondary: '#C9B8D8',
+                        accent: '#8B5E83',
+                        bglight: '#F7F4F9',
+                        textdark: '#2C2438'
                     },
                     fontFamily: {
                         heading: ['Cormorant Garamond', 'serif'],
-                        body: ['Jost', 'sans-serif'],
+                        body: ['Jost', 'sans-serif']
                     }
                 }
             }
@@ -29,525 +31,458 @@
     <style>
         body {
             font-family: 'Jost', sans-serif;
-            background-color: #0d0d0f;
+            background: #0d0d0f;
             color: #e8e8e8;
         }
         
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
         }
         
         .glass-card:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(123, 94, 167, 0.4);
-            box-shadow: 0 0 30px rgba(123, 94, 167, 0.3);
-            transform: translateY(-5px);
+            border-color: rgba(139, 94, 131, 0.3);
+            box-shadow: 0 0 30px rgba(139, 94, 131, 0.2);
         }
         
-        .text-glow {
-            text-shadow: 0 0 20px rgba(123, 94, 167, 0.6),
-                         0 0 40px rgba(123, 94, 167, 0.3);
+        .glow-text {
+            text-shadow: 0 0 20px rgba(201, 184, 216, 0.4);
         }
         
-        .cta-glow {
-            box-shadow: 0 0 30px rgba(123, 94, 167, 0.6),
-                        0 0 60px rgba(123, 94, 167, 0.3);
+        .glow-accent {
+            text-shadow: 0 0 30px rgba(139, 94, 131, 0.6);
+        }
+        
+        .btn-glow {
+            box-shadow: 0 0 30px rgba(139, 94, 131, 0.5);
             animation: pulse-glow 3s ease-in-out infinite;
         }
         
         @keyframes pulse-glow {
             0%, 100% {
-                box-shadow: 0 0 30px rgba(123, 94, 167, 0.6),
-                            0 0 60px rgba(123, 94, 167, 0.3);
+                box-shadow: 0 0 30px rgba(139, 94, 131, 0.5);
             }
             50% {
-                box-shadow: 0 0 40px rgba(123, 94, 167, 0.8),
-                            0 0 80px rgba(123, 94, 167, 0.4);
+                box-shadow: 0 0 50px rgba(139, 94, 131, 0.8), 0 0 80px rgba(139, 94, 131, 0.4);
             }
         }
         
         .divider-glow {
+            background: linear-gradient(90deg, transparent, rgba(139, 94, 131, 0.5), transparent);
             height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(123, 94, 167, 0.6) 50%, 
-                transparent 100%);
-            box-shadow: 0 0 10px rgba(123, 94, 167, 0.4);
         }
         
         .hero-overlay {
-            background: linear-gradient(135deg, 
-                rgba(13, 13, 15, 0.85) 0%, 
-                rgba(74, 63, 107, 0.4) 50%,
-                rgba(13, 13, 15, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(13, 13, 15, 0.85) 0%, rgba(74, 63, 107, 0.4) 50%, rgba(13, 13, 15, 0.85) 100%);
+            position: relative;
         }
         
-        .vignette {
-            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+        .hero-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(13, 13, 15, 0.8) 100%);
+            pointer-events: none;
         }
         
-        .navbar-scroll {
-            background: rgba(13, 13, 15, 0.95);
+        .navbar-glass {
+            background: rgba(13, 13, 15, 0.7);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(123, 94, 167, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .mobile-menu {
-            background: rgba(13, 13, 15, 0.98);
-            backdrop-filter: blur(30px);
-            border-left: 1px solid rgba(123, 94, 167, 0.2);
+        .navbar-glass.scrolled {
+            background: rgba(13, 13, 15, 0.95);
+            border-bottom: 1px solid rgba(139, 94, 131, 0.2);
         }
         
-        .btn-glow:hover {
-            box-shadow: 0 0 25px rgba(123, 94, 167, 0.5);
+        .neon-border {
+            border: 1px solid rgba(139, 94, 131, 0.3);
+            box-shadow: 0 0 20px rgba(139, 94, 131, 0.2);
         }
         
-        .icon-glow {
-            filter: drop-shadow(0 0 8px rgba(123, 94, 167, 0.4));
+        .service-icon {
+            filter: drop-shadow(0 0 10px rgba(201, 184, 216, 0.5));
+        }
+        
+        input, textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e8e8e8;
+        }
+        
+        input:focus, textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(139, 94, 131, 0.5);
+            outline: none;
+            box-shadow: 0 0 20px rgba(139, 94, 131, 0.2);
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(232, 232, 232, 0.4);
         }
     </style>
 </head>
 <body>
+
     <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+    <nav id="navbar" class="navbar-glass fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0">
-                    <a href="#home" class="font-heading text-3xl font-bold tracking-wide">
-                        <span class="text-accent text-glow">La Rosa</span> 
-                        <span class="text-secondary">Blu</span>
-                    </a>
+                    <a href="#home" class="font-heading text-3xl font-bold glow-text" style="color: #C9B8D8;">La Rosa Blu</a>
                 </div>
-                
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-accent transition-colors duration-300">Home</a>
-                    <a href="#chi-siamo" class="text-gray-300 hover:text-accent transition-colors duration-300">Chi siamo</a>
-                    <a href="#servizi" class="text-gray-300 hover:text-accent transition-colors duration-300">Servizi</a>
-                    <a href="#hair-spa" class="text-gray-300 hover:text-accent transition-colors duration-300">Hair Spa</a>
-                    <a href="#contatti" class="text-gray-300 hover:text-accent transition-colors duration-300">Contatti</a>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home" class="hover:text-secondary transition-colors duration-300">Home</a>
+                        <a href="#chi-siamo" class="hover:text-secondary transition-colors duration-300">Chi siamo</a>
+                        <a href="#servizi" class="hover:text-secondary transition-colors duration-300">Servizi</a>
+                        <a href="#hair-spa" class="hover:text-secondary transition-colors duration-300">Hair Spa</a>
+                        <a href="#prenota" class="px-6 py-2 rounded-full neon-border hover:bg-accent transition-all duration-300" style="color: #C9B8D8;">Prenota</a>
+                    </div>
                 </div>
-                
-                <button id="menu-toggle" class="md:hidden text-gray-300 hover:text-accent">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-secondary p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden mobile-menu fixed top-0 right-0 w-64 h-full transform translate-x-full transition-transform duration-300">
-            <div class="flex justify-end p-4">
-                <button id="menu-close" class="text-gray-300 hover:text-accent">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="flex flex-col space-y-6 px-8">
-                <a href="#home" class="text-gray-300 hover:text-accent transition-colors text-lg">Home</a>
-                <a href="#chi-siamo" class="text-gray-300 hover:text-accent transition-colors text-lg">Chi siamo</a>
-                <a href="#servizi" class="text-gray-300 hover:text-accent transition-colors text-lg">Servizi</a>
-                <a href="#hair-spa" class="text-gray-300 hover:text-accent transition-colors text-lg">Hair Spa</a>
-                <a href="#contatti" class="text-gray-300 hover:text-accent transition-colors text-lg">Contatti</a>
+        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 my-2 rounded-lg overflow-hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 rounded-md hover:bg-white/10 transition-colors duration-300">Home</a>
+                <a href="#chi-siamo" class="block px-3 py-2 rounded-md hover:bg-white/10 transition-colors duration-300">Chi siamo</a>
+                <a href="#servizi" class="block px-3 py-2 rounded-md hover:bg-white/10 transition-colors duration-300">Servizi</a>
+                <a href="#hair-spa" class="block px-3 py-2 rounded-md hover:bg-white/10 transition-colors duration-300">Hair Spa</a>
+                <a href="#prenota" class="block px-3 py-2 rounded-md hover:bg-white/10 transition-colors duration-300">Prenota</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 vignette">
-            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1920&q=80" 
-                 alt="La Rosa Blu Salon" 
+        <div class="absolute inset-0 z-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBMUonxssMTWHbLK747d74NPd6xIhZnmx9Pm1hBhf56ZslGE8QfkathfXl16wN9GeQJV9tVQ0YdygvCKHwh-lXhY0X81c5SiwsvSDpaXri7UcptmbowpQNMmZ442lXlHvBjlWTdfDtk3FWz3Q=s4800-w1600" 
+                 alt="La Rosa Blu Salone" 
                  class="w-full h-full object-cover"
                  onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
-            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="hero-overlay absolute inset-0"></div>
         </div>
-        
-        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto" data-aos="fade-up">
-            <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-glow text-white">
-                Il tuo momento di pura bellezza inizia qui
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto" data-aos="fade-up">
+            <h1 class="font-heading text-5xl md:text-7xl font-bold mb-6 glow-accent" style="color: #C9B8D8;">
+                Il tuo momento di bellezza inizia qui
             </h1>
-            <p class="text-xl sm:text-2xl mb-10 text-gray-200 font-light max-w-3xl mx-auto leading-relaxed">
-                Parrucchiere ed estetica a Corbetta. Trattamenti personalizzati, mani esperte e un'accoglienza che mette subito a proprio agio.
+            <p class="text-xl md:text-2xl mb-10 text-gray-300 max-w-3xl mx-auto font-light">
+                A Corbetta, un salone dove ogni dettaglio è pensato per farti sentire al meglio. Trattamenti capelli e benessere eseguiti con passione e competenza.
             </p>
-            <a href="#contatti" class="inline-block bg-accent text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 cta-glow">
-                Prenota il tuo appuntamento
+            <a href="#prenota" class="btn-glow inline-block px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #8B5E83, #4A3F6B); color: #fff;">
+                Prenota il tuo trattamento
             </a>
         </div>
-        
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-accent icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
         </div>
     </section>
 
-    <!-- Chi Siamo -->
-    <section id="chi-siamo" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0d0d0f] to-[#1a1a1f]">
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-24 px-4 relative">
         <div class="max-w-6xl mx-auto">
             <div class="divider-glow mb-16" data-aos="fade"></div>
-            
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-5xl sm:text-6xl font-bold mb-6 text-glow text-white">
-                    Chi siamo
-                </h2>
-                <p class="text-secondary text-xl font-light">Bellezza che si sente, cura che si vede</p>
-            </div>
-            
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" 
-                         alt="Salone La Rosa Blu" 
-                         class="rounded-2xl shadow-2xl w-full glass-card"
-                         onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80'; this.onerror=null;">
-                </div>
-                
-                <div data-aos="fade-left" class="glass-card p-8 rounded-2xl">
+                    <h2 class="font-heading text-5xl font-bold mb-6 glow-text" style="color: #C9B8D8;">Chi siamo</h2>
                     <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        La Rosa Blu è molto più di un salone: è un luogo dove ogni visita diventa un momento tutto per te. A Corbetta, in Via Brera 42, Sonia e il suo team ti accolgono con professionalità e calore umano, prendendosi cura di te dall'inizio alla fine.
+                        La Rosa Blu è molto più di un salone: è un luogo dove il tempo rallenta e ci prendiamo cura di te davvero. Sonia e tutto lo staff ti accolgono in un ambiente sereno e professionale, a due passi dal centro di Corbetta, in Via Brera 42.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Con anni di esperienza nel settore e una valutazione di <span class="text-secondary font-semibold">4.8 stelle</span> su oltre <span class="text-secondary font-semibold">116 recensioni Google</span>, siamo diventati un punto di riferimento per chi cerca qualità, gentilezza e un'esperienza che va oltre il semplice taglio.
                     </p>
                     <p class="text-gray-300 text-lg leading-relaxed">
-                        Con anni di esperienza nel mondo della parrucchiera e dell'estetica, sappiamo quanto sia importante sentirsi bene con sé stessi. Che tu venga per un taglio, una piega o un trattamento speciale, ti garantiamo un'esperienza su misura, attenta ai tuoi desideri e alle esigenze dei tuoi capelli.
+                        Che tu venga per la prima volta o ci conosca da anni, qui trovi sempre un sorriso e mani esperte pronte a valorizzarti.
                     </p>
+                </div>
+                <div data-aos="fade-left" class="glass-card rounded-2xl overflow-hidden p-2">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDQdqhoVlnDt_PG0ADYZDhIMObgkc3i1p2Hyg2-dousHImYRbxoo5HtU-LEMnoBNZdv8gJstZo9DTEkIa0eD7r-m_CCm22Z4p0_tEXkeDtXf20_16k-YV3aDKIRC2M2eTXFdHm1_nctt9e7e2xiFIQNlw=s4800-w1600" 
+                         alt="Interno Salone La Rosa Blu" 
+                         class="w-full h-96 object-cover rounded-xl"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servizi -->
-    <section id="servizi" class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0d0d0f]">
-        <div class="max-w-7xl mx-auto">
+    <!-- Servizi Section -->
+    <section id="servizi" class="py-24 px-4 relative">
+        <div class="max-w-6xl mx-auto">
             <div class="divider-glow mb-16" data-aos="fade"></div>
-            
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-5xl sm:text-6xl font-bold mb-6 text-glow text-white">
-                    I nostri servizi
-                </h2>
-                <p class="text-secondary text-xl font-light">Professionalità e passione in ogni trattamento</p>
+                <h2 class="font-heading text-5xl font-bold mb-6 glow-text" style="color: #C9B8D8;">I nostri Servizi</h2>
+                <p class="text-gray-300 text-xl max-w-3xl mx-auto">
+                    Offriamo una gamma completa di servizi per capelli e benessere, pensati per soddisfare ogni esigenza.
+                </p>
             </div>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-16 h-16 mb-6 icon-glow">
-                        <svg class="w-full h-full text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon mb-6 flex justify-center">
+                        <svg class="w-16 h-16" fill="none" stroke="#C9B8D8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"></path>
                         </svg>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4 text-white">Taglio e Piega</h3>
-                    <p class="text-gray-400 leading-relaxed">Per donna, uomo e bambino. Ogni taglio è studiato per valorizzare la tua personalità e il tuo stile.</p>
+                    <h3 class="font-heading text-2xl font-semibold mb-4" style="color: #C9B8D8;">Tagli & Piega</h3>
+                    <p class="text-gray-400">
+                        Tagli personalizzati e pieghe perfette per valorizzare la tua bellezza naturale con stile e precisione.
+                    </p>
                 </div>
                 
-                <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 mb-6 icon-glow">
-                        <svg class="w-full h-full text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon mb-6 flex justify-center">
+                        <svg class="w-16 h-16" fill="none" stroke="#C9B8D8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
                         </svg>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4 text-white">Colorazione e Meches</h3>
-                    <p class="text-gray-400 leading-relaxed">Colori luminosi e naturali, meches perfette con prodotti di qualità per un risultato impeccabile.</p>
+                    <h3 class="font-heading text-2xl font-semibold mb-4" style="color: #C9B8D8;">Colorazioni</h3>
+                    <p class="text-gray-400">
+                        Colorazioni moderne e tecniche avanzate con prodotti selezionati per risultati luminosi e duraturi.
+                    </p>
                 </div>
                 
-                <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 mb-6 icon-glow">
-                        <svg class="w-full h-full text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon mb-6 flex justify-center">
+                        <svg class="w-16 h-16" fill="none" stroke="#C9B8D8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4 text-white">Trattamenti Ristrutturanti</h3>
-                    <p class="text-gray-400 leading-relaxed">Nutrienti e riparatori per capelli sani, forti e luminosi. La salute dei capelli è la nostra priorità.</p>
-                </div>
-                
-                <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-16 h-16 mb-6 icon-glow">
-                        <svg class="w-full h-full text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4 text-white">Hair Spa</h3>
-                    <p class="text-gray-400 leading-relaxed">Un'ora e mezza di puro relax e cura profonda. Un'esperienza che rigenera capelli e spirito.</p>
-                </div>
-                
-                <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 mb-6 icon-glow">
-                        <svg class="w-full h-full text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4 text-white">Trattamenti Estetici</h3>
-                    <p class="text-gray-400 leading-relaxed">Viso e corpo curati con attenzione. Benessere completo per sentirti al meglio.</p>
-                </div>
-                
-                <div class="glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 mb-6 icon-glow">
-                        <svg class="w-full h-full text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading text-2xl font-bold mb-4 text-white">E molto altro...</h3>
-                    <p class="text-gray-400 leading-relaxed">Prodotti selezionati e tecniche aggiornate. Chiedi al team cosa possiamo fare per te.</p>
+                    <h3 class="font-heading text-2xl font-semibold mb-4" style="color: #C9B8D8;">Trattamenti</h3>
+                    <p class="text-gray-400">
+                        Trattamenti rigeneranti intensivi che nutrono in profondità e restituiscono vitalità ai tuoi capelli.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Hair Spa Spotlight -->
-    <section id="hair-spa" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0d0d0f] to-[#1a1a1f] relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-20 left-20 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 right-20 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="divider-glow mb-16" data-aos="fade"></div>
             
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-5xl sm:text-6xl font-bold mb-6 text-glow text-white">
-                    Hair Spa Experience
-                </h2>
-                <p class="text-secondary text-xl font-light">Un viaggio sensoriale per i tuoi capelli</p>
-            </div>
-            
-            <div class="glass-card p-12 rounded-3xl" data-aos="zoom-in">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 class="font-heading text-3xl font-bold mb-6 text-white">Un'ora e mezza su un altro pianeta</h3>
-                        <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                            Il nostro trattamento Hair Spa è un'esperienza sensoriale unica. Ti portiamo su un altro pianeta per un'ora e mezza di benessere totale: un rituale di cura profonda per i capelli abbinato a un momento di vero relax.
-                        </p>
-                        <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                            Esci rigenerata, con una piega perfetta e una leggerezza che si sente. Provalo almeno una volta: non potrai più farne a meno.
-                        </p>
-                        <a href="#contatti" class="inline-block bg-accent text-white px-8 py-4 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 btn-glow">
-                            Prenota la tua Hair Spa
-                        </a>
-                    </div>
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=800&q=80" 
-                             alt="Hair Spa Treatment" 
-                             class="rounded-2xl shadow-2xl w-full"
-                             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'; this.onerror=null;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recensioni -->
-    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0d0d0f]">
-        <div class="max-w-6xl mx-auto">
-            <div class="divider-glow mb-16" data-aos="fade"></div>
-            
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-5xl sm:text-6xl font-bold mb-6 text-glow text-white">
-                    Cosa dicono di noi
-                </h2>
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <div class="flex gap-1">
-                        <svg class="w-6 h-6 text-accent icon-glow" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-6 h-6 text-accent icon-glow" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-6 h-6 text-accent icon-glow" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-6 h-6 text-accent icon-glow" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                        <svg class="w-6 h-6 text-accent icon-glow" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                    </div>
-                    <span class="text-accent text-2xl font-bold">4.8/5</span>
-                </div>
-                <p class="text-secondary text-lg">Oltre 116 recensioni su Google</p>
-            </div>
-            
-            <div class="glass-card p-10 rounded-2xl max-w-4xl mx-auto" data-aos="fade-up">
-                <p class="text-gray-300 text-lg leading-relaxed text-center italic">
-                    "Le parole dei nostri clienti sono la nostra più grande soddisfazione. Siamo orgogliosi di accogliere clienti abituali e nuovi visitatori con la stessa dedizione. Chi entra per la prima volta, anche di passaggio, trova sempre un sorriso e mani capaci. Chi torna da anni sa già cosa aspettarsi: qualità e affetto ogni volta."
+            <div class="glass-card rounded-2xl p-8" data-aos="fade-up">
+                <p class="text-gray-300 text-lg leading-relaxed text-center">
+                    Dai tagli alle piega, dalle colorazioni ai trattamenti rigeneranti, ogni servizio è eseguito con prodotti selezionati e tecniche aggiornate. Il nostro fiore all'occhiello è il trattamento Hair Spa: un'ora e mezza di puro relax in cui ti coccoliamo dalla testa ai piedi, lasciandoti con capelli luminosi e una sensazione di leggerezza che dura. Offriamo anche servizi estetici personalizzati per completare la tua routine di bellezza.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Contatti -->
-    <section id="contatti" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0d0d0f] to-[#1a1a1f]">
+    <!-- Hair Spa Section -->
+    <section id="hair-spa" class="py-24 px-4 relative">
         <div class="max-w-6xl mx-auto">
             <div class="divider-glow mb-16" data-aos="fade"></div>
-            
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-heading text-5xl sm:text-6xl font-bold mb-6 text-glow text-white">
-                    Contatti e Orari
-                </h2>
-                <p class="text-secondary text-xl font-light">Vieni a trovarci, ti aspettiamo</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div data-aos="fade-right">
-                    <div class="glass-card p-10 rounded-2xl mb-8">
-                        <h3 class="font-heading text-2xl font-bold mb-6 text-white">Dove siamo</h3>
-                        <div class="space-y-4 text-gray-300">
-                            <div class="flex items-start gap-4">
-                                <svg class="w-6 h-6 text-accent icon-glow flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-white">Indirizzo</p>
-                                    <p>Via Brera 42, Corbetta (MI)</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <svg class="w-6 h-6 text-accent icon-glow flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-white">Telefono</p>
-                                    <a href="tel:+390297772091" class="hover:text-accent transition-colors">02 977 2091</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <svg class="w-6 h-6 text-accent icon-glow flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <div>
-                                    <p class="font-semibold text-white mb-2">Orari di apertura</p>
-                                    <p>Martedì - Sabato: 9:00 - 18:00</p>
-                                    <p class="text-gray-500">Domenica e Lunedì: Chiuso</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center">
-                        <a href="tel:+390297772091" class="inline-block w-full bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 btn-glow mb-4">
-                            <svg class="w-5 h-5 inline-block mr-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                            Chiama ora
-                        </a>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="glass-card rounded-2xl overflow-hidden p-2">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAhik0OUPviUdhq_fwU-B-yexkTVROMHhZtG335iPSdVcYz41M5gV0C5gjSFX1y7HIRk-Ok6wLspqm9tYa74vBtyGFvwSFZApCGMuenJdwOj6CljCIPwoy7d_FW5h0aZp79uYAnbKEmiW_e5tU=s4800-w1080" 
+                         alt="Hair Spa Treatment" 
+                         class="w-full h-96 object-cover rounded-xl"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
                 </div>
-                
                 <div data-aos="fade-left">
-                    <div class="glass-card p-10 rounded-2xl">
-                        <h3 class="font-heading text-2xl font-bold mb-6 text-white">Richiedi informazioni</h3>
-                        <form class="space-y-6">
-                            <div>
-                                <label class="block text-gray-300 mb-2 font-medium">Nome</label>
-                                <input type="text" class="w-full px-4 py-3 rounded-lg bg-[#0d0d0f] border border-gray-700 text-gray-300 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 transition-all" placeholder="Il tuo nome">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 mb-2 font-medium">Telefono</label>
-                                <input type="tel" class="w-full px-4 py-3 rounded-lg bg-[#0d0d0f] border border-gray-700 text-gray-300 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 transition-all" placeholder="Il tuo numero">
-                            </div>
-                            <div>
-                                <label class="block text-gray-300 mb-2 font-medium">Messaggio</label>
-                                <textarea rows="4" class="w-full px-4 py-3 rounded-lg bg-[#0d0d0f] border border-gray-700 text-gray-300 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 transition-all" placeholder="Raccontaci come possiamo aiutarti..."></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-accent text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 btn-glow">
-                                Invia richiesta
-                            </button>
-                        </form>
-                    </div>
+                    <h2 class="font-heading text-5xl font-bold mb-6 glow-accent" style="color: #C9B8D8;">Hair Spa</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        La nostra Hair Spa è l'esperienza che tutte le nostre clienti consigliano. Un rituale completo dedicato alla salute e alla bellezza dei tuoi capelli: un trattamento intensivo abbinato a un momento di relax assoluto.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Maria e il nostro team ti guideranno attraverso un percorso sensoriale che nutre in profondità, dona luminosità e trasforma la tua chioma.
+                    </p>
+                    <p class="text-xl font-semibold mb-6 glow-text" style="color: #C9B8D8;">
+                        Il risultato? Capelli meravigliosi e una mente serena.
+                    </p>
+                    <p class="text-2xl font-heading italic" style="color: #8B5E83;">
+                        Come dicono le nostre clienti: semplicemente WOW.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#0d0d0f] border-t border-gray-800 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <h3 class="font-heading text-2xl font-bold mb-4">
-                        <span class="text-accent text-glow">La Rosa</span> 
-                        <span class="text-secondary">Blu</span>
-                    </h3>
-                    <p class="text-gray-400 italic">Bellezza che si sente, cura che si vede</p>
+    <!-- Gallery Section -->
+    <section class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="divider-glow mb-16" data-aos="fade"></div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-2xl overflow-hidden p-2" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAAFbLieM67xn8o9AREXcKaZIoAz_VqYeSO-dzE83phXA61u5osktPAyW3lvnaDxBlvb_TPkBErPNcs3yX9UB74GFOzeefhY0hALuk-h0bfgX9XVPO8590aEwRHp6FEjSRpd4VTzJu281tw5kY=s4800-w1600" 
+                         alt="Gallery 1" 
+                         class="w-full h-72 object-cover rounded-xl hover:scale-105 transition-transform duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
                 </div>
-                
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Contatti</h4>
-                    <div class="space-y-2 text-gray-400">
-                        <p>Via Brera 42, Corbetta (MI)</p>
-                        <p>Tel: 02 977 2091</p>
-                        <p>Mar-Sab: 9:00-18:00</p>
+                <div class="glass-card rounded-2xl overflow-hidden p-2" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDQdqhoVlnDt_PG0ADYZDhIMObgkc3i1p2Hyg2-dousHImYRbxoo5HtU-LEMnoBNZdv8gJstZo9DTEkIa0eD7r-m_CCm22Z4p0_tEXkeDtXf20_16k-YV3aDKIRC2M2eTXFdHm1_nctt9e7e2xiFIQNlw=s4800-w1600" 
+                         alt="Gallery 2" 
+                         class="w-full h-72 object-cover rounded-xl hover:scale-105 transition-transform duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden p-2" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAhik0OUPviUdhq_fwU-B-yexkTVROMHhZtG335iPSdVcYz41M5gV0C5gjSFX1y7HIRk-Ok6wLspqm9tYa74vBtyGFvwSFZApCGMuenJdwOj6CljCIPwoy7d_FW5h0aZp79uYAnbKEmiW_e5tU=s4800-w1080" 
+                         alt="Gallery 3" 
+                         class="w-full h-72 object-cover rounded-xl hover:scale-105 transition-transform duration-500"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prenota Section -->
+    <section id="prenota" class="py-24 px-4 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="divider-glow mb-16" data-aos="fade"></div>
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-heading text-5xl font-bold mb-6 glow-accent" style="color: #C9B8D8;">Prenota il tuo appuntamento</h2>
+                <p class="text-gray-300 text-xl">
+                    Siamo aperti dal martedì al sabato, dalle 9:00 alle 18:00
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="glass-card rounded-2xl p-8" data-aos="fade-right">
+                    <div class="flex items-start mb-6">
+                        <svg class="w-6 h-6 mr-4 mt-1 flex-shrink-0" fill="none" stroke="#C9B8D8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2" style="color: #C9B8D8;">Indirizzo</h3>
+                            <p class="text-gray-400">Via Brera 42<br>20011 Corbetta (MI)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start mb-6">
+                        <svg class="w-6 h-6 mr-4 mt-1 flex-shrink-0" fill="none" stroke="#C9B8D8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2" style="color: #C9B8D8;">Telefono</h3>
+                            <a href="tel:+390297772091" class="text-gray-400 hover:text-secondary transition-colors duration-300">02 977 2091</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 mr-4 mt-1 flex-shrink-0" fill="none" stroke="#C9B8D8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="font-semibold text-lg mb-2" style="color: #C9B8D8;">Orari</h3>
+                            <p class="text-gray-400">Martedì - Sabato: 9:00 - 18:00<br>Lunedì e Domenica: Chiusi</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Menu</h4>
-                    <div class="space-y-2">
-                        <a href="#chi-siamo" class="block text-gray-400 hover:text-accent transition-colors">Chi siamo</a>
-                        <a href="#servizi" class="block text-gray-400 hover:text-accent transition-colors">Servizi</a>
-                        <a href="#hair-spa" class="block text-gray-400 hover:text-accent transition-colors">Hair Spa</a>
-                        <a href="#contatti" class="block text-gray-400 hover:text-accent transition-colors">Contatti</a>
-                    </div>
+                <div class="glass-card rounded-2xl p-8" data-aos="fade-left">
+                    <h3 class="font-heading text-2xl font-semibold mb-6" style="color: #C9B8D8;">Richiedi informazioni</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Il tuo nome" class="w-full px-4 py-3 rounded-lg transition-all duration-300" required>
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Telefono" class="w-full px-4 py-3 rounded-lg transition-all duration-300" required>
+                        </div>
+                        <div>
+                            <textarea placeholder="Messaggio (opzionale)" rows="4" class="w-full px-4 py-3 rounded-lg transition-all duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-glow py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #8B5E83, #4A3F6B); color: #fff;">
+                            Invia Richiesta
+                        </button>
+                    </form>
                 </div>
             </div>
             
+            <div class="text-center glass-card rounded-2xl p-8" data-aos="fade-up">
+                <p class="text-lg text-gray-300 mb-6">
+                    Per prenotare il tuo appuntamento chiamaci: saremo felici di trovare insieme il giorno e il trattamento più adatto a te.
+                </p>
+                <a href="tel:+390297772091" class="inline-flex items-center btn-glow px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #8B5E83, #4A3F6B); color: #fff;">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    Chiama Ora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-heading text-2xl font-bold mb-4 glow-text" style="color: #C9B8D8;">La Rosa Blu</h3>
+                    <p class="text-gray-400 text-sm">
+                        Bellezza che si sente,<br>cura che si ricorda
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: #C9B8D8;">Contatti</h4>
+                    <p class="text-gray-400 text-sm mb-2">Via Brera 42, Corbetta (MI)</p>
+                    <p class="text-gray-400 text-sm mb-2">Tel: 02 977 2091</p>
+                    <p class="text-gray-400 text-sm">Mar-Sab: 9:00-18:00</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: #C9B8D8;">Link Rapidi</h4>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#chi-siamo" class="text-gray-400 text-sm hover:text-secondary transition-colors duration-300">Chi siamo</a>
+                        <a href="#servizi" class="text-gray-400 text-sm hover:text-secondary transition-colors duration-300">Servizi</a>
+                        <a href="#hair-spa" class="text-gray-400 text-sm hover:text-secondary transition-colors duration-300">Hair Spa</a>
+                        <a href="#prenota" class="text-gray-400 text-sm hover:text-secondary transition-colors duration-300">Prenota</a>
+                    </div>
+                </div>
+            </div>
             <div class="divider-glow mb-8"></div>
-            
-            <div class="text-center text-gray-500 text-sm">
-                <p>&copy; 2024 La Rosa Blu. Tutti i diritti riservati.</p>
-                <p class="mt-2 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" class="text-accent hover:text-secondary transition-colors" target="_blank">meravigliä Lab</a> · meraviglialab.com</p>
+            <div class="text-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2025 La Rosa Blu - Parrucchiere ed Estetica. Tutti i diritti riservati.
+                </p>
+                <p class="text-gray-600 text-xs mt-4">
+                    Bozza realizzata da <span class="text-secondary">meravigliä Lab</span> · <a href="https://meraviglialab.com" class="hover:text-secondary transition-colors duration-300">meraviglialab.com</a>
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- AOS & Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 100
         });
 
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scroll');
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('navbar-scroll');
+                navbar.classList.remove('scrolled');
             }
         });
 
-        // Mobile menu
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            setTimeout(() => {
-                mobileMenu.classList.remove('translate-x-full');
-            }, 10);
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        menuClose.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-            }, 300);
-        });
-
-        // Close menu on link click
+        // Close mobile menu when clicking on a link
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 300);
+                mobileMenu.classList.add('hidden');
             });
         });
 
@@ -567,5 +502,6 @@
             });
         });
     </script>
+
 </body>
 </html>
