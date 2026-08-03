@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Beauty di Fabiana Petrelli - Salone Parrucchiera Voghera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E35',
+                        secondary: '#C9B99A',
+                        accent: '#8B6F47',
+                        sfondo: '#F7F4EF',
+                        testo: '#1E1E1E',
+                    },
+                    fontFamily: {
+                        titoli: ['Cormorant Garamond', 'serif'],
+                        corpo: ['Jost', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Jost', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            padding-right: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .nav-scrolled {
+            background: rgba(44, 62, 53, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        .shadow-color {
+            box-shadow: 8px 8px 0 #8B6F47;
+        }
+
+        .shadow-color:hover {
+            box-shadow: 12px 12px 0 #8B6F47;
+        }
+
+        .card-thick {
+            border: 6px solid #2C3E35;
+            border-radius: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .card-thick:hover {
+            transform: translateY(-6px);
+            border-color: #8B6F47;
+        }
+
+        .btn-cta {
+            font-weight: 700;
+            padding: 1.25rem 3rem;
+            font-size: 1.25rem;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 8px 8px 0 #C9B99A;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-6px);
+            box-shadow: 12px 12px 0 #C9B99A;
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .card-thick {
+                border-width: 4px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-sfondo text-testo">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300" style="background: transparent;">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-white font-titoli text-2xl md:text-3xl font-bold">
+                    One Beauty <span class="text-secondary">di Fabiana Petrelli</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 text-white font-corpo font-medium">
+                    <a href="#home" class="hover:text-secondary transition">Home</a>
+                    <a href="#chisiamo" class="hover:text-secondary transition">Chi siamo</a>
+                    <a href="#servizi" class="hover:text-secondary transition">Servizi</a>
+                    <a href="#prenota" class="hover:text-secondary transition">Prenota</a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="hamburger" class="md:hidden text-white focus:outline-none z-50">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-screen w-72 bg-primary shadow-2xl md:hidden">
+            <div class="flex flex-col items-start p-8 pt-24 space-y-6 text-white font-corpo text-xl font-medium">
+                <a href="#home" class="hover:text-secondary transition mobile-link">Home</a>
+                <a href="#chisiamo" class="hover:text-secondary transition mobile-link">Chi siamo</a>
+                <a href="#servizi" class="hover:text-secondary transition mobile-link">Servizi</a>
+                <a href="#prenota" class="hover:text-secondary transition mobile-link">Prenota</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1571875257727-256c39da42af?w=1920&q=80" 
+             alt="One Beauty Salone" 
+             class="absolute inset-0 w-full h-full object-cover"
+             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        <div class="absolute inset-0 bg-primary" style="opacity: 0.55;"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-6xl">
+            <h1 class="hero-title font-titoli text-white mb-8" data-aos="fade-up">
+                Benvenuta da One Beauty
+            </h1>
+            <p class="text-white text-xl md:text-3xl font-corpo mb-12 max-w-4xl mx-auto font-light leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Il salone dove ogni dettaglio è pensato per te. Taglio, colore e trattamenti con la cura e la professionalità di Fabiana Petrelli.
+            </p>
+            <a href="#prenota" class="btn-cta bg-accent text-white inline-block hover-lift" data-aos="fade-up" data-aos-delay="400">
+                Prenota il tuo appuntamento
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="bg-accent py-8 marquee">
+        <div class="marquee-content text-white font-titoli text-5xl md:text-7xl font-bold">
+            BELLEZZA · CURA · PASSIONE · PROFESSIONALITÀ · ECCELLENZA · BELLEZZA · CURA · PASSIONE · PROFESSIONALITÀ · ECCELLENZA · 
+        </div>
+    </div>
+
+    <!-- Chi Siamo Section -->
+    <section id="chisiamo" class="bg-sfondo py-24 md:py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-titoli text-6xl md:text-8xl font-bold text-primary mb-8">
+                        Chi siamo
+                    </h2>
+                    <div class="font-corpo text-lg md:text-xl leading-relaxed text-testo space-y-6">
+                        <p>
+                            One Beauty è il salone di Fabiana Petrelli, nel cuore di Voghera, in Via Giuseppe Mazzini 39. Un luogo pensato per farti sentire a tuo agio fin dal primo momento: un ambiente curato, pulito e accogliente, dove ogni visita diventa un'esperienza piacevole.
+                        </p>
+                        <p>
+                            Fabiana porta con sé anni di esperienza, passione autentica per il mestiere e un'attenzione costante alle esigenze di ogni cliente. Perché qui non esistono clienti uguali — esiste solo la tua bellezza, da valorizzare con cura.
+                        </p>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <div class="card-thick bg-white p-8 shadow-color hover-lift">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" 
+                             alt="Salone One Beauty" 
+                             class="w-full h-96 object-cover rounded-2xl"
+                             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" class="bg-primary py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-titoli text-6xl md:text-8xl font-bold text-white text-center mb-16" data-aos="fade-up">
+                Servizi
+            </h2>
+            
+            <div class="mb-16" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-white font-corpo text-xl md:text-2xl text-center max-w-4xl mx-auto leading-relaxed">
+                    Da One Beauty puoi affidarti a una gamma completa di servizi capelli: taglio donna e uomo, colorazione, meches e schiariture, trattamenti ristrutturanti, messa in piega e molto altro. Utilizziamo prodotti selezionati di alta qualità per garantire risultati duraturi e rispettosi della salute del tuo capello.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-thick bg-white p-8 hover-lift" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-accent rounded-full w-20 h-20 flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-titoli text-4xl font-bold text-primary mb-4">Taglio</h3>
+                    <p class="font-corpo text-lg text-testo leading-relaxed">
+                        Taglio donna e uomo personalizzato, studiato per valorizzare i tuoi lineamenti e il tuo stile unico.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-thick bg-white p-8 hover-lift" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-secondary rounded-full w-20 h-20 flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-titoli text-4xl font-bold text-primary mb-4">Colore</h3>
+                    <p class="font-corpo text-lg text-testo leading-relaxed">
+                        Colorazione, meches e schiariture con prodotti di eccellenza per risultati luminosi e duraturi.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-thick bg-white p-8 hover-lift" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-accent rounded-full w-20 h-20 flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-titoli text-4xl font-bold text-primary mb-4">Trattamenti</h3>
+                    <p class="font-corpo text-lg text-testo leading-relaxed">
+                        Trattamenti ristrutturanti e messa in piega per capelli sani, forti e brillanti.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee 2 -->
+    <div class="bg-secondary py-8 marquee">
+        <div class="marquee-content text-primary font-titoli text-5xl md:text-7xl font-bold">
+            VOGHERA · VIA MAZZINI 39 · ONE BEAUTY · FABIANA PETRELLI · VOGHERA · VIA MAZZINI 39 · ONE BEAUTY · FABIANA PETRELLI · 
+        </div>
+    </div>
+
+    <!-- Prenota Section -->
+    <section id="prenota" class="bg-sfondo py-24 md:py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="font-titoli text-6xl md:text-8xl font-bold text-primary text-center mb-16" data-aos="fade-up">
+                Prenota
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div data-aos="fade-right">
+                    <div class="card-thick bg-white p-10 mb-8">
+                        <h3 class="font-titoli text-4xl font-bold text-primary mb-6">Orari</h3>
+                        <div class="font-corpo text-lg text-testo space-y-3">
+                            <p class="flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="font-semibold">Mar - Ven:</span>&nbsp; 9:00 - 20:00
+                            </p>
+                            <p class="flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span class="font-semibold">Sabato:</span>&nbsp; 9:00 - 19:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card-thick bg-white p-10 mb-8">
+                        <h3 class="font-titoli text-4xl font-bold text-primary mb-6">Dove siamo</h3>
+                        <p class="font-corpo text-lg text-testo flex items-start">
+                            <svg class="w-6 h-6 mr-3 text-accent mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            Via Giuseppe Mazzini 39<br>Voghera (PV)
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="tel:+393443605383" class="btn-cta bg-primary text-white text-center hover-lift flex-1">
+                            Chiama Ora
+                        </a>
+                        <a href="https://wa.me/393443605383" target="_blank" class="btn-cta bg-accent text-white text-center hover-lift flex-1">
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div data-aos="fade-left">
+                    <div class="card-thick bg-white p-10">
+                        <h3 class="font-titoli text-4xl font-bold text-primary mb-8">Richiedi Informazioni</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="font-corpo font-semibold text-testo mb-2 block">Nome</label>
+                                <input type="text" class="w-full px-6 py-4 border-4 border-primary rounded-3xl focus:outline-none focus:border-accent transition font-corpo text-lg" placeholder="Il tuo nome">
+                            </div>
+                            <div>
+                                <label class="font-corpo font-semibold text-testo mb-2 block">Telefono</label>
+                                <input type="tel" class="w-full px-6 py-4 border-4 border-primary rounded-3xl focus:outline-none focus:border-accent transition font-corpo text-lg" placeholder="Il tuo numero">
+                            </div>
+                            <div>
+                                <label class="font-corpo font-semibold text-testo mb-2 block">Messaggio</label>
+                                <textarea rows="4" class="w-full px-6 py-4 border-4 border-primary rounded-3xl focus:outline-none focus:border-accent transition font-corpo text-lg resize-none" placeholder="Come possiamo aiutarti?"></textarea>
+                            </div>
+                            <button type="submit" class="btn-cta bg-accent text-white w-full hover-lift">
+                                Invia Richiesta
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="font-titoli text-3xl font-bold mb-4 text-secondary">One Beauty</h4>
+                    <p class="font-corpo text-sm leading-relaxed">di Fabiana Petrelli<br>La tua bellezza, con cura e passione</p>
+                </div>
+                <div>
+                    <h4 class="font-titoli text-2xl font-bold mb-4">Contatti</h4>
+                    <p class="font-corpo text-sm leading-relaxed">
+                        Via Giuseppe Mazzini 39<br>
+                        Voghera (PV)<br>
+                        Tel: <a href="tel:+393443605383" class="hover:text-secondary transition">344 360 5383</a>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-titoli text-2xl font-bold mb-4">Orari</h4>
+                    <p class="font-corpo text-sm leading-relaxed">
+                        Mar - Ven: 9:00 - 20:00<br>
+                        Sabato: 9:00 - 19:00<br>
+                        Domenica e Lunedì: Chiuso
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-secondary/30 pt-8 text-center">
+                <p class="font-corpo text-sm opacity-70">
+                    © 2024 One Beauty di Fabiana Petrelli. Tutti i diritti riservati.
+                </p>
+                <p class="font-corpo text-xs mt-4 opacity-50">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-secondary transition">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
