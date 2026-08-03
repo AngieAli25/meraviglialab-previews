@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HairFashionNick | L'arte del capello, con cura e passione</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C2C2C',
+                        secondary: '#C9A96E',
+                        accent: '#E8D5B0',
+                        background: '#FAF8F5',
+                        text: '#1A1A1A'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Jost', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #1A1A1A;
+            background-color: #FAF8F5;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        .hero-image {
+            animation: heroZoom 20s ease-out infinite alternate;
+        }
+
+        .letter-spacing-wide {
+            letter-spacing: 0.15em;
+        }
+
+        .letter-spacing-ultra {
+            letter-spacing: 0.25em;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #C9A96E;
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-outline {
+            border: 1px solid #2C2C2C;
+            transition: all 0.4s ease;
+        }
+
+        .btn-outline:hover {
+            background: #2C2C2C;
+            color: #FAF8F5;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #C9A96E, transparent);
+        }
+
+        .navbar-scrolled {
+            background: rgba(250, 248, 245, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 rgba(44, 44, 44, 0.1);
+        }
+
+        .section-spacing {
+            padding: 8rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-spacing {
+                padding: 5rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-24">
+                <a href="#home" class="font-serif text-2xl lg:text-3xl font-light text-primary letter-spacing-wide">
+                    HairFashionNick
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-12">
+                    <a href="#home" class="nav-link text-sm uppercase letter-spacing-wide text-primary">Home</a>
+                    <a href="#chi-siamo" class="nav-link text-sm uppercase letter-spacing-wide text-primary">Chi siamo</a>
+                    <a href="#servizi" class="nav-link text-sm uppercase letter-spacing-wide text-primary">Servizi</a>
+                    <a href="#perche" class="nav-link text-sm uppercase letter-spacing-wide text-primary">Perché sceglierci</a>
+                    <a href="#contatti" class="nav-link text-sm uppercase letter-spacing-wide text-primary">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="lg:hidden text-primary focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-background border-t border-primary/10">
+            <div class="px-6 py-8 space-y-6">
+                <a href="#home" class="block text-sm uppercase letter-spacing-wide text-primary">Home</a>
+                <a href="#chi-siamo" class="block text-sm uppercase letter-spacing-wide text-primary">Chi siamo</a>
+                <a href="#servizi" class="block text-sm uppercase letter-spacing-wide text-primary">Servizi</a>
+                <a href="#perche" class="block text-sm uppercase letter-spacing-wide text-primary">Perché sceglierci</a>
+                <a href="#contatti" class="block text-sm uppercase letter-spacing-wide text-primary">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBMxkq4p0dOZX93fB5vbjbqioXwPC0gGHE74Uv8OXER1Sa03PANmuGomclphSGJ4BcZJ9u8cmReY7IsLjHAdYLrpzzBiWXR828liUoSKabzzCucVw-2BWvctWA4TdP4mjgwG0EYvKICQmw6XDk=s4800-w1600" 
+                 alt="HairFashionNick Salon" 
+                 class="hero-image w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/70"></div>
+        </div>
+        
+        <div class="relative h-full flex items-center justify-center text-center px-6">
+            <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="1200">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white uppercase letter-spacing-ultra mb-8">
+                    Il tuo capello,<br>la nostra passione
+                </h1>
+                <div class="w-24 h-px bg-secondary mx-auto mb-8"></div>
+                <p class="text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto mb-12 leading-relaxed">
+                    Da HairFashionNick ogni visita è un'esperienza su misura: tecnica, creatività e attenzione ai dettagli per un risultato che supera le aspettative.
+                </p>
+                <a href="#contatti" class="inline-block px-12 py-4 text-sm uppercase letter-spacing-wide btn-outline text-white border-white hover:bg-white hover:text-primary">
+                    Prenota il tuo appuntamento
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo" class="section-spacing">
+        <div class="max-w-5xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-primary uppercase letter-spacing-ultra mb-6">
+                    Chi siamo
+                </h2>
+                <div class="divider w-32 mx-auto"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAOoBoDri1FNcCz8NKrUYFDMTSGnZ65DbBqQRw1hSxjDhr_5rSYkPuvBHkT4lqb66Qb3SOmaHz3YHQwDSbWdrm-S9tsXapDtCL_tXQ1-Mm0GynJ88M4zeduPSy0bhXBAADLBwUoMhjMMJ05=s4800-w1600" 
+                         alt="Nicoletta e il team" 
+                         class="w-full h-[600px] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+                
+                <div data-aos="fade-left" class="space-y-8">
+                    <p class="text-lg text-text/80 leading-relaxed font-light">
+                        HairFashionNick è il salone di Nicoletta, un punto di riferimento per chi cerca professionalità autentica e un'accoglienza che mette subito a proprio agio.
+                    </p>
+                    <p class="text-lg text-text/80 leading-relaxed font-light">
+                        Con il supporto della sua collaboratrice Alice, Nicoletta offre un servizio attento, preciso e sempre aggiornato sulle ultime tendenze e tecniche del settore.
+                    </p>
+                    <p class="text-lg text-text/80 leading-relaxed font-light">
+                        Qui ogni cliente viene ascoltato, capito e valorizzato: non esistono soluzioni standard, ma solo trattamenti pensati su misura per te.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="divider"></div>
+    </div>
+
+    <!-- Servizi -->
+    <section id="servizi" class="section-spacing">
+        <div class="max-w-6xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-primary uppercase letter-spacing-ultra mb-6">
+                    Servizi
+                </h2>
+                <div class="divider w-32 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 mb-16">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCEHw2IIKbooi9-ijPNH2mIRfEBASn_rEPHJEk1RKfkqeLk2LdsxEBQvE0itdlWHmeh1rq25S3IQUOepPcvv10_zOj0fpWpCfx0NT-F-JeNbTS68ZCgE4apze4mpSKXARVAqYopAycsXYOTEg=s4800-w1600" 
+                         alt="Servizi HairFashionNick" 
+                         class="w-full h-[500px] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjAXFCFQZFlwt0flb5ieuDc9FHd3QLOg26LzBJhTV2_35ZXKlKfyDSx-B8K8qydGRaNjQTF47kDVVV_Qs4c4KjS_rxbg8hfQPJxONAoPdNqXA4QGU8Tx8Za3JIOsn-kVhzwLqr2Hw858g2LZGg=s4800-w1600" 
+                         alt="Trattamenti professionali" 
+                         class="w-full h-[500px] object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                <p class="text-lg text-text/80 leading-relaxed font-light mb-6">
+                    Colore e colorazione creativa, taglio donna e uomo, trattamenti ristrutturanti, messa in piega, styling per occasioni speciali.
+                </p>
+                <p class="text-lg text-text/80 leading-relaxed font-light">
+                    Ogni servizio è realizzato con prodotti di qualità garantita, scelti per rispettare e valorizzare la salute e la bellezza dei tuoi capelli. La creatività di Nicoletta trasforma ogni appuntamento in un risultato che va oltre le aspettative.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="divider"></div>
+    </div>
+
+    <!-- Perché sceglierci -->
+    <section id="perche" class="section-spacing bg-primary/[0.02]">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+            <div data-aos="fade-up">
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-primary uppercase letter-spacing-ultra mb-6">
+                    Perché sceglierci
+                </h2>
+                <div class="divider w-32 mx-auto mb-16"></div>
+            </div>
+
+            <div class="space-y-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center justify-center mb-12">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <span class="text-3xl font-serif text-secondary">4.6</span>
+                        <span class="text-text/60 font-light">su Google</span>
+                    </div>
+                </div>
+
+                <p class="text-xl text-text/80 leading-relaxed font-light">
+                    Con una valutazione di 4.6 stelle su Google, HairFashionNick è apprezzato per la cura, la competenza e l'ambiente accogliente.
+                </p>
+                <p class="text-xl text-text/80 leading-relaxed font-light">
+                    Non troverai un salone dove sei solo un numero: qui il tuo benessere e la tua soddisfazione sono al centro di tutto.
+                </p>
+                <p class="text-xl text-secondary font-light mt-12">
+                    Vieni a scoprire la differenza che fa sentirsi davvero ascoltati.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="divider"></div>
+    </div>
+
+    <!-- Contatti -->
+    <section id="contatti" class="section-spacing">
+        <div class="max-w-6xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-primary uppercase letter-spacing-ultra mb-6">
+                    Contatti
+                </h2>
+                <div class="divider w-32 mx-auto"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Info -->
+                <div data-aos="fade-right" class="space-y-12">
+                    <div>
+                        <h3 class="font-serif text-2xl text-primary mb-4 uppercase letter-spacing-wide">Indirizzo</h3>
+                        <p class="text-lg text-text/80 font-light leading-relaxed">
+                            Via Giuseppe Garibaldi 58<br>
+                            Voghera (PV)
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-serif text-2xl text-primary mb-4 uppercase letter-spacing-wide">Orari</h3>
+                        <p class="text-lg text-text/80 font-light leading-relaxed">
+                            Martedì - Sabato: 8:30 - 19:30<br>
+                            Domenica e Lunedì: Chiuso
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-serif text-2xl text-primary mb-4 uppercase letter-spacing-wide">Telefono</h3>
+                        <a href="tel:+390383191372" class="text-lg text-secondary hover:text-primary transition-colors font-light">
+                            0383 191 3722
+                        </a>
+                    </div>
+
+                    <div class="pt-6">
+                        <a href="tel:+390383191372" class="inline-block px-10 py-4 text-sm uppercase letter-spacing-wide btn-outline text-primary mb-4 w-full md:w-auto text-center">
+                            Chiama ora
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div data-aos="fade-left">
+                    <form class="space-y-8">
+                        <div>
+                            <input type="text" 
+                                   placeholder="Nome" 
+                                   class="w-full px-0 py-4 bg-transparent border-0 border-b border-primary/20 focus:border-secondary outline-none transition-colors font-light text-lg placeholder:text-text/40">
+                        </div>
+                        
+                        <div>
+                            <input type="tel" 
+                                   placeholder="Telefono" 
+                                   class="w-full px-0 py-4 bg-transparent border-0 border-b border-primary/20 focus:border-secondary outline-none transition-colors font-light text-lg placeholder:text-text/40">
+                        </div>
+                        
+                        <div>
+                            <textarea rows="6" 
+                                      placeholder="Messaggio" 
+                                      class="w-full px-0 py-4 bg-transparent border-0 border-b border-primary/20 focus:border-secondary outline-none transition-colors resize-none font-light text-lg placeholder:text-text/40"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full py-4 text-sm uppercase letter-spacing-wide btn-outline text-primary hover:bg-primary hover:text-background">
+                            Invia richiesta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-primary/10 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center space-y-6">
+                <div class="font-serif text-3xl font-light text-primary letter-spacing-wide">
+                    HairFashionNick
+                </div>
+                <p class="text-text/60 font-light text-sm">
+                    L'arte del capello, con cura e passione
+                </p>
+                <p class="text-text/60 font-light text-sm">
+                    Via Giuseppe Garibaldi 58, Voghera (PV) · 0383 191 3722
+                </p>
+                <div class="pt-8 text-xs text-text/40 font-light">
+                    <a href="https://meraviglialab.com" target="_blank" rel="noopener" class="hover:text-secondary transition-colors">
+                        Bozza realizzata da meravigliä Lab · meraviglialab.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
