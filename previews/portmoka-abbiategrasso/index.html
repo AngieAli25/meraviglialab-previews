@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portmoka Abbiategrasso - Il tuo caffè di fiducia, ogni giorno.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sora': ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-primary': '#4A342E',
+                        'brand-secondary': '#D8C3A5',
+                        'brand-accent': '#A9744F',
+                        'brand-bg': '#FBF7F1',
+                        'brand-text': '#2A211C',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Sora', sans-serif;
+        }
+        
+        body {
+            background-color: #0d0d0f;
+            color: #e5e5e5;
+        }
+
+        .glass-card {
+            background: rgba(20, 20, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 30px rgba(169, 116, 79, 0.3);
+            border-color: rgba(169, 116, 79, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .navbar-glass {
+            background: rgba(13, 13, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-glass.scrolled {
+            background: rgba(13, 13, 15, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(169, 116, 79, 0.5);
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 30px rgba(169, 116, 79, 0.6);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(169, 116, 79, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 45px rgba(169, 116, 79, 0.8);
+            }
+        }
+
+        .hero-overlay {
+            background: linear-gradient(180deg, 
+                rgba(13, 13, 15, 0.7) 0%, 
+                rgba(13, 13, 15, 0.85) 100%),
+                radial-gradient(ellipse at center, 
+                rgba(169, 116, 79, 0.15) 0%, 
+                rgba(13, 13, 15, 0.9) 70%);
+        }
+
+        .vignette {
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8);
+        }
+
+        .divider-glow {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(169, 116, 79, 0.6) 50%, 
+                transparent 100%);
+        }
+
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(169, 116, 79, 0.4);
+        }
+
+        .input-glass {
+            background: rgba(30, 30, 35, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #e5e5e5;
+        }
+
+        .input-glass:focus {
+            outline: none;
+            border-color: rgba(169, 116, 79, 0.5);
+            box-shadow: 0 0 15px rgba(169, 116, 79, 0.3);
+        }
+
+        .mobile-menu {
+            background: rgba(13, 13, 15, 0.98);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo-glow {
+            filter: drop-shadow(0 0 8px rgba(169, 116, 79, 0.4));
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar-glass fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="#home" class="logo-glow text-2xl font-bold tracking-tight">
+                        <span class="text-brand-accent">Port</span><span class="text-brand-secondary">moka</span>
+                        <span class="text-xs block text-brand-secondary opacity-80 font-light tracking-widest">ABBIATEGRASSO</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-brand-accent transition-colors duration-300">Home</a>
+                    <a href="#chi-siamo" class="text-gray-300 hover:text-brand-accent transition-colors duration-300">Chi siamo</a>
+                    <a href="#caffe" class="text-gray-300 hover:text-brand-accent transition-colors duration-300">Il nostro caffè</a>
+                    <a href="#contatti" class="text-gray-300 hover:text-brand-accent transition-colors duration-300">Orari e contatti</a>
+                </div>
+
+                <button class="md:hidden text-brand-secondary" id="mobile-menu-btn">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-menu hidden md:hidden" id="mobile-menu">
+            <div class="px-4 pt-4 pb-6 space-y-4">
+                <a href="#home" class="block text-gray-300 hover:text-brand-accent transition-colors duration-300 py-2">Home</a>
+                <a href="#chi-siamo" class="block text-gray-300 hover:text-brand-accent transition-colors duration-300 py-2">Chi siamo</a>
+                <a href="#caffe" class="block text-gray-300 hover:text-brand-accent transition-colors duration-300 py-2">Il nostro caffè</a>
+                <a href="#contatti" class="block text-gray-300 hover:text-brand-accent transition-colors duration-300 py-2">Orari e contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDNaT5JprSKdnvFVWhJ2N0KVrUhvh8a09kTMCQpyd9vrCJqJviHp6p8jan8RqchePSFvF5vDctRd8g8kBcdaBz-er4_VCqM1uNY2b9CL5LonDj_ewj_4gxL741Ne4HBRRL4pS6pg_Gj76C4jBnPnMjL8Q=s4800-w1080" 
+                 alt="Portmoka" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            <div class="hero-overlay absolute inset-0"></div>
+            <div class="vignette absolute inset-0"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 glow-text" data-aos="fade-up">
+                <span class="text-brand-secondary">Benvenuto da</span>
+                <span class="block text-brand-accent mt-2">Portmoka</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Il bar con l'anima giusta. Caffè, buonumore e un posto tutto tuo ad Abbiategrasso.
+            </p>
+            <a href="#contatti" class="inline-block bg-brand-accent text-white px-10 py-4 rounded-full text-lg font-semibold btn-glow hover:bg-opacity-90 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                Vieni a trovarci
+            </a>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="divider-glow mb-16"></div>
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">
+                    <span class="text-brand-secondary">Chi</span> <span class="text-brand-accent">siamo</span>
+                </h2>
+                <div class="w-24 h-1 bg-brand-accent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 hover-glow" data-aos="fade-right">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBR-6SATqU1NI91zgBOHjOk4KKPJX6Ydwhms4-VnhkkaPbDit42ktLbGr3Meflz-caZkVvih7FgVj3TTZFd84uLTR8TC0CLy09NNro2QgUQy7zo4kZr6dhSpDzFJGN2c3qHor_yBMnh8fWxebwHcI21FQ=s4800-w1007" 
+                         alt="Portmoka interno" 
+                         class="w-full h-80 object-cover rounded-lg"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+
+                <div class="glass-card p-10" data-aos="fade-left">
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Portmoka è molto più di un bar. È quel posto dove il caffè sa sempre come deve sapere, dove il bancone è pronto ad accoglierti ogni mattina e dove ci si sente subito a casa.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Situati in <span class="text-brand-accent font-semibold">Corso Giacomo Matteotti 11</span>, nel cuore di Abbiategrasso, siamo aperti tutti i giorni <span class="text-brand-accent font-semibold">dalle 6:00 alle 22:00</span> per essere presenti in ogni momento della tua giornata.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Che tu cerchi un espresso veloce prima del lavoro, una colazione tranquilla o un aperitivo serale, da Portmoka trovi sempre l'atmosfera giusta e un sorriso sincero ad aspettarti.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il Nostro Caffè Section -->
+    <section id="caffe" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="divider-glow mb-16"></div>
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">
+                    <span class="text-brand-secondary">Il nostro</span> <span class="text-brand-accent">caffè</span>
+                </h2>
+                <div class="w-24 h-1 bg-brand-accent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-10 order-2 md:order-1" data-aos="fade-right">
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Da Portmoka il caffè è una cosa seria. Ogni tazza è preparata con cura, perché crediamo che un buon caffè possa cambiare il ritmo della giornata.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        <span class="text-brand-accent font-semibold">Espresso, cappuccino, macchiato o caffè lungo</span>: ogni preparazione è fatta con passione e attenzione alla qualità.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Non ci limitiamo alla tazzina: offriamo una selezione di bevande calde e fredde, colazioni fresche e tutto ciò che ti serve per una pausa vera.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 hover-glow order-1 md:order-2" data-aos="fade-left">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDt9Hby0qKylTednL6EbyfQxIqYNaUO_nli_MXkugHqzVH_IhpeOFTSHpFsflXIlHDXu5sUU1EYnF_cofrnf3tWSatG-12Ec1Ofw6uRfjZOqPYW23aMj60MvjJZoHgZw6GhMVZY7-sTQ02N2XdNQW2a9Q=s4800-w1074" 
+                         alt="Caffè Portmoka" 
+                         class="w-full h-80 object-cover rounded-lg"
+                         onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atmosfera Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="divider-glow mb-16"></div>
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">
+                    <span class="text-brand-secondary">L'</span><span class="text-brand-accent">atmosfera</span>
+                </h2>
+                <div class="w-24 h-1 bg-brand-accent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="glass-card p-8 text-center hover-glow" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 bg-brand-accent bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-brand-secondary mb-3">Autentico</h3>
+                    <p class="text-gray-400">Un vibe genuino che ti fa sentire subito a casa</p>
+                </div>
+
+                <div class="glass-card p-8 text-center hover-glow" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-brand-accent bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-brand-secondary mb-3">Accogliente</h3>
+                    <p class="text-gray-400">Persone amichevoli e un ambiente piacevole</p>
+                </div>
+
+                <div class="glass-card p-8 text-center hover-glow" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-brand-accent bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-brand-secondary mb-3">4.5/5 su Google</h3>
+                    <p class="text-gray-400">Lasciamo parlare chi ci ha già visitato</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 hover-glow" data-aos="fade-up">
+                <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjB5JYx89T77fKSf9lpQDOmaQVxDQXsTrtc5YOJyYoiKSMczJbAGXLbew2qLSQRO7DDgtJKFMrZKuNGDWdQaLxbtu0hP6JFNyPVSCMaifLHF19j2cEFRlZVGrUmxwAEXyy_22yuZC2eh38J159zMVqNi1Q=s4800-w1600" 
+                     alt="Atmosfera Portmoka" 
+                     class="w-full h-96 object-cover rounded-lg"
+                     onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="divider-glow mb-16"></div>
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-4">
+                    <span class="text-brand-secondary">Orari e</span> <span class="text-brand-accent">dove siamo</span>
+                </h2>
+                <div class="w-24 h-1 bg-brand-accent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="glass-card p-10" data-aos="fade-right">
+                    <h3 class="text-2xl font-semibold text-brand-secondary mb-8">Informazioni</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-accent bg-opacity-20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-brand-secondary font-semibold mb-1">Orari</p>
+                                <p class="text-gray-300">Tutti i giorni, festivi inclusi</p>
+                                <p class="text-brand-accent font-semibold">6:00 - 22:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-accent bg-opacity-20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-brand-secondary font-semibold mb-1">Indirizzo</p>
+                                <p class="text-gray-300">Corso Giacomo Matteotti 11</p>
+                                <p class="text-gray-300">20081 Abbiategrasso (MI)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-accent bg-opacity-20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-brand-secondary font-semibold mb-1">Telefono</p>
+                                <a href="tel:+393894796119" class="text-brand-accent hover:text-brand-secondary transition-colors">389 479 6119</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex gap-4">
+                        <a href="tel:+393894796119" class="flex-1 bg-brand-accent text-white px-6 py-3 rounded-full text-center font-semibold hover:bg-opacity-90 transition-all duration-300 btn-glow">
+                            Chiama ora
+                        </a>
+                        <a href="https://wa.me/393894796119" target="_blank" class="flex-1 bg-green-600 text-white px-6 py-3 rounded-full text-center font-semibold hover:bg-green-700 transition-all duration-300">
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card p-10" data-aos="fade-left">
+                    <h3 class="text-2xl font-semibold text-brand-secondary mb-8">Scrivici</h3>
+                    
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-gray-300 mb-2">Nome</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg input-glass" placeholder="Il tuo nome" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-300 mb-2">Telefono</label>
+                            <input type="tel" class="w-full px-4 py-3 rounded-lg input-glass" placeholder="Il tuo telefono" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-300 mb-2">Messaggio</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg input-glass resize-none" placeholder="Come possiamo aiutarti?" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-brand-accent text-white px-6 py-4 rounded-full font-semibold btn-glow hover:bg-opacity-90 transition-all duration-300">
+                            Invia messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 text-center" data-aos="fade-up">
+                <p class="text-xl text-gray-300 leading-relaxed">
+                    Siamo aperti tutti i giorni, festivi inclusi, dalle <span class="text-brand-accent font-semibold">6:00 del mattino alle 22:00 di sera</span>. Ci trovi in Corso Giacomo Matteotti 11, 20081 Abbiategrasso (MI). Per informazioni o prenotazioni puoi chiamarci al <a href="tel:+393894796119" class="text-brand-accent hover:text-brand-secondary transition-colors font-semibold">389 479 6119</a>. Ti aspettiamo!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">
+                        <span class="text-brand-accent">Port</span><span class="text-brand-secondary">moka</span>
+                    </h4>
+                    <p class="text-gray-400 text-sm">Il tuo caffè di fiducia, ogni giorno.</p>
+                </div>
+                
+                <div>
+                    <h5 class="text-brand-secondary font-semibold mb-4">Contatti</h5>
+                    <p class="text-gray-400 text-sm mb-2">Corso Giacomo Matteotti 11</p>
+                    <p class="text-gray-400 text-sm mb-2">20081 Abbiategrasso (MI)</p>
+                    <p class="text-gray-400 text-sm">Tel: <a href="tel:+393894796119" class="text-brand-accent hover:text-brand-secondary">389 479 6119</a></p>
+                </div>
+                
+                <div>
+                    <h5 class="text-brand-secondary font-semibold mb-4">Orari</h5>
+                    <p class="text-gray-400 text-sm mb-2">Tutti i giorni</p>
+                    <p class="text-brand-accent font-semibold text-sm">6:00 - 22:00</p>
+                </div>
+            </div>
+            
+            <div class="divider-glow my-8"></div>
+            
+            <div class="text-center">
+                <p class="text-gray-500 text-sm">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-brand-accent hover:text-brand-secondary transition-colors">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
