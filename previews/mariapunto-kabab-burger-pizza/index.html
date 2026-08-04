@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariapunto Kebab & Burger Pizza | Abbiategrasso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#B5502C',
+                        secondary: '#E8D5B7',
+                        accent: '#C97B4A',
+                        background: '#FBF6EF',
+                        textcolor: '#2C2019'
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2C2019;
+            background-color: #FBF6EF;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blob-anim 20s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob-anim-2 25s ease-in-out infinite;
+        }
+
+        .blob-3 {
+            border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+            animation: blob-anim-3 22s ease-in-out infinite;
+        }
+
+        @keyframes blob-anim {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: translate(0, 0) scale(1); }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; transform: translate(30px, -50px) scale(1.05); }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; transform: translate(-20px, 30px) scale(0.95); }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; transform: translate(20px, 20px) scale(1.02); }
+        }
+
+        @keyframes blob-anim-2 {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) scale(1); }
+            33% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: translate(-30px, 40px) scale(1.03); }
+            66% { border-radius: 40% 60% 50% 60% / 40% 50% 60% 50%; transform: translate(25px, -30px) scale(0.97); }
+        }
+
+        @keyframes blob-anim-3 {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; transform: translate(0, 0) scale(1); }
+            40% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; transform: translate(20px, 30px) scale(1.04); }
+            80% { border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%; transform: translate(-25px, -20px) scale(0.96); }
+        }
+
+        .nav-scrolled {
+            background: rgba(251, 246, 239, 0.98);
+            box-shadow: 0 4px 24px rgba(45, 32, 25, 0.08);
+        }
+
+        .rounded-soft {
+            border-radius: 32px;
+        }
+
+        .rounded-medium {
+            border-radius: 24px;
+        }
+
+        .rounded-small {
+            border-radius: 16px;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 8px 32px rgba(181, 80, 44, 0.12);
+        }
+
+        .shadow-soft-hover {
+            box-shadow: 0 12px 40px rgba(181, 80, 44, 0.18);
+        }
+
+        input, textarea {
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 4px 20px rgba(181, 80, 44, 0.15);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-heading font-bold text-xl sm:text-2xl text-primary">
+                        Mariapunto <span class="text-accent hidden sm:inline">Kebab & Burger Pizza</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="font-body text-textcolor hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="#chi-siamo" class="font-body text-textcolor hover:text-primary transition-colors duration-300">Chi siamo</a>
+                    <a href="#menu" class="font-body text-textcolor hover:text-primary transition-colors duration-300">Menu</a>
+                    <a href="#dove-siamo" class="font-body text-textcolor hover:text-primary transition-colors duration-300">Dove siamo</a>
+                    <a href="#contatti" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-accent transition-all duration-300 shadow-soft hover:shadow-soft-hover">
+                        Contattaci
+                    </a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-textcolor p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-background border-t border-secondary">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="#home" class="block font-body text-textcolor hover:text-primary py-2 transition-colors duration-300">Home</a>
+                <a href="#chi-siamo" class="block font-body text-textcolor hover:text-primary py-2 transition-colors duration-300">Chi siamo</a>
+                <a href="#menu" class="block font-body text-textcolor hover:text-primary py-2 transition-colors duration-300">Menu</a>
+                <a href="#dove-siamo" class="block font-body text-textcolor hover:text-primary py-2 transition-colors duration-300">Dove siamo</a>
+                <a href="#contatti" class="block bg-primary text-white px-6 py-3 rounded-full text-center hover:bg-accent transition-all duration-300">
+                    Contattaci
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Blob Backgrounds -->
+        <div class="absolute top-10 left-10 w-96 h-96 bg-secondary opacity-40 blob"></div>
+        <div class="absolute bottom-20 right-10 w-80 h-80 bg-accent opacity-30 blob-2"></div>
+        <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-primary opacity-20 blob-3"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h1 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-textcolor mb-6 leading-tight">
+                        Kebab, Burger & Pizza — <span class="text-primary">Tutto quello che vuoi, quando vuoi</span>
+                    </h1>
+                    <p class="font-body text-lg sm:text-xl text-textcolor/80 mb-8 leading-relaxed">
+                        Aperto ogni giorno dalle 11:00 alle 2:00 di notte ad Abbiategrasso. Sapori autentici, servizio veloce e un'atmosfera che ti fa sentire a casa.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contatti" class="bg-primary text-white px-8 py-4 rounded-full font-heading font-semibold text-lg hover:bg-accent transition-all duration-300 shadow-soft hover:shadow-soft-hover text-center">
+                            Vieni a trovarci
+                        </a>
+                        <a href="tel:+393398362218" class="bg-secondary text-primary px-8 py-4 rounded-full font-heading font-semibold text-lg hover:bg-accent hover:text-white transition-all duration-300 shadow-soft text-center">
+                            Chiamaci ora
+                        </a>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <div class="rounded-soft overflow-hidden shadow-soft-hover">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCm884TNUNsZT1b6gquRBBQ8ThOQBDtdn8AMrIv6u8Xif5r93Ng-vag6potmrMkDsFApd6POEixLIvKHbHnSfq5EblIocek_G2BET3NcBf5qP-Ra38G9Pib44kgQAv5mXZdMCfdywyfWRWqD8csAUTkIA=s4800-w1600" alt="Mariapunto Kebab & Burger Pizza" class="w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chi Siamo Section -->
+    <section id="chi-siamo" class="py-20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-72 h-72 bg-secondary opacity-30 blob-2"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl text-textcolor mb-4">Chi siamo</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="rounded-soft overflow-hidden shadow-soft">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDzsO2ZLd06xjEREDwx4FBliP3UhdCOztbWxYj4ECHJxN5lbjlVw6qcVPb3GOJmE0vx1MYxKS2NYWzZ1ZBDNFKWGk5tiUBRrMtzeShnUUYRs4MPe8DAhD0hjloUJ1FSCcn6pAVCBftEC38Pag=s4800-w1365" alt="Interno Mariapunto" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <p class="font-body text-lg text-textcolor/90 mb-6 leading-relaxed">
+                        Mariapunto è il punto di riferimento ad Abbiategrasso per chi cerca un pasto genuino, gustoso e senza compromessi. Nati dalla passione per i sapori autentici, proponiamo un menu che spazia dal classico kebab ai burger succosi, fino alle pizze preparate con cura.
+                    </p>
+                    <p class="font-body text-lg text-textcolor/90 mb-6 leading-relaxed">
+                        Con oltre 87 recensioni positive su Google e una valutazione di 4.2 su 5, i nostri clienti parlano chiaro: da noi si mangia bene e si viene trattati con il sorriso.
+                    </p>
+                    <p class="font-body text-lg text-textcolor/90 leading-relaxed">
+                        Siamo aperti sette giorni su sette, dalle 11 del mattino alle 2 di notte, perché la fame non guarda l'orologio.
+                    </p>
+                    <div class="mt-8 flex items-center gap-6">
+                        <div class="bg-secondary px-6 py-4 rounded-medium text-center">
+                            <div class="font-heading font-bold text-3xl text-primary">4.2</div>
+                            <div class="font-body text-sm text-textcolor/70">Valutazione</div>
+                        </div>
+                        <div class="bg-secondary px-6 py-4 rounded-medium text-center">
+                            <div class="font-heading font-bold text-3xl text-primary">87+</div>
+                            <div class="font-body text-sm text-textcolor/70">Recensioni</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-secondary/30 relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-accent opacity-20 blob-3"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl text-textcolor mb-4">Il nostro menu</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-background rounded-soft p-8 shadow-soft hover:shadow-soft-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-primary/10 rounded-medium flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-textcolor mb-4">Kebab</h3>
+                    <p class="font-body text-textcolor/80 leading-relaxed">
+                        Preparato fresco con carni selezionate e salse fatte in casa. Un classico che non tradisce mai.
+                    </p>
+                </div>
+                
+                <div class="bg-background rounded-soft p-8 shadow-soft hover:shadow-soft-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-accent/10 rounded-medium flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-textcolor mb-4">Burger</h3>
+                    <p class="font-body text-textcolor/80 leading-relaxed">
+                        Generosi, caldi e appaganti. I nostri burger sono un'esperienza di gusto ad ogni morso.
+                    </p>
+                </div>
+                
+                <div class="bg-background rounded-soft p-8 shadow-soft hover:shadow-soft-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-primary/10 rounded-medium flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-textcolor mb-4">Pizza</h3>
+                    <p class="font-body text-textcolor/80 leading-relaxed">
+                        Sfornata croccante e saporita, con i condimenti che ami di più. Tradizione e qualità.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-background rounded-soft p-8 sm:p-12 shadow-soft" data-aos="fade-up">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-heading font-bold text-3xl text-textcolor mb-6">Per tutti i gusti, a tutte le ore</h3>
+                        <p class="font-body text-lg text-textcolor/90 leading-relaxed">
+                            Il nostro menu è pensato per tutti i gusti e tutte le ore. Ami il kebab? Lo prepariamo fresco, con carni selezionate e salse fatte in casa. Preferisci un burger? I nostri sono generosi, caldi e appaganti. Cerchi una pizza? La sforniamo croccante e saporita, con i condimenti che ami di più. Che sia pranzo, cena o un'uscita serale tardiva, Mariapunto ha sempre qualcosa di buono per te.
+                        </p>
+                    </div>
+                    <div class="rounded-soft overflow-hidden shadow-soft">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDp88Iyyg7ZTRjjEitZlEAUjVoKbSZUc2mOoGKKtizxEL4EdWOzxyOW453iTVJkTJvhh6ATG28M0TAj3qZGN8Nc7ciAg7wtbyKesMZ_mRZA8om7YuTlvNhIa-XwWBmCMyV643IlBJTN393EwYCa1Ffhkg=s4800-w1198" alt="Menu Mariapunto" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perché Sceglierci Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute top-1/4 right-10 w-64 h-64 bg-secondary opacity-40 blob"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl text-textcolor mb-4">Perché sceglierci</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-3">Qualità vera</h3>
+                    <p class="font-body text-textcolor/80">A prezzi onesti, senza compromessi</p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-3">Cordialità genuina</h3>
+                    <p class="font-body text-textcolor/80">Ti accogliamo con il sorriso</p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-3">Sempre aperti</h3>
+                    <p class="font-body text-textcolor/80">7 giorni su 7, fino alle 2 di notte</p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-3">Clienti fedeli</h3>
+                    <p class="font-body text-textcolor/80">Tornano sempre, ed è il nostro orgoglio</p>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-background rounded-soft p-8 sm:p-12 shadow-soft" data-aos="fade-up">
+                <p class="font-body text-lg text-center text-textcolor/90 leading-relaxed max-w-4xl mx-auto">
+                    Scegli Mariapunto perché qui trovi qualità vera a prezzi onesti. Trovi un posto dove il personale ti accoglie con genuina cordialità e dove ogni piatto è preparato con attenzione. I nostri clienti tornano, e questo è il complimento più grande che possiamo ricevere. Siamo aperti tutti i giorni, nessun giorno di riposo, perché vogliamo esserci sempre quando hai voglia di qualcosa di buono.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dove Siamo Section -->
+    <section id="dove-siamo" class="py-20 bg-secondary/30 relative overflow-hidden">
+        <div class="absolute bottom-10 right-20 w-72 h-72 bg-accent opacity-20 blob-2"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl text-textcolor mb-4">Dove siamo e orari</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="bg-background rounded-soft p-8 sm:p-10 shadow-soft">
+                        <div class="mb-8">
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="w-12 h-12 bg-primary/10 rounded-medium flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-2">Indirizzo</h3>
+                                    <p class="font-body text-textcolor/80">Via Costantino Cantù 37<br>Abbiategrasso (MI)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="w-12 h-12 bg-accent/10 rounded-medium flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-2">Orari</h3>
+                                    <p class="font-body text-textcolor/80">Aperto ogni giorno<br>11:00 - 02:00</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-medium flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-semibold text-xl text-textcolor mb-2">Telefono</h3>
+                                    <a href="tel:+393398362218" class="font-body text-lg text-primary hover:text-accent transition-colors duration-300">339 836 2218</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="font-body text-textcolor/80 mb-6">
+                            Ci trovi in Via Costantino Cantù 37, ad Abbiategrasso (MI), facilmente raggiungibile dal centro. Siamo aperti ogni giorno dalle 11:00 alle 2:00. Per ordinare o per qualsiasi informazione, chiamaci. Ti aspettiamo!
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="tel:+393398362218" class="bg-primary text-white px-6 py-3 rounded-full font-heading font-semibold hover:bg-accent transition-all duration-300 shadow-soft text-center">
+                                Chiama ora
+                            </a>
+                            <a href="https://wa.me/393398362218" target="_blank" class="bg-secondary text-primary px-6 py-3 rounded-full font-heading font-semibold hover:bg-accent hover:text-white transition-all duration-300 shadow-soft text-center">
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <div class="rounded-soft overflow-hidden shadow-soft-hover h-96 lg:h-full">
+                        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCHFR6MNXm_Trq7k1k87wNs9HSB6MQCPE2WD5Oj3Blji_aDAcE7w7PlSuMEjs29ArHQxRGWnXYlP9vEKRcderz0wfPQW-1KoAZJxdEVq3Ed9XqkUW7ibH-eIDPEPoIHxVC2gc-xk7uvzmAfHZc=s4800-w794" alt="Esterno Mariapunto" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 relative overflow-hidden">
+        <div class="absolute top-0 left-10 w-80 h-80 bg-secondary opacity-30 blob-3"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-4xl sm:text-5xl text-textcolor mb-4">Contattaci</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="font-body text-lg text-textcolor/80">Hai domande o vuoi effettuare un ordine? Scrivici!</p>
+            </div>
+
+            <div class="bg-background rounded-soft p-8 sm:p-12 shadow-soft-hover" data-aos="fade-up">
+                <form class="space-y-6">
+                    <div>
+                        <label for="nome" class="block font-body font-medium text-textcolor mb-2">Nome</label>
+                        <input type="text" id="nome" name="nome" required class="w-full px-6 py-4 rounded-medium border border-secondary bg-white text-textcolor font-body focus:border-primary transition-all duration-300" placeholder="Il tuo nome">
+                    </div>
+
+                    <div>
+                        <label for="telefono" class="block font-body font-medium text-textcolor mb-2">Telefono</label>
+                        <input type="tel" id="telefono" name="telefono" required class="w-full px-6 py-4 rounded-medium border border-secondary bg-white text-textcolor font-body focus:border-primary transition-all duration-300" placeholder="+39 000 000 0000">
+                    </div>
+
+                    <div>
+                        <label for="messaggio" class="block font-body font-medium text-textcolor mb-2">Messaggio</label>
+                        <textarea id="messaggio" name="messaggio" rows="5" required class="w-full px-6 py-4 rounded-medium border border-secondary bg-white text-textcolor font-body focus:border-primary transition-all duration-300 resize-none" placeholder="Scrivi il tuo messaggio..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary text-white px-8 py-4 rounded-full font-heading font-semibold text-lg hover:bg-accent transition-all duration-300 shadow-soft hover:shadow-soft-hover">
+                        Invia messaggio
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-secondary">
+                    <p class="text-center font-body text-textcolor/70 mb-4">Oppure contattaci direttamente:</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="tel:+393398362218" class="flex items-center justify-center gap-2 bg-secondary text-primary px-6 py-3 rounded-full font-body font-medium hover:bg-accent hover:text-white transition-all duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            339 836 2218
+                        </a>
+                        <a href="https://wa.me/393398362218" target="_blank" class="flex items-center justify-center gap-2 bg-secondary text-primary px-6 py-3 rounded-full font-body font-medium hover:bg-accent hover:text-white transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-textcolor text-background py-12 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-10 blob"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-heading font-bold text-2xl text-primary mb-4">Mariapunto</h3>
+                    <p class="font-body text-background/80 mb-4">Sapori del mondo, ad ogni ora. Il tuo punto di riferimento ad Abbiategrasso.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-semibold text-lg mb-4">Contatti</h4>
+                    <div class="space-y-2 font-body text-background/80">
+                        <p>Via Costantino Cantù 37</p>
+                        <p>Abbiategrasso (MI)</p>
+                        <p><a href="tel:+393398362218" class="hover:text-primary transition-colors">339 836 2218</a></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-semibold text-lg mb-4">Orari</h4>
+                    <div class="space-y-2 font-body text-background/80">
+                        <p>Aperto tutti i giorni</p>
+                        <p class="text-primary font-semibold">11:00 - 02:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-background/20 pt-8 text-center">
+                <p class="font-body text-background/60 text-sm">
+                    © 2024 Mariapunto Kebab & Burger Pizza. Tutti i diritti riservati.
+                </p>
+                <p class="font-body text-background/40 text-xs mt-4">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-accent hover:text-primary transition-colors">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
