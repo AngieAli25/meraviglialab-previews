@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osteria La Cortazza | Cucina genuina, tradizione contadina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#B5502C',
+                        secondary: '#E8D5B7',
+                        accent: '#C97B4A',
+                        background: '#FBF6EF',
+                        textdark: '#2C2019',
+                    },
+                    fontFamily: {
+                        'marcellus': ['Marcellus', 'serif'],
+                        'karla': ['Karla', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Karla', sans-serif;
+            color: #2C2019;
+            background-color: #FBF6EF;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        .hero-image {
+            animation: heroZoom 20s ease-out infinite alternate;
+        }
+
+        .nav-scrolled {
+            background-color: rgba(251, 246, 239, 0.98);
+            box-shadow: 0 1px 0 rgba(181, 80, 44, 0.1);
+        }
+
+        .hover-underline {
+            position: relative;
+        }
+
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #B5502C;
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
+
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+
+        .btn-outline {
+            border: 1px solid #B5502C;
+            color: #B5502C;
+            padding: 0.875rem 2.5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: #B5502C;
+            color: #FBF6EF;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #E8D5B7, transparent);
+            margin: 8rem auto;
+            max-width: 200px;
+        }
+
+        .section-spacing {
+            padding: 8rem 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-spacing {
+                padding: 10rem 2rem;
+            }
+        }
+
+        .letter-spacing-luxury {
+            letter-spacing: 0.25em;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        input, textarea {
+            border: 1px solid #E8D5B7;
+            background-color: #FBF6EF;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #B5502C;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        <div class="flex justify-between items-center">
+            <a href="#home" class="font-marcellus text-2xl tracking-wide text-textdark">Osteria La Cortazza</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12">
+                <a href="#home" class="text-xs uppercase letter-spacing-luxury hover-underline text-textdark">Home</a>
+                <a href="#chisiamo" class="text-xs uppercase letter-spacing-luxury hover-underline text-textdark">Chi siamo</a>
+                <a href="#menu" class="text-xs uppercase letter-spacing-luxury hover-underline text-textdark">Menù</a>
+                <a href="#eventi" class="text-xs uppercase letter-spacing-luxury hover-underline text-textdark">Eventi</a>
+                <a href="#contatti" class="text-xs uppercase letter-spacing-luxury hover-underline text-textdark">Contatti</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-textdark">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full h-full bg-background z-40 md:hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="#home" class="text-sm uppercase letter-spacing-luxury text-textdark mobile-menu-link">Home</a>
+        <a href="#chisiamo" class="text-sm uppercase letter-spacing-luxury text-textdark mobile-menu-link">Chi siamo</a>
+        <a href="#menu" class="text-sm uppercase letter-spacing-luxury text-textdark mobile-menu-link">Menù</a>
+        <a href="#eventi" class="text-sm uppercase letter-spacing-luxury text-textdark mobile-menu-link">Eventi</a>
+        <a href="#contatti" class="text-sm uppercase letter-spacing-luxury text-textdark mobile-menu-link">Contatti</a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section id="home" class="relative h-screen overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDTVn-XlqDMZNFTsb72kqpYlMJG2H9N7Sf4up4H5Pm3jtLKDiRSwoPqTapUd_O0S8DmsFDLsdGxkL3yULQFCUJzwAEp15-Mao7kFzPo0XettxbcEgBY-czD9dEk3io2S2pWMdPRKGVhqWwlWA=s4800-w1600" 
+             alt="Osteria La Cortazza" 
+             class="hero-image w-full h-full object-cover"
+             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+    </div>
+    
+    <div class="relative h-full flex flex-col items-center justify-center text-center px-6">
+        <h1 class="font-marcellus text-4xl md:text-6xl lg:text-7xl text-white uppercase letter-spacing-luxury mb-8 max-w-5xl leading-tight" data-aos="fade-up">
+            Il gusto autentico della tradizione contadina
+        </h1>
+        <p class="font-karla text-white/90 text-base md:text-lg max-w-3xl mb-12 leading-relaxed font-light" data-aos="fade-up" data-aos-delay="200">
+            Un'osteria storica ad Abbiategrasso dove ogni pasto è un ritorno alle origini: porzioni generose, sapori veri e un camino sempre acceso ad aspettarti.
+        </p>
+        <a href="#contatti" class="btn-outline inline-block" data-aos="fade-up" data-aos-delay="400">
+            Prenota il tuo tavolo
+        </a>
+    </div>
+</section>
+
+<!-- Chi Siamo Section -->
+<section id="chisiamo" class="section-spacing">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-marcellus text-3xl md:text-5xl uppercase letter-spacing-luxury mb-12 text-textdark" data-aos="fade-up">
+            Chi siamo
+        </h2>
+        <div class="divider-line mb-12" data-aos="fade" data-aos-delay="100"></div>
+        <p class="font-karla text-base md:text-lg leading-relaxed text-textdark/80 font-light" data-aos="fade-up" data-aos-delay="200">
+            Osteria La Cortazza nasce dalla tradizione del circolo contadino: un luogo dove il cibo è ancora quello di una volta, fatto con materie prime genuine e servito con il calore di chi ci mette il cuore. Siamo a due passi da Abbiategrasso, in Via Cortazza 6, immersi in un contesto storico che racconta anni di convivialità e cultura rurale. La nostra sala, con il suo bellissimo camino acceso al centro, è calda d'inverno e fresca d'estate: il posto giusto per rallentare e godersi un pasto come si deve.
+        </p>
+    </div>
+</section>
+
+<!-- Image Section 1 -->
+<section class="py-0">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="relative h-96 md:h-[600px] overflow-hidden" data-aos="fade-up">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCMm3HMKw5QwU6G1Vpf59D1wlwpupv9GNRS-gESvK30h5pmFRa1vtmINi6pI7HGSMs5hAkcvotXZZhS-KQc57_1uzZfOZTlpFIhE7Mp9JQgJjqU5oIpbAvm48BnMbBldM_-BEqFQ7pEzdWY5g=s4800-w1600" 
+                 alt="Interior Osteria La Cortazza" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        </div>
+    </div>
+</section>
+
+<!-- Menu Section -->
+<section id="menu" class="section-spacing">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-marcellus text-3xl md:text-5xl uppercase letter-spacing-luxury mb-12 text-textdark" data-aos="fade-up">
+            Il nostro menù
+        </h2>
+        <div class="divider-line mb-12" data-aos="fade" data-aos-delay="100"></div>
+        <p class="font-karla text-base md:text-lg leading-relaxed text-textdark/80 font-light" data-aos="fade-up" data-aos-delay="200">
+            Proponiamo una cucina della tradizione lombarda con piatti della memoria: carni, contorni rustici, pranzi del giorno e portate della domenica. Le porzioni sono generose, i prezzi onesti. Tutto pensato per chi vuole mangiare bene senza fronzoli, in compagnia di amici o colleghi. Il menù cambia seguendo le stagioni e la disponibilità dei prodotti freschi.
+        </p>
+    </div>
+</section>
+
+<!-- Image Section 2 -->
+<section class="py-0">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="relative h-96 md:h-[600px] overflow-hidden" data-aos="fade-up">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCV3BWTaY0X1Jiv4ZqskdEXyipDERg0NPkuYPSHcomPnQZM8K9QkhfwX8kk9YMQJ1FIS_OmqTHv6YYARtb_i0z5PPx0QNfqji02J3cCG8a3TtFNVGjWtimBn7pYQduS9r5b8Y9eKn6kjJ4B=s4800-w1600" 
+                 alt="Piatti Osteria La Cortazza" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        </div>
+    </div>
+</section>
+
+<!-- Eventi Section -->
+<section id="eventi" class="section-spacing">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-marcellus text-3xl md:text-5xl uppercase letter-spacing-luxury mb-12 text-textdark" data-aos="fade-up">
+            Eventi e gruppi
+        </h2>
+        <div class="divider-line mb-12" data-aos="fade" data-aos-delay="100"></div>
+        <p class="font-karla text-base md:text-lg leading-relaxed text-textdark/80 font-light" data-aos="fade-up" data-aos-delay="200">
+            La Cortazza è il posto ideale per organizzare pranzi di gruppo, feste tra amici, riunioni conviviali o piccoli eventi privati. La nostra sala può ospitare comitive e siamo felici di costruire insieme a te un menù su misura per l'occasione. Il personale è disponibile, cordiale e attento a far sentire ogni ospite a proprio agio.
+        </p>
+    </div>
+</section>
+
+<!-- Image Section 3 -->
+<section class="py-0">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="relative h-96 md:h-[600px] overflow-hidden" data-aos="fade-up">
+            <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjApdcDGi5XmDC9NiguM-xXewRmN7MwDiaG5hazzNQOKjrJPIbYmz-6Ly0AcDgXNoy_XPzrlcbwH2RTqJWRnfvgNMebQMidDHnbCXklQB6FZCKxy0FKo9exh3VEkRTdHcX9J5mMLzLiQ8Cfj=s4800-w1600" 
+                 alt="Sala Osteria La Cortazza" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        </div>
+    </div>
+</section>
+
+<!-- Dove Siamo Section -->
+<section class="section-spacing">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-marcellus text-3xl md:text-5xl uppercase letter-spacing-luxury mb-12 text-textdark" data-aos="fade-up">
+            Dove siamo e orari
+        </h2>
+        <div class="divider-line mb-12" data-aos="fade" data-aos-delay="100"></div>
+        <p class="font-karla text-base md:text-lg leading-relaxed text-textdark/80 font-light" data-aos="fade-up" data-aos-delay="200">
+            Ci trovi in Via Cortazza 6, 20081 Abbiategrasso (MI). Per informazioni o prenotazioni chiamaci al 349 281 6351. Siamo aperti a pranzo e cena: ti consigliamo di chiamare per conoscere gli orari aggiornati e assicurarti un tavolo, soprattutto nel weekend.
+        </p>
+    </div>
+</section>
+
+<!-- Contatti Section -->
+<section id="contatti" class="section-spacing bg-secondary/20">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="font-marcellus text-3xl md:text-5xl uppercase letter-spacing-luxury mb-12 text-textdark" data-aos="fade-up">
+                Contatti
+            </h2>
+            <div class="divider-line mb-12" data-aos="fade" data-aos-delay="100"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 mb-16">
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="mb-6">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-marcellus text-xl mb-4 uppercase letter-spacing-luxury text-textdark">Telefono</h3>
+                <a href="tel:+393492816351" class="text-base text-textdark/80 hover-underline inline-block">+39 349 281 6351</a>
+            </div>
+
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="mb-6">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-marcellus text-xl mb-4 uppercase letter-spacing-luxury text-textdark">Indirizzo</h3>
+                <p class="text-base text-textdark/80">Via Cortazza 6<br>20081 Abbiategrasso (MI)</p>
+            </div>
+        </div>
+
+        <div class="text-center mb-12" data-aos="fade-up" data-aos-delay="400">
+            <a href="https://wa.me/393492816351" target="_blank" class="btn-outline inline-flex items-center space-x-3">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span>Scrivici su WhatsApp</span>
+            </a>
+        </div>
+
+        <form class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="500">
+            <div class="mb-6">
+                <input type="text" placeholder="Nome" class="w-full px-6 py-4 font-karla text-textdark" required>
+            </div>
+            <div class="mb-6">
+                <input type="tel" placeholder="Telefono" class="w-full px-6 py-4 font-karla text-textdark" required>
+            </div>
+            <div class="mb-8">
+                <textarea rows="6" placeholder="Messaggio" class="w-full px-6 py-4 font-karla text-textdark resize-none" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn-outline">Invia richiesta</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 border-t border-secondary/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center">
+            <p class="font-marcellus text-2xl mb-4 text-textdark">Osteria La Cortazza</p>
+            <p class="font-karla text-sm text-textdark/60 mb-2">Via Cortazza 6, 20081 Abbiategrasso (MI)</p>
+            <p class="font-karla text-sm text-textdark/60 mb-8">Tel. <a href="tel:+393492816351" class="hover-underline">+39 349 281 6351</a></p>
+            <div class="divider-line my-8 max-w-32"></div>
+            <p class="font-karla text-xs text-textdark/40 tracking-wider">
+                Bozza realizzata da <span class="text-accent">meravigliä Lab</span> · meraviglialab.com
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // AOS Init
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.classList.add('nav-scrolled');
+        } else {
+            navbar.classList.remove('nav-scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+    });
+
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
