@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Istanbul Doner Kebap & Pizza - Abbiategrasso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a1a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .navbar {
+            transition: all 0.4s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            break-inside: avoid;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .masonry {
+            column-count: 1;
+            column-gap: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .masonry { column-count: 2; }
+        }
+        
+        @media (min-width: 1024px) {
+            .masonry { column-count: 3; }
+        }
+        
+        .full-bleed {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #d4502c 0%, #b33819 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 80, 44, 0.4);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        input, textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f5f5f5;
+            padding: 0.875rem 1rem;
+            border-radius: 2px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #d4502c;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        ::placeholder {
+            color: rgba(245, 245, 245, 0.4);
+        }
+        
+        .divider-img {
+            height: 60vh;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .divider-img {
+                height: 40vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <div class="logo">
+                    <a href="#" class="text-2xl font-bold tracking-tight text-white" style="font-family: 'Playfair Display', serif;">
+                        Istanbul <span class="text-red-500">Doner Kebap & Pizza</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#gallery" class="text-white hover:text-red-500 transition text-sm uppercase tracking-wide">Gallery</a>
+                    <a href="#about" class="text-white hover:text-red-500 transition text-sm uppercase tracking-wide">Chi Siamo</a>
+                    <a href="#contact" class="text-white hover:text-red-500 transition text-sm uppercase tracking-wide">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-black z-50 md:hidden" id="mobile-menu">
+        <div class="p-6">
+            <button class="text-white mb-8" id="close-menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="flex flex-col space-y-6">
+                <a href="#gallery" class="text-white hover:text-red-500 transition text-sm uppercase tracking-wide">Gallery</a>
+                <a href="#about" class="text-white hover:text-red-500 transition text-sm uppercase tracking-wide">Chi Siamo</a>
+                <a href="#contact" class="text-white hover:text-red-500 transition text-sm uppercase tracking-wide">Contatti</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden">
+        <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCp73yFbVnfGipUm3JYHW_Er7-H0kcsWAiB_2VVKCb9D6cC8GtrginDZ4m1TR8dy5RHLiZ_EY5Vu8vzMAPJAl-55KZfH5pvmcVpqrw_mRX51LtQNe8flPHOjGhsVe3suk5AZ8j_WZFAOUaw8vM=s4800-w1600" 
+             alt="Istanbul Doner Kebap & Pizza" 
+             class="w-full h-full object-cover"
+             onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80'; this.onerror=null;">
+        <div class="hero-overlay absolute inset-0"></div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-12 lg:p-16 max-w-7xl mx-auto">
+            <div data-aos="fade-up">
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+                    Sapori Autentici
+                </h1>
+                <p class="text-xl sm:text-2xl text-white/90 mb-8 max-w-xl font-light">
+                    Dal cuore di Abbiategrasso
+                </p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">I Nostri Piatti</h2>
+                <p class="text-gray-400 text-lg">Ogni creazione racconta una storia di passione</p>
+            </div>
+            
+            <div class="masonry">
+                <div class="gallery-item mb-4" data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDIbmtvQcSrmVhotDyN6P4m3vt3Ugs8A0SWhFM9E5GLCkfAd5GWNR9Vt1OVi7uRtcFsBrLUPKapC2lcOjNF36okmRGgKWi5qJWKWvCjc6owVZgRZMypphX2d52Aaa_YkkmtfRuaNpXeYeAQ3Q=s4800-w1600" 
+                         alt="Doner Kebap" 
+                         onerror="this.src='https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">Doner Kebap</h3>
+                            <p class="text-gray-300 text-sm">Carne selezionata, verdure fresche</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" 
+                         alt="Pizza Margherita" 
+                         onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">Pizza Margherita</h3>
+                            <p class="text-gray-300 text-sm">Classica e irresistibile</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjD7qZdiBsZJqtqTWh6YsvcTNH9lLvaMmz-XR3rKyyO-LatOHSgtkfGZYebUXdOOyygHMQT5a9MpVjELIz1TltRN8qykCQua9U4oY_Yyi3zIIaEUdnmsgDBr4qpByhjhIBen2gJzRFLaiq46scN2jezpjw=s4800-w1600" 
+                         alt="Pita" 
+                         onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">Pita Gourmet</h3>
+                            <p class="text-gray-300 text-sm">Avvolta in morbido pane</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item mb-4" data-aos="fade-up" data-aos-delay="0">
+                    <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&q=80" 
+                         alt="Insalata Fresca" 
+                         onerror="this.src='https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">Insalate Fresche</h3>
+                            <p class="text-gray-300 text-sm">Verdure di stagione</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDZdF_mfH91VTuY_v3VQSKfWpMt71HJRmMt-DtNvdq9axXzAMPCZJ2E1VTux33sp0q47V6WxszHx0iVHplY4UGGWQCdaV6lhZsZly6Q9qeMkDTOSpGkigePpBbJ4mI2Mm6IsoXWtmUh9MrW3w=s4800-w1600" 
+                         alt="Menu Completo" 
+                         onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">Menu Completo</h3>
+                            <p class="text-gray-300 text-sm">Porzioni generose</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&q=80" 
+                         alt="Pizza Speciale" 
+                         onerror="this.src='https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&q=80'; this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3 class="text-white text-xl font-bold mb-1">Pizza Speciale</h3>
+                            <p class="text-gray-300 text-sm">Con ingredienti selezionati</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Bleed Divider -->
+    <div class="full-bleed">
+        <img src="https://images.unsplash.com/photo-1599974261944-29e8f8846e49?w=1920&q=80" 
+             alt="Ambiente Istanbul" 
+             class="w-full divider-img"
+             onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80'; this.onerror=null;">
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold text-white mb-8" data-aos="fade-up">
+                Benvenuti ad Abbiategrasso
+            </h2>
+            <div class="space-y-6 text-gray-300 text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                <p>
+                    Istanbul Doner Kebap & Pizza è il punto di riferimento ad Abbiategrasso per chi cerca gusto autentico, porzioni generose e un'accoglienza calorosa.
+                </p>
+                <p>
+                    Dalla classica pita con doner alla pizza croccante, ogni piatto è preparato con passione e ingredienti selezionati. Il nostro segreto? L'amore per la tradizione unito alla freschezza di ogni giorno.
+                </p>
+                <p class="text-red-500 font-semibold text-xl pt-4">
+                    Vieni a trovarci e lasciati conquistare dai nostri sapori
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 bg-zinc-900">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">Contattaci</h2>
+                <p class="text-gray-400 text-lg">Siamo pronti ad accoglierti</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-white mb-6">Informazioni</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 text-red-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <p class="text-gray-400 text-sm mb-1">Telefono</p>
+                                <a href="tel:+390000000000" class="text-white text-lg hover:text-red-500 transition">+39 000 000 0000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <svg class="w-6 h-6 text-red-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <p class="text-gray-400 text-sm mb-1">Indirizzo</p>
+                                <p class="text-white text-lg">Abbiategrasso</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-6">
+                            <a href="tel:+390000000000" class="btn-primary inline-block">
+                                Chiamaci Ora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-white mb-6">Invia un Messaggio</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Nome" required>
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Telefono" required>
+                        </div>
+                        <div>
+                            <textarea rows="4" placeholder="Messaggio" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">
+                            Invia Messaggio
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 px-4 sm:px-6 lg:px-8 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold text-xl mb-4" style="font-family: 'Playfair Display', serif;">Istanbul Doner Kebap & Pizza</h4>
+                    <p class="text-gray-400 text-sm">Sapori autentici, ogni giorno dal cuore di Abbiategrasso</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold mb-4">Contatti</h5>
+                    <p class="text-gray-400 text-sm mb-2">Tel: <a href="tel:+390000000000" class="hover:text-red-500 transition">+39 000 000 0000</a></p>
+                    <p class="text-gray-400 text-sm">Abbiategrasso</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold mb-4">Orari</h5>
+                    <p class="text-gray-400 text-sm">Tutti i giorni</p>
+                    <p class="text-gray-400 text-sm">Pranzo e Cena</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-zinc-800 pt-8 text-center">
+                <p class="text-gray-500 text-sm">© 2024 Istanbul Doner Kebap & Pizza. Tutti i diritti riservati.</p>
+                <p class="text-gray-600 text-xs mt-4">
+                    Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="hover:text-red-500 transition">meravigliä Lab</a> · meraviglialab.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Grazie per il tuo messaggio! Ti contatteremo presto.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
