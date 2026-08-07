@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Legale Bardoni | Oltre trent'anni di esperienza al vostro fianco</title>
+    <meta name="description" content="Studio legale romano fondato dall'Avv. Daniela Bardoni. Oltre 30 anni di esperienza nella tutela dei diritti di privati, enti e società.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B2A4A;
+            --secondary: #2E4272;
+            --accent: #C9A96E;
+            --background: #F7F7F5;
+            --text: #1C1C1C;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Libre Baskerville', serif;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(27, 42, 74, 0.98) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        @keyframes slideLine {
+            0% { left: -60%; }
+            100% { left: 110%; }
+        }
+        
+        .line-1 { animation: slideLine 12s linear infinite; animation-delay: 0s; top: 15%; }
+        .line-2 { animation: slideLine 9s linear infinite; animation-delay: 2s; top: 35%; }
+        .line-3 { animation: slideLine 14s linear infinite; animation-delay: 4s; top: 55%; }
+        .line-4 { animation: slideLine 10s linear infinite; animation-delay: 1s; top: 75%; }
+        .line-5 { animation: slideLine 11s linear infinite; animation-delay: 6s; top: 90%; }
+        
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            pointer-events: none;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(201, 169, 110, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #B89654;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(201, 169, 110, 0.4);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 16px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        #mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+        }
+        
+        .area-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300" style="background-color: transparent;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <svg width="280" height="50" viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Libre Baskerville, serif" font-size="16" font-weight="700" fill="#C9A96E" letter-spacing="1.5">STUDIO LEGALE BARDONI</text>
+                    </svg>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-[#C9A96E] transition-colors duration-300 font-semibold">Home</a>
+                    <a href="#studio" class="text-white hover:text-[#C9A96E] transition-colors duration-300 font-semibold">Lo Studio</a>
+                    <a href="#aree" class="text-white hover:text-[#C9A96E] transition-colors duration-300 font-semibold">Aree di Competenza</a>
+                    <a href="#consulenza" class="text-white hover:text-[#C9A96E] transition-colors duration-300 font-semibold">Consulenza Online</a>
+                    <a href="#contatti" class="text-white hover:text-[#C9A96E] transition-colors duration-300 font-semibold">Contatti</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block text-white hover:text-[#C9A96E] px-3 py-2 transition-colors duration-300">Home</a>
+                    <a href="#studio" class="block text-white hover:text-[#C9A96E] px-3 py-2 transition-colors duration-300">Lo Studio</a>
+                    <a href="#aree" class="block text-white hover:text-[#C9A96E] px-3 py-2 transition-colors duration-300">Aree di Competenza</a>
+                    <a href="#consulenza" class="block text-white hover:text-[#C9A96E] px-3 py-2 transition-colors duration-300">Consulenza Online</a>
+                    <a href="#contatti" class="block text-white hover:text-[#C9A96E] px-3 py-2 transition-colors duration-300">Contatti</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"></div>
+        </div>
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0 z-10" style="background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+        
+        <!-- Animated Lines -->
+        <div class="hero-line line-1"></div>
+        <div class="hero-line line-2"></div>
+        <div class="hero-line line-3"></div>
+        <div class="hero-line line-4"></div>
+        <div class="hero-line line-5"></div>
+        
+        <!-- Content -->
+        <div class="relative z-20 text-center px-4 hero-content">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6" style="font-family: 'Libre Baskerville', serif;">Studio Legale Bardoni</h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto font-light leading-relaxed">Oltre trent'anni di esperienza nella tutela dei diritti di privati, enti e società. Competenza, rigore e attenzione personale per ogni questione legale.</p>
+            <a href="#contatti" class="btn-primary inline-block px-10 py-4 rounded-sm text-lg font-semibold uppercase tracking-wider">Richiedi una consulenza</a>
+        </div>
+    </section>
+
+    <!-- Lo Studio -->
+    <section id="studio" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://www.studiolegalebardoni.com/wp-content/uploads/2024/02/Log20.png" 
+                         alt="Studio Legale Bardoni" 
+                         class="rounded-sm shadow-2xl w-full"
+                         onerror="this.src='https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80'; this.onerror=null;">
+                </div>
+                <div data-aos="fade-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title" style="color: var(--primary);">Lo Studio</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        L'Avv. Daniela Bardoni esercita la professione legale da oltre trent'anni, maturando una solida esperienza in diversi ambiti del diritto. Lo studio, con sede a Roma, assiste privati, enti e società con un approccio metodico, riservato e profondamente orientato alla persona.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Ogni cliente è accolto con ascolto attento e accompagnato in ogni fase del percorso legale con chiarezza e trasparenza. L'iscrizione al patrocinio dinanzi alle Giurisdizioni Superiori è espressione del livello di preparazione e della reputazione costruita nel corso degli anni.
+                    </p>
+                    <div class="flex items-center space-x-3 text-[#C9A96E] font-semibold text-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Oltre 30 anni di esperienza</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aree di Competenza -->
+    <section id="aree" class="py-20 md:py-32" style="background-color: var(--background);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title inline-block" style="color: var(--primary);">Aree di Competenza</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    Lo studio opera nelle principali aree del diritto civile, commerciale, tributario e del lavoro, offrendo assistenza stragiudiziale e giudiziale in ogni fase del procedimento.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Area 1 -->
+                <div class="bg-white p-8 rounded-sm card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Diritto Civile e Contrattuale</h3>
+                    <p class="text-gray-700 leading-relaxed">Assistenza completa in materia di obbligazioni, contratti e responsabilità civile con approccio strategico e personalizzato.</p>
+                </div>
+                
+                <!-- Area 2 -->
+                <div class="bg-white p-8 rounded-sm card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Diritto di Famiglia e Successioni</h3>
+                    <p class="text-gray-700 leading-relaxed">Tutela dei diritti nelle relazioni familiari, separazioni, divorzi e divisioni ereditarie con discrezione e competenza.</p>
+                </div>
+                
+                <!-- Area 3 -->
+                <div class="bg-white p-8 rounded-sm card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Diritto del Lavoro</h3>
+                    <p class="text-gray-700 leading-relaxed">Consulenza per lavoratori e aziende in controversie, contratti di lavoro e rapporti sindacali.</p>
+                </div>
+                
+                <!-- Area 4 -->
+                <div class="bg-white p-8 rounded-sm card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <svg class="area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Diritto Tributario</h3>
+                    <p class="text-gray-700 leading-relaxed">Assistenza nelle controversie fiscali, contenzioso tributario e consulenza per la pianificazione fiscale.</p>
+                </div>
+                
+                <!-- Area 5 -->
+                <div class="bg-white p-8 rounded-sm card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <svg class="area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Diritto Societario e Commerciale</h3>
+                    <p class="text-gray-700 leading-relaxed">Supporto nella costituzione di società, contratti commerciali e gestione di operazioni straordinarie.</p>
+                </div>
+                
+                <!-- Area 6 -->
+                <div class="bg-white p-8 rounded-sm card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <svg class="area-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--secondary);">Diritto Amministrativo</h3>
+                    <p class="text-gray-700 leading-relaxed">Difesa nei rapporti con la Pubblica Amministrazione e ricorsi contro atti amministrativi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Esperienza e Metodo -->
+    <section class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title" style="color: var(--primary);">Esperienza e Metodo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Trent'anni di professione non si misurano soltanto nel numero di cause trattate, ma nella capacità di leggere ogni situazione con profondità, anticipare i rischi e costruire soluzioni efficaci.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        L'Avv. Bardoni affianca ogni cliente con un approccio diretto e personalizzato: nessuna questione viene trattata come routine, ma con la cura e la dedizione che ogni problema personale e professionale merita.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        La chiarezza nel comunicare, la disponibilità all'ascolto e la costante attenzione agli sviluppi normativi sono i tratti distintivi del metodo di lavoro dello studio.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" 
+                         alt="Esperienza e Metodo" 
+                         class="rounded-sm shadow-2xl w-full"
+                         onerror="this.src='https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=80'; this.onerror=null;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consulenza Online -->
+    <section id="consulenza" class="py-20 md:py-32" style="background: linear-gradient(135deg, #1B2A4A 0%, #2E4272 100%);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <svg class="w-20 h-20 mx-auto mb-8 text-[#C9A96E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Consulenza Online</h2>
+            <p class="text-xl text-gray-200 leading-relaxed mb-8">
+                Lo studio offre la possibilità di richiedere una consulenza legale anche a distanza, garantendo la stessa qualità e riservatezza della consulenza in presenza.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed mb-10">
+                Un modo semplice e accessibile per ricevere un primo orientamento professionale, senza necessità di spostarsi fisicamente presso lo studio.
+            </p>
+            <a href="#contatti" class="btn-primary inline-block px-10 py-4 rounded-sm text-lg font-semibold uppercase tracking-wider">Richiedi Consulenza</a>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title inline-block" style="color: var(--primary);">Contatti</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    Per richiedere una consulenza o un primo appuntamento, è possibile compilare il modulo di contatto oppure raggiungere lo studio telefonicamente o via email. Lo studio risponde con la massima riservatezza e nel più breve tempo possibile.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info -->
+                <div data-aos="fade-right">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--secondary);">Informazioni di Contatto</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <svg class="w-6 h-6 mr-4 flex-shrink-0" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" style="color: var(--text);">Indirizzo</h4>
+                                <p class="text-gray-700">Via Emilio Faà di Bruno, 4<br>00195 Roma</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <svg class="w-6 h-6 mr-4 flex-shrink-0" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" style="color: var(--text);">Telefono</h4>
+                                <a href="tel:0637511570" class="text-gray-700 hover:text-[#C9A96E] transition-colors">06 37511570</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 mr-4 flex-shrink-0" style="color: var(--accent);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1" style="color: var(--text);">Email</h4>
+                                <a href="mailto:info@studiolegalebardoni.com" class="text-gray-700 hover:text-[#C9A96E] transition-colors">info@studiolegalebardoni.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form -->
+                <div data-aos="fade-left">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-semibold mb-2" style="color: var(--text);">Nome e Cognome</label>
+                            <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-sm transition-all duration-300">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-semibold mb-2" style="color: var(--text);">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-sm transition-all duration-300">
+                        </div>
+                        
+                        <div>
+                            <label for="telefono" class="block text-sm font-semibold mb-2" style="color: var(--text);">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border-2 border-gray-300 rounded-sm transition-all duration-300">
+                        </div>
+                        
+                        <div>
+                            <label for="messaggio" class="block text-sm font-semibold mb-2" style="color: var(--text);">Messaggio</label>
+                            <textarea id="messaggio" name="messaggio" rows="5" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-sm transition-all duration-300"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full px-8 py-4 rounded-sm text-lg font-semibold uppercase tracking-wider">Invia Richiesta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12" style="background-color: var(--primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-[#C9A96E]" style="font-family: 'Libre Baskerville', serif;">Studio Legale Bardoni</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">Oltre trent'anni di esperienza al vostro fianco</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Contatti</h4>
+                    <p class="text-gray-300 text-sm mb-2">Via Emilio Faà di Bruno, 4</p>
+                    <p class="text-gray-300 text-sm mb-2">00195 Roma</p>
+                    <p class="text-gray-300 text-sm mb-2">Tel: 06 37511570</p>
+                    <p class="text-gray-300 text-sm">info@studiolegalebardoni.com</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Orari</h4>
+                    <p class="text-gray-300 text-sm mb-2">Lun - Ven: 9:00 - 18:00</p>
+                    <p class="text-gray-300 text-sm">Su appuntamento</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-600 pt-8 text-center">
+                <p class="text-gray-400 text-sm mb-2">© 2024 Studio Legale Bardoni. Tutti i diritti riservati.</p>
+                <p class="text-gray-500 text-xs">Bozza realizzata da <a href="https://meraviglialab.com" target="_blank" class="text-[#C9A96E] hover:underline">meravigliä Lab</a> · meraviglialab.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Init
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
